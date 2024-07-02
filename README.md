@@ -9,10 +9,19 @@
 
 ## 팀원
 
-- 프론트: 김준희, 류미성, 김혜림
-- 백: 주아정, 이해림, 하예영
+- Front-end: 김준희, 김혜림, 류미성
+- Back-end: 주아정, 이해림, 하예영
 
 <br>
+
+## Git Branch 전략
+
+- `main` : 출시 가능한 프로덕션 코드를 모아두는 브랜치
+- `dev` : feature에서 기능 개발이 끝난 후 다음 버전 개발을 위한 코드를 모아두는 브랜치
+- `feature` : 하나의 기능을 개발하기 위 브랜치, 기능개발 완료되면 develop 브랜치로 머지
+  - 네이밍 : feature/branch-name
+
+</aside>
 
 ## Commit 규칙
 
@@ -28,14 +37,8 @@
   - Comment: 필요한 주석 추가 및 변경
   - Release: 버전 릴리즈
 - ex)
-  - Feat: 6주차 과제 및 실습 코드
-  - Fix: 4주차 과제 index.html 문법 오류 수정
-  - Move: 5주차 파일 이동
+  - Feat: 검색창 컴포넌트 구현
+  - Design: 모바일 반응형 레이아웃 수정
+  - Refactor: 프로필 이미지 삽입 방식 변경
 
 <br>
-
-## PR(Pull Request) 규칙
-
-<br>
-
-## ISSUE 사용
