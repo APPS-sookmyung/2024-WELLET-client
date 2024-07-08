@@ -1,1 +1,1 @@
-export { default } from './AddCardPage';
+export { default } from './HomePage';
