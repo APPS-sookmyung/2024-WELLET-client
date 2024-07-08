@@ -1,6 +1,6 @@
-import * as S from './HomePage.style';
+import * as S from './MyPage.style';
 
-export default function HomePage() {
+export default function MyPage() {
   return (
     <S.Container>
       {/* <h1 css={boxStyle}>내 명함 부분</h1>

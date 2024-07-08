@@ -1,6 +1,6 @@
-import * as S from './HomePage.style';
+import * as S from './ViewCardPage.style';
 
-export default function HomePage() {
+export default function ViewCardPage() {
   return (
     <S.Container>
       {/* <h1 css={boxStyle}>내 명함 부분</h1>
