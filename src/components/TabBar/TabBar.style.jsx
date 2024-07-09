@@ -5,6 +5,13 @@ export const TabBar = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 70px;
+  width: 100%;
+  max-width: 768px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
   margin-top: 12px;
   flex-shrink: 0;
   background-color: #fff;
