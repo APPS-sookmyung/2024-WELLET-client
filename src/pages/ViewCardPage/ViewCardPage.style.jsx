@@ -74,7 +74,7 @@ export const GroupBtn = styled.button`
   }
 `;
 
-export const EditBtn = styled.button`
+export const EditBtnWrapper = styled.button`
   display: inline-flex;
   padding: 4px 10px;
   align-items: center;
