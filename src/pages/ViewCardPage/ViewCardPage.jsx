@@ -10,7 +10,7 @@ export default function ViewCardPage() {
         <S.SearchIcon>
           <img src={magnifyingGlassIcon} alt='돋보기' />
         </S.SearchIcon>
-        <S.SearchText>명함을 검색해주세요</S.SearchText>
+        <S.SearchInput placeholder='명함을 검색해주세요' />
       </S.SearchBar>
 
       {/* 그룹 설정 버튼 */}
