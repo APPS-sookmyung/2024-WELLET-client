@@ -120,7 +120,13 @@ export const AddBoxTitle = styled.h3`
   letter-spacing: -0.5px;
 `;
 
-export const AddBoxIconWrapper = styled.div``;
+export const AddBoxIconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+`;
 
 export const AddBoxSubTitle = styled.p`
   padding: 10px 0;
@@ -138,7 +144,18 @@ export const AddBoxDescWrapper = styled.div`
   padding: 8px 0;
 `;
 
-export const AddBoxDesc = styled.p`
+export const AddBoxDesc = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+export const DotIconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const AddBoxText = styled.p`
   color: var(--grey2, #949494);
   text-align: center;
   font-size: 9px;
@@ -155,6 +172,8 @@ export const ImportFileBtnWrapper = styled.div`
 export const ImportFileBtn = styled.button`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 77px;
   padding: 4px 8px;
   gap: 8px;
