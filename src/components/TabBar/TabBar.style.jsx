@@ -24,6 +24,7 @@ export const Icon = styled.div`
   align-items: center;
   gap: 7px;
   padding: 10px;
+  color: ${(props) => (props.isActive ? '#2D29FF' : '#C8C8C8')};
 `;
 
 export const IconImg = styled.div`
@@ -32,13 +33,17 @@ export const IconImg = styled.div`
   align-items: center;
   height: 30px;
   cursor: pointer;
+
+  img {
+    filter: ${(props) => (props.isActive ? 'none' : 'grayscale(100%)')};
+  }
 `;
 
 export const Text = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #c8c8c8;
+  color: ${(props) => (props.isActive ? '#2D29FF' : '#C8C8C8')};
   font-size: 9px;
   line-height: 150%;
 `;
