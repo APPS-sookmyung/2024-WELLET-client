@@ -1,14 +1,14 @@
 import React from 'react';
-import * as S from './Navigator.style';
+import * as S from './TabBar.style';
 import { Link } from 'react-router-dom';
 import homeLogo from '../../icons/icon-nav-home.svg';
 import AddCardLogo from '../../icons/icon-nav-add-card.svg';
 import ViewCardLogo from '../../icons/icon-nav-view-card.svg';
 import MypageLogo from '../../icons/icon-nav-mypage.svg';
 
-export default function Navigator() {
+export default function TabBar() {
   return (
-    <S.Navigator>
+    <S.TabBar>
       <S.Icon>
         <Link to='/home'>
           <S.IconImg>
@@ -41,6 +41,6 @@ export default function Navigator() {
           <S.Text>마이페이지</S.Text>
         </Link>
       </S.Icon>
-    </S.Navigator>
+    </S.TabBar>
   );
 }

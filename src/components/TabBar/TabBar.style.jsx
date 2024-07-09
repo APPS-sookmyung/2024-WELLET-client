@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Navigator = styled.div`
+export const TabBar = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;

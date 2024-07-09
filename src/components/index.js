@@ -1,2 +1,2 @@
 export { Header } from './Header';
-export { Navigator } from './Navigator';
+export { TabBar } from './TabBar';
