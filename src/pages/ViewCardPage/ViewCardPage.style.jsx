@@ -5,6 +5,7 @@ export const ViewCardPage = styled.div`
   border: 1px solid red;
 `;
 
+// 검색창
 export const SearchBar = styled.div`
   display: flex;
   height: 36.221px;
@@ -14,6 +15,22 @@ export const SearchBar = styled.div`
   flex-shrink: 0;
   border-radius: 10px;
   background: #efefef;
+  gap: 10px;
+`;
+
+export const SearchIcon = styled.div`
+  width: 9.84px;
+  height: 13.259px;
+  transform: rotate(-47.353deg);
+  flex-shrink: 0;
+  fill: var(--grey2, #949494);
+`;
+
+export const SearchText = styled.p`
+  color: var(--grey2, #949494);
+  font-size: 9px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
 `;
 
 // 버튼
@@ -30,12 +47,12 @@ export const CategoryBtnWrapper = styled.div`
 
 export const CategoryBtn = styled.button`
   display: inline-flex;
-  padding: 4px 10px;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   border-radius: 10px;
   background: var(--color-1, #ebf3fe);
+  padding: 4px 10px;
   color: var(--primary, #2d29ff);
   font-size: 9px;
   line-height: 150%;
@@ -45,7 +62,7 @@ export const CategoryBtn = styled.button`
 export const EditBtn = styled.button`
   display: inline-flex;
   padding: 4px 10px;
-  flex-direction: column;
+  align-items: center;
   align-items: flex-start;
   gap: 8px;
   border-radius: 10px;
@@ -54,6 +71,22 @@ export const EditBtn = styled.button`
   font-size: 9px;
   line-height: 150%;
   letter-spacing: -0.5px;
+`;
+
+export const EditText = styled.p`
+  color: #ff0076;
+  font-family: Pretendard;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+`;
+
+export const MoreIcon = styled.div`
+  width: 10.565px;
+  height: 11px;
+  flex-shrink: 0;
 `;
 
 // 명함
