@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 
+export const HomePage = styled.div`
+  padding: 20px;
+`;
+
 export const Container = styled.div`
-  border: 1px solid black;
-  height: 350px;
   background-color: gray;
 `;

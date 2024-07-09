@@ -1,4 +1,5 @@
 import * as S from './ViewCardPage.style';
+import { Header } from '../../components';
 import magnifyingGlassIcon from '../../icons/icon-magnifying-glass.svg';
 import more from '../../icons/icon-more.svg';
 import arrowRight from '../../icons/icon-arrow-right.svg';
@@ -9,6 +10,7 @@ export default function ViewCardPage() {
 
   return (
     <S.ViewCardPage>
+      <Header />
       <S.SearchBar>
         <S.SearchIcon>
           <img src={magnifyingGlassIcon} alt='돋보기' />

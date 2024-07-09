@@ -11,6 +11,10 @@ import {
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <OnBoardingPage />,
+  },
+  {
+    path: '/home',
     element: <HomePage />,
   },
   {
@@ -24,10 +28,6 @@ const router = createBrowserRouter([
   {
     path: '/mypage',
     element: <MyPage />,
-  },
-  {
-    path: '/onboarding',
-    element: <OnBoardingPage />,
   },
   {
     path: '/login',
