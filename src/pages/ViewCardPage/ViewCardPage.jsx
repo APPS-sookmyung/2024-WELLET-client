@@ -1,5 +1,5 @@
 import * as S from './ViewCardPage.style';
-import { Header } from '../../components';
+import { Header, Navigator } from '../../components';
 import magnifyingGlassIcon from '../../icons/icon-magnifying-glass.svg';
 import more from '../../icons/icon-more.svg';
 import arrowRight from '../../icons/icon-arrow-right.svg';
@@ -17,7 +17,6 @@ export default function ViewCardPage() {
         </S.SearchIcon>
         <S.SearchInput placeholder='명함을 검색해주세요' />
       </S.SearchBar>
-
       {/* 그룹 설정 버튼 */}
       <S.ButtonContainer>
         <S.GroupBtnWrapper>
@@ -49,7 +48,6 @@ export default function ViewCardPage() {
           </S.MoreIcon>
         </S.EditBtnWrapper>
       </S.ButtonContainer>
-
       {/* 명함 */}
       <S.CardContainer>
         <S.Card>
@@ -89,6 +87,7 @@ export default function ViewCardPage() {
           </S.ArrowRightIcon>
         </S.Card>
       </S.CardContainer>
+      <Navigator />
     </S.ViewCardPage>
   );
 }
