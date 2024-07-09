@@ -1,6 +1,7 @@
 import * as S from './AddCardPage.style';
 import { useState } from 'react';
 import magnifyingGlassIcon from '../../icons/icon-magnifying-glass.svg';
+import addCard from '../../icons/icon-add-card.svg';
 
 export default function AddCardPage() {
   const [activeButton, setActiveButton] = useState('이미지로 입력');
@@ -37,6 +38,30 @@ export default function AddCardPage() {
           </S.GroupBtn>
         </S.GroupBtnWrapper>
       </S.ButtonContainer>
+
+      {/* 명함 추가 */}
+      <S.AddBoxContainer>
+        <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
+        <S.AddBoxIconWrapper>
+          <img src={addCard} alt='' />
+        </S.AddBoxIconWrapper>
+        <S.AddBoxSubTitle>
+          아래 버튼을 클릭하거나, <br />
+          이미지 파일을 여기에 끌어다 놓으세요.
+        </S.AddBoxSubTitle>
+        <S.AddBoxDescWrapper>
+          <S.AddBoxDesc>
+            선택한 모든 명함 이미지는 앞면으로 인식합니다.
+          </S.AddBoxDesc>
+          <S.AddBoxDesc>
+            이미지는 한 번에 100장까지 업로드할 수 있습니다.
+          </S.AddBoxDesc>
+          <S.AddBoxDesc>이미지 한 장 당 최대 크기는 1MB 입니다.</S.AddBoxDesc>
+        </S.AddBoxDescWrapper>
+        <S.ImportFileBtnWrapper>
+          <S.ImportFileBtn>파일 가져오기</S.ImportFileBtn>
+        </S.ImportFileBtnWrapper>
+      </S.AddBoxContainer>
     </S.AddCardPage>
   );
 }
