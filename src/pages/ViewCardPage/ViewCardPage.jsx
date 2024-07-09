@@ -40,12 +40,12 @@ export default function ViewCardPage() {
             음식점
           </S.GroupBtn>
         </S.GroupBtnWrapper>
-        <S.EditBtn>
+        <S.EditBtnWrapper>
           <S.EditText>그룹 수정</S.EditText>
           <S.MoreIcon>
             <img src={more} alt='더보기' />
           </S.MoreIcon>
-        </S.EditBtn>
+        </S.EditBtnWrapper>
       </S.ButtonContainer>
 
       {/* 명함 */}
