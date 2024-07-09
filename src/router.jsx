@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     element: <AddCardPage />,
   },
   {
-    path: '/card/view',
+    path: '/card',
     element: <ViewCardPage />,
   },
   {
