@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const ViewCardPage = styled.div`
   padding: 20px;
-  border: 1px solid red;
 `;
 
 // 검색창
@@ -93,16 +92,23 @@ export const MoreIcon = styled.div`
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
 `;
 
 export const Card = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 74px;
   flex-shrink: 0;
   border-radius: 10px;
   background: #f4f4f9;
   padding: 12px 20px;
+`;
+
+export const CardWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ImgWrapper = styled.div`
@@ -121,18 +127,18 @@ export const Info = styled.div`
 `;
 export const Name = styled.h1`
   color: var(--grey3, #555);
-
-  /* Body 2_medium */
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 500;
-  line-height: 150%; /* 21px */
+  line-height: 150%;
   letter-spacing: -0.5px;
 `;
 
 export const Job = styled.p`
   color: var(--grey3, #555);
   font-size: 9px;
-  line-height: 150%; /* 13.5px */
+  line-height: 150%;
   letter-spacing: -0.5px;
 `;
+
+export const ArrowRightIcon = styled.div``;
