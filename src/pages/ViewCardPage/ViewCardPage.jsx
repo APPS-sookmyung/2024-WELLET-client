@@ -2,8 +2,11 @@ import * as S from './ViewCardPage.style';
 import magnifyingGlassIcon from '../../icons/icon-magnifying-glass.svg';
 import more from '../../icons/icon-more.svg';
 import arrowRight from '../../icons/icon-arrow-right.svg';
+import { act, useState } from 'react';
 
 export default function ViewCardPage() {
+  const [activeButton, setActiveButton] = useState('전체보기');
+
   return (
     <S.ViewCardPage>
       <S.SearchBar>
@@ -15,11 +18,28 @@ export default function ViewCardPage() {
 
       {/* 그룹 설정 버튼 */}
       <S.ButtonContainer>
-        <S.CategoryBtnWrapper>
-          <S.CategoryBtn>전체보기</S.CategoryBtn>
-          <S.CategoryBtn>비즈니스</S.CategoryBtn>
-          <S.CategoryBtn>음식점</S.CategoryBtn>
-        </S.CategoryBtnWrapper>
+        <S.GroupBtnWrapper>
+          <S.GroupBtn
+            isActive={activeButton === '전체보기'}
+            onClick={() => setActiveButton('전체보기')}
+          >
+            전체보기
+          </S.GroupBtn>
+          <S.GroupBtn
+            isActive={activeButton === '비즈니스'}
+            onClick={() => {
+              setActiveButton('비즈니스');
+            }}
+          >
+            비즈니스
+          </S.GroupBtn>
+          <S.GroupBtn
+            isActive={activeButton === '음식점'}
+            onClick={() => setActiveButton('음식점')}
+          >
+            음식점
+          </S.GroupBtn>
+        </S.GroupBtnWrapper>
         <S.EditBtn>
           <S.EditText>그룹 수정</S.EditText>
           <S.MoreIcon>
