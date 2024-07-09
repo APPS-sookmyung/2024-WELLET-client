@@ -1,5 +1,5 @@
-import * as S from './styles.js';
-import logoImg from '../../icons/logo.svg';
+import * as S from './OnBoardingPage.style.jsx';
+import { Header } from '../../components';
 import OnboardingContent from '../../components/OnboardingContent/OnboardingContent.jsx';
 import ONBOARDING from '../../constants/onboarding.js';
 import { useState } from 'react';
@@ -19,15 +19,13 @@ export default function OnBoarding() {
   };
 
   return (
-    <S.Container>
-      <S.Header>
-        <S.Logo src={logoImg} alt='Logo' />
-      </S.Header>
+    <S.OnBoardingPage>
+      <Header />
       <OnboardingContent
         data={ONBOARDING[step]}
         currentStep={step}
         handleBtnClickNext={handleBtnClickNext}
       />
-    </S.Container>
+    </S.OnBoardingPage>
   );
 }

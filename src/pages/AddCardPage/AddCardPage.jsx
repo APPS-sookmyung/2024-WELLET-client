@@ -1,5 +1,6 @@
 import * as S from './AddCardPage.style';
 import { useState } from 'react';
+import { Header } from '../../components';
 import magnifyingGlassIcon from '../../icons/icon-magnifying-glass.svg';
 import addCard from '../../icons/icon-add-card.svg';
 import addCardDot from '../../icons/icon-add-card-dot.svg';
@@ -9,6 +10,7 @@ export default function AddCardPage() {
 
   return (
     <S.AddCardPage>
+      <Header />
       <S.SearchBar>
         <S.SearchIcon>
           <img src={magnifyingGlassIcon} alt='돋보기' />
