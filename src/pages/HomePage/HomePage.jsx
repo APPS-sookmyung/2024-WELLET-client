@@ -5,7 +5,7 @@ export default function HomePage() {
   return (
     <S.HomePage>
       <Header />
-      홈페이지
+      <S.Container>홈페이지</S.Container>
     </S.HomePage>
   );
 }
