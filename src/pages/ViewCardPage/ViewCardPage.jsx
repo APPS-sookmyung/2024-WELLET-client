@@ -15,18 +15,21 @@ const sampleData = [
     job: '프로덕트 디자이너',
     company: '숙명여자대학교',
     imageUrl: 'path/to/profile-image1.jpg',
+    category: '비즈니스',
   },
   {
     name: '한은영',
     job: '프론트엔드 개발자',
     company: '숙명여자대학교',
     imageUrl: 'path/to/profile-image2.jpg',
+    category: '비즈니스',
   },
   {
     name: '이영희',
     job: '백엔드 개발자',
     company: 'WELLET Corp.',
     imageUrl: 'path/to/profile-image3.jpg',
+    category: '음식점',
   },
 ];
 
@@ -37,6 +40,11 @@ export default function ViewCardPage() {
     { label: '비즈니스', value: '비즈니스' },
     { label: '음식점', value: '음식점' },
   ];
+
+  const filteredData =
+    activeButton === '전체 보기'
+      ? sampleData
+      : sampleData.filter((data) => data.category === activeButton);
 
   return (
     <>
@@ -63,7 +71,7 @@ export default function ViewCardPage() {
 
         {/* 명함 */}
         <S.CardContainer>
-          {sampleData.map((data, index) => (
+          {filteredData.map((data, index) => (
             <CardInfo
               key={index}
               name={data.name}
