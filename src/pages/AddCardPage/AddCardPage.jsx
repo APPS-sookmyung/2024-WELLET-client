@@ -1,6 +1,6 @@
 import * as S from './AddCardPage.style';
 import { useState } from 'react';
-import { Header, TabBar } from '../../components';
+import { Header, TabBar, SearchBar } from '../../components';
 import magnifyingGlassIcon from '../../icons/icon-magnifying-glass.svg';
 import addCard from '../../icons/icon-add-card.svg';
 import addCardDot from '../../icons/icon-add-card-dot.svg';
@@ -12,12 +12,7 @@ export default function AddCardPage() {
     <>
       <S.AddCardPage>
         <Header />
-        <S.SearchBar>
-          <S.SearchIcon>
-            <img src={magnifyingGlassIcon} alt='돋보기' />
-          </S.SearchIcon>
-          <S.SearchInput placeholder='명함을 검색해주세요' />
-        </S.SearchBar>
+        <SearchBar />
 
         <S.TitleContainer>
           <S.Title>명함 추가하기</S.Title>
