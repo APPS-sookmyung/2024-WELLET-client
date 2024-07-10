@@ -52,4 +52,23 @@ export const welletStyles = css`
     background-color: white;
     overflow-y: auto;
   }
+
+  :root {
+    /* Primary color */
+    --color-1: #ebf3fe;
+    --color-2: #1c77ff;
+    --primary: #2d29ff;
+
+    /* Secondary Color */
+    --Color-4-1: #ffe6f2;
+    --color-4: #ffa6cf;
+    --linear: linear-gradient(180deg, #2d29ff 0%, #721cff 100%);
+
+    /* Gray Color */
+    --whit: #fff;
+    --grey1: #c8c8c8;
+    --grey2: #949494;
+    --grey3: #555;
+    --grey4: #1a1a1a;
+  }
 `;
