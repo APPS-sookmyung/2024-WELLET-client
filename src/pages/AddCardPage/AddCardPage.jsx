@@ -11,7 +11,6 @@ import {
 } from '../../components';
 import addCard from '../../icons/icon-add-card.svg';
 import addCardDot from '../../icons/icon-add-card-dot.svg';
-import pencilIcon from '../../icons/icon-pencil.svg';
 import ImageIcon from '../../icons/icon-image.svg';
 
 export default function AddCardPage() {
@@ -111,13 +110,34 @@ export default function AddCardPage() {
                 <InputWrapper
                   label='회사'
                   type='text'
-                  placeholder='회사를 입력하세요'
+                  placeholder='WELLET Corp.'
                 />
                 <InputWrapper
                   label='직책 / 부서'
                   type='text'
-                  placeholder='직책 / 부서를 입력하세요'
+                  placeholder='Web Engineer / 개발실'
                 />
+                <InputWrapper
+                  label='휴대폰'
+                  type='tel'
+                  placeholder='010-1234-5678'
+                />
+                <InputWrapper
+                  label='이메일 주소'
+                  type='email'
+                  placeholder='email@welletapp.co.kr'
+                />
+                <InputWrapper
+                  label='유선전화'
+                  type='tel'
+                  placeholder='81-2-222-3456'
+                />
+                <InputWrapper
+                  label='주소'
+                  type='text'
+                  placeholder='서울특별시 용산구 청파로 47길 100(청파동 2가) '
+                />
+                <InputWrapper label='메모' type='text' placeholder='메모' />
               </S.InputContainer>
             </S.FormContainer>
           )}
