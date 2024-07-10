@@ -1,11 +1,5 @@
 import * as S from './ViewCardPage.style';
-import {
-  Header,
-  TabBar,
-  SearchBar,
-  BlueButton,
-  PrimaryButton,
-} from '../../components';
+import { Header, TabBar, SearchBar, BlueButton } from '../../components';
 import more from '../../icons/icon-more.svg';
 import arrowRight from '../../icons/icon-arrow-right.svg';
 import { act, useState } from 'react';
@@ -23,7 +17,6 @@ export default function ViewCardPage() {
       <S.ViewCardPage>
         <Header />
         <SearchBar />
-        <PrimaryButton>주요버튼</PrimaryButton>
 
         {/* 그룹 설정 버튼 */}
         <S.ButtonContainer>

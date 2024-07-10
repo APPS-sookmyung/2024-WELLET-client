@@ -121,3 +121,9 @@ export const ImportFileBtn = styled.button`
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
+
+// 등록, 취소 버튼
+export const PrimaryButtonContainer = styled.div`
+  display: flex;
+  gap: 20px;
+`;

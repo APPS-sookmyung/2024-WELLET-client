@@ -1,6 +1,12 @@
 import * as S from './AddCardPage.style';
 import React, { useState } from 'react';
-import { Header, TabBar, SearchBar, BlueButton } from '../../components';
+import {
+  Header,
+  TabBar,
+  SearchBar,
+  BlueButton,
+  PrimaryButton,
+} from '../../components';
 import addCard from '../../icons/icon-add-card.svg';
 import addCardDot from '../../icons/icon-add-card-dot.svg';
 
@@ -71,6 +77,10 @@ export default function AddCardPage() {
             <S.ImportFileBtn>파일 가져오기</S.ImportFileBtn>
           </S.ImportFileBtnWrapper>
         </S.AddBoxContainer>
+
+        <S.PrimaryButtonContainer>
+          <PrimaryButton>등록</PrimaryButton>
+        </S.PrimaryButtonContainer>
       </S.AddCardPage>
       <TabBar />
     </>
