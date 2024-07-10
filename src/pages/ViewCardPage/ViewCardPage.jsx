@@ -1,5 +1,5 @@
 import * as S from './ViewCardPage.style';
-import { Header, TabBar } from '../../components';
+import { Header, TabBar, SearchBar } from '../../components';
 import magnifyingGlassIcon from '../../icons/icon-magnifying-glass.svg';
 import more from '../../icons/icon-more.svg';
 import arrowRight from '../../icons/icon-arrow-right.svg';
@@ -12,12 +12,8 @@ export default function ViewCardPage() {
     <>
       <S.ViewCardPage>
         <Header />
-        <S.SearchBar>
-          <S.SearchIcon>
-            <img src={magnifyingGlassIcon} alt='돋보기' />
-          </S.SearchIcon>
-          <S.SearchInput placeholder='명함을 검색해주세요' />
-        </S.SearchBar>
+        <SearchBar />
+
         {/* 그룹 설정 버튼 */}
         <S.ButtonContainer>
           <S.GroupBtnWrapper>
