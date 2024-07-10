@@ -38,46 +38,67 @@ export default function AddCardPage() {
           />
         </S.ButtonContainer>
 
-        {/* 명함 추가 */}
-        <S.AddBoxContainer>
-          <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
-          <S.AddBoxIconWrapper>
-            <img src={addCard} alt='도트' />
-          </S.AddBoxIconWrapper>
-          <S.AddBoxSubTitle>
-            아래 버튼을 클릭하거나, <br />
-            이미지 파일을 여기에 끌어다 놓으세요.
-          </S.AddBoxSubTitle>
-          <S.AddBoxDescWrapper>
-            <S.AddBoxDesc>
-              <S.DotIconWrapper>
-                <img src={addCardDot} alt='도트' />
-              </S.DotIconWrapper>
-              <S.AddBoxText>
-                선택한 모든 명함 이미지는 앞면으로 인식합니다.
-              </S.AddBoxText>
-            </S.AddBoxDesc>
-            <S.AddBoxDesc>
-              <S.DotIconWrapper>
-                <img src={addCardDot} alt='도트' />
-              </S.DotIconWrapper>
-              <S.AddBoxText>
-                이미지는 한 번에 100장까지 업로드할 수 있습니다.
-              </S.AddBoxText>
-            </S.AddBoxDesc>
-            <S.AddBoxDesc>
-              <S.DotIconWrapper>
-                <img src={addCardDot} alt='' />
-              </S.DotIconWrapper>
-              <S.AddBoxText>
-                이미지 한 장 당 최대 크기는 1MB 입니다.
-              </S.AddBoxText>
-            </S.AddBoxDesc>
-          </S.AddBoxDescWrapper>
-          <S.ImportFileBtnWrapper>
-            <S.ImportFileBtn>파일 가져오기</S.ImportFileBtn>
-          </S.ImportFileBtnWrapper>
-        </S.AddBoxContainer>
+        <S.AddBoxBorder>
+          {activeButton === '이미지로 입력' && (
+            <S.AddBoxContainer>
+              <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
+              <S.AddBoxIconWrapper>
+                <img src={addCard} alt='도트' />
+              </S.AddBoxIconWrapper>
+              <S.AddBoxSubTitle>
+                아래 버튼을 클릭하거나, <br />
+                이미지 파일을 여기에 끌어다 놓으세요.
+              </S.AddBoxSubTitle>
+              <S.AddBoxDescWrapper>
+                <S.AddBoxDesc>
+                  <S.DotIconWrapper>
+                    <img src={addCardDot} alt='도트' />
+                  </S.DotIconWrapper>
+                  <S.AddBoxText>
+                    선택한 모든 명함 이미지는 앞면으로 인식합니다.
+                  </S.AddBoxText>
+                </S.AddBoxDesc>
+                <S.AddBoxDesc>
+                  <S.DotIconWrapper>
+                    <img src={addCardDot} alt='도트' />
+                  </S.DotIconWrapper>
+                  <S.AddBoxText>
+                    이미지는 한 번에 100장까지 업로드할 수 있습니다.
+                  </S.AddBoxText>
+                </S.AddBoxDesc>
+                <S.AddBoxDesc>
+                  <S.DotIconWrapper>
+                    <img src={addCardDot} alt='' />
+                  </S.DotIconWrapper>
+                  <S.AddBoxText>
+                    이미지 한 장 당 최대 크기는 1MB 입니다.
+                  </S.AddBoxText>
+                </S.AddBoxDesc>
+              </S.AddBoxDescWrapper>
+              <S.ImportFileBtnWrapper>
+                <S.ImportFileBtn>파일 가져오기</S.ImportFileBtn>
+              </S.ImportFileBtnWrapper>
+            </S.AddBoxContainer>
+          )}
+
+          {activeButton === '직접 입력' && (
+            <S.FormContainer>
+              <S.FormTitle>직접 입력하기</S.FormTitle>
+              <S.InputWrapper>
+                <S.InputLabel>이름</S.InputLabel>
+                <S.Input type='text' placeholder='이름을 입력하세요' />
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <S.InputLabel>회사</S.InputLabel>
+                <S.Input type='text' placeholder='회사를 입력하세요' />
+              </S.InputWrapper>
+              <S.InputWrapper>
+                <S.InputLabel>직책 / 부서</S.InputLabel>
+                <S.Input type='text' placeholder='직책 / 부서를 입력하세요' />
+              </S.InputWrapper>
+            </S.FormContainer>
+          )}
+        </S.AddBoxBorder>
 
         <S.ActionBtnContainer>
           <PrimaryButton>등록</PrimaryButton>

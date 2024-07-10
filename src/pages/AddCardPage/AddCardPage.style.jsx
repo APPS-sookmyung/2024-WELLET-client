@@ -34,17 +34,19 @@ export const ButtonContainer = styled.div`
   gap: 4px;
 `;
 
-// 명함 추가
+export const AddBoxBorder = styled.div`
+  border-radius: 20px;
+  border: 0.5px dashed #2d29ff;
+  padding: 20px;
+`;
+
+// 이미지 입력으로 명함 추가
 export const AddBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 256px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  border: 0.5px dashed #2d29ff;
-  padding: 26px;
 `;
 
 export const AddBoxTitle = styled.h3`
@@ -120,6 +122,30 @@ export const ImportFileBtn = styled.button`
   font-size: 11px;
   line-height: 150%;
   letter-spacing: -0.5px;
+`;
+
+// 직접 입력으로 명함 추가
+export const FormContainer = styled.div``;
+
+export const FormTitle = styled.h3``;
+
+export const InputWrapper = styled.div`
+  margin-bottom: 16px;
+`;
+
+export const InputLabel = styled.label`
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
 `;
 
 // 등록, 취소 버튼
