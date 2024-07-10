@@ -34,7 +34,8 @@ export const ButtonContainer = styled.div`
   gap: 4px;
 `;
 
-export const AddBoxBorder = styled.div`
+// 점선 테두리
+export const DashedBorder = styled.div`
   border-radius: 20px;
   border: 0.5px dashed #2d29ff;
   padding: 20px;
@@ -52,7 +53,6 @@ export const AddBoxContainer = styled.div`
 export const AddBoxTitle = styled.h3`
   margin-bottom: 16px;
   color: var(--primary, #2d29ff);
-  text-align: center;
   font-size: 12px;
   font-weight: 500;
   line-height: 150%;
@@ -125,27 +125,41 @@ export const ImportFileBtn = styled.button`
 `;
 
 // 직접 입력으로 명함 추가
-export const FormContainer = styled.div``;
+export const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
 
-export const FormTitle = styled.h3``;
+export const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
 
 export const InputWrapper = styled.div`
-  margin-bottom: 16px;
+  gap: 2px;
 `;
 
 export const InputLabel = styled.label`
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: bold;
+  padding: 0 6px;
+  color: var(--grey3, #555);
+  font-size: 11px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
 `;
 
 export const Input = styled.input`
   width: 100%;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+  height: 41px;
+  border: none;
+  border-radius: 10px;
+  background: #f4f4f9;
+  padding: 12px 14px;
+  color: var(--grey2, #949494);
+  font-size: 11px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
 `;
 
 // 등록, 취소 버튼

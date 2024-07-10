@@ -38,7 +38,7 @@ export default function AddCardPage() {
           />
         </S.ButtonContainer>
 
-        <S.AddBoxBorder>
+        <S.DashedBorder>
           {activeButton === '이미지로 입력' && (
             <S.AddBoxContainer>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
@@ -83,22 +83,24 @@ export default function AddCardPage() {
 
           {activeButton === '직접 입력' && (
             <S.FormContainer>
-              <S.FormTitle>직접 입력하기</S.FormTitle>
-              <S.InputWrapper>
-                <S.InputLabel>이름</S.InputLabel>
-                <S.Input type='text' placeholder='이름을 입력하세요' />
-              </S.InputWrapper>
-              <S.InputWrapper>
-                <S.InputLabel>회사</S.InputLabel>
-                <S.Input type='text' placeholder='회사를 입력하세요' />
-              </S.InputWrapper>
-              <S.InputWrapper>
-                <S.InputLabel>직책 / 부서</S.InputLabel>
-                <S.Input type='text' placeholder='직책 / 부서를 입력하세요' />
-              </S.InputWrapper>
+              <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
+              <S.InputBox>
+                <S.InputWrapper>
+                  <S.InputLabel>이름</S.InputLabel>
+                  <S.Input type='text' placeholder='우정환' />
+                </S.InputWrapper>
+                <S.InputWrapper>
+                  <S.InputLabel>회사</S.InputLabel>
+                  <S.Input type='text' placeholder='WELLET Corp.' />
+                </S.InputWrapper>
+                <S.InputWrapper>
+                  <S.InputLabel>직책 / 부서</S.InputLabel>
+                  <S.Input type='text' placeholder='Web Engineer / 개발실' />
+                </S.InputWrapper>
+              </S.InputBox>
             </S.FormContainer>
           )}
-        </S.AddBoxBorder>
+        </S.DashedBorder>
 
         <S.ActionBtnContainer>
           <PrimaryButton>등록</PrimaryButton>
