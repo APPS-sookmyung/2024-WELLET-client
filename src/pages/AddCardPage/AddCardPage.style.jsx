@@ -184,5 +184,5 @@ export const InputContainer = styled.div`
 export const ActionBtnContainer = styled.div`
   display: flex;
   gap: 20px;
-  margin-top: 16px;
+  margin: 16px 0 100px;
 `;
