@@ -1,6 +1,5 @@
 import * as S from './ViewCardPage.style';
 import { Header, TabBar, SearchBar } from '../../components';
-import magnifyingGlassIcon from '../../icons/icon-magnifying-glass.svg';
 import more from '../../icons/icon-more.svg';
 import arrowRight from '../../icons/icon-arrow-right.svg';
 import { act, useState } from 'react';
