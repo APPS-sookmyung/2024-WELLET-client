@@ -180,6 +180,27 @@ export const InputContainer = styled.div`
   gap: 12px;
 `;
 
+// 그룹 버튼
+export const GroupContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  gap: 2px;
+`;
+
+export const InputLabel = styled.label`
+  padding: 0 6px;
+  color: var(--grey3, #555);
+  font-size: 11px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+`;
+
+export const GroupButtonWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
 // 등록, 취소 버튼
 export const ActionBtnContainer = styled.div`
   display: flex;

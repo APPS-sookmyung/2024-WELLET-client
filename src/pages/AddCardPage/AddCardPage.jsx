@@ -15,10 +15,18 @@ import ImageIcon from '../../icons/icon-image.svg';
 
 export default function AddCardPage() {
   const [activeButton, setActiveButton] = useState('이미지로 입력');
+  const [activeGroupButton, setActiveGroupButton] = useState('비즈니스');
 
   const buttons = [
     { label: '이미지로 입력', value: '이미지로 입력' },
     { label: '직접 입력', value: '직접 입력' },
+  ];
+
+  const groupButtons = [
+    { label: '비즈니스', value: '비즈니스' },
+    { label: '음식점', value: '음식점' },
+    { label: '학교', value: '학교' },
+    { label: '그룹 추가', value: '그룹 추가' },
   ];
 
   return (
@@ -70,7 +78,7 @@ export default function AddCardPage() {
                 </S.AddBoxDesc>
                 <S.AddBoxDesc>
                   <S.DotIconWrapper>
-                    <img src={addCardDot} alt='' />
+                    <img src={addCardDot} alt='도트' />
                   </S.DotIconWrapper>
                   <S.AddBoxText>
                     이미지 한 장 당 최대 크기는 1MB 입니다.
@@ -141,6 +149,17 @@ export default function AddCardPage() {
               </S.InputContainer>
             </S.FormContainer>
           )}
+
+          <S.GroupContainer>
+            <S.InputLabel>그룹</S.InputLabel>
+            <S.GroupButtonWrapper>
+              <BlueButton
+                buttons={groupButtons}
+                activeButton={activeGroupButton}
+                setActiveButton={setActiveGroupButton}
+              />
+            </S.GroupButtonWrapper>
+          </S.GroupContainer>
         </S.DashedBorder>
 
         <S.ActionBtnContainer>
