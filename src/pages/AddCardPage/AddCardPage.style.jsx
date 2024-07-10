@@ -131,6 +131,49 @@ export const FormContainer = styled.div`
   justify-content: flex-start;
 `;
 
+export const RegisterImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+`;
+
+export const SelectImg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 68.239px;
+  background: #2d29ff4c;
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export const RegisterText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+`;
+
+export const RegisterTitle = styled.h3`
+  color: var(--grey3, #555);
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+`;
+
+export const RegisterSubTitle = styled.p`
+  display: flex;
+  color: var(--grey2, #949494);
+  font-size: 11px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+`;
+
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;

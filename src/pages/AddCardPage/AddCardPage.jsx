@@ -11,6 +11,7 @@ import {
 import addCard from '../../icons/icon-add-card.svg';
 import addCardDot from '../../icons/icon-add-card-dot.svg';
 import pencilIcon from '../../icons/icon-pencil.svg';
+import ImageIcon from '../../icons/icon-image.svg';
 
 export default function AddCardPage() {
   const [activeButton, setActiveButton] = useState('이미지로 입력');
@@ -85,6 +86,21 @@ export default function AddCardPage() {
           {activeButton === '직접 입력' && (
             <S.FormContainer>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
+
+              <S.RegisterImageContainer>
+                <S.SelectImg>
+                  <img src={ImageIcon} alt='' />
+                </S.SelectImg>
+                <S.RegisterText>
+                  <S.RegisterTitle>프로필 사진 등록</S.RegisterTitle>
+                  <S.RegisterSubTitle>
+                    사진 아이콘을 클릭하여
+                    <br />
+                    명함에 들어갈 프로필 사진을 등록하세요.
+                  </S.RegisterSubTitle>
+                </S.RegisterText>
+              </S.RegisterImageContainer>
+
               <S.InputContainer>
                 <S.InputWrapper>
                   <S.InputLabel>이름</S.InputLabel>
