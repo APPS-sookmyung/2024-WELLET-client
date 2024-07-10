@@ -79,9 +79,9 @@ export default function AddCardPage() {
           </S.ImportFileBtnWrapper>
         </S.AddBoxContainer>
 
-        <S.PrimaryButtonContainer>
+        <S.ActionBtnContainer>
           <PrimaryButton>등록</PrimaryButton>
-        </S.PrimaryButtonContainer>
+        </S.ActionBtnContainer>
       </S.AddCardPage>
       <TabBar />
     </>

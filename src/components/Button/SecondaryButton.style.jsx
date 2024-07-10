@@ -8,8 +8,8 @@ export const SecondaryButton = styled.button`
   height: 38px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: var(--primary, #2d29ff);
-  color: var(--white, #fff);
+  background: var(--blue-2, #ebebff);
+  color: var(--grey3, #555);
   text-align: center;
   font-size: 12px;
   line-height: 150%;

@@ -123,7 +123,7 @@ export const ImportFileBtn = styled.button`
 `;
 
 // 등록, 취소 버튼
-export const PrimaryButtonContainer = styled.div`
+export const ActionBtnContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
