@@ -7,8 +7,7 @@ import {
   CardInfo,
 } from '../../components';
 import more from '../../icons/icon-more.svg';
-import arrowRight from '../../icons/icon-arrow-right.svg';
-import { act, useState } from 'react';
+import { useState } from 'react';
 
 export default function ViewCardPage() {
   const [activeButton, setActiveButton] = useState('전체 보기');
@@ -40,45 +39,10 @@ export default function ViewCardPage() {
             </S.MoreIcon>
           </S.EditBtnWrapper>
         </S.ButtonContainer>
+
         {/* 명함 */}
         <S.CardContainer>
           <CardInfo />
-          <S.Card>
-            <S.CardWrapper>
-              <S.ImgWrapper></S.ImgWrapper>
-              <S.Info>
-                <S.Name>박유진</S.Name>
-                <S.Job>프론트엔드 개발자, 숙명여자대학교</S.Job>
-              </S.Info>
-            </S.CardWrapper>
-            <S.ArrowRightIcon>
-              <img src={arrowRight} alt='' />
-            </S.ArrowRightIcon>
-          </S.Card>
-          <S.Card>
-            <S.CardWrapper>
-              <S.ImgWrapper></S.ImgWrapper>
-              <S.Info>
-                <S.Name>박유진</S.Name>
-                <S.Job>프론트엔드 개발자, 숙명여자대학교</S.Job>
-              </S.Info>
-            </S.CardWrapper>
-            <S.ArrowRightIcon>
-              <img src={arrowRight} alt='' />
-            </S.ArrowRightIcon>
-          </S.Card>
-          <S.Card>
-            <S.CardWrapper>
-              <S.ImgWrapper></S.ImgWrapper>
-              <S.Info>
-                <S.Name>박유진</S.Name>
-                <S.Job>프론트엔드 개발자, 숙명여자대학교</S.Job>
-              </S.Info>
-            </S.CardWrapper>
-            <S.ArrowRightIcon>
-              <img src={arrowRight} alt='' />
-            </S.ArrowRightIcon>
-          </S.Card>
         </S.CardContainer>
       </S.ViewCardPage>
       <TabBar />
