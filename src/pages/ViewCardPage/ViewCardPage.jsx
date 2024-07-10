@@ -1,8 +1,37 @@
 import * as S from './ViewCardPage.style';
-import { Header, TabBar, SearchBar, BlueButton } from '../../components';
+import {
+  Header,
+  TabBar,
+  SearchBar,
+  BlueButton,
+  CardInfo,
+} from '../../components';
 import more from '../../icons/icon-more.svg';
-import arrowRight from '../../icons/icon-arrow-right.svg';
-import { act, useState } from 'react';
+import { useState } from 'react';
+
+const sampleData = [
+  {
+    name: '박유진',
+    job: '프로덕트 디자이너',
+    company: '숙명여자대학교',
+    imageUrl: 'path/to/profile-image1.jpg',
+    category: '비즈니스',
+  },
+  {
+    name: '한은영',
+    job: '프론트엔드 개발자',
+    company: '숙명여자대학교',
+    imageUrl: 'path/to/profile-image2.jpg',
+    category: '비즈니스',
+  },
+  {
+    name: '이영희',
+    job: '백엔드 개발자',
+    company: 'WELLET Corp.',
+    imageUrl: 'path/to/profile-image3.jpg',
+    category: '음식점',
+  },
+];
 
 export default function ViewCardPage() {
   const [activeButton, setActiveButton] = useState('전체 보기');
@@ -11,6 +40,11 @@ export default function ViewCardPage() {
     { label: '비즈니스', value: '비즈니스' },
     { label: '음식점', value: '음식점' },
   ];
+
+  const filteredData =
+    activeButton === '전체 보기'
+      ? sampleData
+      : sampleData.filter((data) => data.category === activeButton);
 
   return (
     <>
@@ -34,44 +68,18 @@ export default function ViewCardPage() {
             </S.MoreIcon>
           </S.EditBtnWrapper>
         </S.ButtonContainer>
+
         {/* 명함 */}
         <S.CardContainer>
-          <S.Card>
-            <S.CardWrapper>
-              <S.ImgWrapper></S.ImgWrapper>
-              <S.Info>
-                <S.Name>박유진</S.Name>
-                <S.Job>프론트엔드 개발자, 숙명여자대학교</S.Job>
-              </S.Info>
-            </S.CardWrapper>
-            <S.ArrowRightIcon>
-              <img src={arrowRight} alt='' />
-            </S.ArrowRightIcon>
-          </S.Card>
-          <S.Card>
-            <S.CardWrapper>
-              <S.ImgWrapper></S.ImgWrapper>
-              <S.Info>
-                <S.Name>박유진</S.Name>
-                <S.Job>프론트엔드 개발자, 숙명여자대학교</S.Job>
-              </S.Info>
-            </S.CardWrapper>
-            <S.ArrowRightIcon>
-              <img src={arrowRight} alt='' />
-            </S.ArrowRightIcon>
-          </S.Card>
-          <S.Card>
-            <S.CardWrapper>
-              <S.ImgWrapper></S.ImgWrapper>
-              <S.Info>
-                <S.Name>박유진</S.Name>
-                <S.Job>프론트엔드 개발자, 숙명여자대학교</S.Job>
-              </S.Info>
-            </S.CardWrapper>
-            <S.ArrowRightIcon>
-              <img src={arrowRight} alt='' />
-            </S.ArrowRightIcon>
-          </S.Card>
+          {filteredData.map((data, index) => (
+            <CardInfo
+              key={index}
+              name={data.name}
+              job={data.job}
+              company={data.company}
+              imageUrl={data.imageUrl}
+            />
+          ))}
         </S.CardContainer>
       </S.ViewCardPage>
       <TabBar />
