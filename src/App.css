@@ -1,9 +1,0 @@
-.app {
-  min-width: 360px;
-  /* 야놀자 가로 길이 참고 */
-  max-width: 768px;
-  height: 100vh;
-  margin: 0 auto;
-  background-color: white;
-  overflow-y: auto;
-}
