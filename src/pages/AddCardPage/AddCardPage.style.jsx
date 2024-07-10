@@ -30,35 +30,8 @@ export const Subtitle = styled.p`
 // 버튼
 export const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   margin-bottom: 16px;
-`;
-
-export const GroupBtnWrapper = styled.div`
-  display: flex;
-  gap: 5px;
-`;
-
-export const GroupBtn = styled.button`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  border-radius: 10px;
-  background: ${(props) =>
-    props.isActive ? 'var(--primary, #2d29ff)' : 'var(--color-1, #ebf3fe)'};
-  padding: 4px 10px;
-  color: ${(props) =>
-    props.isActive ? 'var(--white, #fff)' : 'var(--primary, #2d29ff)'};
-  font-size: 9px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
-  border: none;
-  outline: none;
-
-  &:hover {
-    cursor: pointer;
-  }
+  gap: 4px;
 `;
 
 // 명함 추가
@@ -147,4 +120,11 @@ export const ImportFileBtn = styled.button`
   font-size: 11px;
   line-height: 150%;
   letter-spacing: -0.5px;
+`;
+
+// 등록, 취소 버튼
+export const ActionBtnContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-top: 16px;
 `;

@@ -1,12 +1,23 @@
 import * as S from './AddCardPage.style';
-import { useState } from 'react';
-import { Header, TabBar, SearchBar } from '../../components';
-import magnifyingGlassIcon from '../../icons/icon-magnifying-glass.svg';
+import React, { useState } from 'react';
+import {
+  Header,
+  TabBar,
+  SearchBar,
+  BlueButton,
+  PrimaryButton,
+  SecondaryButton,
+} from '../../components';
 import addCard from '../../icons/icon-add-card.svg';
 import addCardDot from '../../icons/icon-add-card-dot.svg';
 
 export default function AddCardPage() {
   const [activeButton, setActiveButton] = useState('이미지로 입력');
+
+  const buttons = [
+    { label: '이미지로 입력', value: '이미지로 입력' },
+    { label: '직접 입력', value: '직접 입력' },
+  ];
 
   return (
     <>
@@ -20,22 +31,11 @@ export default function AddCardPage() {
         </S.TitleContainer>
 
         <S.ButtonContainer>
-          <S.GroupBtnWrapper>
-            <S.GroupBtn
-              isActive={activeButton === '이미지로 입력'}
-              onClick={() => setActiveButton('이미지로 입력')}
-            >
-              이미지로 입력
-            </S.GroupBtn>
-            <S.GroupBtn
-              isActive={activeButton === '직접 입력'}
-              onClick={() => {
-                setActiveButton('직접 입력');
-              }}
-            >
-              직접 입력
-            </S.GroupBtn>
-          </S.GroupBtnWrapper>
+          <BlueButton
+            buttons={buttons}
+            activeButton={activeButton}
+            setActiveButton={setActiveButton}
+          />
         </S.ButtonContainer>
 
         {/* 명함 추가 */}
@@ -78,6 +78,11 @@ export default function AddCardPage() {
             <S.ImportFileBtn>파일 가져오기</S.ImportFileBtn>
           </S.ImportFileBtnWrapper>
         </S.AddBoxContainer>
+
+        <S.ActionBtnContainer>
+          <PrimaryButton>등록</PrimaryButton>
+          <SecondaryButton>취소</SecondaryButton>
+        </S.ActionBtnContainer>
       </S.AddCardPage>
       <TabBar />
     </>

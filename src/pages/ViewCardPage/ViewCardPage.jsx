@@ -1,11 +1,16 @@
 import * as S from './ViewCardPage.style';
-import { Header, TabBar, SearchBar } from '../../components';
+import { Header, TabBar, SearchBar, BlueButton } from '../../components';
 import more from '../../icons/icon-more.svg';
 import arrowRight from '../../icons/icon-arrow-right.svg';
 import { act, useState } from 'react';
 
 export default function ViewCardPage() {
-  const [activeButton, setActiveButton] = useState('전체보기');
+  const [activeButton, setActiveButton] = useState('전체 보기');
+  const buttons = [
+    { label: '전체 보기', value: '전체 보기' },
+    { label: '비즈니스', value: '비즈니스' },
+    { label: '음식점', value: '음식점' },
+  ];
 
   return (
     <>
@@ -16,26 +21,11 @@ export default function ViewCardPage() {
         {/* 그룹 설정 버튼 */}
         <S.ButtonContainer>
           <S.GroupBtnWrapper>
-            <S.GroupBtn
-              isActive={activeButton === '전체보기'}
-              onClick={() => setActiveButton('전체보기')}
-            >
-              전체보기
-            </S.GroupBtn>
-            <S.GroupBtn
-              isActive={activeButton === '비즈니스'}
-              onClick={() => {
-                setActiveButton('비즈니스');
-              }}
-            >
-              비즈니스
-            </S.GroupBtn>
-            <S.GroupBtn
-              isActive={activeButton === '음식점'}
-              onClick={() => setActiveButton('음식점')}
-            >
-              음식점
-            </S.GroupBtn>
+            <BlueButton
+              buttons={buttons}
+              activeButton={activeButton}
+              setActiveButton={setActiveButton}
+            />
           </S.GroupBtnWrapper>
           <S.EditBtnWrapper>
             <S.EditText>그룹 수정</S.EditText>
