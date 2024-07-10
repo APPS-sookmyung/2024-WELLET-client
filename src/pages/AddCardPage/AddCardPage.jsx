@@ -6,6 +6,7 @@ import {
   SearchBar,
   BlueButton,
   PrimaryButton,
+  SecondaryButton,
 } from '../../components';
 import addCard from '../../icons/icon-add-card.svg';
 import addCardDot from '../../icons/icon-add-card-dot.svg';

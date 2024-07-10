@@ -1,4 +1,4 @@
 export { Header } from './Header';
 export { TabBar } from './TabBar';
 export { SearchBar } from './SearchBar';
-export { BlueButton, PrimaryButton } from './Button';
+export { BlueButton, PrimaryButton, SecondaryButton } from './Button';
