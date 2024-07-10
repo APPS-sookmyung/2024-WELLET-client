@@ -81,6 +81,7 @@ export default function AddCardPage() {
 
         <S.ActionBtnContainer>
           <PrimaryButton>등록</PrimaryButton>
+          <SecondaryButton>취소</SecondaryButton>
         </S.ActionBtnContainer>
       </S.AddCardPage>
       <TabBar />
