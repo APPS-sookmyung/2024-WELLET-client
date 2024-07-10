@@ -10,6 +10,7 @@ import {
 } from '../../components';
 import addCard from '../../icons/icon-add-card.svg';
 import addCardDot from '../../icons/icon-add-card-dot.svg';
+import pencilIcon from '../../icons/icon-pencil.svg';
 
 export default function AddCardPage() {
   const [activeButton, setActiveButton] = useState('이미지로 입력');
@@ -84,20 +85,35 @@ export default function AddCardPage() {
           {activeButton === '직접 입력' && (
             <S.FormContainer>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
-              <S.InputBox>
+              <S.InputContainer>
                 <S.InputWrapper>
                   <S.InputLabel>이름</S.InputLabel>
-                  <S.Input type='text' placeholder='우정환' />
+                  <S.InputBox type='text'>
+                    <S.Input></S.Input>
+                    <S.IconWrapper>
+                      <img src={pencilIcon} alt='연필 아이콘' />
+                    </S.IconWrapper>
+                  </S.InputBox>
                 </S.InputWrapper>
                 <S.InputWrapper>
-                  <S.InputLabel>회사</S.InputLabel>
-                  <S.Input type='text' placeholder='WELLET Corp.' />
+                  <S.InputLabel>이름</S.InputLabel>
+                  <S.InputBox type='text'>
+                    <S.Input></S.Input>
+                    <S.IconWrapper>
+                      <img src={pencilIcon} alt='연필 아이콘' />
+                    </S.IconWrapper>
+                  </S.InputBox>
                 </S.InputWrapper>
                 <S.InputWrapper>
-                  <S.InputLabel>직책 / 부서</S.InputLabel>
-                  <S.Input type='text' placeholder='Web Engineer / 개발실' />
+                  <S.InputLabel>이름</S.InputLabel>
+                  <S.InputBox type='text'>
+                    <S.Input></S.Input>
+                    <S.IconWrapper>
+                      <img src={pencilIcon} alt='연필 아이콘' />
+                    </S.IconWrapper>
+                  </S.InputBox>
                 </S.InputWrapper>
-              </S.InputBox>
+              </S.InputContainer>
             </S.FormContainer>
           )}
         </S.DashedBorder>
