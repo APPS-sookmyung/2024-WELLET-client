@@ -7,6 +7,7 @@ import {
   BlueButton,
   PrimaryButton,
   SecondaryButton,
+  InputWrapper,
 } from '../../components';
 import addCard from '../../icons/icon-add-card.svg';
 import addCardDot from '../../icons/icon-add-card-dot.svg';
@@ -102,33 +103,21 @@ export default function AddCardPage() {
               </S.RegisterImageContainer>
 
               <S.InputContainer>
-                <S.InputWrapper>
-                  <S.InputLabel>이름</S.InputLabel>
-                  <S.InputBox type='text'>
-                    <S.Input></S.Input>
-                    <S.IconWrapper>
-                      <img src={pencilIcon} alt='연필 아이콘' />
-                    </S.IconWrapper>
-                  </S.InputBox>
-                </S.InputWrapper>
-                <S.InputWrapper>
-                  <S.InputLabel>이름</S.InputLabel>
-                  <S.InputBox type='text'>
-                    <S.Input></S.Input>
-                    <S.IconWrapper>
-                      <img src={pencilIcon} alt='연필 아이콘' />
-                    </S.IconWrapper>
-                  </S.InputBox>
-                </S.InputWrapper>
-                <S.InputWrapper>
-                  <S.InputLabel>이름</S.InputLabel>
-                  <S.InputBox type='text'>
-                    <S.Input></S.Input>
-                    <S.IconWrapper>
-                      <img src={pencilIcon} alt='연필 아이콘' />
-                    </S.IconWrapper>
-                  </S.InputBox>
-                </S.InputWrapper>
+                <InputWrapper
+                  label='이름'
+                  type='text'
+                  placeholder='이름을 입력하세요'
+                />
+                <InputWrapper
+                  label='회사'
+                  type='text'
+                  placeholder='회사를 입력하세요'
+                />
+                <InputWrapper
+                  label='직책 / 부서'
+                  type='text'
+                  placeholder='직책 / 부서를 입력하세요'
+                />
               </S.InputContainer>
             </S.FormContainer>
           )}
