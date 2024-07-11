@@ -13,9 +13,11 @@ export const SearchBar = styled.div`
 `;
 
 export const SearchIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 10px;
   height: 14px;
-  transform: rotate(-47.353deg);
   flex-shrink: 0;
   fill: var(--grey2, #949494);
 `;
