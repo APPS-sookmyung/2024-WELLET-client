@@ -40,10 +40,22 @@ export default function MyPage() {
     </S.Container1>
     <S.Infobar>내 연락처</S.Infobar>
     <S.Container2>
-    <div>
-        <div><S.Font1>휴대폰</S.Font1><S.Font2>{myContact.phone}<img src={messageicon}/><img src={callicon}/></S.Font2></div>
-        <div><S.Font1>이메일</S.Font1><S.Font2>{myContact.email}<img src={mailicon}/></S.Font2></div>
-        <div><S.Font1>유선전화</S.Font1><S.Font2>{myContact.tel}<img src={callicon}/></S.Font2></div>
+      <div style={{display:'flex',justifyContent: 'space-between'}}>
+        <div><S.Font1>휴대폰</S.Font1><S.Font2>{myContact.phone}</S.Font2></div>
+        <div><S.IconBox><img src={messageicon}/><img src={callicon}/></S.IconBox></div>
+      </div>
+      <br/>
+      <div style={{display:'flex',justifyContent: 'space-between'}}>
+        <div><S.Font1>이메일</S.Font1><S.Font2>{myContact.email}</S.Font2></div>
+        <div><img src={mailicon}/></div>
+      </div>
+      <br/>
+      <div style={{display:'flex',justifyContent: 'space-between'}}>
+        <div><S.Font1>유선전화</S.Font1><S.Font2>{myContact.tel}</S.Font2></div>
+        <div><img src={callicon}/></div>
+      </div>
+      <br/>
+      <div>
         <div><S.Font1>주소</S.Font1><S.Font2>{myContact.address}</S.Font2></div>
       </div>
     </S.Container2>

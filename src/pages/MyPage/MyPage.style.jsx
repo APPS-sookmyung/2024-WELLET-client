@@ -6,6 +6,7 @@ export const Container1 = styled.div`
   flex-shrink: 0;
   border-radius: 10px;
   background: #f4f4f9;
+  padding: 12px;
 `;
 
 export const Container2 = styled.div`
@@ -14,6 +15,7 @@ export const Container2 = styled.div`
   flex-shrink: 0;
   border-radius: 10px;
   background: #f4f4f9;
+  padding: 12px;
 `;
 
 export const Mybar1 = styled.div`
@@ -43,9 +45,9 @@ export const barbox1 = styled.div`
   letter-spacing: -0.5px;
   text-align: center;
   position: absolute;
-  top: 30px; 
+  top: 30px;
   left: 50%;
-  transform: translateX(-50%); 
+  transform: translateX(-50%);
 `;
 
 export const barbox2 = styled.div`
@@ -53,13 +55,13 @@ export const barbox2 = styled.div`
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 150%; 
+  line-height: 150%;
   letter-spacing: -0.5px;
   text-align: center;
-  position: absolute; 
-  top: 190px; 
-  left: 50%; 
-  transform: translateX(-50%); 
+  position: absolute;
+  top: 190px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const subbar = styled.div`
@@ -68,10 +70,10 @@ export const subbar = styled.div`
   flex-shrink: 0;
   border-radius: 4px;
   background: #8776ff;
-  position: absolute; /* 위치를 절대값으로 변경 */
-  top: 230px; /* 위에서부터 230px */
-  left: 50%; /* 가운데 정렬 */
-  transform: translateX(-50%); /* 가운데 정렬 */
+  position: absolute;
+  top: 230px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const EditIcon = styled.div`
@@ -86,12 +88,12 @@ export const EditIcon = styled.div`
   font-size: 9px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 13.5px */
+  line-height: 150%;
   letter-spacing: -0.5px;
-  position: absolute; /* 위치를 절대값으로 변경 */
-  top: 20px; /* 위에서부터 20px */
-  right: 20px; /* 오른쪽에서 20px */
-  height: 24px; /* barbox와 동일한 높이 */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 24px;
 `;
 
 export const ProfilePic = styled.img`
@@ -100,9 +102,9 @@ export const ProfilePic = styled.img`
   flex-shrink: 0;
   border-radius: 97px;
   position: absolute;
-  top: 83px; /* 위에서부터 83px */
-  left: 50%; /* 가운데 정렬 */
-  transform: translateX(-50%); /* 가운데 정렬 */
+  top: 83px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const Infobar = styled.div`
@@ -110,8 +112,9 @@ export const Infobar = styled.div`
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 150%; /* 21px */
+  line-height: 150%;
   letter-spacing: -0.5px;
+  padding: 8px;
 `;
 
 export const Font1 = styled.div`
@@ -119,7 +122,7 @@ export const Font1 = styled.div`
   font-size: 9px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 13.5px */
+  line-height: 150%;
   letter-spacing: -0.5px;
 `;
 
@@ -128,7 +131,7 @@ export const Font2 = styled.div`
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 16.5px */
+  line-height: 150%;
   letter-spacing: -0.5px;
 `;
 
@@ -144,8 +147,8 @@ export const IconBarContainer = styled.div`
 export const messageIcon = styled.img`
   width: 15.831px;
   height: 14.392px;
-  position: absolute; /* 위치를 절대값으로 변경 */
-  top: 466px; /* 위에서부터 466px */
+  position: absolute;
+  top: 466px;
   right: 70px;
 `;
 
@@ -153,7 +156,7 @@ export const callIcon = styled.img`
   width: 16px;
   height: 18px;
   position: absolute;
-  top: 466px; 
+  top: 466px;
   right: 50px;
 `;
 
@@ -161,7 +164,7 @@ export const mailIcon = styled.img`
   width: 18px;
   height: 13px;
   position: absolute;
-  top: 466px; /* 여기에 적절한 위치 값을 설정하세요 */
+  top: 466px;
   right: 30px;
 `;
 
@@ -182,4 +185,9 @@ export const dot3icon = styled.img`
   width: 2.4px;
   height: 10.453px;
   flex-shrink: 0;
+`;
+
+export const IconBox = styled.div`
+  display: flex;
+  gap: 17px;
 `;
