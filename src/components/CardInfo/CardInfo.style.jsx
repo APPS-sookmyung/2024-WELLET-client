@@ -40,7 +40,7 @@ export const Name = styled.h1`
 
 export const Job = styled.p`
   color: var(--grey3, #555);
-  font-size: 9px;
+  font-size: 11px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
