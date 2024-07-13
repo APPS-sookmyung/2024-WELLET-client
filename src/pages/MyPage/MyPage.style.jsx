@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container1 = styled.div`
-  width: 728px;
-  height: 99.049px;
+  height: 100px;
   flex-shrink: 0;
   border-radius: 10px;
   background: #f4f4f9;
@@ -10,7 +9,6 @@ export const Container1 = styled.div`
 `;
 
 export const Container2 = styled.div`
-  width: 728px;
   height: 185.979px;
   flex-shrink: 0;
   border-radius: 10px;
