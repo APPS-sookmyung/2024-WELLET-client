@@ -9,3 +9,5 @@ export { default as MyPage } from './MyPage';
 export { default as OnBoardingPage } from './OnBoardingPage';
 
 export { default as LoginPage } from './LoginPage';
+
+export { default as MyPageEdit } from './MyPageEdit';

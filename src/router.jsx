@@ -6,6 +6,7 @@ import {
   ViewCardPage,
   OnBoardingPage,
   LoginPage,
+  MyPageEdit,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/mypage/edit',
+    element: <MyPageEdit />,
   },
 ]);
 
