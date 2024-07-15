@@ -45,7 +45,7 @@ export const welletStyles = css`
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: 360px;
+    min-width: 320px;
     height: 100vh;
     max-width: 768px;
     margin: 0 auto;

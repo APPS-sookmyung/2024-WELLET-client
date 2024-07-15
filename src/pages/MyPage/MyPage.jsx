@@ -7,6 +7,7 @@ import shareicon from '../../icons/icon-share.svg';
 import galleryicon from '../../icons/icon-gallery.svg';
 import dot3icon from '../../icons/icon-dot3.svg';
 import { useNavigate } from 'react-router-dom';
+import { TabBar } from '../../components';
 
 export default function MyPage() {
   const [myInfo, setMyInfo] = useState({
@@ -98,6 +99,7 @@ export default function MyPage() {
           </div>
         </S.Container2>
       </S.Mybar2>
+      <TabBar />
     </>
   );
 }
