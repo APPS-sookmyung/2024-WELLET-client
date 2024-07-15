@@ -6,6 +6,7 @@ import mailicon from '../../icons/icon-mail.svg';
 import shareicon from '../../icons/icon-share.svg';
 import galleryicon from '../../icons/icon-gallery.svg';
 import dot3icon from '../../icons/icon-dot3.svg';
+import { useNavigate } from 'react-router-dom';
 import { TabBar } from '../../components';
 
 export default function MyPage() {
@@ -21,11 +22,16 @@ export default function MyPage() {
     tel: '81-2-222-3456',
     address: '서울시 강남구 테헤란로 134, 5-6층 (역삼동, 포스크타워 역삼)',
   });
+
+  const navigate = useNavigate();
+  const EditClick = () => {
+    navigate('/mypage/edit');
+  };
   return (
     <>
       <S.Mybar1>
         <S.barbox1>내 명함</S.barbox1>
-        <S.EditIcon>편집하기</S.EditIcon>
+        <S.EditIcon onClick={EditClick}>편집하기</S.EditIcon>
         <S.ProfilePic />
         <S.IconBarContainer>
           <img src={shareicon} />
