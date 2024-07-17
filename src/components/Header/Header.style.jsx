@@ -3,13 +3,12 @@ import styled from '@emotion/styled';
 export const Header = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: 14px;
+  align-items: center;
+  height: 76px;
 `;
 
 export const LogoWrapper = styled.div`
-  padding: 10px;
-
-  img {
-    height: 100%;
-  }
+  display: flex;
+  width: 78px;
+  height: 22px;
 `;
