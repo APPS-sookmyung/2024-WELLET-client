@@ -8,7 +8,7 @@ export default function HomePage() {
 
   const visibleCards = () => {
     const availableHeight = window.innerHeight - 348 - 100 - 70;
-    const availableCardCount = Math.floor(availableHeight / 86);
+    const availableCardCount = Math.floor(availableHeight / 90);
     setFilterdList(sampleData.slice(0, availableCardCount));
   };
 
