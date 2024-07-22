@@ -63,7 +63,7 @@
 
   <symbol id="more" viewBox="0 0 11 12">
     <g id="Group 2073">
-    <ellipse id="Ellipse 8" cx="5.71717" cy="6.36133" rx="5.2826" ry="5.5" fill="#FF0076"/>
+    <ellipse id="Ellipse 8" cx="5.71717" cy="6.36133" rx="5.2826" ry="5.5"/>
     <g id="add">
     <mask id="mask0_4_3451" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="2" width="9" height="9">
     <rect id="Bounding box" x="1.70219" y="2.62109" width="7.81825" height="7.48" fill="white"/>
