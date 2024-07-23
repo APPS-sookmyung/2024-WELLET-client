@@ -1,7 +1,21 @@
 import * as S from './HomePage.style';
-import { Header, SearchBar, TabBar } from '../../components';
+import { Header, SearchBar, TabBar, CardInfo } from '../../components';
 import Icon from '../../components/Icon/Icon';
+import sampleData from '../../constants/cards';
+import { useState, useEffect } from 'react';
 export default function HomePage() {
+  const [filterdList, setFilterdList] = useState();
+
+  const visibleCards = () => {
+    const availableHeight = window.innerHeight - 348 - 100 - 70;
+    const availableCardCount = Math.floor(availableHeight / 90);
+    setFilterdList(sampleData.slice(0, availableCardCount));
+  };
+
+  useEffect(() => {
+    visibleCards();
+  }, []);
+
   return (
     <>
       <S.HomePage>
@@ -27,14 +41,16 @@ export default function HomePage() {
               </S.ExtraInfo>
               <S.ExtraInfo>
                 <p>ADRESS</p>
-                <p>서울시 강남구 테헤란로 134</p>
+                <p>서울시 강남구 테헤란로 134 </p>
               </S.ExtraInfo>
             </S.ProfileText>
             <S.MoreOption>
               <Icon id='dot3' fill='#2D29FF' />
             </S.MoreOption>
           </S.MyCard>
-          <S.UpDownBar />
+          <S.UpDownBarBox>
+            <S.UpDownBar />
+          </S.UpDownBarBox>
         </S.Top>
         <S.Container>
           <S.CardListTitle>
@@ -46,8 +62,35 @@ export default function HomePage() {
               <Icon id='arrow-bottom' />
             </S.ArrowBottomIcon>
             <S.Filter>최근 등록 순</S.Filter>
-            <S.AddGroup>그룹 추가</S.AddGroup>
+            <S.AddGroup>
+              <S.EditBtnWrapper>
+                <S.EditText>그룹 수정</S.EditText>
+                <S.MoreIcon>
+                  <Icon id='more' fill='#2D29FF' />
+                </S.MoreIcon>
+              </S.EditBtnWrapper>
+            </S.AddGroup>
           </S.ListOpiton>
+          {filterdList ? (
+            <>
+              <S.CardContainer>
+                {filterdList.map((data, index) => (
+                  <CardInfo
+                    key={index}
+                    name={data.name}
+                    job={data.job}
+                    company={data.company}
+                    imageUrl={data.imageUrl}
+                  />
+                ))}
+              </S.CardContainer>
+              <S.BottomMoreBtn>
+                <S.EditBtnWrapper>
+                  <S.EditText>더 보기</S.EditText>
+                </S.EditBtnWrapper>
+              </S.BottomMoreBtn>
+            </>
+          ) : null}
         </S.Container>
       </S.HomePage>
       <TabBar />

@@ -28,7 +28,7 @@ export const SearchInput = styled.input`
   background: transparent;
   width: 100%;
   color: var(--grey3, #555);
-  font-size: 9px;
+  font-size: 11px;
   line-height: 150%;
   letter-spacing: -0.5px;
 
