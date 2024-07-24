@@ -94,6 +94,11 @@ export const FindIdP = styled.div`
   display: flex;
   justify-content: end;
   gap: 5px;
+
+  a {
+    color: #555;
+    text-decoration: none;
+  }
 `;
 
 export const Btns = styled.div`
