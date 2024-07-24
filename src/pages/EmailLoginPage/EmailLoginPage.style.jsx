@@ -50,6 +50,7 @@ export const InputBox = styled.div`
   flex-direction: column;
   align-items: center;
   row-gap: 8px;
+  max-width: 500px;
 `;
 
 export const Input = styled.input`
