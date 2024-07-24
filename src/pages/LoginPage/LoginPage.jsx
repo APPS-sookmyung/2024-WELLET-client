@@ -5,7 +5,6 @@ import login_background_lines from '../../assets/imgs/login_background_lines.svg
 import { PrimaryButton, SecondaryButton } from '../../components';
 
 export default function LoginPage() {
-
   return (
     <S.Container
       style={{ backgroundImage: `url(${login_background_circles})` }}
@@ -13,14 +12,7 @@ export default function LoginPage() {
       <S.BackgroundCirclesBox>
         <S.BackgroundLinesBox
           style={{ backgroundImage: `url(${login_background_lines})` }}
-        >
-          <S.TitleBox>
-            <S.Logo>
-              <Icon id='logo' fill='#2D29FF' />
-            </S.Logo>
-            <S.Text>우리(WE)들이 사용하는 월렛</S.Text>
-          </S.TitleBox>
-        </S.BackgroundLinesBox>
+        />
       </S.BackgroundCirclesBox>
       <S.Btns>
         <PrimaryButton

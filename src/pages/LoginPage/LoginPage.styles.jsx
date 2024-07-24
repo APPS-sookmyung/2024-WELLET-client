@@ -17,7 +17,7 @@ export const BackgroundCirclesBox = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   justify-content: center;
-  padding: 60px 20px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,43 +29,11 @@ export const BackgroundLinesBox = styled.div`
   /* border: 3px solid yellow; */
   height: 100%;
   width: 80%;
-  max-height: 400px;
+  max-width: 360px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const TitleBox = styled.div`
-  /* border: 1px solid blue; */
-  width: 100%;
-  height: 100%;
-  padding: 175px 0;
-  color: #2d29ff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  row-gap: 16px;
-`;
-
-export const Logo = styled.div`
-  /* border: 1px solid red; */
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  margin: 0 80px;
-  /* width: 133px;
-  height: 36px; */
-`;
-
-export const Text = styled.div`
-  /* border: 1px solid red; */
-  font-size: 14px;
-  font-weight: 600;
+  padding: 180px 0;
 `;
 
 export const Btns = styled.div`
