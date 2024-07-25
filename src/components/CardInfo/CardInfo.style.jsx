@@ -33,16 +33,16 @@ export const Info = styled.div`
 export const Name = styled.h1`
   color: var(--grey3, #555);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 150%;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.7px;
 `;
 
 export const Job = styled.p`
   color: var(--grey3, #555);
-  font-size: 11px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  font-size: 12px;
+  line-height: 130%;
+  letter-spacing: -0.6px;
 `;
 
 export const ArrowRightIcon = styled.button`
