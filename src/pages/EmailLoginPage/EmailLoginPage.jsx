@@ -1,6 +1,6 @@
 import * as S from './EmailLoginPage.style';
 import Icon from '../../components/Icon/Icon';
-import email_login_background from '../../assets/imgs/email_login_background.svg';
+import email_login_background from '../../assets/images/email_login_background.svg';
 import { PrimaryButton } from '../../components';
 import { useState } from 'react';
 import { MdCheckBox } from 'react-icons/md';

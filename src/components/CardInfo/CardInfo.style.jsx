@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-export const Card = styled.div`
+export const Card = styled.a`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 74px;
   border-radius: 10px;
   background: #f4f4f9;
-  padding: 12px 12px;
+  padding: 12px;
 `;
 
 export const CardWrapper = styled.div`
@@ -16,11 +16,10 @@ export const CardWrapper = styled.div`
   padding: 0 8px;
 `;
 
-export const ImgWrapper = styled.div`
+export const ProfileImgWrapper = styled.div`
   width: 50px;
   height: 50px;
   flex-shrink: 0;
-  border: 1px solid blue;
   border-radius: 50px;
 `;
 
@@ -33,18 +32,20 @@ export const Info = styled.div`
 export const Name = styled.h1`
   color: var(--grey3, #555);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 150%;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.7px;
 `;
 
 export const Job = styled.p`
   color: var(--grey3, #555);
-  font-size: 11px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  font-size: 12px;
+  line-height: 130%;
+  letter-spacing: -0.6px;
 `;
 
-export const ArrowRightIcon = styled.button`
-  padding: 0 8px;
+export const ArrowIconWrapper = styled.div`
+  display: flex;
+  width: 16px;
+  height: 13px;
 `;
