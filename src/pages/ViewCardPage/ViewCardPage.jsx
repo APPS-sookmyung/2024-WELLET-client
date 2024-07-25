@@ -6,8 +6,8 @@ import {
   BlueBadge,
   CardInfo,
 } from '../../components';
-import more from '../../icons/icon-more.svg';
 import { useState } from 'react';
+import Icon from '../../components/Icon/Icon';
 
 const sampleData = [
   {
@@ -77,7 +77,9 @@ export default function ViewCardPage() {
           </S.GroupBtnWrapper>
           <S.EditBtnWrapper>
             <S.EditText>명함 삭제</S.EditText>
-            <S.TrashIcon></S.TrashIcon>
+            <S.TrashIcon>
+              <Icon id='trash' fill='none' />
+            </S.TrashIcon>
           </S.EditBtnWrapper>
         </S.ButtonContainer>
 

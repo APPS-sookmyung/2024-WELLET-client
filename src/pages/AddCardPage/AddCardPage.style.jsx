@@ -14,7 +14,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.h1`
   color: var(--grey4, #1a1a1a);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -22,16 +22,16 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.p`
   color: var(--grey3, #555);
-  font-size: 9px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  font-size: 11px;
+  line-height: 130%;
+  letter-spacing: -0.55px;
 `;
 
 // 버튼
 export const ButtonContainer = styled.div`
   display: flex;
   margin-bottom: 16px;
-  gap: 4px;
+  gap: 5px;
 `;
 
 // 점선 테두리
@@ -51,12 +51,12 @@ export const AddBoxContainer = styled.div`
 `;
 
 export const AddBoxTitle = styled.h3`
-  margin-bottom: 16px;
+  margin-bottom: 13px;
   color: var(--primary, #2d29ff);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 150%;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.7px;
 `;
 
 export const AddBoxIconWrapper = styled.div`
@@ -68,10 +68,10 @@ export const AddBoxIconWrapper = styled.div`
 `;
 
 export const AddBoxSubTitle = styled.p`
-  padding: 10px 0;
+  padding: 10px 0 16px;
   color: var(--grey2, #949494);
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
@@ -80,7 +80,7 @@ export const AddBoxDescWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 8px 0;
+  padding-bottom: 16px;
 `;
 
 export const AddBoxDesc = styled.div`
@@ -97,7 +97,7 @@ export const DotIconWrapper = styled.div`
 export const AddBoxText = styled.p`
   color: var(--grey2, #949494);
   text-align: center;
-  font-size: 9px;
+  font-size: 11px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
@@ -113,14 +113,13 @@ export const ImportFileBtn = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 77px;
-  padding: 4px 8px;
+  padding: 4px 10px;
   gap: 8px;
   border-radius: 10px;
   background: var(--primary, #2d29ff);
   color: var(--white, #fff);
   font-size: 11px;
-  line-height: 150%;
+  line-height: 130%;
   letter-spacing: -0.5px;
 `;
 
@@ -161,17 +160,18 @@ export const RegisterText = styled.div`
 
 export const RegisterTitle = styled.h3`
   color: var(--grey3, #555);
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 150%;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.7px;
 `;
 
 export const RegisterSubTitle = styled.p`
   display: flex;
   color: var(--grey2, #949494);
   font-size: 11px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  line-height: 130%;
+  letter-spacing: -0.55px;
 `;
 
 export const InputContainer = styled.div`

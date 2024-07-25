@@ -9,9 +9,9 @@ export const InputWrapper = styled.div`
 export const InputLabel = styled.label`
   padding: 0 6px;
   color: var(--grey3, #555);
-  font-size: 11px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  font-size: 12px;
+  line-height: 130%;
+  letter-spacing: -0.6px;
 `;
 
 export const InputBox = styled.div`
@@ -31,14 +31,14 @@ export const Input = styled.input`
   background-color: transparent;
   width: 100%;
   color: var(--grey2, #949494);
-  font-size: 11px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: -0.7px;
   outline: none;
 `;
 
 export const IconWrapper = styled.div`
-  margin: 0 3px;
-  width: 12px;
-  height: 12px;
+  display: flex;
+  width: 13px;
+  height: 13px;
 `;

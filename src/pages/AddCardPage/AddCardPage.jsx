@@ -26,7 +26,6 @@ export default function AddCardPage() {
     { label: '비즈니스', value: '비즈니스' },
     { label: '음식점', value: '음식점' },
     { label: '학교', value: '학교' },
-    { label: '그룹 추가', value: '그룹 추가' },
   ];
 
   return (
@@ -37,7 +36,7 @@ export default function AddCardPage() {
 
         <S.TitleContainer>
           <S.Title>명함 추가하기</S.Title>
-          <S.Subtitle>사진을 첨부하거나 직접 입력하여 명함 추가하기</S.Subtitle>
+          <S.Subtitle>사진을 첨부 / 직접 입력하여 명함 추가하기</S.Subtitle>
         </S.TitleContainer>
 
         <S.ButtonContainer>
