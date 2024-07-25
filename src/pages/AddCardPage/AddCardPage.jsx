@@ -14,15 +14,15 @@ import addCardDot from '../../icons/icon-add-card-dot.svg';
 import ImageIcon from '../../icons/icon-image.svg';
 
 export default function AddCardPage() {
-  const [activeButton, setActiveButton] = useState('이미지로 입력');
-  const [activeGroupButton, setActiveGroupButton] = useState('비즈니스');
+  const [activeBadge, setActiveBadge] = useState('이미지로 입력');
+  const [activeGroupBadge, setActiveGroupBadge] = useState('비즈니스');
 
-  const buttons = [
+  const badges = [
     { label: '이미지로 입력', value: '이미지로 입력' },
     { label: '직접 입력', value: '직접 입력' },
   ];
 
-  const groupButtons = [
+  const groupBadges = [
     { label: '비즈니스', value: '비즈니스' },
     { label: '음식점', value: '음식점' },
     { label: '학교', value: '학교' },
@@ -42,14 +42,14 @@ export default function AddCardPage() {
 
         <S.ButtonContainer>
           <BlueBadge
-            buttons={buttons}
-            activeButton={activeButton}
-            setActiveButton={setActiveButton}
+            badges={badges}
+            activeBadge={activeBadge}
+            setActiveBadge={setActiveBadge}
           />
         </S.ButtonContainer>
 
         <S.DashedBorder>
-          {activeButton === '이미지로 입력' && (
+          {activeBadge === '이미지로 입력' && (
             <S.AddBoxContainer>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
               <S.AddBoxIconWrapper>
@@ -91,7 +91,7 @@ export default function AddCardPage() {
             </S.AddBoxContainer>
           )}
 
-          {activeButton === '직접 입력' && (
+          {activeBadge === '직접 입력' && (
             <S.FormContainer>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
 
@@ -154,9 +154,9 @@ export default function AddCardPage() {
             <S.InputLabel>그룹</S.InputLabel>
             <S.GroupButtonWrapper>
               <BlueBadge
-                buttons={groupButtons}
-                activeButton={activeGroupButton}
-                setActiveButton={setActiveGroupButton}
+                badges={groupBadges}
+                activeBadge={activeGroupBadge}
+                setActiveBadge={setActiveGroupBadge}
               />
             </S.GroupButtonWrapper>
           </S.GroupContainer>

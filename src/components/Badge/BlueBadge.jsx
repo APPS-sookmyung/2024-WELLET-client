@@ -1,16 +1,16 @@
 import React from 'react';
 import * as S from './BlueBadge.style';
 
-export default function BlueBadge({ buttons, activeButton, setActiveButton }) {
+export default function BlueBadge({ badges, activeBadge, setActiveBadge }) {
   return (
     <>
-      {buttons.map((button) => (
+      {badges.map((badge) => (
         <S.BlueBadge
-          key={button.value}
-          isActive={activeButton === button.value}
-          onClick={() => setActiveButton(button.value)}
+          key={badge.value}
+          isActive={activeBadge === badge.value}
+          onClick={() => setActiveBadge(badge.value)}
         >
-          {button.label}
+          {badge.label}
         </S.BlueBadge>
       ))}
     </>

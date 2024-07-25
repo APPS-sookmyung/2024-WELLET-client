@@ -48,17 +48,17 @@ const sampleData = [
 ];
 
 export default function ViewCardPage() {
-  const [activeButton, setActiveButton] = useState('전체 보기');
-  const buttons = [
+  const [activeBadge, setActiveBadge] = useState('전체 보기');
+  const badges = [
     { label: '전체 보기', value: '전체 보기' },
     { label: '비즈니스', value: '비즈니스' },
     { label: '음식점', value: '음식점' },
   ];
 
   const filteredData =
-    activeButton === '전체 보기'
+    activeBadge === '전체 보기'
       ? sampleData
-      : sampleData.filter((data) => data.category === activeButton);
+      : sampleData.filter((data) => data.category === activeBadge);
 
   return (
     <>
@@ -70,9 +70,9 @@ export default function ViewCardPage() {
         <S.ButtonContainer>
           <S.GroupBtnWrapper>
             <BlueBadge
-              buttons={buttons}
-              activeButton={activeButton}
-              setActiveButton={setActiveButton}
+              badges={badges}
+              activeBadge={activeBadge}
+              setActiveBadge={setActiveBadge}
             />
           </S.GroupBtnWrapper>
           <S.EditBtnWrapper>
