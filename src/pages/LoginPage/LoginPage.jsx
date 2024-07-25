@@ -1,7 +1,7 @@
 import * as S from './LoginPage.styles';
 import Icon from '../../components/Icon/Icon';
-import login_background_circles from '../../assets/imgs/login_background_circles.svg';
-import login_background_lines from '../../assets/imgs/login_background_lines.svg';
+import login_background_circles from '../../assets/images/login_background_circles.svg';
+import login_background_lines from '../../assets/images/login_background_lines.svg';
 import { PrimaryButton, SecondaryButton } from '../../components';
 import { Link } from 'react-router-dom';
 
