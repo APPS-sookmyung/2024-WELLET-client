@@ -4,7 +4,7 @@ import {
   Header,
   TabBar,
   SearchBar,
-  BlueButton,
+  BlueBadge,
   PrimaryButton,
   SecondaryButton,
   InputWrapper,
@@ -41,7 +41,7 @@ export default function AddCardPage() {
         </S.TitleContainer>
 
         <S.ButtonContainer>
-          <BlueButton
+          <BlueBadge
             buttons={buttons}
             activeButton={activeButton}
             setActiveButton={setActiveButton}
@@ -153,7 +153,7 @@ export default function AddCardPage() {
           <S.GroupContainer>
             <S.InputLabel>그룹</S.InputLabel>
             <S.GroupButtonWrapper>
-              <BlueButton
+              <BlueBadge
                 buttons={groupButtons}
                 activeButton={activeGroupButton}
                 setActiveButton={setActiveGroupButton}

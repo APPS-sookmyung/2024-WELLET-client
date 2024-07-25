@@ -3,7 +3,7 @@ import {
   Header,
   TabBar,
   SearchBar,
-  BlueButton,
+  BlueBadge,
   CardInfo,
 } from '../../components';
 import more from '../../icons/icon-more.svg';
@@ -69,17 +69,15 @@ export default function ViewCardPage() {
         {/* 그룹 설정 버튼 */}
         <S.ButtonContainer>
           <S.GroupBtnWrapper>
-            <BlueButton
+            <BlueBadge
               buttons={buttons}
               activeButton={activeButton}
               setActiveButton={setActiveButton}
             />
           </S.GroupBtnWrapper>
           <S.EditBtnWrapper>
-            <S.EditText>그룹 수정</S.EditText>
-            <S.MoreIcon>
-              <img src={more} alt='더보기' />
-            </S.MoreIcon>
+            <S.EditText>명함 삭제</S.EditText>
+            <S.TrashIcon></S.TrashIcon>
           </S.EditBtnWrapper>
         </S.ButtonContainer>
 

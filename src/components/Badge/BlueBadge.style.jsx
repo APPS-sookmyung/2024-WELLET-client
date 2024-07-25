@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const BlueButton = styled.button`
+export const BlueBadge = styled.button`
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
