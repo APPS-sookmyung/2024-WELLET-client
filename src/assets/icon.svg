@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg">
-  <symbol id="add-card-dot" viewBox="0 0 4 4">
+  <symbol id="dot" viewBox="0 0 4 4" >
     <circle id="Ellipse 209" cx="2.14844" cy="2.13281" r="1.85156" fill="#908EFC"/>
   </symbol>
 
-  <symbol id="add-card" viewBox="0 0 20 21">
+  <symbol id="circle-plus" viewBox="0 0 20 21">
     <g id="Group 2080" opacity="0.5">
     <circle id="Ellipse 8" cx="10" cy="10.709" r="10" fill="#2D29FF"/>
     <g id="add">

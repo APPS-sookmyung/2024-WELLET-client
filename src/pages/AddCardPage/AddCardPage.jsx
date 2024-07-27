@@ -9,9 +9,7 @@ import {
   SecondaryButton,
   InputWrapper,
 } from '../../components';
-import addCard from '../../icons/icon-add-card.svg';
-import addCardDot from '../../icons/icon-add-card-dot.svg';
-import ImageIcon from '../../icons/icon-image.svg';
+import Icon from '../../components/Icon/Icon';
 
 export default function AddCardPage() {
   const [activeBadge, setActiveBadge] = useState('이미지로 입력');
@@ -64,7 +62,7 @@ export default function AddCardPage() {
             <S.AddImageContainer onClick={handleButtonClick}>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
               <S.AddBoxIconWrapper>
-                <img src={addCard} alt='도트' />
+                <Icon id='circle-plus' fill='none' />
               </S.AddBoxIconWrapper>
               <S.AddBoxSubTitle>
                 아래 버튼을 클릭하거나, <br />
@@ -72,25 +70,19 @@ export default function AddCardPage() {
               </S.AddBoxSubTitle>
               <S.AddBoxDescWrapper>
                 <S.AddBoxDesc>
-                  <S.DotIconWrapper>
-                    <img src={addCardDot} alt='도트' />
-                  </S.DotIconWrapper>
+                  <Icon id='dot' />
                   <S.AddBoxText>
                     선택한 모든 명함 이미지는 앞면으로 인식합니다.
                   </S.AddBoxText>
                 </S.AddBoxDesc>
                 <S.AddBoxDesc>
-                  <S.DotIconWrapper>
-                    <img src={addCardDot} alt='도트' />
-                  </S.DotIconWrapper>
+                  <Icon id='dot' />
                   <S.AddBoxText>
                     이미지는 한 번에 100장까지 업로드할 수 있습니다.
                   </S.AddBoxText>
                 </S.AddBoxDesc>
                 <S.AddBoxDesc>
-                  <S.DotIconWrapper>
-                    <img src={addCardDot} alt='도트' />
-                  </S.DotIconWrapper>
+                  <Icon id='dot' />
                   <S.AddBoxText>
                     이미지 한 장 당 최대 크기는 1MB 입니다.
                   </S.AddBoxText>
@@ -127,7 +119,7 @@ export default function AddCardPage() {
 
               <S.RegisterImageContainer>
                 <S.SelectImg>
-                  <img src={ImageIcon} alt='' />
+                  <Icon id='image' fill='none' />
                 </S.SelectImg>
                 <S.RegisterText>
                   <S.RegisterTitle>프로필 사진 등록</S.RegisterTitle>

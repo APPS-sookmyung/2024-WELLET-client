@@ -78,19 +78,21 @@ export const AddBoxSubTitle = styled.p`
 export const AddBoxDescWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 4px;
   padding-bottom: 6px;
 `;
 
 export const AddBoxDesc = styled.div`
   display: flex;
-  gap: 5px;
-`;
-
-export const DotIconWrapper = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+
+  svg {
+    width: 4px;
+    height: 4px;
+  }
 `;
 
 export const AddBoxText = styled.p`
@@ -155,7 +157,7 @@ export const SelectImg = styled.div`
   border-radius: 68.239px;
   background: #2d29ff4c;
 
-  img {
+  svg {
     width: 18px;
     height: 18px;
   }
