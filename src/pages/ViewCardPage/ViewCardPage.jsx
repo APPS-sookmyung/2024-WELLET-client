@@ -50,6 +50,8 @@ const sampleData = [
 export default function ViewCardPage() {
   const [activeBadge, setActiveBadge] = useState('전체 보기');
   const [isEditCompleteVisible, setIsEditCompleteVisible] = useState(false);
+  const [isDeleteMode, setIsDeleteMode] = useState(false);
+  const [selectedCards, setSelectedCards] = useState([]);
   const badges = [
     { label: '전체 보기', value: '전체 보기' },
     { label: '비즈니스', value: '비즈니스' },
@@ -62,11 +64,26 @@ export default function ViewCardPage() {
       : sampleData.filter((data) => data.category === activeBadge);
 
   const handleDeleteClick = () => {
+    setIsDeleteMode(true);
     setIsEditCompleteVisible(true);
   };
 
   const handleEditCompleteClick = () => {
+    setIsDeleteMode(false);
+    setSelectedCards([]);
     setIsEditCompleteVisible(false);
+  };
+
+  const handleCardClick = (index) => {
+    if (isDeleteMode) {
+      setSelectedCards((prevSelected) => {
+        if (prevSelected.includes(index)) {
+          return prevSelected.filter((i) => i !== index);
+        } else {
+          return [...prevSelected, index];
+        }
+      });
+    }
   };
 
   return (
@@ -108,6 +125,9 @@ export default function ViewCardPage() {
               job={data.job}
               company={data.company}
               imageUrl={data.imageUrl}
+              isDeleteMode={isDeleteMode}
+              isSelected={selectedCards.includes(index)}
+              onClick={() => handleCardClick(index)}
             />
           ))}
         </S.CardContainer>
