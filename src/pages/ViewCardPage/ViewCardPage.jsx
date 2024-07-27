@@ -49,6 +49,7 @@ const sampleData = [
 
 export default function ViewCardPage() {
   const [activeBadge, setActiveBadge] = useState('전체 보기');
+  const [isEditCompleteVisible, setIsEditCompleteVisible] = useState(false);
   const badges = [
     { label: '전체 보기', value: '전체 보기' },
     { label: '비즈니스', value: '비즈니스' },
@@ -60,6 +61,14 @@ export default function ViewCardPage() {
       ? sampleData
       : sampleData.filter((data) => data.category === activeBadge);
 
+  const handleDeleteClick = () => {
+    setIsEditCompleteVisible(true);
+  };
+
+  const handleEditCompleteClick = () => {
+    setIsEditCompleteVisible(false);
+  };
+
   return (
     <>
       <S.ViewCardPage>
@@ -68,19 +77,26 @@ export default function ViewCardPage() {
 
         {/* 그룹 설정 버튼 */}
         <S.ButtonContainer>
-          <S.GroupBtnWrapper>
+          <S.GroupBadgeWrapper>
             <BlueBadge
               badges={badges}
               activeBadge={activeBadge}
               setActiveBadge={setActiveBadge}
             />
-          </S.GroupBtnWrapper>
-          <S.EditBtnWrapper>
-            <S.EditText>명함 삭제</S.EditText>
-            <S.TrashIcon>
-              <Icon id='trash' fill='none' />
-            </S.TrashIcon>
-          </S.EditBtnWrapper>
+          </S.GroupBadgeWrapper>
+          <S.EditBadgeWrapper>
+            <S.DeleteCardBadge onClick={handleDeleteClick}>
+              <S.BadgeText>명함 삭제</S.BadgeText>
+              <S.TrashIcon>
+                <Icon id='trash' fill='none' />
+              </S.TrashIcon>
+            </S.DeleteCardBadge>
+            {isEditCompleteVisible && (
+              <S.EditCompletedBadge onClick={handleEditCompleteClick}>
+                <S.BadgeText>수정 완료</S.BadgeText>
+              </S.EditCompletedBadge>
+            )}
+          </S.EditBadgeWrapper>
         </S.ButtonContainer>
 
         {/* 명함 */}
