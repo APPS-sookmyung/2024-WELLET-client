@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const BlueBadge = styled.button`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   border-radius: 10px;
   background: ${(props) =>
