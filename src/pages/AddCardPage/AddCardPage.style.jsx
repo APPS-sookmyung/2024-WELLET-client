@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const AddCardPage = styled.div`
-  padding: 20px;
+  padding: 20px 20px 100px 20px;
 `;
 
 // 타이틀
@@ -216,5 +216,5 @@ export const GroupButtonWrapper = styled.div`
 export const ActionBtnContainer = styled.div`
   display: flex;
   gap: 20px;
-  margin: 16px 0 100px;
+  margin: 16px 0 0;
 `;

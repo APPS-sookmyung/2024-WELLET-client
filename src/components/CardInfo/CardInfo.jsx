@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as S from './CardInfo.style';
 import Icon from '../../components/Icon/Icon';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+
 export default function CardInfo({
   name,
   job,
@@ -23,8 +24,8 @@ export default function CardInfo({
           <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
         </S.ProfileImgWrapper>
         <S.Info>
-          <S.Name>{name}</S.Name>
-          <S.Job>
+          <S.Name isSelected={isSelected}>{name}</S.Name>
+          <S.Job isSelected={isSelected}>
             {job} | {company}
           </S.Job>
         </S.Info>
@@ -56,7 +57,7 @@ CardInfo.propTypes = {
 };
 
 CardInfo.defaultProps = {
-  imageUrl: 'ProfileImgDefault',
+  imageUrl: ProfileImgDefault,
   isDeleteMode: false,
   isSelected: false,
   onClick: () => {},
