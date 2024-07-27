@@ -42,7 +42,7 @@ export default function AddCardPage() {
     <>
       <S.AddCardPage>
         <Header />
-        <SearchBar />
+        <SearchBar theme='white' />
 
         <S.TitleContainer>
           <S.Title>명함 추가하기</S.Title>
