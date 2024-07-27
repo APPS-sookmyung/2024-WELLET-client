@@ -8,8 +8,8 @@ export const AddCardPage = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 4px;
+  gap: 6px;
+  padding: 5px 0 8px;
 `;
 
 export const Title = styled.h1`
@@ -42,16 +42,15 @@ export const DashedBorder = styled.div`
 `;
 
 // 이미지 입력으로 명함 추가
-export const AddBoxContainer = styled.div`
+export const AddImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 256px;
 `;
 
 export const AddBoxTitle = styled.h3`
-  margin-bottom: 13px;
+  margin: 6px 0 13px;
   color: var(--primary, #2d29ff);
   font-size: 14px;
   font-weight: 500;
@@ -79,19 +78,21 @@ export const AddBoxSubTitle = styled.p`
 export const AddBoxDescWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 4px;
-  padding-bottom: 16px;
+  padding-bottom: 6px;
 `;
 
 export const AddBoxDesc = styled.div`
   display: flex;
-  gap: 5px;
-`;
-
-export const DotIconWrapper = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+
+  svg {
+    width: 4px;
+    height: 4px;
+  }
 `;
 
 export const AddBoxText = styled.p`
@@ -102,13 +103,23 @@ export const AddBoxText = styled.p`
   letter-spacing: -0.5px;
 `;
 
-export const ImportFileBtnWrapper = styled.div`
+export const ImportImageBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 2px 0;
+  padding: 14px;
 `;
 
-export const ImportFileBtn = styled.button`
+export const PreviewContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const PreviewImage = styled.img`
+  height: 100px;
+  object-fit: cover;
+`;
+
+export const ImportImageBtn = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -146,7 +157,7 @@ export const SelectImg = styled.div`
   border-radius: 68.239px;
   background: #2d29ff4c;
 
-  img {
+  svg {
     width: 18px;
     height: 18px;
   }
