@@ -47,11 +47,10 @@ export const AddBoxContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 256px;
 `;
 
 export const AddBoxTitle = styled.h3`
-  margin-bottom: 13px;
+  margin: 6px 0 13px;
   color: var(--primary, #2d29ff);
   font-size: 14px;
   font-weight: 500;
@@ -80,7 +79,7 @@ export const AddBoxDescWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-bottom: 16px;
+  padding-bottom: 6px;
 `;
 
 export const AddBoxDesc = styled.div`
@@ -105,7 +104,7 @@ export const AddBoxText = styled.p`
 export const ImportFileBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 2px 0;
+  padding: 14px 14px 4px 14px;
 `;
 
 export const ImportFileBtn = styled.button`
