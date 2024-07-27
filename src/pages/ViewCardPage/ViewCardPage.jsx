@@ -8,7 +8,7 @@ import {
 } from '../../components';
 import { useState } from 'react';
 import Icon from '../../components/Icon/Icon';
-import sampleData from '../../constants/cards';
+import sampleData from '../../constants/cardData';
 
 export default function ViewCardPage() {
   const [activeBadge, setActiveBadge] = useState('전체 보기');

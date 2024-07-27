@@ -1,7 +1,7 @@
 import * as S from './HomePage.style';
 import { Header, SearchBar, TabBar, CardInfo } from '../../components';
 import Icon from '../../components/Icon/Icon';
-import sampleData from '../../constants/cards';
+import sampleData from '../../constants/cardData';
 import { useState, useEffect } from 'react';
 export default function HomePage() {
   const [filterdList, setFilterdList] = useState();
