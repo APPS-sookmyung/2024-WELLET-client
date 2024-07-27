@@ -21,7 +21,7 @@ export default function HomePage() {
       <S.HomePage>
         <S.Top>
           <Header fill='#fff' />
-          <SearchBar />
+          <SearchBar theme='blue' />
           <S.CardListTitle>
             <p>내 명함</p>
             <p>나의 명함 확인 및 관리하기</p>

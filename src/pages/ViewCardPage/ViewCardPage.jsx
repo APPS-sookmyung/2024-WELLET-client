@@ -55,7 +55,7 @@ export default function ViewCardPage() {
     <>
       <S.ViewCardPage>
         <Header />
-        <SearchBar />
+        <SearchBar theme='white' />
 
         {/* 그룹 설정 버튼 */}
         <S.ButtonContainer>
@@ -80,7 +80,6 @@ export default function ViewCardPage() {
             )}
           </S.EditBadgeWrapper>
         </S.ButtonContainer>
-
         {/* 명함 */}
         <S.CardContainer>
           {filteredData.map((data, index) => (
