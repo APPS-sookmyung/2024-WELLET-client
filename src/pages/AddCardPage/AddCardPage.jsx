@@ -148,17 +148,6 @@ export default function AddCardPage() {
               </S.InputContainer>
             </S.FormContainer>
           )}
-
-          <S.GroupContainer>
-            <S.InputLabel>그룹</S.InputLabel>
-            <S.GroupButtonWrapper>
-              <BlueBadge
-                badges={groupBadges}
-                activeBadge={activeGroupBadge}
-                setActiveBadge={setActiveGroupBadge}
-              />
-            </S.GroupButtonWrapper>
-          </S.GroupContainer>
         </S.DashedBorder>
 
         <S.ActionBtnContainer>

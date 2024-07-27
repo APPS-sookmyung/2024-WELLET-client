@@ -8,8 +8,8 @@ export const AddCardPage = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 4px;
+  gap: 6px;
+  padding: 5px 0 8px;
 `;
 
 export const Title = styled.h1`
