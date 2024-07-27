@@ -32,18 +32,46 @@ const sampleData = [
     category: '비즈니스',
   },
   {
-    name: '순희네보리밥',
-    job: '',
-    company: '',
+    name: '김현우',
+    job: '프론트엔드 개발자',
+    company: 'WELLET Corp.',
     imageUrl: '',
-    category: '음식점',
+    category: '비즈니스',
   },
   {
-    name: '곱분이곱창',
-    job: '',
-    company: '',
+    name: '김디공',
+    job: '대표',
+    company: '다공 부동산',
     imageUrl: '',
-    category: '음식점',
+    category: '부동산',
+  },
+  {
+    name: '홍길동',
+    job: '대표 / 공인중개사',
+    company: '동네공인중개사',
+    imageUrl: '',
+    category: '부동산',
+  },
+  {
+    name: '김인쇄',
+    job: '공인중개사',
+    company: '인쇄픽부동산',
+    imageUrl: '',
+    category: '부동산',
+  },
+  {
+    name: '박대기',
+    job: '보도본부 사회팀 / 기자',
+    company: 'KBS',
+    imageUrl: '',
+    category: '방송사',
+  },
+  {
+    name: '홍길동',
+    job: '팀장 / PD',
+    company: 'KBS VJ 특공대',
+    imageUrl: '',
+    category: '방송사',
   },
 ];
 
@@ -55,7 +83,9 @@ export default function ViewCardPage() {
   const badges = [
     { label: '전체 보기', value: '전체 보기' },
     { label: '비즈니스', value: '비즈니스' },
-    { label: '음식점', value: '음식점' },
+    { label: '방송사', value: '방송사' },
+    { label: '부동산', value: '부동산' },
+    { label: '대학교', value: '대학교' },
   ];
 
   const filteredData =
