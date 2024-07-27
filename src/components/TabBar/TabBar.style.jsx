@@ -20,10 +20,11 @@ export const TabBar = styled.div`
 
 export const Icon = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 7px;
-  padding: 10px;
+  gap: 6px;
+  padding: 12px;
   color: ${(props) => (props.isActive ? '#2D29FF' : '#C8C8C8')};
 `;
 
@@ -39,11 +40,12 @@ export const IconImg = styled.div`
   }
 `;
 
-export const Text = styled.p`
+export const Text = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
   color: ${(props) => (props.isActive ? '#2D29FF' : '#C8C8C8')};
-  font-size: 9px;
-  line-height: 150%;
+  font-size: 11px;
+  line-height: 130%;
+  letter-spacing: -0.55px;
 `;

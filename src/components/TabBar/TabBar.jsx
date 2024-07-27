@@ -51,14 +51,14 @@ export default function TabBar() {
       {tabItems.map(({ path, label, logo, activeLogo, alt }) => {
         const isActive = currentPath === path;
         return (
-          <S.Icon key={path} isActive={isActive}>
-            <Link to={path}>
+          <Link to={path}>
+            <S.Icon key={path} isActive={isActive}>
               <S.IconImg isActive={isActive}>
                 <img src={isActive ? activeLogo : logo} alt={alt} />
               </S.IconImg>
               <S.Text isActive={isActive}>{label}</S.Text>
-            </Link>
-          </S.Icon>
+            </S.Icon>
+          </Link>
         );
       })}
     </S.TabBar>
