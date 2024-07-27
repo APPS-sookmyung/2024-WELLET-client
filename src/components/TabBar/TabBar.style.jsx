@@ -24,7 +24,7 @@ export const Icon = styled.div`
   justify-content: center;
   align-items: center;
   gap: 6px;
-  padding: 12px;
+  padding: 15px;
   color: ${(props) => (props.isActive ? '#2D29FF' : '#C8C8C8')};
 `;
 
@@ -32,11 +32,12 @@ export const IconImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
+  height: 22px;
   cursor: pointer;
 
-  img {
-    filter: ${(props) => (props.isActive ? 'none' : 'grayscale(100%)')};
+  svg {
+    width: 100%;
+    height: 100%;
   }
 `;
 
