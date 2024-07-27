@@ -42,7 +42,7 @@ export const DashedBorder = styled.div`
 `;
 
 // 이미지 입력으로 명함 추가
-export const AddBoxContainer = styled.div`
+export const AddImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,13 +101,23 @@ export const AddBoxText = styled.p`
   letter-spacing: -0.5px;
 `;
 
-export const ImportFileBtnWrapper = styled.div`
+export const ImportImageBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 14px 14px 4px 14px;
+  padding: 14px;
 `;
 
-export const ImportFileBtn = styled.button`
+export const PreviewContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const PreviewImage = styled.img`
+  height: 100px;
+  object-fit: cover;
+`;
+
+export const ImportImageBtn = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;

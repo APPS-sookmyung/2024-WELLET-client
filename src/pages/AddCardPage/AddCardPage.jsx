@@ -1,5 +1,5 @@
 import * as S from './AddCardPage.style';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Header,
   TabBar,
@@ -16,6 +16,9 @@ import ImageIcon from '../../icons/icon-image.svg';
 export default function AddCardPage() {
   const [activeBadge, setActiveBadge] = useState('이미지로 입력');
   const [activeGroupBadge, setActiveGroupBadge] = useState('비즈니스');
+  const [selectedImage, setSelectedImage] = useState([]);
+
+  const imageInputRef = useRef(null);
 
   const badges = [
     { label: '이미지로 입력', value: '이미지로 입력' },
@@ -27,6 +30,15 @@ export default function AddCardPage() {
     { label: '음식점', value: '음식점' },
     { label: '학교', value: '학교' },
   ];
+
+  const onUploadImage = (event) => {
+    const files = Array.from(event.target.files);
+    setSelectedImage(files);
+  };
+
+  const handleButtonClick = () => {
+    imageInputRef.current.click();
+  };
 
   return (
     <>
@@ -49,7 +61,7 @@ export default function AddCardPage() {
 
         <S.DashedBorder>
           {activeBadge === '이미지로 입력' && (
-            <S.AddBoxContainer>
+            <S.AddImageContainer onClick={handleButtonClick}>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
               <S.AddBoxIconWrapper>
                 <img src={addCard} alt='도트' />
@@ -84,10 +96,29 @@ export default function AddCardPage() {
                   </S.AddBoxText>
                 </S.AddBoxDesc>
               </S.AddBoxDescWrapper>
-              <S.ImportFileBtnWrapper>
-                <S.ImportFileBtn>파일 가져오기</S.ImportFileBtn>
-              </S.ImportFileBtnWrapper>
-            </S.AddBoxContainer>
+              <S.ImportImageBtnWrapper>
+                <S.ImportImageBtn>파일 가져오기</S.ImportImageBtn>
+                <input
+                  type='file'
+                  accept='image/*'
+                  ref={imageInputRef}
+                  style={{ display: 'none' }}
+                  onChange={onUploadImage}
+                  multiple
+                />
+              </S.ImportImageBtnWrapper>
+              {selectedImage.length > 0 && (
+                <S.PreviewContainer>
+                  {selectedImage.map((file, index) => (
+                    <S.PreviewImage
+                      key={index}
+                      src={URL.createObjectURL(file)}
+                      alt={`preview ${index}`}
+                    />
+                  ))}
+                </S.PreviewContainer>
+              )}
+            </S.AddImageContainer>
           )}
 
           {activeBadge === '직접 입력' && (
@@ -146,6 +177,17 @@ export default function AddCardPage() {
                 />
                 <InputWrapper label='메모' type='text' placeholder='메모' />
               </S.InputContainer>
+
+              <S.GroupContainer>
+                <S.InputLabel>그룹</S.InputLabel>
+                <S.GroupButtonWrapper>
+                  <BlueBadge
+                    badges={groupBadges}
+                    activeBadge={activeGroupBadge}
+                    setActiveBadge={setActiveGroupBadge}
+                  />
+                </S.GroupButtonWrapper>
+              </S.GroupContainer>
             </S.FormContainer>
           )}
         </S.DashedBorder>
