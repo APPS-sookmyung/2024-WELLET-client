@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ViewCardPage = styled.div`
-  padding: 20px;
+  padding: 20px 20px 100px 20px;
 `;
 
 // 버튼
@@ -11,12 +11,21 @@ export const ButtonContainer = styled.div`
   margin-bottom: 16px;
 `;
 
-export const GroupBtnWrapper = styled.div`
+export const GroupBadgeWrapper = styled.div`
   display: flex;
   gap: 5px;
+  overflow-x: auto;
+  white-space: nowrap;
 `;
 
-export const EditBtnWrapper = styled.button`
+export const EditBadgeWrapper = styled.div`
+  display: flex;
+  gap: 5px;
+  white-space: nowrap;
+  padding-left: 6px;
+`;
+
+export const DeleteCardBadge = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +35,17 @@ export const EditBtnWrapper = styled.button`
   background: var(--Color-4-1, #ffe6f2);
 `;
 
-export const EditText = styled.p`
+export const EditCompletedBadge = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  gap: 8px;
+  border-radius: 10px;
+  background: var(--Color-4-1, #ffe6f2);
+`;
+
+export const BadgeText = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
