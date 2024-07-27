@@ -6,7 +6,7 @@ export const Card = styled.a`
   align-items: center;
   height: 74px;
   border-radius: 10px;
-  background: #f4f4f9;
+  background: ${(props) => (props.isSelected ? 'blue' : '#f4f4f9')};
   padding: 12px;
 `;
 
