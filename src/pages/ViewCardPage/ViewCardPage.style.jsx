@@ -14,11 +14,15 @@ export const ButtonContainer = styled.div`
 export const GroupBadgeWrapper = styled.div`
   display: flex;
   gap: 5px;
+  overflow-x: auto;
+  white-space: nowrap;
 `;
 
 export const EditBadgeWrapper = styled.div`
   display: flex;
   gap: 5px;
+  white-space: nowrap;
+  padding-left: 6px;
 `;
 
 export const DeleteCardBadge = styled.button`
