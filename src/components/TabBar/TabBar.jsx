@@ -2,43 +2,36 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import * as S from './TabBar.style';
 import { Link } from 'react-router-dom';
-import homeLogo from '../../icons/icon-nav-home.svg';
-import homeActiveLogo from '../../icons/icon-nav-home-active.svg';
-import addCardLogo from '../../icons/icon-nav-add-card.svg';
-import addCardActiveLogo from '../../icons/icon-nav-add-card-active.svg';
-import viewCardLogo from '../../icons/icon-nav-view-card.svg';
-import viewCardActiveLogo from '../../icons/icon-nav-view-card-active.svg';
-import mypageLogo from '../../icons/icon-nav-mypage.svg';
-import mypageActiveLogo from '../../icons/icon-nav-mypage-active.svg';
+import Icon from '../../components/Icon/Icon';
 
 const tabItems = [
   {
     path: '/home',
     label: '홈',
-    logo: homeLogo,
-    activeLogo: homeActiveLogo,
     alt: '홈',
+    icon: <Icon id='nav-home' fill='none' />,
+    activeIcon: <Icon id='nav-home-active' fill='none' />,
   },
   {
     path: '/card/add',
     label: '명함 추가',
-    logo: addCardLogo,
-    activeLogo: addCardActiveLogo,
     alt: '명함 추가',
+    icon: <Icon id='nav-add-card' fill='none' />,
+    activeIcon: <Icon id='nav-add-card-active' fill='none' />,
   },
   {
     path: '/card',
     label: '명함 보기',
-    logo: viewCardLogo,
-    activeLogo: viewCardActiveLogo,
     alt: '명함 보기',
+    icon: <Icon id='nav-view-card' fill='none' />,
+    activeIcon: <Icon id='nav-view-card-active' fill='none' />,
   },
   {
     path: '/mypage',
     label: '마이페이지',
-    logo: mypageLogo,
-    activeLogo: mypageActiveLogo,
     alt: '마이페이지',
+    icon: <Icon id='nav-mypage' fill='none' />,
+    activeIcon: <Icon id='nav-mypage-active' fill='none' />,
   },
 ];
 
@@ -48,17 +41,17 @@ export default function TabBar() {
 
   return (
     <S.TabBar>
-      {tabItems.map(({ path, label, logo, activeLogo, alt }) => {
+      {tabItems.map(({ path, label, alt, icon, activeIcon }) => {
         const isActive = currentPath === path;
         return (
-          <S.Icon key={path} isActive={isActive}>
-            <Link to={path}>
+          <Link key={path} to={path}>
+            <S.Icon isActive={isActive}>
               <S.IconImg isActive={isActive}>
-                <img src={isActive ? activeLogo : logo} alt={alt} />
+                {isActive ? activeIcon : icon}
               </S.IconImg>
               <S.Text isActive={isActive}>{label}</S.Text>
-            </Link>
-          </S.Icon>
+            </S.Icon>
+          </Link>
         );
       })}
     </S.TabBar>
