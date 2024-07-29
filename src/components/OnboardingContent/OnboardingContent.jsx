@@ -1,32 +1,36 @@
 import React from 'react';
-import * as S from './styles';
+import * as S from './OnboardingContent.style';
+import { PrimaryButton, SecondaryButton } from '../Button';
 
 export default function OnboardingContent({
   data,
   currentStep,
-  handleBtnClickNext,
+  handleNextBtnClick,
+  handleSkipBtnClick
 }) {
-  const { illust, step, title, text1, text2, btn1_text, btn2_text } = data;
+  const { illust, step, title, text, btn1_text, btn2_text } = data;
 
   return (
     <S.Container>
-      <S.IllustBox>
-        <S.Illust src={illust} alt='illust' />
-      </S.IllustBox>
-      <S.T>
-        <S.BigText>{title}</S.BigText>
-        <S.SmallText>{text1}</S.SmallText>
-        <S.SmallText>{text2}</S.SmallText>
-      </S.T>
-      <S.StepIconBox>
+      <S.Center>
+        <S.IllustBox>
+          <S.Illust src={illust} alt='illust' />
+        </S.IllustBox>
+        <S.T>
+          <S.BigText>{title}</S.BigText>
+          <S.SmallText>{text}</S.SmallText>
+        </S.T>
         <S.StepIcon src={step} alt='step' />
-      </S.StepIconBox>
+      </S.Center>
       <S.Btns>
-        <S.Btn onClick={handleBtnClickNext}>{btn1_text}</S.Btn>
+        <PrimaryButton onClick={handleNextBtnClick}>{btn1_text}</PrimaryButton>
         {currentStep !== 2 && (
-          <S.Btn style={{ backgroundColor: '#EBEBFF', color: '#000' }}>
+          <SecondaryButton
+            onClick={handleSkipBtnClick}
+            style={{ backgroundColor: '#EBEBFF', color: '#000' }}
+          >
             {btn2_text}
-          </S.Btn>
+          </SecondaryButton>
         )}
       </S.Btns>
     </S.Container>

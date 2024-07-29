@@ -9,22 +9,18 @@ export default function OnBoarding() {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
 
-  const handleBtnClickNext = (e) => {
-    if (step < 2) {
-      setStep(step + 1);
-      console.log(step);
-    } else {
-      navigate('/login');
-    }
+  const handleNextBtnClick = (e) => {
+    step < 2 ? setStep(step + 1) : navigate('./login');
   };
 
   return (
     <S.OnBoardingPage>
-      <Header />
+      <Header fill='#2D29FF' />
       <OnboardingContent
         data={ONBOARDING[step]}
         currentStep={step}
-        handleBtnClickNext={handleBtnClickNext}
+        handleNextBtnClick={handleNextBtnClick}
+        handleSkipBtnClick={() => navigate('./login')}
       />
     </S.OnBoardingPage>
   );
