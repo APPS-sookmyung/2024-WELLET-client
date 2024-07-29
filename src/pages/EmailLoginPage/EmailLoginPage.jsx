@@ -5,9 +5,10 @@ import { PrimaryButton } from '../../components';
 import { useState } from 'react';
 import { MdCheckBox } from 'react-icons/md';
 import { IoSquareOutline } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function EmailLoginPage() {
+  const navigate = useNavigate();
   const [IdSave, setIdSave] = useState(false);
 
   return (
@@ -35,18 +36,16 @@ export default function EmailLoginPage() {
               )}
               <p>아이디 저장</p>
             </S.IdSave>
-            <S.FindIdP>
-              <Link to='/login/find-id'>아이디 찾기</Link>
+            <S.FindIdPw>
+              <p onClick={() => navigate('/login/find-id')}>아이디 찾기</p>
               <p> | </p>
-              <Link to='/login/find-pw'>비밀번호 찾기</Link>
-            </S.FindIdP>
+              <p onClick={() => navigate('/login/find-pw')}>비밀번호 찾기</p>
+            </S.FindIdPw>
           </S.Options>
         </S.InputBox>
       </S.MainContent>
       <S.Btns>
-        <Link to='/home'>
-          <PrimaryButton>로그인</PrimaryButton>
-        </Link>
+        <PrimaryButton onClick={() => navigate('/home')}>로그인</PrimaryButton>
         <PrimaryButton
           style={{
             backgroundColor: '#FAE100',
@@ -61,7 +60,7 @@ export default function EmailLoginPage() {
         </PrimaryButton>
         <S.SignUpOption>
           <p>계정이 없으신가요?</p>
-          <p>회원가입</p>
+          <p onClick={() => navigate('/sign-up')}>회원가입</p>
         </S.SignUpOption>
       </S.Btns>
     </S.Background>

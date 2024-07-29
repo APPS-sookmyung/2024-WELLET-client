@@ -3,9 +3,11 @@ import Icon from '../../components/Icon/Icon';
 import login_background_circles from '../../assets/images/login_background_circles.svg';
 import login_background_lines from '../../assets/images/login_background_lines.svg';
 import { PrimaryButton, SecondaryButton } from '../../components';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
   return (
     <S.Container
       style={{ backgroundImage: `url(${login_background_circles})` }}
@@ -28,12 +30,12 @@ export default function LoginPage() {
           </S.KakaoBtn>
           카카오 계정 로그인
         </PrimaryButton>
-        <Link to='/login/email'>
-          <SecondaryButton>이메일로 로그인</SecondaryButton>
-        </Link>
+        <SecondaryButton onClick={() => navigate('/login/email')}>
+          이메일로 로그인
+        </SecondaryButton>
         <S.SignUpOption>
           <p>계정이 없으신가요?</p>
-          <p>회원가입</p>
+          <p onClick={() => navigate('/sign-up')}>회원가입</p>
         </S.SignUpOption>
       </S.Btns>
     </S.Container>
