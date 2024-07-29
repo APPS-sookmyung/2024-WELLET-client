@@ -87,17 +87,19 @@ export const IdSave = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
+  cursor: pointer;
 `;
 
-export const FindIdP = styled.div`
+export const FindIdPw = styled.div`
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 5px;
 
-  a {
+  p {
     color: #555;
     text-decoration: none;
+    cursor: pointer;
   }
 `;
 
@@ -128,5 +130,6 @@ export const SignUpOption = styled.div`
   p:nth-of-type(2) {
     text-decoration: underline;
     text-underline-offset: 4px;
+    cursor: pointer;
   }
 `;

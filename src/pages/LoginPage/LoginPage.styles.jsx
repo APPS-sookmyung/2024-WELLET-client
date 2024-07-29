@@ -45,7 +45,6 @@ export const Btns = styled.div`
   padding: 0 20px;
 `;
 
-
 export const KakaoBtn = styled.div`
   /* border: 1px solid red; */
   display: flex;
@@ -60,11 +59,12 @@ export const SignUpOption = styled.div`
   font-size: 11px;
   font-weight: 400;
   justify-content: center;
-  padding: 4px 0 34px 0 ;
+  padding: 4px 0 34px 0;
   gap: 5px;
 
   p:nth-of-type(2) {
     text-decoration: underline;
-    text-underline-offset: 4px
+    text-underline-offset: 4px;
+    cursor: pointer;
   }
 `;
