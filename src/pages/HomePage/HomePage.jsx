@@ -20,7 +20,7 @@ export default function HomePage() {
     <>
       <S.HomePage>
         <S.Top>
-          <Header fill='#fff' />
+          <Header color='white' />
           <SearchBar theme='blue' />
           <S.CardListTitle>
             <p>내 명함</p>
