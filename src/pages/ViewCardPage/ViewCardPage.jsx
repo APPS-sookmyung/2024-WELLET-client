@@ -80,7 +80,8 @@ export default function ViewCardPage() {
             )}
           </S.EditBadgeWrapper>
         </S.ButtonContainer>
-        {/* 명함 */}
+
+        {/* 명함 목록 */}
         <S.CardContainer>
           {filteredData.map((data, index) => (
             <CardInfo
