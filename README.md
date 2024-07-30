@@ -1,16 +1,98 @@
 <div align="center">
 
-# 2024-APPS 프로젝트 <WELLET>
+### 📇 온라인 명함 보관 서비스 📇
 
-📇 온라인 명함 보관 서비스 📇
+![wellet logo](/src/assets/images/logo-description-wellet.png)
 
 </div>
 <br>
 
-## 팀원
+## 👪 개발 팀 소개
 
-- Front-end: 김준희, 김혜림, 류미성
-- Back-end: 주아정, 이해림, 하예영
+<table >
+  <tr align="center">
+    <td width="100px">
+      <a href="https://github.com/junheekim61" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/100200965?v=4" alt="김준희 프로필" />
+      </a>
+    </td>
+    <td width="100px">
+      <a href="https://github.com/kimhyerims" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/144879107?v=4" alt="김혜림 프로필" />
+      </a>
+    </td> <td width="100px">
+      <a href="https://github.com/misung-dev" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/128569095?v=4" alt="류미성 프로필" />
+      </a>
+    </td> <td width="100px">
+      <a href="https://github.com/lhaerim" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/128566763?v=4" alt="이해림 프로필" />
+      </a>
+    </td> <td width="100px">
+      <a href="https://github.com/ajung7038" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/80907516?v=4" alt="주아정 프로필" />
+      </a>
+    </td> <td width="100px">
+      <a href="https://github.com/hayeyoung" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/144807080?v=4" alt="하예영 프로필" />
+      </a>
+    </td>
+  </tr>
+
+  <tr align="center">
+    <td>
+      <a href="https://github.com/junheekim61" target="_blank">
+        김준희<br />(컴퓨터과학전공 22)
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/kimhyerims" target="_blank">
+        김혜림<br />(데이터사이언스 23)
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/misung-dev" target="_blank">
+        류미성<br />(컴퓨터과학전공 21)
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/lhaerim" target="_blank">
+        이해림<br />(컴퓨터과학전공 23)
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/ajung7038" target="_blank">
+       주아정<br />(컴퓨터과학전공 23)
+      </a>
+    </td><td>
+      <a href="https://github.com/hayeyoung" target="_blank">
+        하예영<br />(데이터사이언스 23)
+      </a>
+    </td>
+  </tr>
+
+  <tr align="center">
+    <td>
+      <p>Front-end</p>
+    </td>
+    <td>
+      <p>Front-end</p>
+    </td>
+    <td>
+      <p>Front-end</p>
+    </td>
+    <td>
+      <p>Back-end</p>
+    </td>
+    <td>
+      <p>Back-end Leader</p>
+    </td>   
+    <td>
+      <p>Back-end</p>
+    </td>
+  </tr>  
+  
+</table>
 
 <br>
 
