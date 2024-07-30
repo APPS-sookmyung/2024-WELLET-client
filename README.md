@@ -42,31 +42,31 @@
   <tr align="center">
     <td>
       <a href="https://github.com/junheekim61" target="_blank">
-        김준희<br />(컴퓨터과학전공 22)
+        김준희<br>(컴퓨터과학전공 22)
       </a>
     </td>
     <td>
       <a href="https://github.com/kimhyerims" target="_blank">
-        김혜림<br />(데이터사이언스 23)
+        김혜림<br>(데이터사이언스 23)
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/misung-dev" target="_blank">
-        류미성<br />(컴퓨터과학전공 21)
+        류미성<br>(컴퓨터과학전공 21)
       </a>
     </td>
     <td>
       <a href="https://github.com/lhaerim" target="_blank">
-        이해림<br />(컴퓨터과학전공 23)
+        이해림<br>(컴퓨터과학전공 23)
       </a>
     </td>
     <td>
       <a href="https://github.com/ajung7038" target="_blank">
-       주아정<br />(컴퓨터과학전공 23)
+       주아정<br>(컴퓨터과학전공 23)
       </a>
     </td><td>
       <a href="https://github.com/hayeyoung" target="_blank">
-        하예영<br />(데이터사이언스 23)
+        하예영<br>(데이터사이언스 23)
       </a>
     </td>
   </tr>
@@ -85,7 +85,7 @@
       <p>Back-end</p>
     </td>
     <td>
-      <p>Back-end Leader</p>
+      <p>Back-end</p>
     </td>   
     <td>
       <p>Back-end</p>
@@ -93,6 +93,17 @@
   </tr>  
   
 </table>
+
+<br />
+
+|  이름  |   역할    |                                                                    개발 내용                                                                    |
+| :----: | :-------: | :---------------------------------------------------------------------------------------------------------------------------------------------: |
+| 김준희 | Front-end |                                  온보딩 페이지 구현 <br> 카카오톡 로그인 페이지 구현 <br> 홈 화면 페이지 구현                                   |
+| 김혜림 | Front-end | 명함 상세 보기 페이지 구현<br> 명함 정보 수정하기 페이지 구현 <br> 그룹 수정 모달 구현 <br> 내 명함 보기 페이지 구현<br> 내 명함 공유 모달 구현 |
+| 류미성 | Front-end |           Header, 검색창, Tab bar 등 컴포넌트 구현<br> 명함 추가 페이지 구현 (사진 추가, 직접 입력) <br> 그룹별 명함 보기 페이지 구현           |
+| 이혜림 | Back-end  |                                                                                                                                                 |
+| 주아정 | Back-end  |                                                                                                                                                 |
+| 하예영 | Back-end  |                                                                                                                                                 |
 
 <br>
 
