@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
 
 export const AddCardPage = styled.div`
-  padding: 20px;
+  padding: 20px 20px 100px 20px;
 `;
 
 // 타이틀
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 4px;
+  gap: 6px;
+  padding: 5px 0 8px;
 `;
 
 export const Title = styled.h1`
   color: var(--grey4, #1a1a1a);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -22,16 +22,16 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.p`
   color: var(--grey3, #555);
-  font-size: 9px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  font-size: 11px;
+  line-height: 130%;
+  letter-spacing: -0.55px;
 `;
 
 // 버튼
 export const ButtonContainer = styled.div`
   display: flex;
   margin-bottom: 16px;
-  gap: 4px;
+  gap: 5px;
 `;
 
 // 점선 테두리
@@ -42,21 +42,20 @@ export const DashedBorder = styled.div`
 `;
 
 // 이미지 입력으로 명함 추가
-export const AddBoxContainer = styled.div`
+export const AddImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 256px;
 `;
 
 export const AddBoxTitle = styled.h3`
-  margin-bottom: 16px;
+  margin: 6px 0 13px;
   color: var(--primary, #2d29ff);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 150%;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.7px;
 `;
 
 export const AddBoxIconWrapper = styled.div`
@@ -68,10 +67,10 @@ export const AddBoxIconWrapper = styled.div`
 `;
 
 export const AddBoxSubTitle = styled.p`
-  padding: 10px 0;
+  padding: 10px 0 16px;
   color: var(--grey2, #949494);
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
@@ -79,48 +78,59 @@ export const AddBoxSubTitle = styled.p`
 export const AddBoxDescWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 4px;
-  padding: 8px 0;
+  padding-bottom: 6px;
 `;
 
 export const AddBoxDesc = styled.div`
   display: flex;
-  gap: 5px;
-`;
-
-export const DotIconWrapper = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+
+  svg {
+    width: 4px;
+    height: 4px;
+  }
 `;
 
 export const AddBoxText = styled.p`
   color: var(--grey2, #949494);
   text-align: center;
-  font-size: 9px;
+  font-size: 11px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
 
-export const ImportFileBtnWrapper = styled.div`
+export const ImportImageBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 2px 0;
+  padding: 14px;
 `;
 
-export const ImportFileBtn = styled.button`
+export const PreviewContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const PreviewImage = styled.img`
+  height: 100px;
+  object-fit: cover;
+`;
+
+export const ImportImageBtn = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 77px;
-  padding: 4px 8px;
+  padding: 4px 10px;
   gap: 8px;
   border-radius: 10px;
   background: var(--primary, #2d29ff);
   color: var(--white, #fff);
   font-size: 11px;
-  line-height: 150%;
+  line-height: 130%;
   letter-spacing: -0.5px;
 `;
 
@@ -147,7 +157,7 @@ export const SelectImg = styled.div`
   border-radius: 68.239px;
   background: #2d29ff4c;
 
-  img {
+  svg {
     width: 18px;
     height: 18px;
   }
@@ -161,17 +171,18 @@ export const RegisterText = styled.div`
 
 export const RegisterTitle = styled.h3`
   color: var(--grey3, #555);
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 150%;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.7px;
 `;
 
 export const RegisterSubTitle = styled.p`
   display: flex;
   color: var(--grey2, #949494);
   font-size: 11px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  line-height: 130%;
+  letter-spacing: -0.55px;
 `;
 
 export const InputContainer = styled.div`
@@ -205,5 +216,5 @@ export const GroupButtonWrapper = styled.div`
 export const ActionBtnContainer = styled.div`
   display: flex;
   gap: 20px;
-  margin: 16px 0 100px;
+  margin: 16px 0 0;
 `;

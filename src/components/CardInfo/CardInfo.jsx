@@ -1,25 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as S from './CardInfo.style';
-import arrowRight from '../../icons/icon-arrow-right.svg';
+import Icon from '../../components/Icon/Icon';
+import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 
-export default function CardInfo({ name, job, company, imageUrl }) {
+export default function CardInfo({
+  name,
+  job,
+  company,
+  imageUrl,
+  isDeleteMode,
+  isSelected,
+  onClick,
+}) {
   return (
-    <S.Card>
+    <S.Card
+      onClick={onClick}
+      isDeleteMode={isDeleteMode}
+      isSelected={isSelected}
+    >
       <S.CardWrapper>
-        <S.ImgWrapper>
-          {imageUrl && <img src={imageUrl} alt={`${name} 프로필`} />}
-        </S.ImgWrapper>
+        <S.ProfileImgWrapper>
+          <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
+        </S.ProfileImgWrapper>
         <S.Info>
-          <S.Name>{name}</S.Name>
-          <S.Job>
+          <S.Name isSelected={isSelected}>{name}</S.Name>
+          <S.Job isSelected={isSelected}>
             {job} | {company}
           </S.Job>
         </S.Info>
       </S.CardWrapper>
-      <S.ArrowRightIcon>
-        <img src={arrowRight} alt='우측 화살표' />
-      </S.ArrowRightIcon>
+      <S.ArrowIconWrapper>
+        <Icon
+          id={
+            isDeleteMode
+              ? isSelected
+                ? 'circle-check'
+                : 'circle'
+              : 'arrow-right'
+          }
+          fill='none'
+        />
+      </S.ArrowIconWrapper>
     </S.Card>
   );
 }
@@ -29,8 +51,14 @@ CardInfo.propTypes = {
   job: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
+  isDeleteMode: PropTypes.bool,
+  isSelected: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 CardInfo.defaultProps = {
-  imageUrl: '',
+  imageUrl: ProfileImgDefault,
+  isDeleteMode: false,
+  isSelected: false,
+  onClick: () => {},
 };

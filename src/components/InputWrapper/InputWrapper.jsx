@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './InputWrapper.style';
-import pencilIcon from '../../icons/icon-pencil.svg';
+import Icon from '../Icon/Icon';
 
 const InputWrapper = ({ label, type, placeholder, children }) => {
   return (
@@ -11,7 +11,7 @@ const InputWrapper = ({ label, type, placeholder, children }) => {
           {children}
         </S.Input>
         <S.IconWrapper>
-          <img src={pencilIcon} alt='연필 아이콘' />
+          <Icon id='pencil' fill='none' />
         </S.IconWrapper>
       </S.InputBox>
     </S.InputWrapper>
