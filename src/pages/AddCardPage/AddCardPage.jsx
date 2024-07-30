@@ -15,8 +15,10 @@ export default function AddCardPage() {
   const [activeBadge, setActiveBadge] = useState('이미지로 입력');
   const [activeGroupBadge, setActiveGroupBadge] = useState('비즈니스');
   const [selectedImage, setSelectedImage] = useState([]);
+  const [profileImage, setProfileImage] = useState(null);
 
   const imageInputRef = useRef(null);
+  const profileImageInputRef = useRef(null); // 프로필 이미지 input 참조 추가
 
   const badges = [
     { label: '이미지로 입력', value: '이미지로 입력' },
@@ -36,6 +38,15 @@ export default function AddCardPage() {
 
   const handleButtonClick = () => {
     imageInputRef.current.click();
+  };
+
+  const onUploadProfileImage = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(URL.createObjectURL(file));
+  };
+
+  const handleProfileImageClick = () => {
+    profileImageInputRef.current.click();
   };
 
   return (
@@ -118,8 +129,15 @@ export default function AddCardPage() {
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
 
               <S.RegisterImageContainer>
-                <S.SelectImg>
-                  <Icon id='image' fill='none' />
+                <S.SelectImg
+                  onClick={handleProfileImageClick}
+                  style={{
+                    backgroundImage: `url(${profileImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  {!profileImage && <Icon id='image' fill='none' />}
                 </S.SelectImg>
                 <S.RegisterText>
                   <S.RegisterTitle>프로필 사진 등록</S.RegisterTitle>
@@ -129,6 +147,13 @@ export default function AddCardPage() {
                     명함에 들어갈 프로필 사진을 등록하세요.
                   </S.RegisterSubTitle>
                 </S.RegisterText>
+                <input
+                  type='file'
+                  accept='image/*'
+                  ref={profileImageInputRef}
+                  style={{ display: 'none' }}
+                  onChange={onUploadProfileImage}
+                />
               </S.RegisterImageContainer>
 
               <S.InputContainer>
