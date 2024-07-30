@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ViewCardPage = styled.div`
-  padding: 20px 20px 100px 20px;
+  padding: 0 20px 100px 20px;
 `;
 
 // 버튼
@@ -16,6 +16,7 @@ export const GroupBadgeWrapper = styled.div`
   gap: 5px;
   overflow-x: auto;
   white-space: nowrap;
+  scrollbar-width: none;
 `;
 
 export const EditBadgeWrapper = styled.div`
