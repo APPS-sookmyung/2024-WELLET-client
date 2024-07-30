@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ViewCardPage = styled.div`
-  padding: 20px 20px 100px 20px;
+  padding: 0 20px 100px 20px;
 `;
 
 // 버튼

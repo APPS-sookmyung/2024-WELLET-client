@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const AddCardPage = styled.div`
-  padding: 20px 20px 100px 20px;
+  padding: 0 20px 100px 20px;
 `;
 
 // 타이틀
