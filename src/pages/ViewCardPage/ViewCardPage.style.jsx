@@ -16,6 +16,7 @@ export const GroupBadgeWrapper = styled.div`
   gap: 5px;
   overflow-x: auto;
   white-space: nowrap;
+  scrollbar-width: none;
 `;
 
 export const EditBadgeWrapper = styled.div`
