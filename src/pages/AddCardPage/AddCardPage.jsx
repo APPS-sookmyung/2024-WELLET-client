@@ -41,7 +41,7 @@ export default function AddCardPage() {
   return (
     <>
       <S.AddCardPage>
-        <Header />
+        <Header color='blue' />
         <SearchBar theme='white' />
 
         <S.TitleContainer>
