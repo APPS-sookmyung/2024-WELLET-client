@@ -39,6 +39,9 @@ export const DashedBorder = styled.div`
   border-radius: 20px;
   border: 0.5px dashed #2d29ff;
   padding: 20px;
+  background-color: ${(props) =>
+    props.isDragOver ? '#f0f0ff' : 'transparent'};
+  transition: background-color 0.3s ease;
 `;
 
 // 이미지 입력으로 명함 추가
