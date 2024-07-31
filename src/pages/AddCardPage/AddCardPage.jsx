@@ -18,7 +18,7 @@ export default function AddCardPage() {
   const [profileImage, setProfileImage] = useState(null);
 
   const imageInputRef = useRef(null);
-  const profileImageInputRef = useRef(null); // 프로필 이미지 input 참조 추가
+  const profileImageInputRef = useRef(null);
 
   const badges = [
     { label: '이미지로 입력', value: '이미지로 입력' },
@@ -32,7 +32,7 @@ export default function AddCardPage() {
   ];
 
   const onUploadImage = (event) => {
-    const files = Array.from(event.target.files);
+    const files = Array.from(event.target.files || event.dataTransfer.files);
     setSelectedImage(files);
   };
 
@@ -47,6 +47,17 @@ export default function AddCardPage() {
 
   const handleProfileImageClick = () => {
     profileImageInputRef.current.click();
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    onUploadImage(event);
   };
 
   return (
@@ -68,7 +79,7 @@ export default function AddCardPage() {
           />
         </S.ButtonContainer>
 
-        <S.DashedBorder>
+        <S.DashedBorder onDragOver={handleDragOver} onDrop={handleDrop}>
           {activeBadge === '이미지로 입력' && (
             <S.AddImageContainer onClick={handleButtonClick}>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
@@ -89,7 +100,7 @@ export default function AddCardPage() {
                 <S.AddBoxDesc>
                   <Icon id='dot' />
                   <S.AddBoxText>
-                    이미지는 한 번에 100장까지 업로드할 수 있습니다.
+                    이미지는 한 번에 1장까지 업로드할 수 있습니다.
                   </S.AddBoxText>
                 </S.AddBoxDesc>
                 <S.AddBoxDesc>
