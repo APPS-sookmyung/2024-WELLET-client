@@ -1,0 +1,18 @@
+{
+  "name": "WELLET",
+  "short_name": "온라인 명함 보관 서비스",
+  "description": "우리(WE)들이 사용하는 월렛",
+  "scope": ".",
+  "start_url": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/public/favicon-196x196.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
