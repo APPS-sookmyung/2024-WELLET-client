@@ -16,6 +16,7 @@ export default function AddCardPage() {
   const [activeGroupBadge, setActiveGroupBadge] = useState('비즈니스');
   const [selectedImage, setSelectedImage] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const imageInputRef = useRef(null);
   const profileImageInputRef = useRef(null);
@@ -52,11 +53,19 @@ export default function AddCardPage() {
   const handleDragOver = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragOver(false);
   };
 
   const handleDrop = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    setIsDragOver(false);
     onUploadImage(event);
   };
 
@@ -79,7 +88,12 @@ export default function AddCardPage() {
           />
         </S.ButtonContainer>
 
-        <S.DashedBorder onDragOver={handleDragOver} onDrop={handleDrop}>
+        <S.DashedBorder
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          isDragOver={isDragOver}
+        >
           {activeBadge === '이미지로 입력' && (
             <S.AddImageContainer onClick={handleButtonClick}>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
