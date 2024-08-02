@@ -17,6 +17,10 @@
     </g>
   </symbol>
 
+  <svg id="arrow" viewBox="0 0 9 15" >
+    <path d="M8 14L0.928932 6.92893L7.29289 0.56497" stroke="#2D29FF" stroke-width="1.2" fill="none"/>
+  </svg>
+
   <symbol id="arrow-right" viewBox="0 0 9 15" fill='none'>
     <path id="Vector 237" d="M1.18262 1L7.84473 7.66211L1.44404 14.0628" stroke="#2D29FF"/>
   </symbol>
