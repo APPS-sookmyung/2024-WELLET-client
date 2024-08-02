@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import * as S from './MyPage.style';
-import messageicon from '../../icons/icon-message.svg';
-import callicon from '../../icons/icon-call.svg';
-import mailicon from '../../icons/icon-mail.svg';
-import shareicon from '../../icons/icon-share.svg';
-import galleryicon from '../../icons/icon-gallery.svg';
-import dot3icon from '../../icons/icon-dot3.svg';
+import Icon from '../../components/Icon/Icon';
 import { useNavigate } from 'react-router-dom';
 import { TabBar } from '../../components';
 
@@ -33,11 +28,7 @@ export default function MyPage() {
         <S.barbox1>내 명함</S.barbox1>
         <S.EditIcon onClick={EditClick}>편집하기</S.EditIcon>
         <S.ProfilePic />
-        <S.IconBarContainer>
-          <img src={shareicon} />
-          <img src={galleryicon} />
-          <img src={dot3icon} />
-        </S.IconBarContainer>
+        <S.IconBarContainer></S.IconBarContainer>
         <S.barbox2>{myInfo.name}</S.barbox2>
         <S.subbar />
       </S.Mybar1>
@@ -64,10 +55,7 @@ export default function MyPage() {
               <S.Font2>{myContact.phone}</S.Font2>
             </div>
             <div>
-              <S.IconBox>
-                <img src={messageicon} />
-                <img src={callicon} />
-              </S.IconBox>
+              <S.IconBox></S.IconBox>
             </div>
           </div>
           <br />
@@ -76,9 +64,7 @@ export default function MyPage() {
               <S.Font1>이메일</S.Font1>
               <S.Font2>{myContact.email}</S.Font2>
             </div>
-            <div>
-              <img src={mailicon} />
-            </div>
+            <div></div>
           </div>
           <br />
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -86,9 +72,7 @@ export default function MyPage() {
               <S.Font1>유선전화</S.Font1>
               <S.Font2>{myContact.tel}</S.Font2>
             </div>
-            <div>
-              <img src={callicon} />
-            </div>
+            <div></div>
           </div>
           <br />
           <div>
