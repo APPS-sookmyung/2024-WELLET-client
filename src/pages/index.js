@@ -14,6 +14,6 @@ export { default as FindIdPwPage } from './FindIdPwPage';
 
 export { default as EmailLoginPage } from './EmailLoginPage';
 
-export { default as MyPageEdit } from './MyPageEdit';
+export { default as MyPageEditPage } from './MyPageEditPage';
 
 export { default as SignUpPage } from './SignUpPage';
