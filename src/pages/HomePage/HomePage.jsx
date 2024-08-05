@@ -1,5 +1,11 @@
 import * as S from './HomePage.style';
-import { Header, SearchBar, TabBar, CardInfo } from '../../components';
+import {
+  Header,
+  SearchBar,
+  TabBar,
+  CardInfo,
+  AddGroupModal,
+} from '../../components';
 import Icon from '../../components/Icon/Icon';
 import sampleData from '../../constants/cardData';
 import { useState, useEffect } from 'react';
@@ -93,6 +99,7 @@ export default function HomePage() {
           ) : null}
         </S.Container>
       </S.HomePage>
+      <AddGroupModal />
       <TabBar />
     </>
   );
