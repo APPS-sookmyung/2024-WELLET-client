@@ -9,14 +9,13 @@ export const Header = styled.div`
   padding: 0 20px;
 `;
 
-export const Arrowicon = styled.div`
-  width: 10px;
-  height: 9px;
+export const ArrowIcon = styled.div`
   display: flex;
   align-items: center;
+  padding: 0px 10px;
 `;
 
-export const Welletlogo = styled.div`
+export const WelletLogo = styled.div`
   width: 78px;
   height: 22px;
   display: flex;
@@ -36,10 +35,11 @@ export const EditIcon = styled.div`
   height: 24px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const Body = styled.div`
-  width: calc(100% - 39px);
+  width: 80%;
   height: 100px;
   display: flex;
   align-items: center;
@@ -56,21 +56,21 @@ export const PicContainer = styled.div`
 `;
 
 export const ProfilePic = styled.div`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
   border-radius: 68.239px;
-  background:
-    linear-gradient(
-      0deg,
-      rgba(45, 41, 255, 0.3) 0%,
-      rgba(45, 41, 255, 0.3) 100%
-    ),
-    url(<path-to-image>) lightgray 50% / cover no-repeat;
-  position: relative;
+  background: #2d29ff4c;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
-export const Galleryicon = styled.div`
+export const GalleryIcon = styled.div`
   width: 20px;
   height: 20px;
   flex-shrink: 0;
@@ -88,10 +88,11 @@ export const EditGuide = styled.div`
   font-weight: 400;
   line-height: 130%;
   letter-spacing: -0.55px;
+  padding: 0px 4px;
 `;
 
 export const EditInfoContainer = styled.div`
-  width: 200px;
+  width: 70%;
   height: 75px;
   display: flex;
   flex-direction: column;
@@ -105,6 +106,7 @@ export const Name = styled.div`
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.5px;
+  padding: 2px 4px;
 `;
 
 export const EditName = styled.div`

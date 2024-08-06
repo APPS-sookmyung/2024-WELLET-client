@@ -144,22 +144,22 @@ export default function MyPageEditPage() {
   return (
     <>
       <S.Header>
-        <S.Arrowicon>
+        <S.ArrowIcon>
           <Link to='/mypage'>
-            <Icon id='arrow' fill='#2D29FF' />
+            <Icon id='arrow' fill='#2D29FF' width='20' height='20' />
           </Link>
-        </S.Arrowicon>
-        <S.Welletlogo>
+        </S.ArrowIcon>
+        <S.WelletLogo>
           <Icon id='logo-blue' />
-        </S.Welletlogo>
+        </S.WelletLogo>
         <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
       </S.Header>
       <S.Body>
         <S.PicContainer>
           <S.ProfilePic />
-          <S.Galleryicon>
+          <S.GalleryIcon>
             <Icon id='gallery' fill='#FFFFFF' />
-          </S.Galleryicon>
+          </S.GalleryIcon>
         </S.PicContainer>
         <S.EditInfoContainer>
           <S.EditName>
