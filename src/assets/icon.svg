@@ -178,7 +178,7 @@
 
   <symbol id="circle-check"  viewBox="0 0 16 16" fill="none">
     <circle cx="8" cy="8" r="8" fill="white"/>
-    <path d="M4.30395 8.7971L7.33377 12.5213L11.888 5.66575" stroke="#2D29FF" stroke-linecap="round" stroke-linejoin="round"/>  </symbol>
+    <path d="M4.30395 8.7971L7.33377 12.5213L11.888 5.66575" stroke="#2D29FF" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
   
   <symbol id="circle" width="16" height="16" viewBox="0 0 16 16" fill="none">

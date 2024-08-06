@@ -39,7 +39,6 @@ export default function CardInfo({
                 : 'circle'
               : 'arrow-right'
           }
-          fill='none'
         />
       </S.ArrowIconWrapper>
     </S.Card>
