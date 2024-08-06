@@ -152,13 +152,15 @@ export default function MyPageEditPage() {
         <S.WelletLogo>
           <Icon id='logo-blue' />
         </S.WelletLogo>
-        <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
+        <S.EditIconBox>
+          <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
+        </S.EditIconBox>
       </S.Header>
       <S.Body>
         <S.PicContainer>
           <S.ProfilePic />
           <S.GalleryIcon>
-            <Icon id='gallery' fill='#FFFFFF' />
+            <Icon id='gallery' fill='#FFFFFF' width='20' height='20' />
           </S.GalleryIcon>
         </S.PicContainer>
         <S.EditInfoContainer>
@@ -183,7 +185,7 @@ export default function MyPageEditPage() {
             )}
           </S.EditName>
           <S.EditGuide>
-            사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
+            사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요 
           </S.EditGuide>
         </S.EditInfoContainer>
       </S.Body>

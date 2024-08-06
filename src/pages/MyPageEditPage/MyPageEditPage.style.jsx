@@ -12,7 +12,7 @@ export const Header = styled.div`
 export const ArrowIcon = styled.div`
   display: flex;
   align-items: center;
-  padding: 0px 10px;
+  width: 60px;
 `;
 
 export const WelletLogo = styled.div`
@@ -21,6 +21,12 @@ export const WelletLogo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const EditIconBox = styled.div`
+  width: 60px;
+  display: flex;
+  justify-content: end;
 `;
 
 export const EditIcon = styled.div`
@@ -39,16 +45,17 @@ export const EditIcon = styled.div`
 `;
 
 export const Body = styled.div`
-  width: 80%;
+  width: 100%;
   height: 100px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
-  margin-left: 39px;
+  gap: 20px;
 `;
 
 export const PicContainer = styled.div`
-  width: 75px;
-  height: 75px;
+  width: 68px;
+  height: 68px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,7 +68,7 @@ export const ProfilePic = styled.div`
   align-items: center;
   width: 68px;
   height: 68px;
-  border-radius: 68.239px;
+  border-radius: 68px;
   background: #2d29ff4c;
 
   svg {
@@ -71,12 +78,9 @@ export const ProfilePic = styled.div`
 `;
 
 export const GalleryIcon = styled.div`
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  bottom: 27px;
-  right: 27px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,16 +92,14 @@ export const EditGuide = styled.div`
   font-weight: 400;
   line-height: 130%;
   letter-spacing: -0.55px;
-  padding: 0px 4px;
+  padding: 0px 0;
 `;
 
 export const EditInfoContainer = styled.div`
-  width: 70%;
-  height: 75px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 30px;
 `;
 
 export const Name = styled.div`
@@ -106,7 +108,7 @@ export const Name = styled.div`
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.5px;
-  padding: 2px 4px;
+  padding: 2px 5px 2px 0;
 `;
 
 export const EditName = styled.div`
@@ -131,15 +133,16 @@ export const EditInfo = styled.div`
   display: flex;
 `;
 
-export const InputContainer = styled.div`
-  width: 90%;
-`;
-
 export const InputField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
   align-items: center;
+  padding: 0 20px;
+`;
+
+export const InputContainer = styled.div`
+  width: 100%;
 `;
 
 export const InputWrapper = styled.div`
