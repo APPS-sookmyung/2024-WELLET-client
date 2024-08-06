@@ -139,6 +139,7 @@ export const IconBarContainer = styled.div`
   right: 20px;
   display: flex;
   gap: 16px;
+  width: 300px;
   padding: 2px;
 `;
 
@@ -167,25 +168,26 @@ export const mailIcon = styled.img`
 `;
 
 export const shareicon = styled.img`
-  width: 11.373px;
-  height: 17.234px;
+  width: 12px;
+  height: 18px;
   flex-shrink: 0;
   fill: #fff;
 `;
 
 export const galleryicon = styled.img`
-  width: 18.172px;
-  height: 18.172px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 `;
 
 export const dot3icon = styled.img`
-  width: 2.4px;
-  height: 10.453px;
+  width: 3px;
+  height: 10px;
   flex-shrink: 0;
 `;
 
 export const IconBox = styled.div`
   display: flex;
   gap: 17px;
+  width: 38px;
 `;

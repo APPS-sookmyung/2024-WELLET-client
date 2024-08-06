@@ -15,8 +15,11 @@ export default function AddCardPage() {
   const [activeBadge, setActiveBadge] = useState('이미지로 입력');
   const [activeGroupBadge, setActiveGroupBadge] = useState('비즈니스');
   const [selectedImage, setSelectedImage] = useState([]);
+  const [profileImage, setProfileImage] = useState(null);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const imageInputRef = useRef(null);
+  const profileImageInputRef = useRef(null);
 
   const badges = [
     { label: '이미지로 입력', value: '이미지로 입력' },
@@ -29,13 +32,64 @@ export default function AddCardPage() {
     { label: '학교', value: '학교' },
   ];
 
+  const inputFields = [
+    { label: '이름', type: 'text', placeholder: '이름을 입력하세요' },
+    { label: '회사', type: 'text', placeholder: 'WELLET Corp.' },
+    {
+      label: '직책 / 부서',
+      type: 'text',
+      placeholder: 'Web Engineer / 개발실',
+    },
+    { label: '휴대폰', type: 'tel', placeholder: '010-1234-5678' },
+    {
+      label: '이메일 주소',
+      type: 'email',
+      placeholder: 'email@welletapp.co.kr',
+    },
+    { label: '유선전화', type: 'tel', placeholder: '81-2-222-3456' },
+    {
+      label: '주소',
+      type: 'text',
+      placeholder: '서울특별시 용산구 청파로 47길 100(청파동 2가)',
+    },
+    { label: '메모', type: 'text', placeholder: '메모' },
+  ];
+
   const onUploadImage = (event) => {
-    const files = Array.from(event.target.files);
+    const files = Array.from(event.target.files || event.dataTransfer.files);
     setSelectedImage(files);
   };
 
   const handleButtonClick = () => {
     imageInputRef.current.click();
+  };
+
+  const onUploadProfileImage = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(URL.createObjectURL(file));
+  };
+
+  const handleProfileImageClick = () => {
+    profileImageInputRef.current.click();
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragOver(false);
+    onUploadImage(event);
   };
 
   return (
@@ -57,7 +111,12 @@ export default function AddCardPage() {
           />
         </S.ButtonContainer>
 
-        <S.DashedBorder>
+        <S.DashedBorder
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          isDragOver={isDragOver}
+        >
           {activeBadge === '이미지로 입력' && (
             <S.AddImageContainer onClick={handleButtonClick}>
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
@@ -78,7 +137,7 @@ export default function AddCardPage() {
                 <S.AddBoxDesc>
                   <Icon id='dot' />
                   <S.AddBoxText>
-                    이미지는 한 번에 100장까지 업로드할 수 있습니다.
+                    이미지는 한 번에 1장까지 업로드할 수 있습니다.
                   </S.AddBoxText>
                 </S.AddBoxDesc>
                 <S.AddBoxDesc>
@@ -118,8 +177,15 @@ export default function AddCardPage() {
               <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
 
               <S.RegisterImageContainer>
-                <S.SelectImg>
-                  <Icon id='image' fill='none' />
+                <S.SelectImg
+                  onClick={handleProfileImageClick}
+                  style={{
+                    backgroundImage: `url(${profileImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  {!profileImage && <Icon id='image' fill='none' />}
                 </S.SelectImg>
                 <S.RegisterText>
                   <S.RegisterTitle>프로필 사진 등록</S.RegisterTitle>
@@ -129,45 +195,24 @@ export default function AddCardPage() {
                     명함에 들어갈 프로필 사진을 등록하세요.
                   </S.RegisterSubTitle>
                 </S.RegisterText>
+                <input
+                  type='file'
+                  accept='image/*'
+                  ref={profileImageInputRef}
+                  style={{ display: 'none' }}
+                  onChange={onUploadProfileImage}
+                />
               </S.RegisterImageContainer>
 
               <S.InputContainer>
-                <InputWrapper
-                  label='이름'
-                  type='text'
-                  placeholder='이름을 입력하세요'
-                />
-                <InputWrapper
-                  label='회사'
-                  type='text'
-                  placeholder='WELLET Corp.'
-                />
-                <InputWrapper
-                  label='직책 / 부서'
-                  type='text'
-                  placeholder='Web Engineer / 개발실'
-                />
-                <InputWrapper
-                  label='휴대폰'
-                  type='tel'
-                  placeholder='010-1234-5678'
-                />
-                <InputWrapper
-                  label='이메일 주소'
-                  type='email'
-                  placeholder='email@welletapp.co.kr'
-                />
-                <InputWrapper
-                  label='유선전화'
-                  type='tel'
-                  placeholder='81-2-222-3456'
-                />
-                <InputWrapper
-                  label='주소'
-                  type='text'
-                  placeholder='서울특별시 용산구 청파로 47길 100(청파동 2가) '
-                />
-                <InputWrapper label='메모' type='text' placeholder='메모' />
+                {inputFields.map((field, index) => (
+                  <InputWrapper
+                    key={index}
+                    label={field.label}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                  />
+                ))}
               </S.InputContainer>
 
               <S.GroupContainer>
