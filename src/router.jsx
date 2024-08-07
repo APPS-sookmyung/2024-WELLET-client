@@ -8,8 +8,8 @@ import {
   LoginPage,
   SignUpPage,
   EmailLoginPage,
-  MyPageEditPage,
   FindIdPwPage,
+  MyPageEditPage,
 } from './pages';
 
 const router = createBrowserRouter([
