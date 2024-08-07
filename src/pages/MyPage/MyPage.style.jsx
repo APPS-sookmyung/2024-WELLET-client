@@ -46,6 +46,7 @@ export const EditIcon = styled.div`
   justify-content: center;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const MidBar = styled.div`
@@ -84,14 +85,17 @@ export const ProfilePic = styled.img`
 
 export const IconBarContainer = styled.div`
   width: 97px;
-  height: 50px;
-  display: inline-flex;
-  gap: 8px;
-  padding: 10px 0px 10px 30px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 16px;
 `;
 
 export const Dot3Icon = styled.div`
-  padding: 4px 0;
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
 `;
 
 export const BotBar = styled.div`

@@ -37,10 +37,16 @@ export default function MyPage() {
             <S.ProfilePic />
           </S.PicContainer>
           <S.IconBarContainer>
-            <Icon id='share' width='16' height='20' />
-            <Icon id='gallery' fill='#FFFFFF' width='20' height='20' />
+            <Icon id='share' width='11' height='18' />
+            <Icon id='gallery' fill='#FFFFFF' width='18' height='18' />
             <S.Dot3Icon>
-              <Icon id='dot3' fill='#FFFFFF' width='20' height='24' />
+              <Icon
+                id='dot3'
+                className='dot3-icon'
+                fill='#FFFFFF'
+                width='5'
+                height='20'
+              />
             </S.Dot3Icon>
           </S.IconBarContainer>
         </S.MidBar>
