@@ -8,7 +8,7 @@ import {
   LoginPage,
   SignUpPage,
   EmailLoginPage,
-  MyPageEdit,
+  MyPageEditPage,
   FindIdPwPage,
 } from './pages';
 
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/mypage/edit',
-    element: <MyPageEdit />,
+    element: <MyPageEditPage />,
   },
 ]);
 

@@ -7,7 +7,8 @@ import { TabBar } from '../../components';
 export default function MyPage() {
   const [myInfo, setMyInfo] = useState({
     name: '김은지',
-    title: 'Web Engineer / 개발실',
+    job: 'Web Engineer',
+    team: '개발팀',
     company: 'WELLET Corp.',
   });
 
@@ -24,65 +25,75 @@ export default function MyPage() {
   };
   return (
     <>
-      <S.Mybar1>
-        <S.barbox1>내 명함</S.barbox1>
-        <S.EditIcon onClick={EditClick}>편집하기</S.EditIcon>
-        <S.ProfilePic />
-        <S.IconBarContainer></S.IconBarContainer>
-        <S.barbox2>{myInfo.name}</S.barbox2>
-        <S.subbar />
-      </S.Mybar1>
-      <S.Mybar2>
-        <S.Infobar>내 정보</S.Infobar>
-        <S.Container1>
-          <div>
-            <div>
-              <S.Font1>성명</S.Font1>
-              <S.Font2>{myInfo.company}</S.Font2>
-              <br />
-            </div>
-            <div>
-              <S.Font1>직무/소속</S.Font1>
-              <S.Font2>{myInfo.title}</S.Font2>
-            </div>
-          </div>
-        </S.Container1>
-        <S.Infobar>내 연락처</S.Infobar>
-        <S.Container2>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div>
-              <S.Font1>휴대폰</S.Font1>
-              <S.Font2>{myContact.phone}</S.Font2>
-            </div>
-            <div>
-              <S.IconBox></S.IconBox>
-            </div>
-          </div>
-          <br />
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div>
-              <S.Font1>이메일</S.Font1>
-              <S.Font2>{myContact.email}</S.Font2>
-            </div>
-            <div></div>
-          </div>
-          <br />
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div>
-              <S.Font1>유선전화</S.Font1>
-              <S.Font2>{myContact.tel}</S.Font2>
-            </div>
-            <div></div>
-          </div>
-          <br />
-          <div>
-            <div>
-              <S.Font1>주소</S.Font1>
-              <S.Font2>{myContact.address}</S.Font2>
-            </div>
-          </div>
-        </S.Container2>
-      </S.Mybar2>
+      <S.TopContainer>
+        <S.TopBar>
+          <S.LeftContainer1 />
+          <S.MyName>내 명함</S.MyName>
+          <S.EditIcon onClick={EditClick}>편집하기</S.EditIcon>
+        </S.TopBar>
+        <S.MidBar>
+          <S.LeftContainer2 />
+          <S.PicContainer>
+            <S.ProfilePic />
+          </S.PicContainer>
+          <S.IconBarContainer>
+            <Icon id='share' width='16' height='20' />
+            <Icon id='gallery' fill='#FFFFFF' width='20' height='20' />
+            <S.Dot3Icon>
+              <Icon id='dot3' fill='#FFFFFF' width='20' height='24' />
+            </S.Dot3Icon>
+          </S.IconBarContainer>
+        </S.MidBar>
+        <S.BotBar>
+          <S.NameBox>{myInfo.name}</S.NameBox>
+          <S.SubBar />
+        </S.BotBar>
+      </S.TopContainer>
+      <S.BottomContainer>
+        <S.InfoBar>내 정보</S.InfoBar>
+        <S.InfoContainer>
+          <S.InfoBox>
+            <S.GrayFont>성명</S.GrayFont>
+            <S.BlackFont>{myInfo.company}</S.BlackFont>
+          </S.InfoBox>
+          <S.InfoBox>
+            <S.GrayFont>직무 / 부서</S.GrayFont>
+            <S.BlackFont>{`${myInfo.job} / ${myInfo.team}`}</S.BlackFont>
+          </S.InfoBox>
+        </S.InfoContainer>
+        <S.InfoBar>내 연락처</S.InfoBar>
+        <S.ContactContainer>
+          <S.InfoBox>
+            <S.GrayFont>휴대폰</S.GrayFont>
+            <S.ContactWrapper>
+              <S.BlackFont>{myContact.phone}</S.BlackFont>
+
+              <S.IconBox>
+                <Icon id='message' width='20' height='14' />
+                <Icon id='call' width='20' height='14' />
+              </S.IconBox>
+            </S.ContactWrapper>
+          </S.InfoBox>
+          <S.InfoBox>
+            <S.GrayFont>이메일</S.GrayFont>
+            <S.ContactWrapper>
+              <S.BlackFont>{myContact.email}</S.BlackFont>
+              <Icon id='mail' width='20' height='14' />
+            </S.ContactWrapper>
+          </S.InfoBox>
+          <S.InfoBox>
+            <S.GrayFont>유선전화</S.GrayFont>
+            <S.ContactWrapper>
+              <S.BlackFont>{myContact.tel}</S.BlackFont>
+              <Icon id='call' width='20' height='14' />
+            </S.ContactWrapper>
+          </S.InfoBox>
+          <S.InfoBox>
+            <S.GrayFont>주소</S.GrayFont>
+            <S.BlackFont>{myContact.address}</S.BlackFont>
+          </S.InfoBox>
+        </S.ContactContainer>
+      </S.BottomContainer>
       <TabBar />
     </>
   );
