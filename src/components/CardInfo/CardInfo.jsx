@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as S from './CardInfo.style';
 import Icon from '../../components/Icon/Icon';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
@@ -14,35 +15,37 @@ export default function CardInfo({
   onClick,
 }) {
   return (
-    <S.Card
-      onClick={onClick}
-      isDeleteMode={isDeleteMode}
-      isSelected={isSelected}
-    >
-      <S.CardWrapper>
-        <S.ProfileImgWrapper>
-          <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
-        </S.ProfileImgWrapper>
-        <S.Info>
-          <S.Name isSelected={isSelected}>{name}</S.Name>
-          <S.Job isSelected={isSelected}>
-            {job}, {company}
-          </S.Job>
-        </S.Info>
-      </S.CardWrapper>
-      <S.ArrowIconWrapper>
-        <Icon
-          id={
-            isDeleteMode
-              ? isSelected
-                ? 'circle-check'
-                : 'circle'
-              : 'arrow-right'
-          }
-          fill='none'
-        />
-      </S.ArrowIconWrapper>
-    </S.Card>
+    <Link to={`/card/${name}`}>
+      <S.Card
+        onClick={onClick}
+        isDeleteMode={isDeleteMode}
+        isSelected={isSelected}
+      >
+        <S.CardWrapper>
+          <S.ProfileImgWrapper>
+            <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
+          </S.ProfileImgWrapper>
+          <S.Info>
+            <S.Name isSelected={isSelected}>{name}</S.Name>
+            <S.Job isSelected={isSelected}>
+              {job}, {company}
+            </S.Job>
+          </S.Info>
+        </S.CardWrapper>
+        <S.ArrowIconWrapper>
+          <Icon
+            id={
+              isDeleteMode
+                ? isSelected
+                  ? 'circle-check'
+                  : 'circle'
+                : 'arrow-right'
+            }
+            fill='none'
+          />
+        </S.ArrowIconWrapper>
+      </S.Card>
+    </Link>
   );
 }
 
