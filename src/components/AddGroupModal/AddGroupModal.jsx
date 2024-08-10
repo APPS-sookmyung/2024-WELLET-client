@@ -29,6 +29,11 @@ export default function AddGroupModal() {
     setBadges((prev) => prev.filter((badge) => badge.value !== badgeValue));
   };
 
+  const handleOpenCloseClick = () => {
+    setIsModalOpen(false);
+    console.log(badges);
+  };
+
   return (
     <S.Container isModalOpen={isModalOpen}>
       <S.AddGroupModal>
@@ -48,19 +53,17 @@ export default function AddGroupModal() {
             iconClick={handleAddBadge}
             onChange={(e) => setNewBadgeLabel(e.target.value)}
           />
+          <S.WarningMsg>
+            * 그룹 삭제 시, 그룹에 속해 있는 모든 명함의 그룹 옵션이 해지되니
+            신중하게 삭제해주세요.
+          </S.WarningMsg>
           <S.GroupEditBox>
             <BlueBadge badges={badges} xBtnClick={handleXBtnClick} />
           </S.GroupEditBox>
         </S.Center>
         <S.Bottom>
-          <PrimaryButton
-            children='완료'
-            onClick={() => {
-              setIsModalOpen(false);
-              console.log(badges);
-            }}
-          />
-          <SecondaryButton children='취소' />
+          <PrimaryButton children='완료' onClick={handleOpenCloseClick} />
+          <SecondaryButton children='취소' onClick={handleOpenCloseClick} />
         </S.Bottom>
       </S.AddGroupModal>
     </S.Container>

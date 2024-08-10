@@ -53,11 +53,19 @@ export const Center = styled.div`
   height: 100%;
 `;
 
+export const WarningMsg = styled.p`
+  font-size: 11px;
+  line-height: 130%;
+  letter-spacing: -0.55px;
+  padding: 20px 0 0 2px;
+  color: #ff0076;
+`;
+
 export const GroupEditBox = styled.div`
-  margin-top: 12px;
+  margin-top: 6px;
   display: flex;
   gap: 10px;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 `;
 export const Bottom = styled.div`
   padding: 0 20px 28px 20px;
