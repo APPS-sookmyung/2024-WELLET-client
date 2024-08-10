@@ -9,8 +9,11 @@ import {
 import Icon from '../../components/Icon/Icon';
 import sampleData from '../../constants/cardData';
 import { useState, useEffect } from 'react';
+import { MdVisibility } from 'react-icons/md';
+
 export default function HomePage() {
   const [filterdList, setFilterdList] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const visibleCards = () => {
     const availableHeight = window.innerHeight - 348 - 100 - 70;
@@ -68,7 +71,7 @@ export default function HomePage() {
               <Icon id='arrow-bottom' />
             </S.ArrowBottomIcon>
             <S.Filter>최근 등록 순</S.Filter>
-            <S.AddGroup>
+            <S.AddGroup onClick={() => setIsModalOpen(true)}>
               <S.EditBtnWrapper>
                 <S.EditText>그룹 수정</S.EditText>
                 <S.MoreIcon>
@@ -99,7 +102,11 @@ export default function HomePage() {
           ) : null}
         </S.Container>
       </S.HomePage>
-      <AddGroupModal />
+      <AddGroupModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        style={{ visibility: isModalOpen ? 'visible' : 'hidden' }}
+      />
       <TabBar />
     </>
   );
