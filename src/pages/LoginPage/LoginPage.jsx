@@ -24,19 +24,13 @@ export default function LoginPage() {
             color: '#1A1A1C',
             gap: '2px',
           }}
+          onClick={() => navigate('/home')}
         >
-          <S.KakaoBtn>
+          <S.KakaoIcon>
             <Icon id='kakao' />
-          </S.KakaoBtn>
+          </S.KakaoIcon>
           카카오 계정 로그인
         </PrimaryButton>
-        <SecondaryButton onClick={() => navigate('/login/email')}>
-          이메일로 로그인
-        </SecondaryButton>
-        <S.SignUpOption>
-          <p>계정이 없으신가요?</p>
-          <p onClick={() => navigate('/sign-up')}>회원가입</p>
-        </S.SignUpOption>
       </S.Btns>
     </S.Container>
   );
