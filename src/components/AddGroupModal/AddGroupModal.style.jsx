@@ -57,9 +57,7 @@ export const GroupEditBox = styled.div`
   margin-top: 12px;
   display: flex;
   gap: 10px;
-
-  p {
-  }
+  flex-wrap: wrap; 
 `;
 export const Bottom = styled.div`
   padding: 0 20px 28px 20px;

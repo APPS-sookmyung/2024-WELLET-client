@@ -18,5 +18,6 @@ export const BlueBadge = styled.button`
 
   p {
     padding-right: 8px;
+    white-space: nowrap;
   }
 `;
