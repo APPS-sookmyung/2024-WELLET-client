@@ -1,5 +1,6 @@
 export { Header } from './Header';
 export { TabBar } from './TabBar';
+export { MyCard } from './MyCard';
 export { CardInfo } from './CardInfo';
 export { SearchBar } from './SearchBar';
 export { InputWrapper } from './InputWrapper';
