@@ -1,5 +1,16 @@
 import styled from '@emotion/styled';
 
+export const BackgroundBlur = styled.div`
+  height: 100vh;
+  width: 100vw;
+  max-width: 768px;
+  position: absolute;
+  background-color: #58585880;
+  backdrop-filter: blur(10px);
+  opacity: ${({ isModalOpen }) => (isModalOpen ? 1 : 0)};
+  transition: opacity 300ms ease; 
+`;
+
 export const Container = styled.div`
   position: fixed;
   bottom: 0;

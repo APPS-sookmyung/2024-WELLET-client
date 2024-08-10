@@ -35,37 +35,40 @@ export default function AddGroupModal() {
   };
 
   return (
-    <S.Container isModalOpen={isModalOpen}>
-      <S.AddGroupModal>
-        <S.Top>
-          <S.DragBar />
-          <S.ModalTitle>그룹 수정</S.ModalTitle>
-        </S.Top>
-        <S.Center>
-          <InputWrapper
-            label='그룹 명'
-            placeholder='추가할 그룹 명을 입력하세요'
-            textColor='#000'
-            value={newBadgeLabel}
-            iconId='circle-plus'
-            iconFill='#9694FF'
-            iconSize='20'
-            iconClick={handleAddBadge}
-            onChange={(e) => setNewBadgeLabel(e.target.value)}
-          />
-          <S.WarningMsg>
-            * 그룹 삭제 시, 그룹에 속해 있는 모든 명함의 그룹 옵션이 해지되니
-            신중하게 삭제해주세요.
-          </S.WarningMsg>
-          <S.GroupEditBox>
-            <BlueBadge badges={badges} xBtnClick={handleXBtnClick} />
-          </S.GroupEditBox>
-        </S.Center>
-        <S.Bottom>
-          <PrimaryButton children='완료' onClick={handleOpenCloseClick} />
-          <SecondaryButton children='취소' onClick={handleOpenCloseClick} />
-        </S.Bottom>
-      </S.AddGroupModal>
-    </S.Container>
+    <>
+      <S.BackgroundBlur isModalOpen={isModalOpen} />
+      <S.Container isModalOpen={isModalOpen}>
+        <S.AddGroupModal>
+          <S.Top>
+            <S.DragBar />
+            <S.ModalTitle>그룹 수정</S.ModalTitle>
+          </S.Top>
+          <S.Center>
+            <InputWrapper
+              label='그룹 명'
+              placeholder='추가할 그룹 명을 입력하세요'
+              textColor='#000'
+              value={newBadgeLabel}
+              iconId='circle-plus'
+              iconFill='#9694FF'
+              iconSize='20'
+              iconClick={handleAddBadge}
+              onChange={(e) => setNewBadgeLabel(e.target.value)}
+            />
+            <S.WarningMsg>
+              * 그룹 삭제 시, 그룹에 속해 있는 모든 명함의 그룹 옵션이 해지되니
+              신중하게 삭제해주세요.
+            </S.WarningMsg>
+            <S.GroupEditBox>
+              <BlueBadge badges={badges} xBtnClick={handleXBtnClick} />
+            </S.GroupEditBox>
+          </S.Center>
+          <S.Bottom>
+            <PrimaryButton children='완료' onClick={handleOpenCloseClick} />
+            <SecondaryButton children='취소' onClick={handleOpenCloseClick} />
+          </S.Bottom>
+        </S.AddGroupModal>
+      </S.Container>
+    </>
   );
 }
