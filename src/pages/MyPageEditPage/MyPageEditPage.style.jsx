@@ -9,19 +9,24 @@ export const Header = styled.div`
   padding: 0 20px;
 `;
 
-export const Arrowicon = styled.div`
-  width: 10px;
-  height: 9px;
+export const ArrowIcon = styled.div`
   display: flex;
   align-items: center;
+  width: 60px;
 `;
 
-export const Welletlogo = styled.div`
+export const WelletLogo = styled.div`
   width: 78px;
   height: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const EditIconBox = styled.div`
+  width: 60px;
+  display: flex;
+  justify-content: end;
 `;
 
 export const EditIcon = styled.div`
@@ -36,19 +41,21 @@ export const EditIcon = styled.div`
   height: 24px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const Body = styled.div`
-  width: calc(100% - 39px);
+  width: 100%;
   height: 100px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
-  margin-left: 39px;
+  gap: 20px;
 `;
 
 export const PicContainer = styled.div`
-  width: 75px;
-  height: 75px;
+  width: 68px;
+  height: 68px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,27 +63,24 @@ export const PicContainer = styled.div`
 `;
 
 export const ProfilePic = styled.div`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 68.239px;
-  background:
-    linear-gradient(
-      0deg,
-      rgba(45, 41, 255, 0.3) 0%,
-      rgba(45, 41, 255, 0.3) 100%
-    ),
-    url(<path-to-image>) lightgray 50% / cover no-repeat;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 68px;
+  background: #2d29ff4c;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
-export const Galleryicon = styled.div`
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+export const GalleryIcon = styled.div`
+  width: 100%;
+  height: 100%;
   position: absolute;
-  bottom: 27px;
-  right: 27px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,15 +92,14 @@ export const EditGuide = styled.div`
   font-weight: 400;
   line-height: 130%;
   letter-spacing: -0.55px;
+  padding: 0px 0;
 `;
 
 export const EditInfoContainer = styled.div`
-  width: 200px;
-  height: 75px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 30px;
 `;
 
 export const Name = styled.div`
@@ -105,6 +108,7 @@ export const Name = styled.div`
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.5px;
+  padding: 2px 5px 2px 0;
 `;
 
 export const EditName = styled.div`
@@ -129,15 +133,16 @@ export const EditInfo = styled.div`
   display: flex;
 `;
 
-export const InputContainer = styled.div`
-  width: 90%;
-`;
-
 export const InputField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
   align-items: center;
+  padding: 0 20px;
+`;
+
+export const InputContainer = styled.div`
+  width: 100%;
 `;
 
 export const InputWrapper = styled.div`

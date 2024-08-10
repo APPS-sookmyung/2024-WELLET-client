@@ -15,7 +15,6 @@ export default function CardInfo({
   onClick,
 }) {
   return (
-    <Link to={`/card/${name}`}>
       <S.Card
         onClick={onClick}
         isDeleteMode={isDeleteMode}
@@ -32,6 +31,7 @@ export default function CardInfo({
             </S.Job>
           </S.Info>
         </S.CardWrapper>
+        <Link to={`/card/${name}`}>
         <S.ArrowIconWrapper>
           <Icon
             id={
@@ -44,8 +44,8 @@ export default function CardInfo({
             fill='none'
           />
         </S.ArrowIconWrapper>
+        </Link>
       </S.Card>
-    </Link>
   );
 }
 

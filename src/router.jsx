@@ -8,9 +8,9 @@ import {
   LoginPage,
   SignUpPage,
   EmailLoginPage,
-  MyPageEditPage,
   FindIdPwPage,
   CardDetailPage,
+  MyPageEditPage,
 } from './pages';
 
 const router = createBrowserRouter([
