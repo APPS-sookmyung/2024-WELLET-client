@@ -6,8 +6,10 @@ import {
   SearchBar,
   TabBar,
   CardInfo,
+
   MyCard,
   Icon,
+  AddGroupModal,
 } from '../../components';
 import myCardData from '../../constants/myCardData';
 import sampleData from '../../constants/cardData.js';
@@ -21,6 +23,7 @@ import { scrollCards } from '../../utils/HomePageUtils/homePageUtils';
 export default function HomePage() {
   const navigate = useNavigate();
   const [filterdList, setFilterdList] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMyCardId, setSelectedMyCardId] = useState(0);
   const myCardListRef = useRef(null);
   const cardElementsRef = useRef([]);
@@ -100,7 +103,7 @@ export default function HomePage() {
               <Icon id='arrow-bottom' />
             </S.ArrowBottomIcon>
             <S.Filter>최근 등록 순</S.Filter>
-            <S.AddGroup>
+            <S.AddGroup onClick={() => setIsModalOpen(true)}>
               <S.EditBtnWrapper>
                 <S.EditText>그룹 수정</S.EditText>
                 <S.MoreIcon>
@@ -131,6 +134,11 @@ export default function HomePage() {
           )}
         </S.Container>
       </S.HomePage>
+      <AddGroupModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        style={{ visibility: isModalOpen ? 'visible' : 'hidden' }}
+      />
       <TabBar />
     </>
   );

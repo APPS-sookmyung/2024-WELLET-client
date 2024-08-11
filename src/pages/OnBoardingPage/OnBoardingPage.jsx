@@ -15,7 +15,7 @@ export default function OnBoarding() {
 
   return (
     <S.OnBoardingPage>
-      <Header fill='#2D29FF' />
+      <Header color='blue' />
       <OnboardingContent
         data={ONBOARDING[step]}
         currentStep={step}

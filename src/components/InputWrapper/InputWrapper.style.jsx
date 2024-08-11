@@ -30,15 +30,9 @@ export const Input = styled.input`
   border: none;
   background-color: transparent;
   width: 100%;
-  color: var(--grey2, #949494);
   font-size: 14px;
   line-height: 140%;
   letter-spacing: -0.7px;
   outline: none;
 `;
 
-export const IconWrapper = styled.div`
-  display: flex;
-  width: 13px;
-  height: 13px;
-`;

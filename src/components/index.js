@@ -7,3 +7,4 @@ export { SearchBar } from './SearchBar';
 export { InputWrapper } from './InputWrapper';
 export { PrimaryButton, SecondaryButton } from './Button';
 export { BlueBadge } from './Badge';
+export { AddGroupModal } from './AddGroupModal';
