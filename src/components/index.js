@@ -1,3 +1,4 @@
+export { Icon } from './Icon';
 export { Header } from './Header';
 export { TabBar } from './TabBar';
 export { MyCard } from './MyCard';
