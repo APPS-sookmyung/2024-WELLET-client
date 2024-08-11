@@ -134,7 +134,7 @@ export const Filter = styled.p`
   color: #555;
 `;
 
-export const AddGroup = styled.p`
+export const AddGroup = styled.div`
   margin-left: auto;
 `;
 
