@@ -1,9 +1,22 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as S from './CardDetailPage.style';
 import Icon from '../../components/Icon/Icon';
-import { TabBar, BlueBadge, CardInfo } from '../../components';
+import { TabBar } from '../../components';
+import sampleData from '../../constants/cardData';
+import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 
-export default function CardDetailPage() {
+export default function CardDetailPage({
+  name,
+  job,
+  company,
+  phone,
+  email,
+  tel,
+  address,
+  imageUrl,
+}) {
   return (
     <>
       <S.TopContainer>
@@ -17,7 +30,10 @@ export default function CardDetailPage() {
         <S.MidBar>
           <S.LeftContainer2 />
           <S.PicContainer>
-            <S.ProfilePic />
+            <S.ProfilePic
+              src={imageUrl || ProfileImgDefault}
+              alt={`${name} 프로필`}
+            />
           </S.PicContainer>
           <S.IconBarContainer>
             <Icon id='gallery' fill='#FFFFFF' width='18' height='18' />
@@ -34,21 +50,21 @@ export default function CardDetailPage() {
         </S.MidBar>
         <S.BotBar>
           <S.NameBox>
-            <S.NameFont></S.NameFont>
-            <S.JobTeamFont>
-              <S.ComFont></S.ComFont>
-            </S.JobTeamFont>
+            <S.NameFont>{name}</S.NameFont>
+            <S.JobTeamFont>{job}</S.JobTeamFont>
+            <S.ComFont>{company}</S.ComFont>
           </S.NameBox>
           <S.SubBar />
         </S.BotBar>
       </S.TopContainer>
+
       <S.BottomContainer>
         <S.ConBar>연락처</S.ConBar>
         <S.ContactContainer>
           <S.InfoBox>
             <S.GrayFont>휴대폰</S.GrayFont>
             <S.ContactWrapper>
-              <S.BlackFont></S.BlackFont>
+              <S.BlackFont>{phone}</S.BlackFont>
 
               <S.IconBox>
                 <Icon id='message' width='20' height='14' />
@@ -59,20 +75,20 @@ export default function CardDetailPage() {
           <S.InfoBox>
             <S.GrayFont>이메일</S.GrayFont>
             <S.ContactWrapper>
-              <S.BlackFont></S.BlackFont>
+              <S.BlackFont>{email}</S.BlackFont>
               <Icon id='mail' width='20' height='14' />
             </S.ContactWrapper>
           </S.InfoBox>
           <S.InfoBox>
             <S.GrayFont>유선전화</S.GrayFont>
             <S.ContactWrapper>
-              <S.BlackFont></S.BlackFont>
+              <S.BlackFont>{tel}</S.BlackFont>
               <Icon id='call' width='20' height='14' />
             </S.ContactWrapper>
           </S.InfoBox>
           <S.InfoBox>
             <S.GrayFont>주소</S.GrayFont>
-            <S.BlackFont></S.BlackFont>
+            <S.BlackFont>{address}</S.BlackFont>
           </S.InfoBox>
         </S.ContactContainer>
         <S.GroupButtonBar>그룹</S.GroupButtonBar>
@@ -82,3 +98,18 @@ export default function CardDetailPage() {
     </>
   );
 }
+
+CardDetailPage.propTypes = {
+  name: PropTypes.string.isRequired,
+  job: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  tel: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string,
+};
+
+CardDetailPage.defaultProps = {
+  imageUrl: ProfileImgDefault,
+};

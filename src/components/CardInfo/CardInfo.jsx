@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as S from './CardInfo.style';
 import Icon from '../../components/Icon/Icon';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+import { Link } from 'react-router-dom';
 
 export default function CardInfo({
   name,
@@ -30,18 +31,20 @@ export default function CardInfo({
           </S.Job>
         </S.Info>
       </S.CardWrapper>
-      <S.ArrowIconWrapper>
-        <Icon
-          id={
-            isDeleteMode
-              ? isSelected
-                ? 'circle-check'
-                : 'circle'
-              : 'arrow-right'
-          }
-          fill='none'
-        />
-      </S.ArrowIconWrapper>
+      <Link to={`/card/${name}`}>
+        <S.ArrowIconWrapper>
+          <Icon
+            id={
+              isDeleteMode
+                ? isSelected
+                  ? 'circle-check'
+                  : 'circle'
+                : 'arrow-right'
+            }
+            fill='none'
+          />
+        </S.ArrowIconWrapper>
+      </Link>
     </S.Card>
   );
 }

@@ -10,6 +10,7 @@ import {
   EmailLoginPage,
   MyPageEditPage,
   FindIdPwPage,
+  CardDetailPage,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: '/mypage/edit',
     element: <MyPageEditPage />,
+  },
+  {
+    path: '/card/:id',
+    element: <CardDetailPage />,
   },
 ]);
 
