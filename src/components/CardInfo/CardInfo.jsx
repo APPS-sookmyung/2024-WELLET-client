@@ -8,10 +8,10 @@ export default function CardInfo({
   name,
   job,
   company,
-  imageUrl,
-  isDeleteMode,
-  isSelected,
-  onClick,
+  imageUrl = ProfileImgDefault,
+  isDeleteMode = false,
+  isSelected = false,
+  onClick = () => {},
 }) {
   return (
     <S.Card
@@ -53,11 +53,4 @@ CardInfo.propTypes = {
   isDeleteMode: PropTypes.bool,
   isSelected: PropTypes.bool,
   onClick: PropTypes.func,
-};
-
-CardInfo.defaultProps = {
-  imageUrl: ProfileImgDefault,
-  isDeleteMode: false,
-  isSelected: false,
-  onClick: () => {},
 };

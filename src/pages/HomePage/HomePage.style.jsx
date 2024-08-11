@@ -6,75 +6,50 @@ export const HomePage = styled.div`
 `;
 
 export const Top = styled.div`
-  padding: 0 20px;
   height: 348px;
   border-radius: 0px 0px 20px 20px;
   background: linear-gradient(153deg, #2d29ff 16.96%, #721cff 124.87%);
 `;
 
-export const MyCard = styled.div`
-  padding: 20px;
-  border-radius: 20px;
-  background: #fff;
+export const Padding = styled.div`
+  padding: 0 20px;
+`;
+
+export const MyCardListContainer = styled.div`
+  width: 100%;
+  max-width: 768px;
   display: flex;
-  height: 155px;
-  width: 300px;
+  position: relative;
+  align-items: center;
 `;
 
-export const ProfileImg = styled.div`
-  min-width: 68px;
-  min-height: 68px;
-  max-width: 68px;
-  max-height: 68px;
-  border-radius: 50%;
-  border: 1px solid gray;
-`;
-
-export const ProfileText = styled.div`
-  padding-left: 15px;
+export const MyCardList = styled.div`
+  width: 100%;
+  height: 160px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-export const Name = styled.div`
-  font-size: 18px;
-  font-weight: 600;
-  padding: 3px 0;
-  color: #1a1a1a;
-`;
-
-export const Team = styled.div`
-  font-size: 12px;
-  font-weight: 400;
-  padding-bottom: 11px;
-  color: #1a1a1a;
-`;
-
-export const ExtraInfo = styled.div`
-  display: flex;
-  gap: 4px;
-  padding: 2px 0;
-  color: #555;
-
-  p:nth-of-type(1) {
-    font-size: 11px;
-    font-weight: 500;
+  gap: 9px;
+  padding: 0 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  ::-webkit-scrollbar {
+    display: none;
   }
-
-  p:nth-of-type(2) {
-    font-size: 11px;
-    font-weight: 400;
-  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
-export const MoreOption = styled.div`
+export const LeftAngleBtn = styled.div`
+  position: absolute;
   display: flex;
-  width: 5px;
-  height: 24px;
-  margin-top: 16px;
-  justify-content: end;
-  margin-left: auto;
+  padding: 30px 0 30px 17px;
+`;
+
+export const RightAngleBtn = styled.div`
+  position: absolute;
+  right: 0;
+  display: flex;
+  padding: 30px 17px 30px 0;
 `;
 
 export const UpDownBarBox = styled.div`
