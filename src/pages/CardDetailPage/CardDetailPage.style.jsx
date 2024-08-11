@@ -68,13 +68,7 @@ export const ProfilePic = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 68.239px;
-  background:
-    linear-gradient(
-      0deg,
-      rgba(45, 41, 255, 0.3) 0%,
-      rgba(45, 41, 255, 0.3) 100%
-    ),
-    url(<path-to-image>) lightgray 50% / cover no-repeat;
+  background: #ffffff;
   position: relative;
 `;
 
