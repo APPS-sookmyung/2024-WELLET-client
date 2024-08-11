@@ -11,9 +11,10 @@ export default function MyCard({
   email,
   address,
   backgroundColor,
+  onClick,
 }) {
   return (
-    <S.MyCard style={{ backgroundColor: backgroundColor }}>
+    <S.MyCard onClick={onClick} style={{ backgroundColor: backgroundColor }}>
       <S.ProfileImg>
         <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
       </S.ProfileImg>

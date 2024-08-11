@@ -1,9 +1,16 @@
+import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './HomePage.style';
-import { Header, SearchBar, TabBar, CardInfo, MyCard } from '../../components';
-import Icon from '../../components/Icon/Icon';
+import {
+  Header,
+  SearchBar,
+  TabBar,
+  CardInfo,
+  MyCard,
+  Icon,
+} from '../../components';
 import myCardData from '../../constants/myCardData';
 import sampleData from '../../constants/cardData.js';
-import { useState, useRef } from 'react';
 import {
   useVisibleCardsEffect,
   useUpdateCardElementsEffect,
@@ -12,6 +19,7 @@ import {
 import { scrollCards } from '../../utils/HomePageUtils/homePageUtils';
 
 export default function HomePage() {
+  const navigate = useNavigate();
   const [filterdList, setFilterdList] = useState([]);
   const [selectedMyCardId, setSelectedMyCardId] = useState(0);
   const myCardListRef = useRef(null);
@@ -60,6 +68,7 @@ export default function HomePage() {
                   tel={data.tel}
                   email={data.email}
                   address={data.address}
+                  onClick={() => navigate('/mypage')}
                 />
               ))}
             </S.MyCardList>
