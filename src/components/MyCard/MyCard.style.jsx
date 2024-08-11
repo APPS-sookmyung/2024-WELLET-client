@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 export const MyCard = styled.div`
   padding: 20px;
   border-radius: 20px;
-  background: #fff;
   display: flex;
   height: 155px;
   min-width: 90%;
+  transition: background 0.3s;
 `;
 
 export const ProfileImg = styled.div`
@@ -15,7 +15,6 @@ export const ProfileImg = styled.div`
   max-width: 68px;
   max-height: 68px;
   border-radius: 50%;
-  /* border: 1px solid gray; */
   display: flex;
 `;
 

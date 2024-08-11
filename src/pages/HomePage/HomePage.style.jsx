@@ -21,7 +21,6 @@ export const MyCardListContainer = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  border: 3px solid white;
 `;
 
 export const MyCardList = styled.div`
@@ -30,24 +29,27 @@ export const MyCardList = styled.div`
   display: flex;
   gap: 9px;
   padding: 0 20px;
-  overflow-x: auto; /* 가로 스크롤 가능하도록 수정 */
+  overflow-x: auto;
   white-space: nowrap;
-  scroll-behavior: smooth; /* 스크롤의 부드러움 설정 */
+  scroll-behavior: smooth;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 export const LeftAngleBtn = styled.div`
-  border: 1px solid red;
   position: absolute;
   display: flex;
-  padding: 30px 0 30px 15px;
+  padding: 30px 0 30px 17px;
 `;
 
 export const RightAngleBtn = styled.div`
-  border: 1px solid red;
   position: absolute;
   right: 0;
   display: flex;
-  padding: 30px 15px 30px 0;
+  padding: 30px 17px 30px 0;
 `;
 
 export const UpDownBarBox = styled.div`

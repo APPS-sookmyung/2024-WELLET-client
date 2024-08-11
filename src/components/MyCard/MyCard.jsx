@@ -10,12 +10,10 @@ export default function MyCard({
   tel,
   email,
   address,
-  isDeleteMode,
-  isSelected,
-  onClick,
+  backgroundColor,
 }) {
   return (
-    <S.MyCard>
+    <S.MyCard style={{ backgroundColor: backgroundColor }}>
       <S.ProfileImg>
         <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
       </S.ProfileImg>

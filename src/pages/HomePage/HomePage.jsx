@@ -3,78 +3,23 @@ import { Header, SearchBar, TabBar, CardInfo, MyCard } from '../../components';
 import Icon from '../../components/Icon/Icon';
 import myCardData from '../../constants/myCardData';
 import sampleData from '../../constants/cardData.js';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
+import {
+  useVisibleCardsEffect,
+  useUpdateCardElementsEffect,
+  useScrollToCardEffect,
+} from '../../utils/HomePageUtils/homePageEffects';
+import { scrollCards } from '../../utils/HomePageUtils/homePageUtils';
 
 export default function HomePage() {
   const [filterdList, setFilterdList] = useState([]);
-  const [selectedMyCard, setSelectedMyCard] = useState(0);
+  const [selectedMyCardId, setSelectedMyCardId] = useState(0);
   const myCardListRef = useRef(null);
   const cardElementsRef = useRef([]);
 
-  const visibleCards = () => {
-    const availableHeight = window.innerHeight - 348 - 100 - 70;
-    const availableCardCount = Math.floor(availableHeight / 90);
-    setFilterdList(sampleData.slice(0, availableCardCount));
-  };
-
-  useEffect(() => {
-    visibleCards();
-  }, []);
-
-  useEffect(() => {
-    const updateCardElements = () => {
-      if (myCardListRef.current) {
-        cardElementsRef.current = Array.from(
-          myCardListRef.current.querySelectorAll('div')
-        );
-      }
-    };
-
-    updateCardElements();
-    window.addEventListener('resize', updateCardElements);
-    return () => {
-      window.removeEventListener('resize', updateCardElements);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (myCardListRef.current && cardElementsRef.current.length > 0) {
-      const containerWidth = myCardListRef.current.clientWidth;
-      const cardWidth = cardElementsRef.current[0].offsetWidth;
-      const cardGap = 10;
-      const padding = 20; // Padding value to include
-
-      // Calculate the center position of the selected card
-      const cardCenterPosition =
-        (cardWidth + cardGap) * selectedMyCard + cardWidth / 2;
-
-      // Calculate the center position of the container including padding
-      const containerCenterPosition = containerWidth / 2 - padding;
-
-      // Calculate the new scroll position to center the selected card
-      const newScrollPosition = cardCenterPosition - containerCenterPosition;
-
-      // Ensure the new scroll position is within bounds
-      myCardListRef.current.scrollTo({
-        left: Math.max(
-          0,
-          Math.min(
-            newScrollPosition,
-            myCardListRef.current.scrollWidth - containerWidth
-          )
-        ),
-        behavior: 'smooth',
-      });
-    }
-  }, [selectedMyCard]);
-
-  const scrollCards = (direction) => {
-    if (direction === 'next' && selectedMyCard < myCardData.length - 1) {
-      setSelectedMyCard((prev) => prev + 1);
-    } else if (direction === 'prev' && selectedMyCard > 0) {
-      setSelectedMyCard((prev) => prev - 1);
-    }
-  };
+  useVisibleCardsEffect(setFilterdList, sampleData);
+  useUpdateCardElementsEffect(myCardListRef, cardElementsRef);
+  useScrollToCardEffect(myCardListRef, cardElementsRef, selectedMyCardId);
 
   return (
     <>
@@ -89,13 +34,25 @@ export default function HomePage() {
             </S.CardListTitle>
           </S.Padding>
           <S.MyCardListContainer>
-            <S.LeftAngleBtn onClick={() => scrollCards('prev')}>
+            <S.LeftAngleBtn
+              onClick={() =>
+                scrollCards(
+                  'prev',
+                  selectedMyCardId,
+                  setSelectedMyCardId,
+                  myCardData.length
+                )
+              }
+            >
               <Icon id='arrow' width='20' height='20' stroke='#fff' />
             </S.LeftAngleBtn>
             <S.MyCardList ref={myCardListRef}>
               {myCardData.map((data, index) => (
                 <MyCard
                   key={index}
+                  backgroundColor={
+                    index === selectedMyCardId ? '#fff' : '#A6A4FF'
+                  }
                   name={data.name}
                   job={data.job}
                   company={data.company}
@@ -106,7 +63,16 @@ export default function HomePage() {
                 />
               ))}
             </S.MyCardList>
-            <S.RightAngleBtn onClick={() => scrollCards('next')}>
+            <S.RightAngleBtn
+              onClick={() =>
+                scrollCards(
+                  'next',
+                  selectedMyCardId,
+                  setSelectedMyCardId,
+                  myCardData.length
+                )
+              }
+            >
               <Icon id='arrow-right' width='20' height='20' stroke='#fff' />
             </S.RightAngleBtn>
           </S.MyCardListContainer>
