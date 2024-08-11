@@ -62,9 +62,9 @@ export default function CardDetailPage({
         <S.ConBar>연락처</S.ConBar>
         <S.ContactContainer>
           <S.InfoBox>
-            <S.GrayFont>휴대폰</S.GrayFont>
+            <S.userInfoLabel>휴대폰</S.userInfoLabel>
             <S.ContactWrapper>
-              <S.BlackFont>{phone}</S.BlackFont>
+              <S.userInfoValue>{phone}</S.userInfoValue>
 
               <S.IconBox>
                 <Icon id='message' width='20' height='14' />
@@ -73,22 +73,22 @@ export default function CardDetailPage({
             </S.ContactWrapper>
           </S.InfoBox>
           <S.InfoBox>
-            <S.GrayFont>이메일</S.GrayFont>
+            <S.userInfoLabel>이메일</S.userInfoLabel>
             <S.ContactWrapper>
-              <S.BlackFont>{email}</S.BlackFont>
+              <S.userInfoValue>{email}</S.userInfoValue>
               <Icon id='mail' width='20' height='14' />
             </S.ContactWrapper>
           </S.InfoBox>
           <S.InfoBox>
-            <S.GrayFont>유선전화</S.GrayFont>
+            <S.userInfoLabel>유선전화</S.userInfoLabel>
             <S.ContactWrapper>
-              <S.BlackFont>{tel}</S.BlackFont>
+              <S.userInfoValue>{tel}</S.userInfoValue>
               <Icon id='call' width='20' height='14' />
             </S.ContactWrapper>
           </S.InfoBox>
           <S.InfoBox>
-            <S.GrayFont>주소</S.GrayFont>
-            <S.BlackFont>{address}</S.BlackFont>
+            <S.userInfoLabel>주소</S.userInfoLabel>
+            <S.userInfoValue>{address}</S.userInfoValue>
           </S.InfoBox>
         </S.ContactContainer>
         <S.GroupButtonBar>그룹</S.GroupButtonBar>
