@@ -6,7 +6,7 @@ export default function OnboardingContent({
   data,
   currentStep,
   handleNextBtnClick,
-  handleSkipBtnClick
+  handleSkipBtnClick,
 }) {
   const { illust, step, title, text, btn1_text, btn2_text } = data;
 
@@ -23,6 +23,7 @@ export default function OnboardingContent({
         <S.StepIcon src={step} alt='step' />
       </S.Center>
       <S.Btns>
+        {currentStep === 2 && <S.Blank />}
         <PrimaryButton onClick={handleNextBtnClick}>{btn1_text}</PrimaryButton>
         {currentStep !== 2 && (
           <SecondaryButton
