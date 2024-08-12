@@ -173,7 +173,7 @@ export const GroupButtonBox = styled.div`
 `;
 
 //폰트
-export const userInfoLabel = styled.div`
+export const UserInfoLabel = styled.div`
   color: var(--grey2, #949494);
   font-size: 11px;
   font-weight: 400;
@@ -181,7 +181,7 @@ export const userInfoLabel = styled.div`
   letter-spacing: -0.5px;
 `;
 
-export const userInfoValue = styled.div`
+export const UserInfoValue = styled.div`
   color: var(--grey4, #1a1a1a);
   font-size: 14px;
   font-weight: 400;
