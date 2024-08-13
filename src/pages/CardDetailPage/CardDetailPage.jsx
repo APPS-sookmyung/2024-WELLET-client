@@ -5,6 +5,7 @@ import Icon from '../../components/Icon/Icon';
 import { TabBar, BlueBadge } from '../../components';
 import sampleData from '../../constants/cardData';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+import { Link } from 'react-router-dom';
 
 export default function CardDetailPage() {
   const { id } = useParams();
@@ -39,7 +40,9 @@ export default function CardDetailPage() {
               <S.MyName>
                 <Icon id='logo-white' width='60' height='24.5' />
               </S.MyName>
-              <S.EditIcon>편집하기</S.EditIcon>
+              <Link to={`/card/${id}/edit`}>
+                <S.EditIcon>편집하기</S.EditIcon>
+              </Link>
             </S.TopBar>
             <S.MidBar>
               <S.LeftContainer2 />

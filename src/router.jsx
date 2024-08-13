@@ -11,6 +11,7 @@ import {
   MyPageEditPage,
   FindIdPwPage,
   CardDetailPage,
+  DetailEditPage,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
   {
     path: '/card/:id',
     element: <CardDetailPage />,
+  },
+  {
+    path: '/card/:id/edit',
+    element: <DetailEditPage />,
   },
 ]);
 
