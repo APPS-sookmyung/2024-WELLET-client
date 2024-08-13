@@ -43,7 +43,7 @@ export default function MyPage() {
           <S.EditButton>편집하기</S.EditButton>
         </Link>
         <S.ShareIconWrapper>
-          <Icon id='share' onClick={handleShareClick} />
+          <Icon id='share' width='11' height='17' onClick={handleShareClick} />
         </S.ShareIconWrapper>
 
         <S.MyInfoSummaryWrapper>
