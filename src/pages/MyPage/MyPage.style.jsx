@@ -189,3 +189,57 @@ export const BlackFont = styled.div`
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
+
+// 모달
+export const ModalOverlay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(88, 88, 88, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+`;
+
+export const Modal = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 299px;
+  height: 328px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  background: #fff;
+  box-shadow: 4px 4px 24.1px 0px rgba(0, 0, 0, 0.1);
+`;
+
+export const CloseButton = styled.div``;
+
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+export const ModalTitle = styled.h2`
+  color: var(--primary, #2d29ff);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+`;
+
+export const QrImage = styled.div`
+  width: 143px;
+  height: 143px;
+  border: 2px solid blue; /* 임시 코드 */
+`;
+
+export const ModalButtonWrapper = styled.div``;

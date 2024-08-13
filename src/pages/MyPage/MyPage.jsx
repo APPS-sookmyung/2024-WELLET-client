@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { TabBar } from '../../components';
 
 export default function MyPage() {
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [myInfo, setMyInfo] = useState({
     name: '김은지',
     job: 'Web Engineer',
@@ -19,10 +22,18 @@ export default function MyPage() {
     address: '서울시 강남구 테헤란로 134, 5-6층 (역삼동, 포스크타워 역삼)',
   });
 
-  const navigate = useNavigate();
   const EditClick = () => {
     navigate('/mypage/edit');
   };
+
+  const handleShareClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <S.TopContainer>
@@ -37,7 +48,12 @@ export default function MyPage() {
             <S.ProfilePic />
           </S.PicContainer>
           <S.IconBarContainer>
-            <Icon id='share' width='11' height='18' />
+            <Icon
+              id='share'
+              width='11'
+              height='18'
+              onClick={handleShareClick}
+            />
             <Icon id='gallery' fill='#FFFFFF' width='18' height='18' />
             <S.Dot3Icon>
               <Icon
@@ -101,6 +117,19 @@ export default function MyPage() {
         </S.ContactContainer>
       </S.BottomContainer>
       <TabBar />
+
+      {isModalOpen && (
+        <S.ModalOverlay>
+          <S.Modal>
+            <S.CloseButton></S.CloseButton>
+            <S.ModalContent>
+              <S.ModalTitle>내 명함 QR코드</S.ModalTitle>
+              <S.QrImage>이미지</S.QrImage>
+              <S.ModalButtonWrapper></S.ModalButtonWrapper>
+            </S.ModalContent>
+          </S.Modal>
+        </S.ModalOverlay>
+      )}
     </>
   );
 }
