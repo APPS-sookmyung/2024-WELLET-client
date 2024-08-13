@@ -7,9 +7,9 @@ import {
   OnBoardingPage,
   LoginPage,
   SignUpPage,
-  EmailLoginPage,
-  MyPageEdit,
   FindIdPwPage,
+  MyPageEditPage,
+  CardDetailPage,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -38,10 +38,6 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: '/login/email',
-    element: <EmailLoginPage />,
-  },
-  {
     path: '/login/find-id',
     element: <FindIdPwPage />,
   },
@@ -55,7 +51,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/mypage/edit',
-    element: <MyPageEdit />,
+    element: <MyPageEditPage />,
+  },
+  {
+    path: '/card/:id',
+    element: <CardDetailPage />,
   },
 ]);
 
