@@ -121,7 +121,9 @@ export default function MyPage() {
       {isModalOpen && (
         <S.ModalOverlay>
           <S.Modal>
-            <S.CloseButton></S.CloseButton>
+            <S.CloseButton>
+              <Icon fill='black' id='modal-close' width='22' height='22' />
+            </S.CloseButton>
             <S.ModalContent>
               <S.ModalTitle>내 명함 QR코드</S.ModalTitle>
               <S.QrImage>이미지</S.QrImage>

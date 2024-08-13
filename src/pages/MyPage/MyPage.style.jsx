@@ -219,7 +219,14 @@ export const Modal = styled.div`
   box-shadow: 4px 4px 24.1px 0px rgba(0, 0, 0, 0.1);
 `;
 
-export const CloseButton = styled.div``;
+export const CloseButton = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 14px;
+  padding: 10px;
+  cursor: pointer;
+`;
 
 export const ModalContent = styled.div`
   display: flex;
