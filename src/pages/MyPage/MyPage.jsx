@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import * as S from './MyPage.style';
 import Icon from '../../components/Icon/Icon';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { TabBar } from '../../components';
 import { HiOutlineLink } from 'react-icons/hi';
 
 export default function MyPage() {
-  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [myInfo, setMyInfo] = useState({
@@ -23,10 +22,6 @@ export default function MyPage() {
     address: '서울시 강남구 테헤란로 134, 5-6층 (역삼동, 포스크타워 역삼)',
   });
 
-  const EditClick = () => {
-    navigate('/mypage/edit');
-  };
-
   const handleShareClick = () => {
     setIsModalOpen(true);
   };
@@ -41,7 +36,9 @@ export default function MyPage() {
         <S.TopBar>
           <S.LeftContainer1 />
           <S.MyName>내 명함</S.MyName>
-          <S.EditIcon onClick={EditClick}>편집하기</S.EditIcon>
+          <Link to='/mypage/edit'>
+            <S.EditIcon>편집하기</S.EditIcon>
+          </Link>
         </S.TopBar>
         <S.MidBar>
           <S.LeftContainer2 />
