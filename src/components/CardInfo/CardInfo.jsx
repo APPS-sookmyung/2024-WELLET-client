@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as S from './CardInfo.style';
 import Icon from '../../components/Icon/Icon';
-import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 import { Link } from 'react-router-dom';
+import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 
 export default function CardInfo({
   name,
