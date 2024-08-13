@@ -231,6 +231,8 @@ export const CloseButton = styled.div`
 export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 24px;
 `;
 
@@ -249,4 +251,30 @@ export const QrImage = styled.div`
   border: 2px solid blue; /* 임시 코드 */
 `;
 
-export const ModalButtonWrapper = styled.div``;
+export const ModalButtonWrapper = styled.div`
+  display: flex;
+  gap: 9px;
+`;
+
+export const ButtonBase = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+`;
+
+export const CopyLinkButton = styled(ButtonBase)`
+  gap: 4px;
+  background: var(--blue-2, #ebebff);
+  color: var(--primary, #2d29ff);
+`;
+
+export const SaveButton = styled(ButtonBase)`
+  gap: 8px;
+  background: var(--primary, #2d29ff);
+  color: #fff;
+`;

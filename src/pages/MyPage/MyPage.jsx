@@ -3,6 +3,7 @@ import * as S from './MyPage.style';
 import Icon from '../../components/Icon/Icon';
 import { useNavigate } from 'react-router-dom';
 import { TabBar } from '../../components';
+import { HiOutlineLink } from 'react-icons/hi';
 
 export default function MyPage() {
   const navigate = useNavigate();
@@ -118,16 +119,23 @@ export default function MyPage() {
       </S.BottomContainer>
       <TabBar />
 
+      {/* QR 코드 모달창 */}
       {isModalOpen && (
         <S.ModalOverlay>
           <S.Modal>
-            <S.CloseButton>
+            <S.CloseButton onClick={handleCloseModal}>
               <Icon fill='black' id='modal-close' width='22' height='22' />
             </S.CloseButton>
             <S.ModalContent>
               <S.ModalTitle>내 명함 QR코드</S.ModalTitle>
-              <S.QrImage>이미지</S.QrImage>
-              <S.ModalButtonWrapper></S.ModalButtonWrapper>
+              <S.QrImage>QR 이미지</S.QrImage>
+              <S.ModalButtonWrapper>
+                <S.CopyLinkButton>
+                  <HiOutlineLink />
+                  링크 복사하기
+                </S.CopyLinkButton>
+                <S.SaveButton>저장하기</S.SaveButton>
+              </S.ModalButtonWrapper>
             </S.ModalContent>
           </S.Modal>
         </S.ModalOverlay>
