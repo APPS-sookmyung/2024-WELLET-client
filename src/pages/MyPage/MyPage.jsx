@@ -126,8 +126,8 @@ export default function MyPage() {
 
       {/* QR 코드 모달창 */}
       {isModalOpen && (
-        <S.ModalOverlay>
-          <S.Modal>
+        <S.ModalOverlay onClick={handleCloseModal}>
+          <S.Modal onClick={(e) => e.stopPropagation()}>
             <S.CloseButton onClick={handleCloseModal}>
               <Icon fill='black' id='modal-close' width='22' height='22' />
             </S.CloseButton>
