@@ -43,6 +43,7 @@ export default function CardDetailPage() {
               <Link to={`/card/${id}/edit`}>
                 <S.EditIcon>편집하기</S.EditIcon>
               </Link>
+              <S.EditIcon>편집하기</S.EditIcon>
             </S.TopBar>
             <S.MidBar>
               <S.LeftContainer2 />

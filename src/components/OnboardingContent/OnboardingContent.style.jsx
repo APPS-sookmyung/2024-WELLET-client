@@ -74,3 +74,7 @@ export const Btns = styled.div`
   row-gap: 8px;
   padding: 0 20px 34px 20px;
 `;
+
+export const Blank = styled.div`
+  height: 38px;
+`;

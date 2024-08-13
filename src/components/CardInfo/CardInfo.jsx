@@ -4,15 +4,16 @@ import * as S from './CardInfo.style';
 import Icon from '../../components/Icon/Icon';
 import { Link } from 'react-router-dom';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+import { Link } from 'react-router-dom';
 
 export default function CardInfo({
   name,
   job,
   company,
-  imageUrl,
-  isDeleteMode,
-  isSelected,
-  onClick,
+  imageUrl = ProfileImgDefault,
+  isDeleteMode = false,
+  isSelected = false,
+  onClick = () => {},
 }) {
   return (
     <S.Card
@@ -57,11 +58,4 @@ CardInfo.propTypes = {
   isDeleteMode: PropTypes.bool,
   isSelected: PropTypes.bool,
   onClick: PropTypes.func,
-};
-
-CardInfo.defaultProps = {
-  imageUrl: ProfileImgDefault,
-  isDeleteMode: false,
-  isSelected: false,
-  onClick: () => {},
 };
