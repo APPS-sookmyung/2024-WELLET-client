@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
 import * as S from './MyPage.style';
 import Icon from '../../components/Icon/Icon';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TabBar } from '../../components';
 import { HiOutlineLink } from 'react-icons/hi';
 
+// 더미 데이터
+const myInfo = {
+  name: '김은지',
+  job: 'Web Engineer',
+  team: '개발팀',
+  company: 'WELLET Corp.',
+  phone: '010-1234-5678',
+  email: 'email@welletapp.co.kr',
+  tel: '81-2-222-3456',
+  address: '서울시 강남구 테헤란로 134, 5-6층 (역삼동, 포스크타워 역삼)',
+};
+
 export default function MyPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isToastVisible, setIsToastVisible] = useState(false);
-
-  const [myInfo, setMyInfo] = useState({
-    name: '김은지',
-    job: 'Web Engineer',
-    team: '개발팀',
-    company: 'WELLET Corp.',
-  });
-
-  const [myContact, setMyContact] = useState({
-    phone: '010-1234-5678',
-    email: 'email@welletapp.co.kr',
-    tel: '81-2-222-3456',
-    address: '서울시 강남구 테헤란로 134, 5-6층 (역삼동, 포스크타워 역삼)',
-  });
 
   const handleShareClick = () => {
     setIsModalOpen(true);
@@ -94,7 +92,7 @@ export default function MyPage() {
           <S.InfoBox>
             <S.GrayFont>휴대폰</S.GrayFont>
             <S.ContactWrapper>
-              <S.BlackFont>{myContact.phone}</S.BlackFont>
+              <S.BlackFont>{myInfo.phone}</S.BlackFont>
 
               <S.IconBox>
                 <Icon id='message' width='20' height='14' />
@@ -105,20 +103,20 @@ export default function MyPage() {
           <S.InfoBox>
             <S.GrayFont>이메일</S.GrayFont>
             <S.ContactWrapper>
-              <S.BlackFont>{myContact.email}</S.BlackFont>
+              <S.BlackFont>{myInfo.email}</S.BlackFont>
               <Icon id='mail' width='20' height='14' />
             </S.ContactWrapper>
           </S.InfoBox>
           <S.InfoBox>
             <S.GrayFont>유선전화</S.GrayFont>
             <S.ContactWrapper>
-              <S.BlackFont>{myContact.tel}</S.BlackFont>
+              <S.BlackFont>{myInfo.tel}</S.BlackFont>
               <Icon id='call' width='20' height='14' />
             </S.ContactWrapper>
           </S.InfoBox>
           <S.InfoBox>
             <S.GrayFont>주소</S.GrayFont>
-            <S.BlackFont>{myContact.address}</S.BlackFont>
+            <S.BlackFont>{myInfo.address}</S.BlackFont>
           </S.InfoBox>
         </S.ContactContainer>
       </S.BottomContainer>
