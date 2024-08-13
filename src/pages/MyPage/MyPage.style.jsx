@@ -7,117 +7,87 @@ export const TopContainer = styled.div`
   border-radius: 0px 0px 20px 20px;
   background: linear-gradient(111deg, #2d29ff 35.96%, #721cff 116.82%);
   position: relative;
-  padding: 20px;
 `;
 
-export const TopBar = styled.div`
-  width: 100%;
-  display: inline-flex;
-  justify-content: space-between;
+export const EditButton = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: var(--color-1, #ebf3fe);
+  color: var(--primary, #2d29ff);
+  font-size: 11px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
 `;
 
-export const LeftContainer1 = styled.div`
-  width: 60px;
+export const ShareIconWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  position: absolute;
+  top: 74px;
+  right: 16px;
+  width: 31px;
+  height: 38px;
+  cursor: pointer;
+  padding: 10px;
 `;
 
-export const MyName = styled.div`
+export const MyInfoSummaryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  gap: 10px;
+`;
+
+export const MyCardTitle = styled.div`
+  display: flex;
+  justify-content: center;
   color: var(--white, #fff);
   font-size: 16px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.5px;
   width: 60px;
-  display: flex;
-  justify-content: center;
+  padding-bottom: 19px;
 `;
 
-export const EditIcon = styled.div`
-  padding: 4px 10px;
-  flex-direction: column;
-  gap: 8px;
-  border-radius: 10px;
-  background: var(--color-1, #ebf3fe);
-  color: var(--primary, #2d29ff);
-  font-size: 11px;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.5px;
-  width: 60px;
-  justify-content: center;
+export const ProfileImageWrapper = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
-  cursor: pointer;
-`;
-
-export const MidBar = styled.div`
-  width: 100%;
-  display: inline-flex;
-  padding: 24px 0;
-  justify-content: space-between;
-`;
-
-export const LeftContainer2 = styled.div`
-  width: 97px;
-`;
-
-export const PicContainer = styled.div`
   width: 97px;
   height: 97px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 50%;
+  border: 1px solid white; /* 임시 코드 */
+  background-color: white;
 `;
 
-export const ProfilePic = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 68.239px;
-  background:
-    linear-gradient(
-      0deg,
-      rgba(45, 41, 255, 0.3) 0%,
-      rgba(45, 41, 255, 0.3) 100%
-    ),
-    url(<path-to-image>) lightgray 50% / cover no-repeat;
-  position: relative;
-`;
-
-export const IconBarContainer = styled.div`
-  width: 97px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  gap: 16px;
-`;
-
-export const Dot3Icon = styled.div`
-  padding-top: 8px;
-  display: flex;
-  align-items: center;
-`;
-
-export const BotBar = styled.div`
-  width: 100%;
-  padding: 2px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-`;
-
-export const NameBox = styled.div`
+export const MyName = styled.div`
   color: var(--white, #fff);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.5px;
-  text-align: center;
 `;
 
-export const SubBar = styled.div`
+export const BottomBarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+`;
+
+export const BottomBar = styled.div`
   width: 72px;
   height: 5px;
   border-radius: 4px;
@@ -125,31 +95,61 @@ export const SubBar = styled.div`
   padding: 0 20px;
 `;
 
+// 내 상세 정보
 export const BottomContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 724px;
   background: #fff;
   padding: 20px;
   box-sizing: border-box;
+  gap: 26px;
 `;
 
-export const InfoBox = styled.div`
+export const MyInfoIList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+export const MyInfoTitle = styled.div`
+  color: var(--grey4, #1a1a1a);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+  padding: 0 6px;
+`;
+
+export const MyInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  background: #f4f4f9;
+  width: 100%;
+  padding: 12px 17px;
+  gap: 13px;
+`;
+
+export const MyInfoItem = styled.div`
   width: 100%;
   padding: 2px;
 `;
 
-export const InfoContainer = styled.div`
-  border-radius: 10px;
-  background: #f4f4f9;
-  width: 100%;
-  padding: 12px;
+export const MyInfoLabel = styled.div`
+  color: var(--grey2, #949494);
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
 `;
 
-export const ContactContainer = styled.div`
-  border-radius: 10px;
-  background: #f4f4f9;
-  width: 100%;
-  padding: 12px;
+export const MyInfoValue = styled.div`
+  color: var(--grey4, #1a1a1a);
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
 `;
 
 export const ContactWrapper = styled.div`
@@ -162,32 +162,6 @@ export const ContactWrapper = styled.div`
 export const IconBox = styled.div`
   display: flex;
   gap: 16px;
-`;
-
-export const InfoBar = styled.div`
-  color: var(--grey4, #1a1a1a);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 150%;
-  letter-spacing: -0.5px;
-  padding: 8px;
-`;
-
-//폰트
-export const GrayFont = styled.div`
-  color: var(--grey2, #949494);
-  font-size: 11px;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.5px;
-`;
-
-export const BlackFont = styled.div`
-  color: var(--grey4, #1a1a1a);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.5px;
 `;
 
 // 모달
