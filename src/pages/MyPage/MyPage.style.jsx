@@ -278,3 +278,19 @@ export const SaveButton = styled(ButtonBase)`
   background: var(--primary, #2d29ff);
   color: #fff;
 `;
+
+// 토스트 메세지
+export const ToastMessage = styled.div`
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 1000;
+  opacity: 0.9;
+  animation: fadeInOut 3s;
+`;

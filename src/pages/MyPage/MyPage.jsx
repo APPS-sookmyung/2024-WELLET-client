@@ -7,6 +7,7 @@ import { HiOutlineLink } from 'react-icons/hi';
 
 export default function MyPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isToastVisible, setIsToastVisible] = useState(false);
 
   const [myInfo, setMyInfo] = useState({
     name: '김은지',
@@ -28,6 +29,13 @@ export default function MyPage() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleCopyLinkClick = () => {
+    setIsToastVisible(true);
+    setTimeout(() => {
+      setIsToastVisible(false);
+    }, 3000);
   };
 
   return (
@@ -127,7 +135,7 @@ export default function MyPage() {
               <S.ModalTitle>내 명함 QR코드</S.ModalTitle>
               <S.QrImage>QR 이미지</S.QrImage>
               <S.ModalButtonWrapper>
-                <S.CopyLinkButton>
+                <S.CopyLinkButton onClick={handleCopyLinkClick}>
                   <HiOutlineLink />
                   링크 복사하기
                 </S.CopyLinkButton>
@@ -136,6 +144,11 @@ export default function MyPage() {
             </S.ModalContent>
           </S.Modal>
         </S.ModalOverlay>
+      )}
+
+      {/* 토스트 메시지 */}
+      {isToastVisible && (
+        <S.ToastMessage>링크가 복사되었습니다.</S.ToastMessage>
       )}
     </>
   );
