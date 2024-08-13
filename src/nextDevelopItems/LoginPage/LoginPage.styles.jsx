@@ -42,12 +42,29 @@ export const Btns = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 8px;
-  padding: 0 20px 34px 20px;
+  padding: 0 20px;
 `;
 
-export const KakaoIcon = styled.div`
+export const KakaoBtn = styled.div`
   /* border: 1px solid red; */
   display: flex;
   width: 15px;
   height: 15px;
+`;
+
+export const SignUpOption = styled.div`
+  /* border: 1px solid red; */
+  display: flex;
+  color: #949494;
+  font-size: 11px;
+  font-weight: 400;
+  justify-content: center;
+  padding: 4px 0 34px 0;
+  gap: 5px;
+
+  p:nth-of-type(2) {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    cursor: pointer;
+  }
 `;
