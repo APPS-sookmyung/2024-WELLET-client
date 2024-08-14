@@ -43,28 +43,14 @@ export default function CardDetailPage() {
               <Link to={`/card/${id}/edit`}>
                 <S.EditIcon>편집하기</S.EditIcon>
               </Link>
-              <S.EditIcon>편집하기</S.EditIcon>
             </S.TopBar>
             <S.MidBar>
-              <S.LeftContainer2 />
               <S.PicContainer>
                 <S.ProfilePic
                   src={data.imageUrl || ProfileImgDefault}
                   alt={`${data.name} 프로필`}
                 />
               </S.PicContainer>
-              <S.IconBarContainer>
-                <Icon id='gallery' fill='#FFFFFF' width='18' height='18' />
-                <S.Dot3Icon>
-                  <Icon
-                    id='dot3'
-                    className='dot3-icon'
-                    fill='#FFFFFF'
-                    width='5'
-                    height='20'
-                  />
-                </S.Dot3Icon>
-              </S.IconBarContainer>
             </S.MidBar>
             <S.BotBar>
               <S.NameBox>
