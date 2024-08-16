@@ -7,13 +7,13 @@
 </div>
 <br>
 
-## 👪 개발 팀 소개
+## 💁🏻‍♀️ 개발 팀 소개
 
 <table style="text-align:center">
   <thead>
     <tr>
       <th style="text-align: center;">프로필</th>
-      <th style="text-align: center;">이름</th>
+      <th style="text-align: center;">이름 (세부 전공)</th>
       <th style="text-align: center;">역할</th>
       <th style="text-align: center;">개발 내용</th>
     </tr>
@@ -21,37 +21,37 @@
   <tbody>
     <tr>
       <td><a href="https://github.com/junheekim61" target="_blank"><img src="https://avatars.githubusercontent.com/u/100200965?v=4" alt="김준희 프로필" width="100px" /></a></td>
-      <td>김준희<br>(컴퓨터과학 22)</td>
+      <td style="text-align: center;">김준희<br>(컴퓨터과학 22)</td>
       <td>Front-end</td>
       <td>온보딩 페이지 구현<br>카카오톡 로그인 페이지 구현<br>홈 화면 페이지 구현<br>그룹 수정 모달 구현</td>
     </tr>
     <tr>
       <td><a href="https://github.com/kimhyerims" target="_blank"><img src="https://avatars.githubusercontent.com/u/144879107?v=4" alt="김혜림 프로필" width="100px" /></a></td>
-      <td>김혜림<br>(데이터사이언스 23)</td>
+      <td style="text-align: center;">김혜림<br>(데이터사이언스 23)</td>
       <td>Front-end</td>
       <td>명함 상세 보기 및 수정하기 페이지 구현<br>내 명함 보기 및 수정하기 페이지 구현</td>
     </tr>
     <tr>
       <td><a href="https://github.com/misung-dev" target="_blank"><img src="https://avatars.githubusercontent.com/u/128569095?v=4" alt="류미성 프로필" width="100px" /></a></td>
-      <td>류미성<br>(컴퓨터과학 21)</td>
+      <td style="text-align: center;">류미성<br>(컴퓨터과학 21)</td>
       <td>Front-end</td>
       <td>Header, 검색창, Tab bar 등 컴포넌트 구현<br>명함 추가 페이지 구현 (사진 추가, 직접 입력)<br>그룹별 명함 보기 페이지 구현<br>내 명함 공유 모달 구현</td>
     </tr>
     <tr>
       <td><a href="https://github.com/lhaerim" target="_blank"><img src="https://avatars.githubusercontent.com/u/128566763?v=4" alt="이해림 프로필" width="100px" /></a></td>
-      <td>이혜림<br>(컴퓨터과학 23)</td>
+      <td style="text-align: center;">이혜림<br>(컴퓨터과학 23)</td>
       <td>Back-end</td>
       <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/ajung7038" target="_blank"><img src="https://avatars.githubusercontent.com/u/80907516?v=4" alt="주아정 프로필" width="100px" /></a></td>
-      <td>주아정<br>(컴퓨터과학 23)</td>
-      <td>Back-end</td>
+      <td style="text-align: center;">주아정<br>(컴퓨터과학 23)</td>
+      <td>Back-end<br>Leader</td>
       <td></td>
     </tr>
     <tr>
       <td><a href="https://github.com/hayeyoung" target="_blank"><img src="https://avatars.githubusercontent.com/u/144807080?v=4" alt="하예영 프로필" width="100px" /></a></td>
-      <td>하예영<br>(데이터사이언스 23)</td>
+      <td style="text-align: center;">하예영<br>(데이터사이언스 23)</td>
       <td>Back-end</td>
       <td></td>
     </tr>
