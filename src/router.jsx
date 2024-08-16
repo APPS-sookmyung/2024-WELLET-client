@@ -8,8 +8,9 @@ import {
   LoginPage,
   SignUpPage,
   FindIdPwPage,
-  MyPageEditPage,
   CardDetailPage,
+  DetailEditPage,
+  MyPageEditPage,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: '/card/:id',
     element: <CardDetailPage />,
+  },
+  {
+    path: '/card/:id/edit',
+    element: <DetailEditPage />,
   },
 ]);
 

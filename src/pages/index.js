@@ -17,3 +17,5 @@ export { default as MyPageEditPage } from './MyPageEditPage';
 export { default as SignUpPage } from './SignUpPage';
 
 export { default as CardDetailPage } from './CardDetailPage';
+
+export { default as DetailEditPage } from './DetailEditPage';

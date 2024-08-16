@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as S from './CardInfo.style';
 import Icon from '../../components/Icon/Icon';
-import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 import { Link } from 'react-router-dom';
+import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 
 export default function CardInfo({
   name,
@@ -31,20 +31,18 @@ export default function CardInfo({
           </S.Job>
         </S.Info>
       </S.CardWrapper>
-      <Link to={`/card/${name}`}>
+      {!isDeleteMode && (
+        <Link to={`/card/${name}`}>
+          <S.ArrowIconWrapper>
+            <Icon id='arrow-right' fill='none' />
+          </S.ArrowIconWrapper>
+        </Link>
+      )}
+      {isDeleteMode && (
         <S.ArrowIconWrapper>
-          <Icon
-            id={
-              isDeleteMode
-                ? isSelected
-                  ? 'circle-check'
-                  : 'circle'
-                : 'arrow-right'
-            }
-            fill='none'
-          />
+          <Icon id={isSelected ? 'circle-check' : 'circle'} fill='none' />
         </S.ArrowIconWrapper>
-      </Link>
+      )}
     </S.Card>
   );
 }
