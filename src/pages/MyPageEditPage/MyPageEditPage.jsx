@@ -1,9 +1,8 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, memo, useRef } from 'react';
 import * as S from './MyPageEditPage.style';
 import Icon from '../../components/Icon/Icon';
 import { TabBar } from '../../components';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 const InputWrapper = memo(
   ({
@@ -57,31 +56,6 @@ export default function MyPageEditPage() {
     address: '서울시 강남구 테헤란로 134, 5-6층 (역삼동, 포스크타워 역삼)',
   });
 
-  const [isEditing, setIsEditing] = useState({
-    name: false,
-    team: false,
-    job: false,
-    company: false,
-    phone: false,
-    email: false,
-    tel: false,
-    address: false,
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/endpoint');
-        setMyInfo(response.data.myInfo || myInfo);
-        setMyContact(response.data.myContact || myContact);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   const handleInfoChange = (e) => {
     const { name, value } = e.target;
     setMyInfo((prevInfo) => ({
@@ -98,26 +72,84 @@ export default function MyPageEditPage() {
     }));
   };
 
-  const handleEditComplete = async () => {
-    try {
-      const response = await axios.post('/api/endpoint', {
-        myInfo,
-        myContact,
-      });
-      console.log('Data saved successfully:', response.data);
-      setIsEditing({
-        name: false,
-        team: false,
-        job: false,
-        company: false,
-        phone: false,
-        email: false,
-        tel: false,
-        address: false,
-      });
-    } catch (error) {
-      console.error('Error saving data:', error);
-    }
+  const InputData = [
+    {
+      label: '회사명',
+      type: 'text',
+      name: 'company',
+      value: myInfo.company,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '직책',
+      type: 'text',
+      name: 'job',
+      value: myInfo.job,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '부서',
+      type: 'text',
+      name: 'team',
+      value: myInfo.team,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '휴대폰',
+      type: 'tel',
+      name: 'phone',
+      value: myContact.phone,
+      onChange: handleContactChange,
+    },
+    {
+      label: '이메일 주소',
+      type: 'email',
+      name: 'email',
+      value: myContact.email,
+      onChange: handleContactChange,
+    },
+    {
+      label: '유선전화',
+      type: 'tel',
+      name: 'tel',
+      value: myContact.tel,
+      onChange: handleContactChange,
+    },
+    {
+      label: '주소',
+      type: 'text',
+      name: 'address',
+      value: myContact.address,
+      onChange: handleContactChange,
+    },
+  ];
+
+  const [isEditing, setIsEditing] = useState({
+    name: false,
+    team: false,
+    job: false,
+    company: false,
+    phone: false,
+    email: false,
+    tel: false,
+    address: false,
+  });
+
+  const navigate = useNavigate();
+
+  const handleEditComplete = () => {
+    console.log('Data saved successfully:', { myInfo, myContact });
+    setIsEditing({
+      name: false,
+      team: false,
+      job: false,
+      company: false,
+      phone: false,
+      email: false,
+      tel: false,
+      address: false,
+    });
+    navigate('/mypage');
   };
 
   const handleEditClick = (field) => {
@@ -141,6 +173,24 @@ export default function MyPageEditPage() {
     }));
   };
 
+  const [profileImage, setProfileImage] = useState(null);
+
+  const profileImageInputRef = useRef(null);
+
+  const onUploadImage = (event) => {
+    const files = Array.from(event.target.files || event.dataTransfer.files);
+    setSelectedImage(files);
+  };
+
+  const onUploadProfileImage = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(URL.createObjectURL(file));
+  };
+
+  const handleProfileImageClick = () => {
+    profileImageInputRef.current.click();
+  };
+
   return (
     <>
       <S.Header>
@@ -158,15 +208,34 @@ export default function MyPageEditPage() {
       </S.Header>
       <S.Body>
         <S.PicContainer>
-          <S.ProfilePic />
+          <S.ProfilePic
+            style={{
+              backgroundImage: `url(${profileImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
           <S.GalleryIcon>
-            <Icon id='gallery' fill='#FFFFFF' width='20' height='20' />
+            <Icon
+              id='gallery'
+              fill='#FFFFFF'
+              width='20'
+              height='20'
+              onClick={handleProfileImageClick}
+            />
+            <input
+              type='file'
+              accept='image/*'
+              ref={profileImageInputRef}
+              style={{ display: 'none' }}
+              onChange={onUploadProfileImage}
+            />
           </S.GalleryIcon>
         </S.PicContainer>
         <S.EditInfoContainer>
           <S.EditName>
             {isEditing.name ? (
-              <input
+              <S.InputNameBox
                 type='text'
                 name='name'
                 value={myInfo.name}
@@ -185,101 +254,26 @@ export default function MyPageEditPage() {
             )}
           </S.EditName>
           <S.EditGuide>
-            사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요 
+            사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
           </S.EditGuide>
         </S.EditInfoContainer>
       </S.Body>
       <S.InputField>
         <S.InputContainer>
-          <InputWrapper
-            label='회사명'
-            type='text'
-            name='company'
-            value={isEditing.company ? myInfo.company : ''}
-            placeholder={isEditing.company ? '' : myInfo.company}
-            onChange={handleInfoChange}
-            onBlur={() => handleBlur('company')}
-            onFocus={() => handleFocus('company')}
-            autoFocus={isEditing.company}
-          />
-        </S.InputContainer>
-        <S.InputContainer>
-          <InputWrapper
-            label='직책'
-            type='text'
-            name='job'
-            value={isEditing.job ? myInfo.job : ''}
-            placeholder={isEditing.job ? '' : myInfo.job}
-            onChange={handleInfoChange}
-            onBlur={() => handleBlur('job')}
-            onFocus={() => handleFocus('job')}
-            autoFocus={isEditing.job}
-          />
-        </S.InputContainer>
-        <S.InputContainer>
-          <InputWrapper
-            label='부서'
-            type='text'
-            name='team'
-            value={isEditing.team ? myInfo.team : ''}
-            placeholder={isEditing.team ? '' : myInfo.team}
-            onChange={handleInfoChange}
-            onBlur={() => handleBlur('team')}
-            onFocus={() => handleFocus('team')}
-            autoFocus={isEditing.team}
-          />
-        </S.InputContainer>
-        <S.InputContainer>
-          <InputWrapper
-            label='휴대폰'
-            type='tel'
-            name='phone'
-            value={isEditing.phone ? myContact.phone : ''}
-            placeholder={isEditing.phone ? '' : myContact.phone}
-            onChange={handleContactChange}
-            onBlur={() => handleBlur('phone')}
-            onFocus={() => handleFocus('phone')}
-            autoFocus={isEditing.phone}
-          />
-        </S.InputContainer>
-        <S.InputContainer>
-          <InputWrapper
-            label='이메일 주소'
-            type='email'
-            name='email'
-            value={isEditing.email ? myContact.email : ''}
-            placeholder={isEditing.email ? '' : myContact.email}
-            onChange={handleContactChange}
-            onBlur={() => handleBlur('email')}
-            onFocus={() => handleFocus('email')}
-            autoFocus={isEditing.email}
-          />
-        </S.InputContainer>
-        <S.InputContainer>
-          <InputWrapper
-            label='유선전화'
-            type='tel'
-            name='tel'
-            value={isEditing.tel ? myContact.tel : ''}
-            placeholder={isEditing.tel ? '' : myContact.tel}
-            onChange={handleContactChange}
-            onBlur={() => handleBlur('tel')}
-            onFocus={() => handleFocus('tel')}
-            autoFocus={isEditing.tel}
-          />
-        </S.InputContainer>
-        <S.InputContainer>
-          <InputWrapper
-            label='주소'
-            type='text'
-            name='address'
-            value={isEditing.address ? myContact.address : ''}
-            placeholder={isEditing.address ? '' : myContact.address}
-            onChange={handleContactChange}
-            onBlur={() => handleBlur('address')}
-            onFocus={() => handleFocus('address')}
-            autoFocus={isEditing.address}
-          />
+          {InputData.map((field, index) => (
+            <InputWrapper
+              key={index}
+              label={field.label}
+              type={field.type}
+              name={field.name}
+              value={isEditing[field.name] ? field.value : ''}
+              placeholder={isEditing[field.name] ? '' : field.value}
+              onChange={field.onChange}
+              onBlur={() => handleBlur(field.name)}
+              onFocus={() => handleFocus(field.name)}
+              autoFocus={isEditing[field.name]}
+            />
+          ))}
         </S.InputContainer>
       </S.InputField>
       <TabBar />
