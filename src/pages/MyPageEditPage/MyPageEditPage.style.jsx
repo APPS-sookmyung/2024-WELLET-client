@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Header = styled.div`
   width: 100%;
-  height: 76px;
+  height: 84px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -154,6 +154,7 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;
+  padding: 5px 0;
 `;
 
 export const InputLabel = styled.label`
