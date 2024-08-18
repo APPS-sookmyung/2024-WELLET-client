@@ -1,9 +1,8 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, memo, useRef } from 'react';
 import * as S from './MyPageEditPage.style';
 import Icon from '../../components/Icon/Icon';
 import { TabBar } from '../../components';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 const InputWrapper = memo(
   ({
@@ -68,20 +67,6 @@ export default function MyPageEditPage() {
     address: false,
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/endpoint');
-        setMyInfo(response.data.myInfo || myInfo);
-        setMyContact(response.data.myContact || myContact);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   const handleInfoChange = (e) => {
     const { name, value } = e.target;
     setMyInfo((prevInfo) => ({
@@ -98,26 +83,18 @@ export default function MyPageEditPage() {
     }));
   };
 
-  const handleEditComplete = async () => {
-    try {
-      const response = await axios.post('/api/endpoint', {
-        myInfo,
-        myContact,
-      });
-      console.log('Data saved successfully:', response.data);
-      setIsEditing({
-        name: false,
-        team: false,
-        job: false,
-        company: false,
-        phone: false,
-        email: false,
-        tel: false,
-        address: false,
-      });
-    } catch (error) {
-      console.error('Error saving data:', error);
-    }
+  const handleEditComplete = () => {
+    console.log('Data saved successfully:', { myInfo, myContact });
+    setIsEditing({
+      name: false,
+      team: false,
+      job: false,
+      company: false,
+      phone: false,
+      email: false,
+      tel: false,
+      address: false,
+    });
   };
 
   const handleEditClick = (field) => {
@@ -141,6 +118,24 @@ export default function MyPageEditPage() {
     }));
   };
 
+  const [profileImage, setProfileImage] = useState(null);
+
+  const profileImageInputRef = useRef(null);
+
+  const onUploadImage = (event) => {
+    const files = Array.from(event.target.files || event.dataTransfer.files);
+    setSelectedImage(files);
+  };
+
+  const onUploadProfileImage = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(URL.createObjectURL(file));
+  };
+
+  const handleProfileImageClick = () => {
+    profileImageInputRef.current.click();
+  };
+
   return (
     <>
       <S.Header>
@@ -158,15 +153,34 @@ export default function MyPageEditPage() {
       </S.Header>
       <S.Body>
         <S.PicContainer>
-          <S.ProfilePic />
+          <S.ProfilePic
+            style={{
+              backgroundImage: `url(${profileImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
           <S.GalleryIcon>
-            <Icon id='gallery' fill='#FFFFFF' width='20' height='20' />
+            <Icon
+              id='gallery'
+              fill='#FFFFFF'
+              width='20'
+              height='20'
+              onClick={handleProfileImageClick}
+            />
+            <input
+              type='file'
+              accept='image/*'
+              ref={profileImageInputRef}
+              style={{ display: 'none' }}
+              onChange={onUploadProfileImage}
+            />
           </S.GalleryIcon>
         </S.PicContainer>
         <S.EditInfoContainer>
           <S.EditName>
             {isEditing.name ? (
-              <input
+              <S.InputNameBox
                 type='text'
                 name='name'
                 value={myInfo.name}
@@ -185,7 +199,7 @@ export default function MyPageEditPage() {
             )}
           </S.EditName>
           <S.EditGuide>
-            사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요 
+            사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
           </S.EditGuide>
         </S.EditInfoContainer>
       </S.Body>
