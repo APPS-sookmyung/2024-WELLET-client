@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import * as S from './CardDetailPage.style';
 import Icon from '../../components/Icon/Icon';
 import { TabBar, BlueBadge } from '../../components';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
-import { Link } from 'react-router-dom';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 
 export default function CardDetailPage() {

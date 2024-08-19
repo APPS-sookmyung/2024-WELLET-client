@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Card = styled.a`
+export const Card = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
