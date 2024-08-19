@@ -6,31 +6,21 @@ import {
   SearchBar,
   TabBar,
   CardInfo,
-
   MyCard,
   Icon,
   AddGroupModal,
 } from '../../components';
 import myCardData from '../../constants/myCardData';
 import sampleData from '../../constants/cardData.js';
-import {
-  useVisibleCardsEffect,
-  useUpdateCardElementsEffect,
-  useScrollToCardEffect,
-} from '../../utils/HomePageUtils/homePageEffects';
-import { scrollCards } from '../../utils/HomePageUtils/homePageUtils';
+import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects';
+import { visibleCards } from '../../utils/HomePageUtils/homePageUtils';
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [filterdList, setFilterdList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedMyCardId, setSelectedMyCardId] = useState(0);
-  const myCardListRef = useRef(null);
-  const cardElementsRef = useRef([]);
 
   useVisibleCardsEffect(setFilterdList, sampleData);
-  useUpdateCardElementsEffect(myCardListRef, cardElementsRef);
-  useScrollToCardEffect(myCardListRef, cardElementsRef, selectedMyCardId);
 
   return (
     <>
@@ -44,51 +34,19 @@ export default function HomePage() {
               <p>나의 명함 확인 및 관리하기</p>
             </S.CardListTitle>
           </S.Padding>
-          <S.MyCardListContainer>
-            <S.LeftAngleBtn
-              onClick={() =>
-                scrollCards(
-                  'prev',
-                  selectedMyCardId,
-                  setSelectedMyCardId,
-                  myCardData.length
-                )
-              }
-            >
-              <Icon id='arrow' width='20' height='20' stroke='#fff' />
-            </S.LeftAngleBtn>
-            <S.MyCardList ref={myCardListRef}>
-              {myCardData.map((data, index) => (
-                <MyCard
-                  key={index}
-                  backgroundColor={
-                    index === selectedMyCardId ? '#fff' : '#A6A4FF'
-                  }
-                  name={data.name}
-                  job={data.job}
-                  company={data.company}
-                  imageUrl={data.imageUrl}
-                  tel={data.tel}
-                  email={data.email}
-                  address={data.address}
-                  onClick={() => navigate('/mypage')}
-                />
-              ))}
-            </S.MyCardList>
-            <S.RightAngleBtn
-              onClick={() =>
-                scrollCards(
-                  'next',
-                  selectedMyCardId,
-                  setSelectedMyCardId,
-                  myCardData.length
-                )
-              }
-            >
-              <Icon id='arrow-right' width='20' height='20' stroke='#fff' />
-            </S.RightAngleBtn>
-          </S.MyCardListContainer>
-
+          <S.MyCardContainer>
+            <MyCard
+              backgroundColor='#fff'
+              name={myCardData.name}
+              job={myCardData.job}
+              company={myCardData.company}
+              imageUrl={myCardData.imageUrl}
+              tel={myCardData.tel}
+              email={myCardData.email}
+              address={myCardData.address}
+              onClick={() => navigate('/mypage')}
+            />
+          </S.MyCardContainer>
           <S.UpDownBarBox>
             <S.UpDownBar />
           </S.UpDownBarBox>
