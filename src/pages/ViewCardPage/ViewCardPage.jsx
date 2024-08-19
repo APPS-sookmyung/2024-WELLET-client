@@ -23,10 +23,13 @@ export default function ViewCardPage() {
     { label: '대학교', value: '대학교' },
   ];
 
-  const filteredData =
+  let filteredData =
     activeBadge === '전체 보기'
       ? CARDS_SAMPLE_DATA
       : CARDS_SAMPLE_DATA.filter((data) => data.category === activeBadge);
+
+  // 이름을 기준으로 오름차순 정렬
+  filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
 
   const handleDeleteClick = () => {
     setIsDeleteMode(true);
