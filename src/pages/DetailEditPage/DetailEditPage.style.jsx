@@ -2,17 +2,18 @@ import styled from '@emotion/styled';
 
 export const Header = styled.div`
   width: 100%;
-  height: 82px;
+  height: 84px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
 `;
 
-export const Arrowicon = styled.div`
+export const Arrowicon = styled.button`
   width: 60px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const Welletlogo = styled.div`
@@ -29,12 +30,12 @@ export const EditIconBox = styled.div`
   justify-content: end;
 `;
 
-export const EditIcon = styled.div`
+export const EditIcon = styled.button`
   padding: 4px 10px;
   border-radius: 10px;
   background: var(--color-1, #ebf3fe);
   color: var(--primary, #2d29ff);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -71,13 +72,14 @@ export const ProfilePic = styled.div`
   position: relative;
 `;
 
-export const Galleryicon = styled.div`
+export const Galleryicon = styled.button`
   width: 100%;
   height: 100%;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const EditGuide = styled.div`
@@ -96,6 +98,15 @@ export const EditInfoContainer = styled.div`
   justify-content: center;
 `;
 
+export const InputNameBox = styled.input`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--grey2, #949494);
+  font-size: 16px;
+  font-weight: 600;
+`;
+
 export const Name = styled.div`
   color: var(--grey4, #1a1a1a);
   font-size: 16px;
@@ -111,11 +122,12 @@ export const EditName = styled.div`
   align-items: center;
 `;
 
-export const PencilIcon = styled.div`
+export const PencilIcon = styled.button`
   width: 16px;
   height: 16px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const EditInfo = styled.div`
@@ -143,6 +155,7 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;
+  padding: 5px 0;
 `;
 
 export const InputLabel = styled.label`
@@ -174,6 +187,9 @@ export const Input = styled.input`
   line-height: 140%;
   letter-spacing: -0.7px;
   outline: none;
+  &:focus {
+    color: #000;
+  }
 `;
 
 export const IconWrapper = styled.div`
