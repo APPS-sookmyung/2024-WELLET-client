@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 export const ViewCardPage = styled.div`
   padding: 0 20px 100px 20px;
+  overflow-y: scroll;
+  scrollbar-width: none;
 `;
 
 // 버튼
