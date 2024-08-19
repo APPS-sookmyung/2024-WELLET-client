@@ -15,41 +15,11 @@ export const Padding = styled.div`
   padding: 0 20px;
 `;
 
-export const MyCardListContainer = styled.div`
+export const MyCardContainer = styled.div`
   width: 100%;
-  max-width: 768px;
   display: flex;
-  position: relative;
-  align-items: center;
-`;
-
-export const MyCardList = styled.div`
-  width: 100%;
-  height: 160px;
-  display: flex;
-  gap: 9px;
+  justify-content: center;
   padding: 0 20px;
-  overflow-x: auto;
-  white-space: nowrap;
-  scroll-behavior: smooth;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-`;
-
-export const LeftAngleBtn = styled.div`
-  position: absolute;
-  display: flex;
-  padding: 30px 0 30px 17px;
-`;
-
-export const RightAngleBtn = styled.div`
-  position: absolute;
-  right: 0;
-  display: flex;
-  padding: 30px 17px 30px 0;
 `;
 
 export const UpDownBarBox = styled.div`
@@ -90,29 +60,6 @@ export const CardListTitle = styled.div`
   }
 `;
 
-export const ListOpiton = styled.div`
-  display: flex;
-  align-items: center;
-  padding-bottom: 10px;
-`;
-
-export const ArrowBottomIcon = styled.div`
-  display: flex;
-  width: 10px;
-  height: 10px;
-`;
-
-export const Filter = styled.p`
-  display: flex;
-  padding-left: 4px;
-  font-size: 9px;
-  color: #555;
-`;
-
-export const AddGroup = styled.div`
-  margin-left: auto;
-`;
-
 export const EditBtnWrapper = styled.button`
   display: inline-flex;
   padding: 4px 10px;
@@ -128,12 +75,6 @@ export const EditText = styled.p`
   line-height: 150%;
   letter-spacing: -0.5px;
   color: #2d29ff;
-`;
-
-export const MoreIcon = styled.div`
-  width: 10px;
-  height: 11px;
-  display: flex;
 `;
 
 export const CardContainer = styled.div`

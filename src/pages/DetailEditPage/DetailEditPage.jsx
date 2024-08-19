@@ -1,19 +1,21 @@
-import React, { useState, memo, useRef } from 'react';
-import * as S from './MyPageEditPage.style';
+import React, { useState, useRef, memo } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import * as S from './DetailEditPage.style';
 import Icon from '../../components/Icon/Icon';
-import { Link, useNavigate } from 'react-router-dom';
+import { BlueBadge } from '../../components';
+import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 
 const InputWrapper = memo(
   ({
     label,
     type,
-    placeholder,
     name,
     value,
     onChange,
     onBlur,
     onFocus,
     autoFocus,
+    placeholder,
   }) => {
     return (
       <S.InputWrapper>
@@ -21,13 +23,13 @@ const InputWrapper = memo(
         <S.InputBox>
           <S.Input
             type={type}
-            placeholder={autoFocus ? '' : placeholder}
             name={name}
             value={value || ''}
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
             autoFocus={autoFocus}
+            placeholder={placeholder}
           />
           {!autoFocus && (
             <S.IconWrapper onClick={() => onFocus(name)}>
@@ -40,19 +42,57 @@ const InputWrapper = memo(
   }
 );
 
-export default function MyPageEditPage() {
+const badges = [
+  { label: '비즈니스', value: '비즈니스' },
+  { label: '방송사', value: '방송사' },
+  { label: '부동산', value: '부동산' },
+  { label: '대학교', value: '대학교' },
+];
+
+export default function DetailEditPage() {
+  const { id } = useParams();
+
+  const [activeBadge, setActiveBadge] = useState(null);
+  const filteredData = CARDS_SAMPLE_DATA.find(
+    (data) => data.name === decodeURIComponent(id)
+  );
+
+  const [filteredBadges, setFilteredBadges] = useState(() => {
+    return filteredData ? badges : [];
+  });
+
+  const [profileImage, setProfileImage] = useState(null);
+
+  const [selectedImage, setSelectedImage] = useState([]);
+
+  const profileImageInputRef = useRef(null);
+
+  const onUploadImage = (e) => {
+    const files = Array.from(e.target.files || e.dataTransfer.files);
+    setSelectedImage(files);
+  };
+
+  const onUploadProfileImage = (e) => {
+    const file = e.target.files[0];
+    setProfileImage(URL.createObjectURL(file));
+  };
+
+  const handleProfileImageClick = () => {
+    profileImageInputRef.current.click();
+  };
+
   const [myInfo, setMyInfo] = useState({
-    name: '김은지',
-    team: '개발팀',
-    job: 'Web Engineer',
-    company: 'WELLET Corp.',
+    name: filteredData.name,
+    job: filteredData.job,
+    company: filteredData.company,
   });
 
   const [myContact, setMyContact] = useState({
-    phone: '010-1234-5678',
-    email: 'email@welletapp.co.kr',
-    tel: '81-2-222-3456',
-    address: '서울시 강남구 테헤란로 134, 5-6층 (역삼동, 포스크타워 역삼)',
+    phone: filteredData.phone,
+    email: filteredData.email,
+    tel: filteredData.tel,
+    address: filteredData.address,
+    memo: filteredData.memo,
   });
 
   const handleInfoChange = (e) => {
@@ -87,13 +127,6 @@ export default function MyPageEditPage() {
       onChange: handleInfoChange,
     },
     {
-      label: '부서',
-      type: 'text',
-      name: 'team',
-      value: myInfo.team,
-      onChange: handleInfoChange,
-    },
-    {
       label: '휴대폰',
       type: 'tel',
       name: 'phone',
@@ -121,35 +154,14 @@ export default function MyPageEditPage() {
       value: myContact.address,
       onChange: handleContactChange,
     },
+    {
+      label: '메모',
+      type: 'text',
+      name: 'memo',
+      value: myContact.memo,
+      onChange: handleContactChange,
+    },
   ];
-
-  const [isEditing, setIsEditing] = useState({
-    name: false,
-    team: false,
-    job: false,
-    company: false,
-    phone: false,
-    email: false,
-    tel: false,
-    address: false,
-  });
-
-  const navigate = useNavigate();
-
-  const handleEditComplete = () => {
-    console.log('Data saved successfully:', { myInfo, myContact });
-    setIsEditing({
-      name: false,
-      team: false,
-      job: false,
-      company: false,
-      phone: false,
-      email: false,
-      tel: false,
-      address: false,
-    });
-    navigate('/mypage');
-  };
 
   const handleEditClick = (field) => {
     setIsEditing((prev) => ({
@@ -172,35 +184,43 @@ export default function MyPageEditPage() {
     }));
   };
 
-  const [profileImage, setProfileImage] = useState(null);
+  const [isEditing, setIsEditing] = useState({
+    name: false,
+    job: false,
+    company: false,
+    phone: false,
+    email: false,
+    tel: false,
+    address: false,
+  });
 
-  const profileImageInputRef = useRef(null);
+  const navigate = useNavigate();
 
-  const onUploadImage = (event) => {
-    const files = Array.from(event.target.files || event.dataTransfer.files);
-    setSelectedImage(files);
-  };
-
-  const onUploadProfileImage = (event) => {
-    const file = event.target.files[0];
-    setProfileImage(URL.createObjectURL(file));
-  };
-
-  const handleProfileImageClick = () => {
-    profileImageInputRef.current.click();
+  const handleEditComplete = () => {
+    console.log('Data saved successfully:', { myInfo, myContact });
+    setIsEditing({
+      name: false,
+      job: false,
+      company: false,
+      phone: false,
+      email: false,
+      tel: false,
+      address: false,
+    });
+    navigate(`/card/${id}`);
   };
 
   return (
     <>
       <S.Header>
-        <S.ArrowIcon>
-          <Link to='/mypage'>
+        <S.Arrowicon>
+          <Link to={`/card/${id}`}>
             <Icon id='arrow' fill='#2D29FF' width='20' height='20' />
           </Link>
-        </S.ArrowIcon>
-        <S.WelletLogo>
+        </S.Arrowicon>
+        <S.Welletlogo>
           <Icon id='logo-blue' />
-        </S.WelletLogo>
+        </S.Welletlogo>
         <S.EditIconBox>
           <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
         </S.EditIconBox>
@@ -214,7 +234,7 @@ export default function MyPageEditPage() {
               backgroundPosition: 'center',
             }}
           />
-          <S.GalleryIcon>
+          <S.Galleryicon>
             <Icon
               id='gallery'
               fill='#FFFFFF'
@@ -229,7 +249,7 @@ export default function MyPageEditPage() {
               style={{ display: 'none' }}
               onChange={onUploadProfileImage}
             />
-          </S.GalleryIcon>
+          </S.Galleryicon>
         </S.PicContainer>
         <S.EditInfoContainer>
           <S.EditName>
@@ -275,6 +295,23 @@ export default function MyPageEditPage() {
           ))}
         </S.InputContainer>
       </S.InputField>
+      <S.GroupButtonContainer>
+        <S.GroupButtonBar>그룹</S.GroupButtonBar>
+        <S.GroupButtonBox>
+          <BlueBadge
+            badges={filteredBadges}
+            activeBadge={activeBadge}
+            setActiveBadge={setActiveBadge}
+            fill='#2d29ff'
+          />
+          <S.PlusBtnWrapper>
+            <S.PlusText>그룹 추가</S.PlusText>
+            <S.MoreIcon>
+              <Icon id='more' fill='#2D29FF' />
+            </S.MoreIcon>
+          </S.PlusBtnWrapper>
+        </S.GroupButtonBox>
+      </S.GroupButtonContainer>
     </>
   );
 }

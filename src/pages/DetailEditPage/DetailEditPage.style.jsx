@@ -9,13 +9,14 @@ export const Header = styled.div`
   padding: 0 20px;
 `;
 
-export const ArrowIcon = styled.div`
+export const Arrowicon = styled.button`
+  width: 60px;
   display: flex;
   align-items: center;
-  width: 60px;
+  cursor: pointer;
 `;
 
-export const WelletLogo = styled.div`
+export const Welletlogo = styled.div`
   width: 78px;
   height: 22px;
   display: flex;
@@ -63,16 +64,15 @@ export const PicContainer = styled.div`
 `;
 
 export const ProfilePic = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 68px;
   height: 68px;
+  object-fit: cover;
   border-radius: 68px;
   background: #2d29ff4c;
+  position: relative;
 `;
 
-export const GalleryIcon = styled.button`
+export const Galleryicon = styled.button`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -106,6 +106,7 @@ export const InputNameBox = styled.input`
   font-size: 16px;
   font-weight: 600;
 `;
+
 export const Name = styled.div`
   color: var(--grey4, #1a1a1a);
   font-size: 16px;
@@ -138,16 +139,16 @@ export const EditInfo = styled.div`
   display: flex;
 `;
 
+export const InputContainer = styled.div`
+  width: 100%;
+`;
+
 export const InputField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
   align-items: center;
   padding: 0 20px;
-`;
-
-export const InputContainer = styled.div`
-  width: 100%;
 `;
 
 export const InputWrapper = styled.div`
@@ -195,4 +196,50 @@ export const IconWrapper = styled.div`
   display: flex;
   width: 13px;
   height: 13px;
+`;
+
+export const GroupButtonContainer = styled.div`
+  width: 100%;
+  padding: 20px;
+`;
+
+export const GroupButtonBar = styled.div`
+  wdith: 100%;
+  padding: 0 6px;
+  color: var(--grey3, #555);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.6px;
+`;
+
+export const GroupButtonBox = styled.div`
+  width: 100%;
+  display: inline-flex;
+  gap: 5px;
+  padding: 5px 0;
+`;
+
+export const PlusBtnWrapper = styled.button`
+  display: inline-flex;
+  padding: 4px 10px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: #ebf3fe;
+  font-size: 9px;
+`;
+
+export const PlusText = styled.p`
+  font-size: 11px;
+  line-height: 130%;
+  letter-spacing: -0.55px;
+  font-weight: 400;
+  color: #2d29ff;
+`;
+
+export const MoreIcon = styled.div`
+  width: 10px;
+  height: 11px;
+  display: flex;
 `;

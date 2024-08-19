@@ -48,11 +48,7 @@ export const MidBar = styled.div`
   width: 100%;
   display: inline-flex;
   padding: 24px 0;
-  justify-content: space-between;
-`;
-
-export const LeftContainer2 = styled.div`
-  width: 97px;
+  justify-content: center;
 `;
 
 export const PicContainer = styled.div`
@@ -70,21 +66,6 @@ export const ProfilePic = styled.img`
   border-radius: 68.239px;
   background: #ffffff;
   position: relative;
-`;
-
-export const IconBarContainer = styled.div`
-  width: 97px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  gap: 16px;
-`;
-
-export const Dot3Icon = styled.div`
-  padding-top: 8px;
-  display: flex;
-  align-items: center;
 `;
 
 export const BotBar = styled.div`

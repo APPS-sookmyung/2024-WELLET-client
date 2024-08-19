@@ -2,19 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as S from './CardInfo.style';
 import Icon from '../../components/Icon/Icon';
-import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 import { Link } from 'react-router-dom';
 
 export default function CardInfo({
   name,
   job,
   company,
-  imageUrl = ProfileImgDefault,
+  imageUrl,
   isDeleteMode = false,
   isSelected = false,
   onClick = () => {},
 }) {
-  return (
+  const cardContent = (
     <S.Card
       onClick={onClick}
       isDeleteMode={isDeleteMode}
@@ -22,7 +21,11 @@ export default function CardInfo({
     >
       <S.CardWrapper>
         <S.ProfileImgWrapper>
-          <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
+          {imageUrl ? (
+            <img src={imageUrl} alt={`${name} 프로필`} />
+          ) : (
+            <Icon id='profile-basic' fill='none' />
+          )}
         </S.ProfileImgWrapper>
         <S.Info>
           <S.Name isSelected={isSelected}>{name}</S.Name>
@@ -31,21 +34,23 @@ export default function CardInfo({
           </S.Job>
         </S.Info>
       </S.CardWrapper>
-      <Link to={`/card/${name}`}>
+      {!isDeleteMode && (
         <S.ArrowIconWrapper>
-          <Icon
-            id={
-              isDeleteMode
-                ? isSelected
-                  ? 'circle-check'
-                  : 'circle'
-                : 'arrow-right'
-            }
-            fill='none'
-          />
+          <Icon id='arrow-right' fill='none' />
         </S.ArrowIconWrapper>
-      </Link>
+      )}
+      {isDeleteMode && (
+        <S.ArrowIconWrapper>
+          <Icon id={isSelected ? 'circle-check' : 'circle'} fill='none' />
+        </S.ArrowIconWrapper>
+      )}
     </S.Card>
+  );
+
+  return isDeleteMode ? (
+    cardContent
+  ) : (
+    <Link to={`/card/${name}`}>{cardContent}</Link>
   );
 }
 

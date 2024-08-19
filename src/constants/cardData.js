@@ -9,6 +9,7 @@ const sampleData = [
     address: '서울시 용산구',
     imageUrl: '',
     category: '비즈니스',
+    memo: '내일 미팅',
   },
   {
     name: '한은영',
@@ -20,6 +21,7 @@ const sampleData = [
     address: '서울시 용산구',
     imageUrl: '',
     category: '비즈니스',
+    memo: '',
   },
   {
     name: '이영희',
@@ -31,6 +33,7 @@ const sampleData = [
     address: '서울시 마포구',
     imageUrl: '',
     category: '비즈니스',
+    memo: '',
   },
   {
     name: '김현우',
@@ -42,6 +45,7 @@ const sampleData = [
     address: '서울시 성동구',
     imageUrl: '',
     category: '비즈니스',
+    memo: '',
   },
   {
     name: '김디공',
@@ -53,6 +57,7 @@ const sampleData = [
     address: '부산광역시',
     imageUrl: '',
     category: '부동산',
+    memo: '',
   },
   {
     name: '홍길동',
@@ -64,6 +69,7 @@ const sampleData = [
     address: '대전광역시',
     imageUrl: '',
     category: '부동산',
+    memo: '',
   },
   {
     name: '김인쇄',
@@ -75,6 +81,7 @@ const sampleData = [
     address: '서울시 강남구',
     imageUrl: '',
     category: '부동산',
+    memo: '',
   },
   {
     name: '박대기',
@@ -86,6 +93,7 @@ const sampleData = [
     address: '서울시 동작구',
     imageUrl: '',
     category: '방송사',
+    memo: '',
   },
   {
     name: '홍길동',
@@ -97,6 +105,7 @@ const sampleData = [
     address: '인천광역시',
     imageUrl: '',
     category: '방송사',
+    memo: '',
   },
 ];
 

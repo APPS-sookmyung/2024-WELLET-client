@@ -5,7 +5,7 @@ export const MyCard = styled.div`
   border-radius: 20px;
   display: flex;
   height: 155px;
-  min-width: 90%;
+  width: 100%;
   transition: background 0.3s;
 `;
 
@@ -16,6 +16,13 @@ export const ProfileImg = styled.div`
   max-height: 68px;
   border-radius: 50%;
   display: flex;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 `;
 
 export const ProfileText = styled.div`
@@ -58,9 +65,8 @@ export const ExtraInfo = styled.div`
 
 export const MoreOption = styled.div`
   display: flex;
-  width: 5px;
-  height: 24px;
-  margin-top: 16px;
+  margin-top: 12px;
+
   justify-content: end;
   margin-left: auto;
 `;
