@@ -34,6 +34,11 @@ export const DeleteCardBadge = styled.button`
   gap: 8px;
   border-radius: 10px;
   background: var(--Color-4-1, #ffe6f2);
+
+  svg {
+    width: 10px;
+    height: 11px;
+  }
 `;
 
 export const EditCompletedBadge = styled.button`
@@ -54,12 +59,6 @@ export const BadgeText = styled.p`
   font-size: 11px;
   line-height: 130%;
   letter-spacing: -0.55px;
-`;
-
-export const TrashIcon = styled.div`
-  width: 10px;
-  height: 11px;
-  flex-shrink: 0;
 `;
 
 // 명함
