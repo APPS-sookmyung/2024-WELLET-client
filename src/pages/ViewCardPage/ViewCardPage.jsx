@@ -1,11 +1,5 @@
 import * as S from './ViewCardPage.style';
-import {
-  Header,
-  TabBar,
-  SearchBar,
-  BlueBadge,
-  CardInfo,
-} from '../../components';
+import { Header, SearchBar, BlueBadge, CardInfo } from '../../components';
 import { useState } from 'react';
 import Icon from '../../components/Icon/Icon';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
@@ -98,7 +92,6 @@ export default function ViewCardPage() {
           ))}
         </S.CardContainer>
       </S.ViewCardPage>
-      <TabBar />
     </>
   );
 }

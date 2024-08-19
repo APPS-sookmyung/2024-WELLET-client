@@ -60,29 +60,6 @@ export const CardListTitle = styled.div`
   }
 `;
 
-export const ListOpiton = styled.div`
-  display: flex;
-  align-items: center;
-  padding-bottom: 10px;
-`;
-
-export const ArrowBottomIcon = styled.div`
-  display: flex;
-  width: 10px;
-  height: 10px;
-`;
-
-export const Filter = styled.p`
-  display: flex;
-  padding-left: 4px;
-  font-size: 9px;
-  color: #555;
-`;
-
-export const AddGroup = styled.div`
-  margin-left: auto;
-`;
-
 export const EditBtnWrapper = styled.button`
   display: inline-flex;
   padding: 4px 10px;
@@ -98,12 +75,6 @@ export const EditText = styled.p`
   line-height: 150%;
   letter-spacing: -0.5px;
   color: #2d29ff;
-`;
-
-export const MoreIcon = styled.div`
-  width: 10px;
-  height: 11px;
-  display: flex;
 `;
 
 export const CardContainer = styled.div`

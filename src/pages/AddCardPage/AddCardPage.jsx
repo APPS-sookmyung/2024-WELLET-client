@@ -2,7 +2,6 @@ import * as S from './AddCardPage.style';
 import React, { useRef, useState } from 'react';
 import {
   Header,
-  TabBar,
   SearchBar,
   BlueBadge,
   PrimaryButton,
@@ -234,7 +233,6 @@ export default function AddCardPage() {
           <SecondaryButton>취소</SecondaryButton>
         </S.ActionBtnContainer>
       </S.AddCardPage>
-      <TabBar />
     </>
   );
 }

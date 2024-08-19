@@ -2,7 +2,6 @@ import * as S from './MyPage.style';
 import Icon from '../../components/Icon/Icon';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TabBar } from '../../components';
 import { HiOutlineLink } from 'react-icons/hi';
 
 // 더미 데이터
@@ -106,7 +105,6 @@ export default function MyPage() {
           </S.MyInfoContainer>
         </S.MyInfoIList>
       </S.BottomContainer>
-      <TabBar />
 
       {/* QR 코드 모달창 */}
       {isModalOpen && (

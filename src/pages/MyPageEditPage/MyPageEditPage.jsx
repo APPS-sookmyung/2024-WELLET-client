@@ -1,7 +1,6 @@
 import React, { useState, memo, useRef } from 'react';
 import * as S from './MyPageEditPage.style';
 import Icon from '../../components/Icon/Icon';
-import { TabBar } from '../../components';
 import { Link, useNavigate } from 'react-router-dom';
 
 const InputWrapper = memo(
@@ -276,7 +275,6 @@ export default function MyPageEditPage() {
           ))}
         </S.InputContainer>
       </S.InputField>
-      <TabBar />
     </>
   );
 }
