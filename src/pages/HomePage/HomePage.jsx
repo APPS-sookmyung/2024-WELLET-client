@@ -6,19 +6,18 @@ import {
   SearchBar,
   TabBar,
   CardInfo,
-
   MyCard,
   Icon,
   AddGroupModal,
 } from '../../components';
-import myCardData from '../../constants/myCardData';
-import sampleData from '../../constants/cardData.js';
+import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
 import {
   useVisibleCardsEffect,
   useUpdateCardElementsEffect,
   useScrollToCardEffect,
 } from '../../utils/HomePageUtils/homePageEffects';
 import { scrollCards } from '../../utils/HomePageUtils/homePageUtils';
+import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -28,7 +27,7 @@ export default function HomePage() {
   const myCardListRef = useRef(null);
   const cardElementsRef = useRef([]);
 
-  useVisibleCardsEffect(setFilterdList, sampleData);
+  useVisibleCardsEffect(setFilterdList, CARDS_SAMPLE_DATA);
   useUpdateCardElementsEffect(myCardListRef, cardElementsRef);
   useScrollToCardEffect(myCardListRef, cardElementsRef, selectedMyCardId);
 
@@ -51,14 +50,14 @@ export default function HomePage() {
                   'prev',
                   selectedMyCardId,
                   setSelectedMyCardId,
-                  myCardData.length
+                  MY_CARD_SAMPLE_DATA.length
                 )
               }
             >
               <Icon id='arrow' width='20' height='20' stroke='#fff' />
             </S.LeftAngleBtn>
             <S.MyCardList ref={myCardListRef}>
-              {myCardData.map((data, index) => (
+              {MY_CARD_SAMPLE_DATA.map((data, index) => (
                 <MyCard
                   key={index}
                   backgroundColor={
@@ -81,7 +80,7 @@ export default function HomePage() {
                   'next',
                   selectedMyCardId,
                   setSelectedMyCardId,
-                  myCardData.length
+                  MY_CARD_SAMPLE_DATA.length
                 )
               }
             >

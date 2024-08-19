@@ -8,7 +8,7 @@ import {
 } from '../../components';
 import { useState } from 'react';
 import Icon from '../../components/Icon/Icon';
-import sampleData from '../../constants/cardData';
+import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 
 export default function ViewCardPage() {
   const [activeBadge, setActiveBadge] = useState('전체 보기');
@@ -25,8 +25,8 @@ export default function ViewCardPage() {
 
   const filteredData =
     activeBadge === '전체 보기'
-      ? sampleData
-      : sampleData.filter((data) => data.category === activeBadge);
+      ? CARDS_SAMPLE_DATA
+      : CARDS_SAMPLE_DATA.filter((data) => data.category === activeBadge);
 
   const handleDeleteClick = () => {
     setIsDeleteMode(true);

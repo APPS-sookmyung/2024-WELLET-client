@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { visibleCards, updateCardElements } from './homePageUtils';
 
-export const useVisibleCardsEffect = (setFilterdList, sampleData) => {
+export const useVisibleCardsEffect = (setFilterdList, CARDS_SAMPLE_DATA) => {
   useEffect(() => {
-    visibleCards(setFilterdList, sampleData);
-  }, [setFilterdList, sampleData]);
+    visibleCards(setFilterdList, CARDS_SAMPLE_DATA);
+  }, [setFilterdList, CARDS_SAMPLE_DATA]);
 };
 
 export const useUpdateCardElementsEffect = (myCardListRef, cardElementsRef) => {
