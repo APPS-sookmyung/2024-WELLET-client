@@ -5,7 +5,7 @@ export const MyCard = styled.div`
   border-radius: 20px;
   display: flex;
   height: 155px;
-  min-width: 90%;
+  width: 100%;
   transition: background 0.3s;
 `;
 
@@ -65,9 +65,8 @@ export const ExtraInfo = styled.div`
 
 export const MoreOption = styled.div`
   display: flex;
-  width: 5px;
-  height: 24px;
-  margin-top: 16px;
+  margin-top: 12px;
+
   justify-content: end;
   margin-left: auto;
 `;

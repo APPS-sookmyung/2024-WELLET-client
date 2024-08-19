@@ -15,41 +15,11 @@ export const Padding = styled.div`
   padding: 0 20px;
 `;
 
-export const MyCardListContainer = styled.div`
+export const MyCardContainer = styled.div`
   width: 100%;
-  max-width: 768px;
   display: flex;
-  position: relative;
-  align-items: center;
-`;
-
-export const MyCardList = styled.div`
-  width: 100%;
-  height: 160px;
-  display: flex;
-  gap: 9px;
+  justify-content: center;
   padding: 0 20px;
-  overflow-x: auto;
-  white-space: nowrap;
-  scroll-behavior: smooth;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-`;
-
-export const LeftAngleBtn = styled.div`
-  position: absolute;
-  display: flex;
-  padding: 30px 0 30px 17px;
-`;
-
-export const RightAngleBtn = styled.div`
-  position: absolute;
-  right: 0;
-  display: flex;
-  padding: 30px 17px 30px 0;
 `;
 
 export const UpDownBarBox = styled.div`

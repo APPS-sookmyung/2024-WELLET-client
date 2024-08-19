@@ -1,6 +1,6 @@
 import * as S from './MyCard.style';
-import Icon from '../Icon/Icon';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+import { MdLogin } from 'react-icons/md';
 
 export default function MyCard({
   name,
@@ -35,7 +35,7 @@ export default function MyCard({
         </S.ExtraInfo>
       </S.ProfileText>
       <S.MoreOption>
-        <Icon id='dot3' fill='#2D29FF' />
+        <MdLogin size='20' color='#2D29FF' />
       </S.MoreOption>
     </S.MyCard>
   );
