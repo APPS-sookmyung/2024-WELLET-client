@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Card = styled.a`
+export const Card = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,6 +24,12 @@ export const ProfileImgWrapper = styled.div`
   border-radius: 50px;
 
   img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  svg {
     width: 100%;
     height: 100%;
     border-radius: 50%;
