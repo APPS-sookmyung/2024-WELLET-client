@@ -54,7 +54,7 @@ export default function ViewCardPage() {
   return (
     <>
       <S.ViewCardPage>
-        <Header />
+        <Header color='blue' />
         <SearchBar theme='white' />
 
         {/* 그룹 설정 버튼 */}
