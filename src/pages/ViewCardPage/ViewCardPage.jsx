@@ -8,7 +8,7 @@ import {
 } from '../../components';
 import { useState } from 'react';
 import Icon from '../../components/Icon/Icon';
-import sampleData from '../../constants/cardData';
+import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 
 export default function ViewCardPage() {
   const [activeBadge, setActiveBadge] = useState('전체 보기');
@@ -23,10 +23,13 @@ export default function ViewCardPage() {
     { label: '대학교', value: '대학교' },
   ];
 
-  const filteredData =
+  let filteredData =
     activeBadge === '전체 보기'
-      ? sampleData
-      : sampleData.filter((data) => data.category === activeBadge);
+      ? CARDS_SAMPLE_DATA
+      : CARDS_SAMPLE_DATA.filter((data) => data.category === activeBadge);
+
+  // 이름을 기준으로 오름차순 정렬
+  filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
 
   const handleDeleteClick = () => {
     setIsDeleteMode(true);
