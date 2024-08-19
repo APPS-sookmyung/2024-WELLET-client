@@ -61,7 +61,7 @@ export default function MyPage() {
           <S.MyInfoTitle>내 정보</S.MyInfoTitle>
           <S.MyInfoContainer>
             <S.MyInfoItem>
-              <S.MyInfoLabel>성명</S.MyInfoLabel>
+              <S.MyInfoLabel>회사</S.MyInfoLabel>
               <S.MyInfoValue>{myInfo.company}</S.MyInfoValue>
             </S.MyInfoItem>
             <S.MyInfoItem>
