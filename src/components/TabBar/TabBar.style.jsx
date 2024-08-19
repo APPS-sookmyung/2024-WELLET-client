@@ -16,6 +16,8 @@ export const TabBar = styled.div`
   flex-shrink: 0;
   background-color: #fff;
   box-shadow: 0px -4px 5px 0px rgba(0, 0, 0, 0.05);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 15px);
+
 `;
 
 export const Icon = styled.div`
