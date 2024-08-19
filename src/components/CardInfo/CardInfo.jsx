@@ -15,35 +15,35 @@ export default function CardInfo({
   onClick = () => {},
 }) {
   return (
-    <S.Card
-      onClick={onClick}
-      isDeleteMode={isDeleteMode}
-      isSelected={isSelected}
-    >
-      <S.CardWrapper>
-        <S.ProfileImgWrapper>
-          <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
-        </S.ProfileImgWrapper>
-        <S.Info>
-          <S.Name isSelected={isSelected}>{name}</S.Name>
-          <S.Job isSelected={isSelected}>
-            {job}, {company}
-          </S.Job>
-        </S.Info>
-      </S.CardWrapper>
-      {!isDeleteMode && (
-        <Link to={`/card/${name}`}>
+    <Link to={`/card/${name}`}>
+      <S.Card
+        onClick={onClick}
+        isDeleteMode={isDeleteMode}
+        isSelected={isSelected}
+      >
+        <S.CardWrapper>
+          <S.ProfileImgWrapper>
+            <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
+          </S.ProfileImgWrapper>
+          <S.Info>
+            <S.Name isSelected={isSelected}>{name}</S.Name>
+            <S.Job isSelected={isSelected}>
+              {job}, {company}
+            </S.Job>
+          </S.Info>
+        </S.CardWrapper>
+        {!isDeleteMode && (
           <S.ArrowIconWrapper>
             <Icon id='arrow-right' fill='none' />
           </S.ArrowIconWrapper>
-        </Link>
-      )}
-      {isDeleteMode && (
-        <S.ArrowIconWrapper>
-          <Icon id={isSelected ? 'circle-check' : 'circle'} fill='none' />
-        </S.ArrowIconWrapper>
-      )}
-    </S.Card>
+        )}
+        {isDeleteMode && (
+          <S.ArrowIconWrapper>
+            <Icon id={isSelected ? 'circle-check' : 'circle'} fill='none' />
+          </S.ArrowIconWrapper>
+        )}
+      </S.Card>
+    </Link>
   );
 }
 

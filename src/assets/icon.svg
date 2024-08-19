@@ -21,8 +21,8 @@
     <path d="M8 14L0.928932 6.92893L7.29289 0.56497" stroke-width="1.2" fill="none"/>
   </symbol>
 
-  <symbol id="arrow-right" viewBox="0 0 9 15" fill='none'>
-    <path id="Vector 237" d="M1.18262 1L7.84473 7.66211L1.44404 14.0628" />
+  <symbol id="arrow-right" viewBox="0 0 9 15">
+    <path d="M1 1L7.36396 7.36396L1 13.7279" stroke="#2D29FF"/>
   </symbol>
 
   <symbol id="arrow-bottom" viewBox="0 0 11 6">
