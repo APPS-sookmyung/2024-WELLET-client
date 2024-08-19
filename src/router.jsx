@@ -12,55 +12,104 @@ import {
   DetailEditPage,
   MyPageEditPage,
 } from './pages';
+import { Layout } from './components';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <OnBoardingPage />,
+    element: (
+      <Layout>
+        <OnBoardingPage />
+      </Layout>
+    ),
   },
   {
     path: '/home',
-    element: <HomePage />,
+    element: (
+      <Layout>
+        <HomePage />
+      </Layout>
+    ),
   },
   {
     path: '/card/add',
-    element: <AddCardPage />,
+    element: (
+      <Layout>
+        <AddCardPage />
+      </Layout>
+    ),
   },
   {
     path: '/card',
-    element: <ViewCardPage />,
+    element: (
+      <Layout>
+        <ViewCardPage />
+      </Layout>
+    ),
   },
   {
     path: '/mypage',
-    element: <MyPage />,
+    element: (
+      <Layout>
+        <MyPage />
+      </Layout>
+    ),
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: (
+      <Layout>
+        <LoginPage />
+      </Layout>
+    ),
   },
   {
     path: '/login/find-id',
-    element: <FindIdPwPage />,
+    element: (
+      <Layout>
+        <FindIdPwPage />
+      </Layout>
+    ),
   },
   {
     path: '/login/find-pw',
-    element: <FindIdPwPage />,
+    element: (
+      <Layout>
+        <FindIdPwPage />
+      </Layout>
+    ),
   },
   {
     path: '/sign-up',
-    element: <SignUpPage />,
+    element: (
+      <Layout>
+        <SignUpPage />
+      </Layout>
+    ),
   },
   {
     path: '/mypage/edit',
-    element: <MyPageEditPage />,
+    element: (
+      <Layout>
+        <MyPageEditPage />
+      </Layout>
+    ),
   },
   {
     path: '/card/:id',
-    element: <CardDetailPage />,
+    element: (
+      <Layout>
+        <CardDetailPage />
+      </Layout>
+    ),
   },
   {
     path: '/card/:id/edit',
-    element: <DetailEditPage />,
+    element: (
+      <Layout>
+        <DetailEditPage />
+      </Layout>
+    ),
   },
 ]);
 
