@@ -20,11 +20,13 @@ export default function CardInfo({
       isSelected={isSelected}
     >
       <S.CardWrapper>
-        {imageUrl ? (
-          <img src={imageUrl} alt={`${name} 프로필`} />
-        ) : (
-          <Icon id='profile-basic' fill='none' />
-        )}
+        <S.ProfileImgWrapper>
+          {imageUrl ? (
+            <img src={imageUrl} alt={`${name} 프로필`} />
+          ) : (
+            <Icon id='profile-basic' fill='none' />
+          )}
+        </S.ProfileImgWrapper>
         <S.Info>
           <S.Name isSelected={isSelected}>{name}</S.Name>
           <S.Job isSelected={isSelected}>

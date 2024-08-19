@@ -29,6 +29,12 @@ export const ProfileImgWrapper = styled.div`
     border-radius: 50%;
     object-fit: cover;
   }
+  svg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 `;
 
 export const Info = styled.div`
