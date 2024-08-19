@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, memo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as S from './DetailEditPage.style';
 import Icon from '../../components/Icon/Icon';
-import { TabBar, BlueBadge } from '../../components';
+import { BlueBadge } from '../../components';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 
 const InputWrapper = memo(
@@ -283,7 +283,6 @@ export default function DetailEditPage() {
           </S.PlusBtnWrapper>
         </S.GroupButtonBox>
       </S.GroupButtonContainer>
-      <TabBar />
     </>
   );
 }

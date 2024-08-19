@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as S from './CardDetailPage.style';
 import Icon from '../../components/Icon/Icon';
-import { TabBar, BlueBadge } from '../../components';
+import { BlueBadge } from '../../components';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 
@@ -105,7 +105,6 @@ export default function CardDetailPage() {
           </S.BottomContainer>
         </React.Fragment>
       ))}
-      <TabBar />
     </>
   );
 }

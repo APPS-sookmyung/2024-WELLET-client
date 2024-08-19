@@ -4,7 +4,6 @@ import * as S from './HomePage.style';
 import {
   Header,
   SearchBar,
-  TabBar,
   CardInfo,
   MyCard,
   Icon,
@@ -96,7 +95,6 @@ export default function HomePage() {
         setIsModalOpen={setIsModalOpen}
         style={{ visibility: isModalOpen ? 'visible' : 'hidden' }}
       />
-      <TabBar />
     </>
   );
 }
