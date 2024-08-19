@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect, memo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useRef, useEffect, memo } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import * as S from './DetailEditPage.style';
 import Icon from '../../components/Icon/Icon';
 import { TabBar, BlueBadge } from '../../components';
-import sampleData from '../../constants/cardData';
-import { Link } from 'react-router-dom';
+import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 
 const InputWrapper = memo(
   ({ label, type, name, value, onChange, onBlur, onFocus, autoFocus }) => {
@@ -37,7 +36,7 @@ export default function DetailEditPage() {
   const [activeBadge, setActiveBadge] = useState(null);
   const [filteredBadges, setFilteredBadges] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
-  const filteredData = sampleData.find(
+  const filteredData = CARDS_SAMPLE_DATA.find(
     (data) => data.name === decodeURIComponent(id)
   );
 

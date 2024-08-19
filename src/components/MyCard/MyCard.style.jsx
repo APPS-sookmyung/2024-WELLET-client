@@ -16,6 +16,13 @@ export const ProfileImg = styled.div`
   max-height: 68px;
   border-radius: 50%;
   display: flex;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 `;
 
 export const ProfileText = styled.div`

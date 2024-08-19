@@ -10,17 +10,16 @@ import {
   Icon,
   AddGroupModal,
 } from '../../components';
-import myCardData from '../../constants/myCardData';
-import sampleData from '../../constants/cardData.js';
+import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
 import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects';
-import { visibleCards } from '../../utils/HomePageUtils/homePageUtils';
+import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [filterdList, setFilterdList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useVisibleCardsEffect(setFilterdList, sampleData);
+  useVisibleCardsEffect(setFilterdList, CARDS_SAMPLE_DATA);
 
   return (
     <>
@@ -37,13 +36,13 @@ export default function HomePage() {
           <S.MyCardContainer>
             <MyCard
               backgroundColor='#fff'
-              name={myCardData.name}
-              job={myCardData.job}
-              company={myCardData.company}
-              imageUrl={myCardData.imageUrl}
-              tel={myCardData.tel}
-              email={myCardData.email}
-              address={myCardData.address}
+              name={MY_CARD_SAMPLE_DATA.name}
+              job={MY_CARD_SAMPLE_DATA.job}
+              company={MY_CARD_SAMPLE_DATA.company}
+              imageUrl={MY_CARD_SAMPLE_DATA.imageUrl}
+              tel={MY_CARD_SAMPLE_DATA.tel}
+              email={MY_CARD_SAMPLE_DATA.email}
+              address={MY_CARD_SAMPLE_DATA.address}
               onClick={() => navigate('/mypage')}
             />
           </S.MyCardContainer>
