@@ -1,9 +1,9 @@
 import illust1 from '../assets/images/onboarding_1.svg';
 import illust2 from '../assets/images/onboarding_2.svg';
 import illust3 from '../assets/images/onboarding_3.svg';
-import step1 from '../icons/step_1.svg';
-import step2 from '../icons/step_2.svg';
-import step3 from '../icons/step_3.svg';
+import step1 from '../assets/icons/step_1.svg';
+import step2 from '../assets/icons/step_2.svg';
+import step3 from '../assets/icons/step_3.svg';
 
 const onboarding = [
   {
