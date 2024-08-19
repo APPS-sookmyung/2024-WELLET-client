@@ -58,9 +58,8 @@ export const ExtraInfo = styled.div`
 
 export const MoreOption = styled.div`
   display: flex;
-  width: 5px;
-  height: 24px;
-  margin-top: 16px;
+  margin-top: 12px;
+
   justify-content: end;
   margin-left: auto;
 `;
