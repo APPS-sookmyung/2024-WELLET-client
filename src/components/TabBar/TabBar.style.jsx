@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 export const TabBar = styled.div`
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  height: 70px;
+  align-items: baseline;
+  height: 85px;
   width: 100%;
   max-width: 768px;
   position: fixed;
@@ -16,11 +16,10 @@ export const TabBar = styled.div`
   flex-shrink: 0;
   background-color: #fff;
   box-shadow: 0px -4px 5px 0px rgba(0, 0, 0, 0.05);
-  padding-bottom: calc(env(safe-area-inset-bottom) + 15px);
-
 `;
 
 export const Icon = styled.div`
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
