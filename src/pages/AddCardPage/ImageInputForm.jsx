@@ -46,17 +46,19 @@ export default function ImageInputForm({
             <S.AddBoxText>이미지 한 장 당 최대 크기는 1MB 입니다.</S.AddBoxText>
           </S.AddBoxDesc>
         </S.AddBoxDescWrapper>
-        <S.ImportImageBtnWrapper>
-          <S.ImportImageBtn>파일 가져오기</S.ImportImageBtn>
-          <input
-            type='file'
-            accept='image/*'
-            ref={imageInputRef}
-            style={{ display: 'none' }}
-            onChange={onUploadImage}
-            multiple
-          />
-        </S.ImportImageBtnWrapper>
+        {selectedImage.length < 2 && ( // 두 장 이하일 때만 파일 가져오기 버튼을 보여줌
+          <S.ImportImageBtnWrapper>
+            <S.ImportImageBtn>파일 가져오기</S.ImportImageBtn>
+            <input
+              type='file'
+              accept='image/*'
+              ref={imageInputRef}
+              style={{ display: 'none' }}
+              onChange={onUploadImage}
+              multiple
+            />
+          </S.ImportImageBtnWrapper>
+        )}
         {selectedImage.length > 0 && (
           <S.PreviewContainer>
             {selectedImage.map((file, index) => (

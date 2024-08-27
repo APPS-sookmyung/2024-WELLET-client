@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './AddCardPage.style';
 import Icon from '../../components/Icon/Icon';
-import { InputWrapper } from '../../components';
+import { InputWrapper, BlueBadge } from '../../components';
 
 export default function DirectInputForm({
   profileImage,

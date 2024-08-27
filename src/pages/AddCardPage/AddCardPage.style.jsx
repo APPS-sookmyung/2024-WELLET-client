@@ -83,7 +83,7 @@ export const AddBoxDescWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  padding-bottom: 6px;
+  padding-bottom: 14px;
 `;
 
 export const AddBoxDesc = styled.div`
