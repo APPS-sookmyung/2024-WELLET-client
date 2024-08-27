@@ -1,50 +1,28 @@
 import styled from '@emotion/styled';
 
+export const MyPage = styled.div`
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: 85px;
+`;
+
 export const TopContainer = styled.div`
   width: 100%;
   height: 244px;
-  flex-shrink: 0;
   border-radius: 0px 0px 20px 20px;
   background: linear-gradient(111deg, #2d29ff 35.96%, #721cff 116.82%);
   position: relative;
+  padding: 24px 20px 12px;
 `;
 
-export const EditButton = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 30px;
-  right: 20px;
-  padding: 4px 10px;
-  border-radius: 10px;
-  background: var(--color-1, #ebf3fe);
-  color: var(--primary, #2d29ff);
-  font-size: 11px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+export const TopBar = styled.div`
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
 `;
 
-export const ShareIconWrapper = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  position: absolute;
-  top: 74px;
-  right: 16px;
-  width: 31px;
-  height: 38px;
-  cursor: pointer;
-  padding: 10px;
-`;
-
-export const MyInfoSummaryWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 0;
-  gap: 10px;
+export const LeftContainer1 = styled.div`
+  width: 60px;
 `;
 
 export const MyCardTitle = styled.div`
@@ -56,7 +34,53 @@ export const MyCardTitle = styled.div`
   line-height: 150%;
   letter-spacing: -0.5px;
   width: 60px;
-  padding-bottom: 19px;
+`;
+
+export const EditButton = styled.a`
+  padding: 4px 10px;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 10px;
+  background: var(--color-1, #ebf3fe);
+  color: var(--primary, #2d29ff);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+  width: 60px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const MidBar = styled.div`
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+`;
+
+export const LeftContainer2 = styled.div`
+  width: 31px;
+`;
+
+export const ShareIconWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 31px;
+  height: 38px;
+  cursor: pointer;
+  padding: 16px 10px;
+`;
+
+export const MyInfoSummaryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0 0;
+  gap: 14px;
 `;
 
 export const ProfileImageWrapper = styled.div`
@@ -70,6 +94,16 @@ export const ProfileImageWrapper = styled.div`
   background-color: white;
 `;
 
+export const BotBar = styled.div`
+  width: 100%;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+`;
+
 export const MyName = styled.div`
   color: var(--white, #fff);
   font-size: 18px;
@@ -78,21 +112,13 @@ export const MyName = styled.div`
   letter-spacing: -0.5px;
 `;
 
-export const BottomBarWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-`;
-
-export const BottomBar = styled.div`
+export const SubBar = styled.div`
   width: 72px;
   height: 5px;
   border-radius: 4px;
   background: #8776ff;
   padding: 0 20px;
+  gap: 0px;
 `;
 
 // 내 상세 정보
@@ -100,7 +126,6 @@ export const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 724px;
   background: #fff;
   padding: 20px;
   box-sizing: border-box;

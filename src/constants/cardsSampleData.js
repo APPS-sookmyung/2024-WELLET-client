@@ -2,6 +2,7 @@ const CARDS_SAMPLE_DATA = [
   {
     name: '박유정',
     job: '프로덕트 디자이너',
+    team: '디자인팀',
     company: '숙명여자대학교',
     phone: '010-0000-1111',
     email: 'yj@wellet.co.kr',
@@ -14,6 +15,7 @@ const CARDS_SAMPLE_DATA = [
   {
     name: '한은영',
     job: '프론트엔드 개발자',
+    team: '개발팀',
     company: '숙명여자대학교',
     phone: '010-1111-2222',
     email: 'ey@wellet.co.kr',
@@ -26,6 +28,7 @@ const CARDS_SAMPLE_DATA = [
   {
     name: '이영희',
     job: '백엔드 개발자',
+    team: '개발팀',
     company: 'WELLET Corp.',
     phone: '010-2222-3333',
     email: 'yh@wellet.co.kr',
@@ -38,6 +41,7 @@ const CARDS_SAMPLE_DATA = [
   {
     name: '김현우',
     job: '프론트엔드 개발자',
+    team: '개발팀',
     company: 'WELLET Corp.',
     phone: '010-3333-4444',
     email: 'hw@wellet.co.kr',
@@ -50,6 +54,7 @@ const CARDS_SAMPLE_DATA = [
   {
     name: '김디공',
     job: '대표',
+    team: '대표',
     company: '다공 부동산',
     phone: '010-4444-5555',
     email: 'dg@wellet.co.kr',
@@ -61,6 +66,7 @@ const CARDS_SAMPLE_DATA = [
   {
     name: '홍길동',
     job: '대표 | 공인중개사',
+    team: '대표',
     company: '동네공인중개사',
     phone: '010-5555-6666',
     email: 'gd@wellet.co.kr',
@@ -72,6 +78,7 @@ const CARDS_SAMPLE_DATA = [
   {
     name: '김인쇄',
     job: '공인중개사',
+    team: '영업팀',
     company: '인쇄픽부동산',
     phone: '010-6666-7777',
     email: 'is@wellet.co.kr',
@@ -82,7 +89,8 @@ const CARDS_SAMPLE_DATA = [
   },
   {
     name: '박대기',
-    job: '보도본부 사회팀 / 기자',
+    job: '기자',
+    team: '보도본부 사회팀',
     company: 'KBS',
     phone: '010-7777-8888',
     email: 'dk@wellet.co.kr',
@@ -94,6 +102,7 @@ const CARDS_SAMPLE_DATA = [
   {
     name: '홍길돈',
     job: '팀장 / PD',
+    team: '제작팀',
     company: 'KBS VJ 특공대',
     phone: '010-8888-9999',
     email: 'kd@wellet.co.kr',
