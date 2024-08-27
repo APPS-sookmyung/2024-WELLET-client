@@ -116,7 +116,7 @@ export const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 `;
 
 export const PreviewImage = styled.img``;
