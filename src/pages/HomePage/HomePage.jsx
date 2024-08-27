@@ -46,26 +46,26 @@ export default function HomePage() {
           <p style={{ color: '#555' }}>등록된 명함 찾아보기</p>
         </S.CardListTitle>
         {filterdList.length > 0 && (
-          <>
-            <S.CardContainer>
-              {filterdList.map((data, index) => (
-                <CardInfo
-                  key={index}
-                  name={data.name}
-                  job={data.job}
-                  company={data.company}
-                  imageUrl={data.imageUrl}
-                />
-              ))}
-            </S.CardContainer>
-            <S.BottomMoreBtn>
-              <S.EditBtnWrapper>
-                <S.EditText>더 보기</S.EditText>
-              </S.EditBtnWrapper>
-            </S.BottomMoreBtn>
-          </>
+          <S.CardContainer>
+            {filterdList.map((data, index) => (
+              <CardInfo
+                key={index}
+                name={data.name}
+                job={data.job}
+                company={data.company}
+                imageUrl={data.imageUrl}
+              />
+            ))}
+          </S.CardContainer>
         )}
       </S.Container>
+      <S.BottomMoreBtn>
+        <S.EditBtnWrapper onClick={() => navigate('/card')}>
+          <S.EditBtn>
+            <S.EditText>더 보기</S.EditText>
+          </S.EditBtn>
+        </S.EditBtnWrapper>
+      </S.BottomMoreBtn>
     </S.HomePage>
   );
 }

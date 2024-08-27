@@ -37,7 +37,7 @@ export const UpDownBar = styled.div`
 `;
 
 export const Container = styled.div`
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   overflow: hidden;
 `;
 
@@ -60,7 +60,18 @@ export const CardListTitle = styled.div`
   }
 `;
 
-export const EditBtnWrapper = styled.button`
+export const BottomMoreBtn = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding: 0 10px;
+`;
+
+export const EditBtnWrapper = styled.div`
+  padding: 10px;
+`;
+
+export const EditBtn = styled.button`
   display: inline-flex;
   padding: 4px 10px;
   align-items: center;
@@ -81,10 +92,4 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-`;
-
-export const BottomMoreBtn = styled.div`
-  display: flex;
-  justify-content: end;
-  padding-top: 10px;
 `;
