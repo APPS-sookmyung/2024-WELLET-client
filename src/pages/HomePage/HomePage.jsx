@@ -43,7 +43,7 @@ export default function HomePage() {
       <S.Container>
         <S.CardListTitle>
           <p style={{ color: '#000' }}>둘러보기</p>
-          <p style={{ color: '#555' }}>등록된 명함 찾아보기</p>
+          <p style={{ color: '#555' }}>최근 등록된 명함</p>
         </S.CardListTitle>
         {filterdList.length > 0 && (
           <S.CardContainer>
