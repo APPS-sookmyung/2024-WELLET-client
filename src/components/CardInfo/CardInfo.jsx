@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function CardInfo({
   name,
+  team,
   job,
   company,
   imageUrl,
@@ -30,7 +31,7 @@ export default function CardInfo({
         <S.Info>
           <S.Name isSelected={isSelected}>{name}</S.Name>
           <S.Job isSelected={isSelected}>
-            {job}, {company}
+            {job} / {team}, {company}
           </S.Job>
         </S.Info>
       </S.CardWrapper>

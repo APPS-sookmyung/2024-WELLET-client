@@ -20,6 +20,7 @@ export const MyCardContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 0 20px;
+  cursor: pointer;
 `;
 
 export const UpDownBarBox = styled.div`

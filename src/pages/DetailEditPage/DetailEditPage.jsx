@@ -134,7 +134,7 @@ export default function DetailEditPage() {
       onChange: handleContactChange,
     },
     {
-      label: '이메일 주소',
+      label: '이메일',
       type: 'email',
       name: 'email',
       value: myContact.email,

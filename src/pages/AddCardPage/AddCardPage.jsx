@@ -33,15 +33,20 @@ export default function AddCardPage() {
 
   const inputFields = [
     { label: '이름', type: 'text', placeholder: '이름을 입력하세요' },
-    { label: '회사', type: 'text', placeholder: 'WELLET Corp.' },
+    { label: '회사명', type: 'text', placeholder: 'WELLET Corp.' },
     {
-      label: '직책 / 부서',
+      label: '부서',
       type: 'text',
-      placeholder: 'Web Engineer / 개발실',
+      placeholder: '신규 개발팀',
+    },
+    {
+      label: '직책',
+      type: 'text',
+      placeholder: '사원',
     },
     { label: '휴대폰', type: 'tel', placeholder: '010-1234-5678' },
     {
-      label: '이메일 주소',
+      label: '이메일',
       type: 'email',
       placeholder: 'email@welletapp.co.kr',
     },

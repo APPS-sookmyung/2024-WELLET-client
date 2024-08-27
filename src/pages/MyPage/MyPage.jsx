@@ -61,11 +61,11 @@ export default function MyPage() {
           <S.MyInfoTitle>내 정보</S.MyInfoTitle>
           <S.MyInfoContainer>
             <S.MyInfoItem>
-              <S.MyInfoLabel>회사</S.MyInfoLabel>
+              <S.MyInfoLabel>회사명</S.MyInfoLabel>
               <S.MyInfoValue>{myInfo.company}</S.MyInfoValue>
             </S.MyInfoItem>
             <S.MyInfoItem>
-              <S.MyInfoLabel>직무 / 부서</S.MyInfoLabel>
+              <S.MyInfoLabel>직책 / 부서</S.MyInfoLabel>
               <S.MyInfoValue>{`${myInfo.job} / ${myInfo.team}`}</S.MyInfoValue>
             </S.MyInfoItem>
           </S.MyInfoContainer>

@@ -14,7 +14,7 @@ export default function DirectInputForm({
   setActiveGroupBadge,
 }) {
   return (
-    <S.FormContainer>
+    <S.DashedBorder>
       <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
 
       <S.RegisterImageContainer>
@@ -66,6 +66,6 @@ export default function DirectInputForm({
           />
         </S.GroupButtonWrapper>
       </S.GroupContainer>
-    </S.FormContainer>
+    </S.DashedBorder>
   );
 }

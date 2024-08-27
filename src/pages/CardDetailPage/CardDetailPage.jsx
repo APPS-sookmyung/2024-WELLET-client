@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as S from './CardDetailPage.style';
 import Icon from '../../components/Icon/Icon';
@@ -60,7 +60,9 @@ export default function CardDetailPage() {
         <S.BotBar>
           <S.NameBox>
             <S.NameFont>{data.name}</S.NameFont>
-            <S.JobTeamFont>{data.job}</S.JobTeamFont>
+            <S.JobTeamFont>
+              {data.job} / {data.team}
+            </S.JobTeamFont>
             <S.ComFont>{data.company}</S.ComFont>
           </S.NameBox>
           <S.SubBar />

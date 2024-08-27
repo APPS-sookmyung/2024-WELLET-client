@@ -137,12 +137,6 @@ export const ImportImageBtn = styled.button`
 `;
 
 // 직접 입력으로 명함 추가
-export const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-`;
-
 export const RegisterImageContainer = styled.div`
   display: flex;
   align-items: center;
