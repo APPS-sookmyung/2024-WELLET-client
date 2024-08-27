@@ -114,13 +114,12 @@ export const ImportImageBtnWrapper = styled.div`
 
 export const PreviewContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 `;
 
-export const PreviewImage = styled.img`
-  height: 100px;
-  object-fit: cover;
-`;
+export const PreviewImage = styled.img``;
 
 export const ImportImageBtn = styled.button`
   display: flex;
