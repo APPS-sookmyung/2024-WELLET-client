@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const MyEdit = styled.div`
   overflow-y: auto;
   scrollbar-width: none;
-  padding-bottom: 85px;
+  padding-bottom: 96px;
 `;
 
 export const Header = styled.div`
