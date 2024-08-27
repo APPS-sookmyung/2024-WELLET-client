@@ -56,7 +56,10 @@ export default function AddCardPage() {
 
   const onUploadImage = (event) => {
     const files = Array.from(event.target.files || event.dataTransfer.files);
-    setSelectedImage(files);
+    const newImages = files.slice(0, 2);
+    setSelectedImage((prevImages) =>
+      [...prevImages.slice(0, 2), ...newImages].slice(0, 2)
+    );
   };
 
   const handleButtonClick = () => {
@@ -136,7 +139,7 @@ export default function AddCardPage() {
                 <S.AddBoxDesc>
                   <Icon id='dot' />
                   <S.AddBoxText>
-                    이미지는 한 번에 1장까지 업로드할 수 있습니다.
+                    이미지는 한 번에 2장까지 업로드할 수 있습니다.
                   </S.AddBoxText>
                 </S.AddBoxDesc>
                 <S.AddBoxDesc>
