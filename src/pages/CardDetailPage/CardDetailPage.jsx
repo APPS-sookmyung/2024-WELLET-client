@@ -43,7 +43,6 @@ export default function CardDetailPage() {
 
   return (
     <>
-
       <S.TopContainer>
         <S.TopBar>
           <S.LeftContainer1 />
@@ -71,55 +70,54 @@ export default function CardDetailPage() {
         </S.BotBar>
       </S.TopContainer>
 
-        <S.BottomContainer>
-          <S.ConBar>연락처</S.ConBar>
-          <S.ContactContainer>
-            <S.InfoBox>
-              <S.UserInfoLabel>휴대폰</S.UserInfoLabel>
-              <S.ContactWrapper>
-                <S.UserInfoValue>{data.phone}</S.UserInfoValue>
-                <S.IconBox>
-                  <Icon id='message' width='20' height='14' />
-                  <Icon id='call' width='20' height='14' />
-                </S.IconBox>
-              </S.ContactWrapper>
-            </S.InfoBox>
-            <S.InfoBox>
-              <S.UserInfoLabel>이메일</S.UserInfoLabel>
-              <S.ContactWrapper>
-                <S.UserInfoValue>{data.email}</S.UserInfoValue>
-                <Icon id='mail' width='20' height='14' />
-              </S.ContactWrapper>
-            </S.InfoBox>
-            <S.InfoBox>
-              <S.UserInfoLabel>유선전화</S.UserInfoLabel>
-              <S.ContactWrapper>
-                <S.UserInfoValue>{data.tel}</S.UserInfoValue>
+      <S.BottomContainer>
+        <S.ConBar>연락처</S.ConBar>
+        <S.ContactContainer>
+          <S.InfoBox>
+            <S.UserInfoLabel>휴대폰</S.UserInfoLabel>
+            <S.ContactWrapper>
+              <S.UserInfoValue>{data.phone}</S.UserInfoValue>
+              <S.IconBox>
+                <Icon id='message' width='20' height='14' />
                 <Icon id='call' width='20' height='14' />
-              </S.ContactWrapper>
-            </S.InfoBox>
-            <S.InfoBox>
-              <S.UserInfoLabel>주소</S.UserInfoLabel>
-              <S.UserInfoValue>{data.address}</S.UserInfoValue>
-            </S.InfoBox>
-          </S.ContactContainer>
-          <S.ConBar>메모</S.ConBar>
-          <S.ContactContainer>
-            <S.InfoBox>
-              <S.UserInfoValue>{data.memo}</S.UserInfoValue>
-            </S.InfoBox>
-          </S.ContactContainer>
-          <S.GroupButtonBar>그룹</S.GroupButtonBar>
-          <S.GroupButtonBox>
-            <BlueBadge
-              badges={filteredBadges}
-              activeBadge={activeBadge}
-              setActiveBadge={setActiveBadge}
-              fill='#2d29ff'
-            />
-          </S.GroupButtonBox>
-        </S.BottomContainer>
-      </S.CardDetail>
+              </S.IconBox>
+            </S.ContactWrapper>
+          </S.InfoBox>
+          <S.InfoBox>
+            <S.UserInfoLabel>이메일</S.UserInfoLabel>
+            <S.ContactWrapper>
+              <S.UserInfoValue>{data.email}</S.UserInfoValue>
+              <Icon id='mail' width='20' height='14' />
+            </S.ContactWrapper>
+          </S.InfoBox>
+          <S.InfoBox>
+            <S.UserInfoLabel>유선전화</S.UserInfoLabel>
+            <S.ContactWrapper>
+              <S.UserInfoValue>{data.tel}</S.UserInfoValue>
+              <Icon id='call' width='20' height='14' />
+            </S.ContactWrapper>
+          </S.InfoBox>
+          <S.InfoBox>
+            <S.UserInfoLabel>주소</S.UserInfoLabel>
+            <S.UserInfoValue>{data.address}</S.UserInfoValue>
+          </S.InfoBox>
+        </S.ContactContainer>
+        <S.ConBar>메모</S.ConBar>
+        <S.ContactContainer>
+          <S.InfoBox>
+            <S.UserInfoValue>{data.memo}</S.UserInfoValue>
+          </S.InfoBox>
+        </S.ContactContainer>
+        <S.GroupButtonBar>그룹</S.GroupButtonBar>
+        <S.GroupButtonBox>
+          <BlueBadge
+            badges={filteredBadges}
+            activeBadge={activeBadge}
+            setActiveBadge={setActiveBadge}
+            fill='#2d29ff'
+          />
+        </S.GroupButtonBox>
+      </S.BottomContainer>
     </>
   );
 }
