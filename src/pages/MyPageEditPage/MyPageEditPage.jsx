@@ -192,89 +192,91 @@ export default function MyPageEditPage() {
 
   return (
     <>
-      <S.Header>
-        <S.ArrowIcon>
-          <Link to='/mypage'>
-            <Icon id='arrow' fill='#2D29FF' width='20' height='20' />
-          </Link>
-        </S.ArrowIcon>
-        <S.WelletLogo>
-          <Icon id='logo-blue' />
-        </S.WelletLogo>
-        <S.EditIconBox>
-          <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
-        </S.EditIconBox>
-      </S.Header>
-      <S.Body>
-        <S.PicContainer>
-          <S.ProfilePic
-            style={{
-              backgroundImage: `url(${profileImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
-          <S.GalleryIcon>
-            <Icon
-              id='gallery'
-              fill='#FFFFFF'
-              width='20'
-              height='20'
-              onClick={handleProfileImageClick}
+      <S.MyEdit>
+        <S.Header>
+          <S.ArrowIcon>
+            <Link to='/mypage'>
+              <Icon id='arrow' fill='#2D29FF' width='20' height='20' />
+            </Link>
+          </S.ArrowIcon>
+          <S.WelletLogo>
+            <Icon id='logo-blue' />
+          </S.WelletLogo>
+          <S.EditIconBox>
+            <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
+          </S.EditIconBox>
+        </S.Header>
+        <S.Body>
+          <S.PicContainer>
+            <S.ProfilePic
+              style={{
+                backgroundImage: `url(${profileImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
             />
-            <input
-              type='file'
-              accept='image/*'
-              ref={profileImageInputRef}
-              style={{ display: 'none' }}
-              onChange={onUploadProfileImage}
-            />
-          </S.GalleryIcon>
-        </S.PicContainer>
-        <S.EditInfoContainer>
-          <S.EditName>
-            {isEditing.name ? (
-              <S.InputNameBox
-                type='text'
-                name='name'
-                value={myInfo.name}
-                onChange={handleInfoChange}
-                onBlur={() => handleBlur('name')}
-                onFocus={() => handleFocus('name')}
-                autoFocus
+            <S.GalleryIcon>
+              <Icon
+                id='gallery'
+                fill='#FFFFFF'
+                width='20'
+                height='20'
+                onClick={handleProfileImageClick}
               />
-            ) : (
-              <>
-                <S.Name>{myInfo.name}</S.Name>
-                <S.PencilIcon onClick={() => handleEditClick('name')}>
-                  <Icon id='pencil' fill='#FFF' />
-                </S.PencilIcon>
-              </>
-            )}
-          </S.EditName>
-          <S.EditGuide>
-            사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
-          </S.EditGuide>
-        </S.EditInfoContainer>
-      </S.Body>
-      <S.InputField>
-        <S.InputContainer>
-          {InputData.map((field, index) => (
-            <InputWrapper
-              key={index}
-              label={field.label}
-              type={field.type}
-              name={field.name}
-              value={isEditing[field.name] ? field.value : ''}
-              placeholder={isEditing[field.name] ? '' : field.value}
-              onChange={field.onChange}
-              onBlur={() => handleBlur(field.name)}
-              onFocus={() => handleFocus(field.name)}
-              autoFocus={isEditing[field.name]}
-            />
-          ))}
-        </S.InputContainer>
-      </S.InputField>
+              <input
+                type='file'
+                accept='image/*'
+                ref={profileImageInputRef}
+                style={{ display: 'none' }}
+                onChange={onUploadProfileImage}
+              />
+            </S.GalleryIcon>
+          </S.PicContainer>
+          <S.EditInfoContainer>
+            <S.EditName>
+              {isEditing.name ? (
+                <S.InputNameBox
+                  type='text'
+                  name='name'
+                  value={myInfo.name}
+                  onChange={handleInfoChange}
+                  onBlur={() => handleBlur('name')}
+                  onFocus={() => handleFocus('name')}
+                  autoFocus
+                />
+              ) : (
+                <>
+                  <S.Name>{myInfo.name}</S.Name>
+                  <S.PencilIcon onClick={() => handleEditClick('name')}>
+                    <Icon id='pencil' fill='#FFF' />
+                  </S.PencilIcon>
+                </>
+              )}
+            </S.EditName>
+            <S.EditGuide>
+              사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
+            </S.EditGuide>
+          </S.EditInfoContainer>
+        </S.Body>
+        <S.InputField>
+          <S.InputContainer>
+            {InputData.map((field, index) => (
+              <InputWrapper
+                key={index}
+                label={field.label}
+                type={field.type}
+                name={field.name}
+                value={isEditing[field.name] ? field.value : ''}
+                placeholder={isEditing[field.name] ? '' : field.value}
+                onChange={field.onChange}
+                onBlur={() => handleBlur(field.name)}
+                onFocus={() => handleFocus(field.name)}
+                autoFocus={isEditing[field.name]}
+              />
+            ))}
+          </S.InputContainer>
+        </S.InputField>
+      </S.MyEdit>
     </>
   );
 }

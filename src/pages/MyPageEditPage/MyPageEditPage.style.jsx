@@ -1,8 +1,14 @@
 import styled from '@emotion/styled';
 
+export const MyEdit = styled.div`
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: 96px;
+`;
+
 export const Header = styled.div`
   width: 100%;
-  height: 84px;
+  height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,6 +19,7 @@ export const ArrowIcon = styled.div`
   display: flex;
   align-items: center;
   width: 60px;
+  cursor: pointer;
 `;
 
 export const WelletLogo = styled.div`
@@ -106,6 +113,7 @@ export const InputNameBox = styled.input`
   font-size: 16px;
   font-weight: 600;
 `;
+
 export const Name = styled.div`
   color: var(--grey4, #1a1a1a);
   font-size: 16px;
