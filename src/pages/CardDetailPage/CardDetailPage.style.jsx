@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const CardDetail = styled.div`
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: 85px;
+`;
+
 export const TopContainer = styled.div`
   width: 100%;
   height: 244px;
@@ -7,7 +13,7 @@ export const TopContainer = styled.div`
   border-radius: 0px 0px 20px 20px;
   background: linear-gradient(111deg, #2d29ff 35.96%, #721cff 116.82%);
   position: relative;
-  padding: 20px;
+  padding: 24px 20px 12px;
 `;
 
 export const TopBar = styled.div`
@@ -21,9 +27,11 @@ export const LeftContainer1 = styled.div`
 `;
 
 export const MyName = styled.div`
-  width: 60px;
+  width: 78px;
+  height: 22px;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 export const EditIcon = styled.div`
@@ -47,7 +55,7 @@ export const EditIcon = styled.div`
 export const MidBar = styled.div`
   width: 100%;
   display: inline-flex;
-  padding: 24px 0;
+  padding: 24px 0 12px;
   justify-content: center;
 `;
 
@@ -75,7 +83,7 @@ export const BotBar = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 16px;
 `;
 
 export const NameBox = styled.div`
@@ -88,12 +96,11 @@ export const SubBar = styled.div`
   height: 5px;
   border-radius: 4px;
   background: #8776ff;
-  padding: 0 20px;
+  padding: 0px;
 `;
 
 export const BottomContainer = styled.div`
   width: 100%;
-  height: 724px;
   background: #fff;
   padding: 20px;
   box-sizing: border-box;

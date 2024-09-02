@@ -28,6 +28,7 @@ export default function CardDetailPage() {
     imageUrl: '',
     name: '이름없음',
     job: '직책없음',
+    team: '팀없음',
     company: '회사없음',
     phone: '전화번호없음',
     email: '이메일없음',
@@ -42,79 +43,81 @@ export default function CardDetailPage() {
 
   return (
     <>
-      <S.TopContainer>
-        <S.TopBar>
-          <S.LeftContainer1 />
-          <S.MyName>
-            <Icon id='logo-white' width='60' height='24.5' />
-          </S.MyName>
-          <Link to={`/card/${id}/edit`}>
-            <S.EditIcon>편집하기</S.EditIcon>
-          </Link>
-        </S.TopBar>
-        <S.MidBar>
-          <S.PicContainer>
-            <S.ProfilePic src={profileImageUrl} alt={`${data.name} 프로필`} />
-          </S.PicContainer>
-        </S.MidBar>
-        <S.BotBar>
-          <S.NameBox>
-            <S.NameFont>{data.name}</S.NameFont>
-            <S.JobTeamFont>{data.job}</S.JobTeamFont>
-            <S.ComFont>{data.company}</S.ComFont>
-          </S.NameBox>
-          <S.SubBar />
-        </S.BotBar>
-      </S.TopContainer>
+      <S.CardDetail>
+        <S.TopContainer>
+          <S.TopBar>
+            <S.LeftContainer1 />
+            <S.MyName>
+              <Icon id='logo-white' />
+            </S.MyName>
+            <Link to={`/card/${id}/edit`}>
+              <S.EditIcon>편집하기</S.EditIcon>
+            </Link>
+          </S.TopBar>
+          <S.MidBar>
+            <S.PicContainer>
+              <S.ProfilePic src={profileImageUrl} alt={`${data.name} 프로필`} />
+            </S.PicContainer>
+          </S.MidBar>
+          <S.BotBar>
+            <S.NameBox>
+              <S.NameFont>{data.name}</S.NameFont>
+              <S.JobTeamFont>{`${data.job} / ${data.team}`}</S.JobTeamFont>
+              <S.ComFont>{data.company}</S.ComFont>
+            </S.NameBox>
+            <S.SubBar />
+          </S.BotBar>
+        </S.TopContainer>
 
-      <S.BottomContainer>
-        <S.ConBar>연락처</S.ConBar>
-        <S.ContactContainer>
-          <S.InfoBox>
-            <S.UserInfoLabel>휴대폰</S.UserInfoLabel>
-            <S.ContactWrapper>
-              <S.UserInfoValue>{data.phone}</S.UserInfoValue>
-              <S.IconBox>
-                <Icon id='message' width='20' height='14' />
+        <S.BottomContainer>
+          <S.ConBar>연락처</S.ConBar>
+          <S.ContactContainer>
+            <S.InfoBox>
+              <S.UserInfoLabel>휴대폰</S.UserInfoLabel>
+              <S.ContactWrapper>
+                <S.UserInfoValue>{data.phone}</S.UserInfoValue>
+                <S.IconBox>
+                  <Icon id='message' width='20' height='14' />
+                  <Icon id='call' width='20' height='14' />
+                </S.IconBox>
+              </S.ContactWrapper>
+            </S.InfoBox>
+            <S.InfoBox>
+              <S.UserInfoLabel>이메일</S.UserInfoLabel>
+              <S.ContactWrapper>
+                <S.UserInfoValue>{data.email}</S.UserInfoValue>
+                <Icon id='mail' width='20' height='14' />
+              </S.ContactWrapper>
+            </S.InfoBox>
+            <S.InfoBox>
+              <S.UserInfoLabel>유선전화</S.UserInfoLabel>
+              <S.ContactWrapper>
+                <S.UserInfoValue>{data.tel}</S.UserInfoValue>
                 <Icon id='call' width='20' height='14' />
-              </S.IconBox>
-            </S.ContactWrapper>
-          </S.InfoBox>
-          <S.InfoBox>
-            <S.UserInfoLabel>이메일</S.UserInfoLabel>
-            <S.ContactWrapper>
-              <S.UserInfoValue>{data.email}</S.UserInfoValue>
-              <Icon id='mail' width='20' height='14' />
-            </S.ContactWrapper>
-          </S.InfoBox>
-          <S.InfoBox>
-            <S.UserInfoLabel>유선전화</S.UserInfoLabel>
-            <S.ContactWrapper>
-              <S.UserInfoValue>{data.tel}</S.UserInfoValue>
-              <Icon id='call' width='20' height='14' />
-            </S.ContactWrapper>
-          </S.InfoBox>
-          <S.InfoBox>
-            <S.UserInfoLabel>주소</S.UserInfoLabel>
-            <S.UserInfoValue>{data.address}</S.UserInfoValue>
-          </S.InfoBox>
-        </S.ContactContainer>
-        <S.ConBar>메모</S.ConBar>
-        <S.ContactContainer>
-          <S.InfoBox>
-            <S.UserInfoValue>{data.memo}</S.UserInfoValue>
-          </S.InfoBox>
-        </S.ContactContainer>
-        <S.GroupButtonBar>그룹</S.GroupButtonBar>
-        <S.GroupButtonBox>
-          <BlueBadge
-            badges={filteredBadges}
-            activeBadge={activeBadge}
-            setActiveBadge={setActiveBadge}
-            fill='#2d29ff'
-          />
-        </S.GroupButtonBox>
-      </S.BottomContainer>
+              </S.ContactWrapper>
+            </S.InfoBox>
+            <S.InfoBox>
+              <S.UserInfoLabel>주소</S.UserInfoLabel>
+              <S.UserInfoValue>{data.address}</S.UserInfoValue>
+            </S.InfoBox>
+          </S.ContactContainer>
+          <S.ConBar>메모</S.ConBar>
+          <S.ContactContainer>
+            <S.InfoBox>
+              <S.UserInfoValue>{data.memo}</S.UserInfoValue>
+            </S.InfoBox>
+          </S.ContactContainer>
+          <S.GroupButtonBar>그룹</S.GroupButtonBar>
+          <S.GroupButtonBox>
+            <BlueBadge
+              badges={filteredBadges}
+              activeBadge={activeBadge}
+              setActiveBadge={setActiveBadge}
+              fill='#2d29ff'
+            />
+          </S.GroupButtonBox>
+        </S.BottomContainer>
+      </S.CardDetail>
     </>
   );
 }
