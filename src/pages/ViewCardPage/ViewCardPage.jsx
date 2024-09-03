@@ -83,6 +83,7 @@ export default function ViewCardPage() {
               key={index}
               name={data.name}
               job={data.job}
+              team={data.team}
               company={data.company}
               imageUrl={data.imageUrl}
               isDeleteMode={isDeleteMode}
