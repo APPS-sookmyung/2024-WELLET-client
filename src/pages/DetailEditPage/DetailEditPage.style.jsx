@@ -1,8 +1,14 @@
 import styled from '@emotion/styled';
 
+export const DetailEdit = styled.div`
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: 85px;
+`;
+
 export const Header = styled.div`
   width: 100%;
-  height: 84px;
+  height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,12 +70,13 @@ export const PicContainer = styled.div`
 `;
 
 export const ProfilePic = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 68px;
   height: 68px;
-  object-fit: cover;
   border-radius: 68px;
   background: #2d29ff4c;
-  position: relative;
 `;
 
 export const Galleryicon = styled.button`

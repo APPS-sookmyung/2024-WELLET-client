@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as S from './CardDetailPage.style';
 import Icon from '../../components/Icon/Icon';
@@ -28,6 +28,7 @@ export default function CardDetailPage() {
     imageUrl: '',
     name: '이름없음',
     job: '직책없음',
+    team: '팀없음',
     company: '회사없음',
     phone: '전화번호없음',
     email: '이메일없음',
@@ -60,7 +61,9 @@ export default function CardDetailPage() {
         <S.BotBar>
           <S.NameBox>
             <S.NameFont>{data.name}</S.NameFont>
-            <S.JobTeamFont>{data.job}</S.JobTeamFont>
+            <S.JobTeamFont>
+              {data.job} / {data.team}
+            </S.JobTeamFont>
             <S.ComFont>{data.company}</S.ComFont>
           </S.NameBox>
           <S.SubBar />

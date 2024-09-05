@@ -1,7 +1,7 @@
 import * as S from './MyPage.style';
 import Icon from '../../components/Icon/Icon';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { HiOutlineLink } from 'react-icons/hi';
 
 // 더미 데이터
@@ -35,103 +35,119 @@ export default function MyPage() {
     }, 3000);
   };
 
+  const navigate = useNavigate();
+  const handleEditButtonClick = () => {
+    navigate('/mypage/edit');
+  };
+
   return (
     <>
-      <S.TopContainer>
-        <Link to='/mypage/edit'>
-          <S.EditButton>편집하기</S.EditButton>
-        </Link>
-        <S.ShareIconWrapper>
-          <Icon id='share' width='11' height='17' onClick={handleShareClick} />
-        </S.ShareIconWrapper>
-
-        <S.MyInfoSummaryWrapper>
-          <S.MyCardTitle>내 명함</S.MyCardTitle>
-          <S.ProfileImageWrapper>프로필 사진</S.ProfileImageWrapper>
-          <S.MyName>{myInfo.name}</S.MyName>
-        </S.MyInfoSummaryWrapper>
-
-        <S.BottomBarWrapper>
-          <S.BottomBar />
-        </S.BottomBarWrapper>
-      </S.TopContainer>
+      <S.MyPage>
+        <S.TopContainer>
+          <S.TopBar>
+            <S.LeftContainer1 />
+            <S.MyCardTitle>내 명함</S.MyCardTitle>
+            <S.EditButton onClick={handleEditButtonClick}>
+              편집하기
+            </S.EditButton>
+          </S.TopBar>
+          <S.MidBar>
+            <S.LeftContainer2 />
+            <S.MyInfoSummaryWrapper>
+              <S.ProfileImageWrapper>프로필 사진</S.ProfileImageWrapper>
+            </S.MyInfoSummaryWrapper>
+            <S.ShareIconWrapper>
+              <Icon
+                id='share'
+                width='11'
+                height='17'
+                onClick={handleShareClick}
+              />
+            </S.ShareIconWrapper>
+          </S.MidBar>
+          <S.BotBar>
+            <S.MyName>{myInfo.name}</S.MyName>
+            <S.SubBar />
+          </S.BotBar>
+        </S.TopContainer>
 
       <S.BottomContainer>
         <S.MyInfoIList>
           <S.MyInfoTitle>내 정보</S.MyInfoTitle>
           <S.MyInfoContainer>
             <S.MyInfoItem>
-              <S.MyInfoLabel>회사</S.MyInfoLabel>
+              <S.MyInfoLabel>회사명</S.MyInfoLabel>
               <S.MyInfoValue>{myInfo.company}</S.MyInfoValue>
             </S.MyInfoItem>
             <S.MyInfoItem>
-              <S.MyInfoLabel>직무 / 부서</S.MyInfoLabel>
+              <S.MyInfoLabel>직책 / 부서</S.MyInfoLabel>
               <S.MyInfoValue>{`${myInfo.job} / ${myInfo.team}`}</S.MyInfoValue>
             </S.MyInfoItem>
           </S.MyInfoContainer>
         </S.MyInfoIList>
 
-        <S.MyInfoIList>
-          <S.MyInfoTitle>내 연락처</S.MyInfoTitle>
-          <S.MyInfoContainer>
-            <S.MyInfoItem>
-              <S.MyInfoLabel>휴대폰</S.MyInfoLabel>
-              <S.ContactWrapper>
-                <S.MyInfoValue>{myInfo.phone}</S.MyInfoValue>
-                <S.IconBox>
-                  <Icon id='message' width='20' height='14' />
+          <S.MyInfoIList>
+            <S.MyInfoTitle>내 연락처</S.MyInfoTitle>
+            <S.MyInfoContainer>
+              <S.MyInfoItem>
+                <S.MyInfoLabel>휴대폰</S.MyInfoLabel>
+                <S.ContactWrapper>
+                  <S.MyInfoValue>{myInfo.phone}</S.MyInfoValue>
+                  <S.IconBox>
+                    <Icon id='message' width='20' height='14' />
+                    <Icon id='call' width='20' height='14' />
+                  </S.IconBox>
+                </S.ContactWrapper>
+              </S.MyInfoItem>
+              <S.MyInfoItem>
+                <S.MyInfoLabel>이메일</S.MyInfoLabel>
+                <S.ContactWrapper>
+                  <S.MyInfoValue>{myInfo.email}</S.MyInfoValue>
+                  <Icon id='mail' width='20' height='14' />
+                </S.ContactWrapper>
+              </S.MyInfoItem>
+              <S.MyInfoItem>
+                <S.MyInfoLabel>유선전화</S.MyInfoLabel>
+                <S.ContactWrapper>
+                  <S.MyInfoValue>{myInfo.tel}</S.MyInfoValue>
                   <Icon id='call' width='20' height='14' />
-                </S.IconBox>
-              </S.ContactWrapper>
-            </S.MyInfoItem>
-            <S.MyInfoItem>
-              <S.MyInfoLabel>이메일</S.MyInfoLabel>
-              <S.ContactWrapper>
-                <S.MyInfoValue>{myInfo.email}</S.MyInfoValue>
-                <Icon id='mail' width='20' height='14' />
-              </S.ContactWrapper>
-            </S.MyInfoItem>
-            <S.MyInfoItem>
-              <S.MyInfoLabel>유선전화</S.MyInfoLabel>
-              <S.ContactWrapper>
-                <S.MyInfoValue>{myInfo.tel}</S.MyInfoValue>
-                <Icon id='call' width='20' height='14' />
-              </S.ContactWrapper>
-            </S.MyInfoItem>
-            <S.MyInfoItem>
-              <S.MyInfoLabel>주소</S.MyInfoLabel>
-              <S.MyInfoValue>{myInfo.address}</S.MyInfoValue>
-            </S.MyInfoItem>
-          </S.MyInfoContainer>
-        </S.MyInfoIList>
-      </S.BottomContainer>
+                </S.ContactWrapper>
+              </S.MyInfoItem>
+              <S.MyInfoItem>
+                <S.MyInfoLabel>주소</S.MyInfoLabel>
+                <S.MyInfoValue>{myInfo.address}</S.MyInfoValue>
+              </S.MyInfoItem>
+            </S.MyInfoContainer>
+          </S.MyInfoIList>
+        </S.BottomContainer>
 
-      {/* QR 코드 모달창 */}
-      {isModalOpen && (
-        <S.ModalOverlay onClick={handleCloseModal}>
-          <S.Modal onClick={(e) => e.stopPropagation()}>
-            <S.CloseButton onClick={handleCloseModal}>
-              <Icon fill='black' id='modal-close' width='22' height='22' />
-            </S.CloseButton>
-            <S.ModalContent>
-              <S.ModalTitle>내 명함 QR코드</S.ModalTitle>
-              <S.QrImage>QR 이미지</S.QrImage>
-              <S.ModalButtonWrapper>
-                <S.CopyLinkButton onClick={handleCopyLinkClick}>
-                  <HiOutlineLink />
-                  링크 복사하기
-                </S.CopyLinkButton>
-                <S.SaveButton>저장하기</S.SaveButton>
-              </S.ModalButtonWrapper>
-            </S.ModalContent>
-          </S.Modal>
-        </S.ModalOverlay>
-      )}
+        {/* QR 코드 모달창 */}
+        {isModalOpen && (
+          <S.ModalOverlay onClick={handleCloseModal}>
+            <S.Modal onClick={(e) => e.stopPropagation()}>
+              <S.CloseButton onClick={handleCloseModal}>
+                <Icon fill='black' id='modal-close' width='22' height='22' />
+              </S.CloseButton>
+              <S.ModalContent>
+                <S.ModalTitle>내 명함 QR코드</S.ModalTitle>
+                <S.QrImage>QR 이미지</S.QrImage>
+                <S.ModalButtonWrapper>
+                  <S.CopyLinkButton onClick={handleCopyLinkClick}>
+                    <HiOutlineLink />
+                    링크 복사하기
+                  </S.CopyLinkButton>
+                  <S.SaveButton>저장하기</S.SaveButton>
+                </S.ModalButtonWrapper>
+              </S.ModalContent>
+            </S.Modal>
+          </S.ModalOverlay>
+        )}
 
-      {/* 토스트 메시지 */}
-      {isToastVisible && (
-        <S.ToastMessage>링크가 복사되었습니다.</S.ToastMessage>
-      )}
+        {/* 토스트 메시지 */}
+        {isToastVisible && (
+          <S.ToastMessage>링크가 복사되었습니다.</S.ToastMessage>
+        )}
+      </S.MyPage>
     </>
   );
 }

@@ -21,7 +21,7 @@ export default function EmailLoginPage() {
           <S.Text>우리(WE)들이 사용하는 월렛</S.Text>
         </S.TitleBox>
         <S.InputBox>
-          <S.Input placeholder='아이디 / 이메일 주소'></S.Input>
+          <S.Input placeholder='아이디 / 이메일'></S.Input>
           <S.Input placeholder='비밀번호'></S.Input>
           <S.Options>
             <S.IdSave
