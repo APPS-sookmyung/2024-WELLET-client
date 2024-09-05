@@ -232,10 +232,6 @@ export default function DetailEditPage() {
     setModalVisible(true);
   };
 
-  const handleClose = () => {
-    setModalVisible(false);
-  };
-
   return (
     <>
       <S.DetailEdit>
@@ -337,13 +333,13 @@ export default function DetailEditPage() {
                 <Icon id='more' fill='#2D29FF' />
               </S.MoreIcon>
             </S.PlusBtnWrapper>
-            <AddGroupModal
-              isModalOpen={modalVisible}
-              setIsModalOpen={setModalVisible}
-            />
           </S.GroupButtonBox>
         </S.GroupButtonContainer>
       </S.DetailEdit>
+      <AddGroupModal
+        isModalOpen={modalVisible}
+        setIsModalOpen={setModalVisible}
+      />
     </>
   );
 }

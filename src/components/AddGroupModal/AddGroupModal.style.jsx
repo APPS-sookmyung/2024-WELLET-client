@@ -17,9 +17,8 @@ export const Container = styled.div`
   padding-bottom: 70px;
   width: 100%;
   max-width: 768px;
-  left: 50%;
-  transform: translateX(-50%)
-    ${({ isModalOpen }) => (isModalOpen ? 'translateY(0)' : 'translateY(100%)')};
+  transform: ${({ isModalOpen }) =>
+    isModalOpen ? 'translateY(0)' : 'translateY(100%)'};
   opacity: ${({ isModalOpen }) => (isModalOpen ? 1 : 0)};
   transition:
     transform 400ms cubic-bezier(0.86, 0, 0.07, 1),
