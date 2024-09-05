@@ -2,7 +2,7 @@ import React, { useState, useRef, memo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as S from './DetailEditPage.style';
 import Icon from '../../components/Icon/Icon';
-import { BlueBadge } from '../../components';
+import { BlueBadge, AddGroupModal } from '../../components';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 
@@ -226,6 +226,16 @@ export default function DetailEditPage() {
 
   const profileImageUrl = data.imageUrl || ProfileImgDefault;
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const handleClose = () => {
+    setModalVisible(false);
+  };
+
   return (
     <>
       <S.DetailEdit>
@@ -321,12 +331,16 @@ export default function DetailEditPage() {
               setActiveBadge={setActiveBadge}
               fill='#2d29ff'
             />
-            <S.PlusBtnWrapper>
-              <S.PlusText>그룹 추가</S.PlusText>
+            <S.PlusBtnWrapper onClick={openModal}>
+              <S.PlusText>그룹 수정</S.PlusText>
               <S.MoreIcon>
                 <Icon id='more' fill='#2D29FF' />
               </S.MoreIcon>
             </S.PlusBtnWrapper>
+            <AddGroupModal
+              isModalOpen={modalVisible}
+              setIsModalOpen={setModalVisible}
+            />
           </S.GroupButtonBox>
         </S.GroupButtonContainer>
       </S.DetailEdit>
