@@ -80,7 +80,9 @@ export default function DetailEditPage() {
 
   const onUploadProfileImage = (e) => {
     const file = e.target.files[0];
-    setProfileImage(URL.createObjectURL(file));
+    if (file) {
+      setProfileImage(URL.createObjectURL(file));
+    }
   };
 
   const handleProfileImageClick = () => {
@@ -211,7 +213,13 @@ export default function DetailEditPage() {
   const navigate = useNavigate();
 
   const handleEditComplete = () => {
-    console.log('Data saved successfully:', { myInfo, myContact });
+    const updatedData = {
+      ...myInfo,
+      ...myContact,
+      group: activeBadge,
+    };
+
+    console.log('Data saved successfully:', updatedData);
     setIsEditing({
       name: false,
       job: false,
@@ -224,7 +232,7 @@ export default function DetailEditPage() {
     navigate(`/card/${id}`);
   };
 
-  const profileImageUrl = data.imageUrl || ProfileImgDefault;
+  const profileImageUrl = profileImage || data.imageUrl || ProfileImgDefault;
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -325,7 +333,6 @@ export default function DetailEditPage() {
               badges={filteredBadges}
               activeBadge={activeBadge}
               setActiveBadge={setActiveBadge}
-              fill='#2d29ff'
             />
             <S.PlusBtnWrapper onClick={openModal}>
               <S.PlusText>그룹 수정</S.PlusText>
