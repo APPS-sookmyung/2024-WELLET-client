@@ -213,7 +213,13 @@ export default function DetailEditPage() {
   const navigate = useNavigate();
 
   const handleEditComplete = () => {
-    console.log('Data saved successfully:', { myInfo, myContact });
+    const updatedData = {
+      ...myInfo,
+      ...myContact,
+      group: activeBadge,
+    };
+
+    console.log('Data saved successfully:', updatedData);
     setIsEditing({
       name: false,
       job: false,
@@ -327,7 +333,6 @@ export default function DetailEditPage() {
               badges={filteredBadges}
               activeBadge={activeBadge}
               setActiveBadge={setActiveBadge}
-              fill='#2d29ff'
             />
             <S.PlusBtnWrapper onClick={openModal}>
               <S.PlusText>그룹 수정</S.PlusText>
