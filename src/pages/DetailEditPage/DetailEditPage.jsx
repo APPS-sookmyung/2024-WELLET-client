@@ -80,7 +80,9 @@ export default function DetailEditPage() {
 
   const onUploadProfileImage = (e) => {
     const file = e.target.files[0];
-    setProfileImage(URL.createObjectURL(file));
+    if (file) {
+      setProfileImage(URL.createObjectURL(file));
+    }
   };
 
   const handleProfileImageClick = () => {
@@ -224,7 +226,7 @@ export default function DetailEditPage() {
     navigate(`/card/${id}`);
   };
 
-  const profileImageUrl = data.imageUrl || ProfileImgDefault;
+  const profileImageUrl = profileImage || data.imageUrl || ProfileImgDefault;
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -238,7 +240,7 @@ export default function DetailEditPage() {
         <S.Header>
           <S.Arrowicon>
             <Link to={`/card/${id}`}>
-              <Icon id='arrow' fill='#2D29FF' width='20' height='20' />
+              <Icon id='arrow' fill='#2D29FF' width='18' height='18' />
             </Link>
           </S.Arrowicon>
           <S.Welletlogo>
