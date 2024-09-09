@@ -11,7 +11,6 @@ export default function AddGroupModal({
   isModalOpen,
   setIsModalOpen,
 }) {
-  
   // 그룹 리스트 가져오기
   console.log(member_id);
   const {
@@ -24,7 +23,7 @@ export default function AddGroupModal({
     enabled: !!member_id,
     isError: (error) => {
       console.log(error);
-    }
+    },
   });
 
   console.log(groupListData);
