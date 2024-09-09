@@ -9,7 +9,7 @@ export default function SearchBar({ theme }) {
   const placeholderText =
     theme === 'white'
       ? '명함을 검색해주세요'
-      : '이름, 직책, 이메일, 휴대폰, 유선전화, 부서, 회사 등을 입력하세요';
+      : '이름, 직책, 이메일, 휴대폰, 유선전화, 부서, 회사명 등을 입력하세요';
 
   return (
     <S.SearchBar theme={theme}>

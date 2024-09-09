@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const TabBar = styled.div`
   display: flex;
@@ -18,15 +19,15 @@ export const TabBar = styled.div`
   box-shadow: 0px -4px 5px 0px rgba(0, 0, 0, 0.05);
 `;
 
-export const Icon = styled.div`
-  /* border: 1px solid red; */
+export const Icon = styled(Link)`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 6px;
   padding: 15px;
-  color: ${(props) => (props.isActive ? '#2D29FF' : '#C8C8C8')};
+  color: ${(props) => (props.isactive ? '#2D29FF' : '#C8C8C8')};
 `;
 
 export const IconImg = styled.div`
@@ -46,7 +47,7 @@ export const Text = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${(props) => (props.isActive ? '#2D29FF' : '#C8C8C8')};
+  color: ${(props) => (props.isactive ? '#2D29FF' : '#C8C8C8')};
   font-size: 11px;
   line-height: 130%;
   letter-spacing: -0.55px;

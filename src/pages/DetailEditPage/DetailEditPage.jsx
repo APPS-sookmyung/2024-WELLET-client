@@ -2,8 +2,9 @@ import React, { useState, useRef, memo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as S from './DetailEditPage.style';
 import Icon from '../../components/Icon/Icon';
-import { BlueBadge } from '../../components';
+import { BlueBadge, AddGroupModal } from '../../components';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
+import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 
 const InputWrapper = memo(
   ({
@@ -53,6 +54,7 @@ export default function DetailEditPage() {
   const { id } = useParams();
 
   const [activeBadge, setActiveBadge] = useState(null);
+
   const filteredData = CARDS_SAMPLE_DATA.find(
     (data) => data.name === decodeURIComponent(id)
   );
@@ -60,6 +62,10 @@ export default function DetailEditPage() {
   const [filteredBadges, setFilteredBadges] = useState(() => {
     return filteredData ? badges : [];
   });
+
+  const data = filteredData || {
+    imageUrl: '',
+  };
 
   const [profileImage, setProfileImage] = useState(null);
 
@@ -74,7 +80,9 @@ export default function DetailEditPage() {
 
   const onUploadProfileImage = (e) => {
     const file = e.target.files[0];
-    setProfileImage(URL.createObjectURL(file));
+    if (file) {
+      setProfileImage(URL.createObjectURL(file));
+    }
   };
 
   const handleProfileImageClick = () => {
@@ -85,6 +93,7 @@ export default function DetailEditPage() {
     name: filteredData.name,
     job: filteredData.job,
     company: filteredData.company,
+    team: filteredData.team,
   });
 
   const [myContact, setMyContact] = useState({
@@ -127,6 +136,13 @@ export default function DetailEditPage() {
       onChange: handleInfoChange,
     },
     {
+      label: '부서',
+      type: 'text',
+      name: 'team',
+      value: myInfo.team,
+      onChange: handleInfoChange,
+    },
+    {
       label: '휴대폰',
       type: 'tel',
       name: 'phone',
@@ -134,7 +150,7 @@ export default function DetailEditPage() {
       onChange: handleContactChange,
     },
     {
-      label: '이메일 주소',
+      label: '이메일',
       type: 'email',
       name: 'email',
       value: myContact.email,
@@ -197,7 +213,13 @@ export default function DetailEditPage() {
   const navigate = useNavigate();
 
   const handleEditComplete = () => {
-    console.log('Data saved successfully:', { myInfo, myContact });
+    const updatedData = {
+      ...myInfo,
+      ...myContact,
+      group: activeBadge,
+    };
+
+    console.log('Data saved successfully:', updatedData);
     setIsEditing({
       name: false,
       job: false,
@@ -210,108 +232,121 @@ export default function DetailEditPage() {
     navigate(`/card/${id}`);
   };
 
+  const profileImageUrl = profileImage || data.imageUrl || ProfileImgDefault;
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
   return (
     <>
-      <S.Header>
-        <S.Arrowicon>
-          <Link to={`/card/${id}`}>
-            <Icon id='arrow' fill='#2D29FF' width='20' height='20' />
-          </Link>
-        </S.Arrowicon>
-        <S.Welletlogo>
-          <Icon id='logo-blue' />
-        </S.Welletlogo>
-        <S.EditIconBox>
-          <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
-        </S.EditIconBox>
-      </S.Header>
-      <S.Body>
-        <S.PicContainer>
-          <S.ProfilePic
-            style={{
-              backgroundImage: `url(${profileImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
-          <S.Galleryicon>
-            <Icon
-              id='gallery'
-              fill='#FFFFFF'
-              width='20'
-              height='20'
-              onClick={handleProfileImageClick}
+      <S.DetailEdit>
+        <S.Header>
+          <S.Arrowicon>
+            <Link to={`/card/${id}`}>
+              <Icon id='arrow' fill='#2D29FF' width='18' height='18' />
+            </Link>
+          </S.Arrowicon>
+          <S.Welletlogo>
+            <Icon id='logo-blue' />
+          </S.Welletlogo>
+          <S.EditIconBox>
+            <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
+          </S.EditIconBox>
+        </S.Header>
+        <S.Body>
+          <S.PicContainer>
+            <S.ProfilePic
+              style={{
+                backgroundImage: `url(${profileImageUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
             />
-            <input
-              type='file'
-              accept='image/*'
-              ref={profileImageInputRef}
-              style={{ display: 'none' }}
-              onChange={onUploadProfileImage}
-            />
-          </S.Galleryicon>
-        </S.PicContainer>
-        <S.EditInfoContainer>
-          <S.EditName>
-            {isEditing.name ? (
-              <S.InputNameBox
-                type='text'
-                name='name'
-                value={myInfo.name}
-                onChange={handleInfoChange}
-                onBlur={() => handleBlur('name')}
-                onFocus={() => handleFocus('name')}
-                autoFocus
+            <S.Galleryicon>
+              <Icon
+                id='gallery'
+                fill='#FFFFFF'
+                width='20'
+                height='20'
+                onClick={handleProfileImageClick}
               />
-            ) : (
-              <>
-                <S.Name>{myInfo.name}</S.Name>
-                <S.PencilIcon onClick={() => handleEditClick('name')}>
-                  <Icon id='pencil' fill='#FFF' />
-                </S.PencilIcon>
-              </>
-            )}
-          </S.EditName>
-          <S.EditGuide>
-            사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
-          </S.EditGuide>
-        </S.EditInfoContainer>
-      </S.Body>
-      <S.InputField>
-        <S.InputContainer>
-          {InputData.map((field, index) => (
-            <InputWrapper
-              key={index}
-              label={field.label}
-              type={field.type}
-              name={field.name}
-              value={isEditing[field.name] ? field.value : ''}
-              placeholder={isEditing[field.name] ? '' : field.value}
-              onChange={field.onChange}
-              onBlur={() => handleBlur(field.name)}
-              onFocus={() => handleFocus(field.name)}
-              autoFocus={isEditing[field.name]}
+              <input
+                type='file'
+                accept='image/*'
+                ref={profileImageInputRef}
+                style={{ display: 'none' }}
+                onChange={onUploadProfileImage}
+              />
+            </S.Galleryicon>
+          </S.PicContainer>
+          <S.EditInfoContainer>
+            <S.EditName>
+              {isEditing.name ? (
+                <S.InputNameBox
+                  type='text'
+                  name='name'
+                  value={myInfo.name}
+                  onChange={handleInfoChange}
+                  onBlur={() => handleBlur('name')}
+                  onFocus={() => handleFocus('name')}
+                  autoFocus
+                />
+              ) : (
+                <>
+                  <S.Name>{myInfo.name}</S.Name>
+                  <S.PencilIcon onClick={() => handleEditClick('name')}>
+                    <Icon id='pencil' fill='#FFF' />
+                  </S.PencilIcon>
+                </>
+              )}
+            </S.EditName>
+            <S.EditGuide>
+              사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
+            </S.EditGuide>
+          </S.EditInfoContainer>
+        </S.Body>
+        <S.InputField>
+          <S.InputContainer>
+            {InputData.map((field, index) => (
+              <InputWrapper
+                key={index}
+                label={field.label}
+                type={field.type}
+                name={field.name}
+                value={isEditing[field.name] ? field.value : ''}
+                placeholder={isEditing[field.name] ? '' : field.value}
+                onChange={field.onChange}
+                onBlur={() => handleBlur(field.name)}
+                onFocus={() => handleFocus(field.name)}
+                autoFocus={isEditing[field.name]}
+              />
+            ))}
+          </S.InputContainer>
+        </S.InputField>
+        <S.GroupButtonContainer>
+          <S.GroupButtonBar>그룹</S.GroupButtonBar>
+          <S.GroupButtonBox>
+            <BlueBadge
+              badges={filteredBadges}
+              activeBadge={activeBadge}
+              setActiveBadge={setActiveBadge}
             />
-          ))}
-        </S.InputContainer>
-      </S.InputField>
-      <S.GroupButtonContainer>
-        <S.GroupButtonBar>그룹</S.GroupButtonBar>
-        <S.GroupButtonBox>
-          <BlueBadge
-            badges={filteredBadges}
-            activeBadge={activeBadge}
-            setActiveBadge={setActiveBadge}
-            fill='#2d29ff'
-          />
-          <S.PlusBtnWrapper>
-            <S.PlusText>그룹 추가</S.PlusText>
-            <S.MoreIcon>
-              <Icon id='more' fill='#2D29FF' />
-            </S.MoreIcon>
-          </S.PlusBtnWrapper>
-        </S.GroupButtonBox>
-      </S.GroupButtonContainer>
+            <S.PlusBtnWrapper onClick={openModal}>
+              <S.PlusText>그룹 수정</S.PlusText>
+              <S.MoreIcon>
+                <Icon id='more' fill='#2D29FF' />
+              </S.MoreIcon>
+            </S.PlusBtnWrapper>
+          </S.GroupButtonBox>
+        </S.GroupButtonContainer>
+      </S.DetailEdit>
+      <AddGroupModal
+        isModalOpen={modalVisible}
+        setIsModalOpen={setModalVisible}
+      />
     </>
   );
 }

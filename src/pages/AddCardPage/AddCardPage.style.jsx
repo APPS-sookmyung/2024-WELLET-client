@@ -83,7 +83,7 @@ export const AddBoxDescWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  padding-bottom: 6px;
+  padding-bottom: 14px;
 `;
 
 export const AddBoxDesc = styled.div`
@@ -114,13 +114,12 @@ export const ImportImageBtnWrapper = styled.div`
 
 export const PreviewContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
 `;
 
-export const PreviewImage = styled.img`
-  height: 100px;
-  object-fit: cover;
-`;
+export const PreviewImage = styled.img``;
 
 export const ImportImageBtn = styled.button`
   display: flex;
@@ -138,12 +137,6 @@ export const ImportImageBtn = styled.button`
 `;
 
 // 직접 입력으로 명함 추가
-export const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-`;
-
 export const RegisterImageContainer = styled.div`
   display: flex;
   align-items: center;

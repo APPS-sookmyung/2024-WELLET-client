@@ -9,3 +9,4 @@ export { PrimaryButton, SecondaryButton } from './Button';
 export { BlueBadge } from './Badge';
 export { AddGroupModal } from './AddGroupModal';
 export { Layout } from './Layout';
+export { DetailBadge } from './BadgeDetail';
