@@ -5,6 +5,7 @@ import Icon from '../../components/Icon/Icon';
 import { BlueBadge, AddGroupModal } from '../../components';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+import USER from '../../dummy/user';
 
 const InputWrapper = memo(
   ({
@@ -344,6 +345,7 @@ export default function DetailEditPage() {
         </S.GroupButtonContainer>
       </S.DetailEdit>
       <AddGroupModal
+        member_id={USER.id}
         isModalOpen={modalVisible}
         setIsModalOpen={setModalVisible}
       />

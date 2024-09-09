@@ -26,8 +26,6 @@ export default function AddGroupModal({
     },
   });
 
-  console.log(groupListData);
-
   const initialBadges = [
     { label: '비즈니스', value: '비즈니스' },
     { label: '방송사', value: '방송사' },
@@ -36,9 +34,11 @@ export default function AddGroupModal({
   ];
 
   const [newBadgeLabel, setNewBadgeLabel] = useState('');
-  const [badges, setBadges] = useState(initialBadges);
+  const [badges, setBadges] = useState([]);
   const [initialBadgesState, setInitialBadgesState] = useState(initialBadges);
   const [showModal, setShowModal] = useState(isModalOpen);
+
+  console.log(groupListData);
 
   useEffect(() => {
     if (isModalOpen) {
