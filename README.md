@@ -9,60 +9,20 @@
 
 ## 💁🏻‍♀️ 개발 팀 소개
 
-<table style="text-align:center">
-  <thead>
-    <tr>
-      <th style="text-align: center;">프로필</th>
-      <th style="text-align: center;">이름 (세부 전공)</th>
-      <th style="text-align: center;">역할</th>
-      <th style="text-align: center;">개발 내용</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://github.com/junheekim61" target="_blank"><img src="https://avatars.githubusercontent.com/u/100200965?v=4" alt="김준희 프로필" width="100px" /></a></td>
-      <td style="text-align: center;">김준희<br>(컴퓨터과학 22)</td>
-      <td>Front-end</td>
-      <td>온보딩 페이지 구현<br>카카오톡 로그인 페이지 구현<br>홈 화면 페이지 구현<br>그룹 수정 모달 구현</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/kimhyerims" target="_blank"><img src="https://avatars.githubusercontent.com/u/144879107?v=4" alt="김혜림 프로필" width="100px" /></a></td>
-      <td style="text-align: center;">김혜림<br>(데이터사이언스 23)</td>
-      <td>Front-end</td>
-      <td>명함 상세 보기 및 수정하기 페이지 구현<br>내 명함 보기 및 수정하기 페이지 구현</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/misung-dev" target="_blank"><img src="https://avatars.githubusercontent.com/u/128569095?v=4" alt="류미성 프로필" width="100px" /></a></td>
-      <td style="text-align: center;">류미성<br>(컴퓨터과학 21)</td>
-      <td>Front-end</td>
-      <td>Header, 검색창, Tab bar 등 컴포넌트 구현<br>명함 추가 페이지 구현 (사진 추가, 직접 입력)<br>그룹별 명함 보기 페이지 구현<br>내 명함 공유 모달 구현</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/lhaerim" target="_blank"><img src="https://avatars.githubusercontent.com/u/128566763?v=4" alt="이해림 프로필" width="100px" /></a></td>
-      <td style="text-align: center;">이혜림<br>(컴퓨터과학 23)</td>
-      <td>Back-end</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/ajung7038" target="_blank"><img src="https://avatars.githubusercontent.com/u/80907516?v=4" alt="주아정 프로필" width="100px" /></a></td>
-      <td style="text-align: center;">주아정<br>(컴퓨터과학 23)</td>
-      <td>Back-end<br>Leader</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/hayeyoung" target="_blank"><img src="https://avatars.githubusercontent.com/u/144807080?v=4" alt="하예영 프로필" width="100px" /></a></td>
-      <td style="text-align: center;">하예영<br>(데이터사이언스 23)</td>
-      <td>Back-end</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+|                                                                               프로필                                                                               |       이름 (세부 전공)        |        역할        |                                                                     개발 내용                                                                      |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------: | :----------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <a href="https://github.com/junheekim61" target="_blank"><img src="https://avatars.githubusercontent.com/u/100200965?v=4" alt="김준희 프로필" width="100px" /></a> |   김준희<br>(컴퓨터과학 22)   | Front-end<br>& PM  |                          온보딩 페이지 구현<br>카카오톡 로그인 페이지 구현<br>홈 화면 페이지 구현<br>그룹 수정 모달 구현                           |
+| <a href="https://github.com/kimhyerims" target="_blank"><img src="https://avatars.githubusercontent.com/u/144879107?v=4" alt="김혜림 프로필" width="100px" /></a>  | 김혜림<br>(데이터사이언스 23) |     Front-end      |                                   명함 상세 보기 및 수정하기 페이지 구현<br>내 명함 보기 및 수정하기 페이지 구현                                   |
+| <a href="https://github.com/misung-dev" target="_blank"><img src="https://avatars.githubusercontent.com/u/128569095?v=4" alt="류미성 프로필" width="100px" /></a>  |   류미성<br>(컴퓨터과학 21)   |     Front-end      | Header, 검색창, Tab bar 등 컴포넌트 구현<br>명함 추가 페이지 구현 (사진 추가, 직접 입력)<br>그룹별 명함 보기 페이지 구현<br>내 명함 공유 모달 구현 |
+|   <a href="https://github.com/lhaerim" target="_blank"><img src="https://avatars.githubusercontent.com/u/128566763?v=4" alt="이혜림 프로필" width="100px" /></a>   |   이혜림<br>(컴퓨터과학 23)   |      Back-end      |                                                                                                                                                    |
+|  <a href="https://github.com/ajung7038" target="_blank"><img src="https://avatars.githubusercontent.com/u/80907516?v=4" alt="주아정 프로필" width="100px" /></a>   |   주아정<br>(컴퓨터과학 23)   | Back-end<br>Leader |                                                                                                                                                    |
+|  <a href="https://github.com/hayeyoung" target="_blank"><img src="https://avatars.githubusercontent.com/u/144807080?v=4" alt="하예영 프로필" width="100px" /></a>  | 하예영<br>(데이터사이언스 23) |      Back-end      |                                                                                                                                                    |
 
 <br>
 
 ## Git Convention
 
-### Commit Convention
+### 🟣 Commit Convention
 
 - `[FEAT]`: 새로운 기능 구현
 - `[FIX]`: 버그 및 오류 수정
@@ -79,34 +39,32 @@
 - `[TEST]`: 테스트 추가, 테스트 리팩토링(프로덕션 코드 변경 X)
 - `[CHORE]`: 빌드 태스트 업데이트, 패키지 매니저를 설정하는 경우(프로덕션 코드 변경 X)
 
-### 커밋 메세지 예시
+#### 커밋 메세지 예시
 
 - git commit -m "#이슈 번호 [커밋 태그] 커밋 내용"
   - `ex ) git commit -m "#1 [FEAT] 회원가입 기능 완료"`
 
 <br>
 
-## Branch Strategy
+### 🟣 Branch Convention
 
-### Branch Convention
+- `[MAIN]` : 출시 가능한 프로덕션 코드를 모아두는 브랜치
+- `[DEV]` : feat에서 기능 개발이 끝난 후 다음 버전 개발을 위한 코드를 모아두는 브랜치
+- `[FEATURE]` : 하나의 기능을 개발하기 위한 브랜치, 기능개발 완료되면 develop 브랜치로 머지
+- `[FIX]` : 에러 수정, 버그 수정
+- `[DOCS]` : README, 문서
+- `[REFACTOR]` : 코드 리펙토링 (기능 변경 없이 코드만 수정할 때)
+- `[MODIFY]` : 코드 수정 (기능의 변화가 있을 때)
+- `[CHORE]` : gradle 세팅, 위의 것 이외에 거의 모든 것
 
-- [MAIN] : 출시 가능한 프로덕션 코드를 모아두는 브랜치
-- [DEV] : feature에서 기능 개발이 끝난 후 다음 버전 개발을 위한 코드를 모아두는 브랜치
-- [FEATURE] : 하나의 기능을 개발하기 위한 브랜치, 기능개발 완료되면 develop 브랜치로 머지
-- [FIX] : 에러 수정, 버그 수정
-- [DOCS] : README, 문서
-- [REFACTOR] : 코드 리펙토링 (기능 변경 없이 코드만 수정할 때)
-- [MODIFY] : 코드 수정 (기능의 변화가 있을 때)
-- [CHORE] : gradle 세팅, 위의 것 이외에 거의 모든 것
-
-### Branch Naming 예시
+#### Branch Naming 예시
 
 - feat/#이슈 번호-기능 이름
   - `ex) feat/#1-login`
 
 <br>
 
-### Git Flow
+### 🟣 Git Flow
 
 기본적으로 Git Flow 전략을 이용한다. Fork한 후 나의 repository에서 작업하고 구현 후 원본 repository에 pr을 날린다. 작업 시작 시 선행되어야 할 작업은 다음과 같다.
 
@@ -127,16 +85,16 @@
 
 <br>
 
-### Issue Convention
+### 🟣 Issue Convention
 
-- [FEAT] : 기능 추가
-- [FIX] : 에러 수정, 버그 수정
-- [DOCS] : README, 문서
-- [REFACTOR] : 코드 리펙토링 (기능 변경 없이 코드만 수정할 때)
-- [MODIFY] : 코드 수정 (기능의 변화가 있을 때)
-- [CHORE] : gradle 세팅, 위의 것 이외에 거의 모든 것
+- `[FEAT]` : 기능 추가
+- `[FIX]` : 에러 수정, 버그 수정
+- `[DOCS]` : README, 문서
+- `[REFACTOR]` : 코드 리펙토링 (기능 변경 없이 코드만 수정할 때)
+- `[MODIFY]` : 코드 수정 (기능의 변화가 있을 때)
+- `[CHORE]` : gradle 세팅, 위의 것 이외에 거의 모든 것
 
-### Issue Naming 예시
+#### Issue Naming 예시
 
 - [이슈 태그] 작업 내용
   - `ex) [FEAT] user api 구현`
