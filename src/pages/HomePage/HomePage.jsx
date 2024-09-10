@@ -1,7 +1,13 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './HomePage.style';
-import { Header, SearchBar, CardInfo, MyCard } from '../../components';
+import {
+  Header,
+  SearchBar,
+  CardInfo,
+  MyCard,
+  AddGroupModal,
+} from '../../components';
 import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
 import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
@@ -9,7 +15,6 @@ import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
 export default function HomePage() {
   const navigate = useNavigate();
   const [filterdList, setFilterdList] = useState([]);
-
   useVisibleCardsEffect(setFilterdList, CARDS_SAMPLE_DATA);
 
   return (

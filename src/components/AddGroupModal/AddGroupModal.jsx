@@ -1,9 +1,31 @@
 import { useEffect, useState } from 'react';
+// import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import * as S from './AddGroupModal.style';
 import { InputWrapper } from '../InputWrapper';
 import { PrimaryButton, SecondaryButton, BlueBadge } from '../';
+import { getGroupList } from '../../apis';
 
-export default function AddGroupModal({ isModalOpen, setIsModalOpen }) {
+export default function AddGroupModal({
+  member_id,
+  isModalOpen,
+  setIsModalOpen,
+}) {
+  // 그룹 리스트 가져오기
+  console.log(member_id);
+  const {
+    data: groupListData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['groupList', member_id],
+    queryFn: () => getGroupList({ member_id }),
+    enabled: !!member_id,
+    isError: (error) => {
+      console.log(error);
+    },
+  });
+
   const initialBadges = [
     { label: '비즈니스', value: '비즈니스' },
     { label: '방송사', value: '방송사' },
@@ -12,9 +34,11 @@ export default function AddGroupModal({ isModalOpen, setIsModalOpen }) {
   ];
 
   const [newBadgeLabel, setNewBadgeLabel] = useState('');
-  const [badges, setBadges] = useState(initialBadges);
+  const [badges, setBadges] = useState([]);
   const [initialBadgesState, setInitialBadgesState] = useState(initialBadges);
   const [showModal, setShowModal] = useState(isModalOpen);
+
+  console.log(groupListData);
 
   useEffect(() => {
     if (isModalOpen) {
