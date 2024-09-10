@@ -2,9 +2,10 @@ import React, { useState, useRef, memo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as S from './DetailEditPage.style';
 import Icon from '../../components/Icon/Icon';
-import { BlueBadge } from '../../components';
+import { BlueBadge, AddGroupModal } from '../../components';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+import USER from '../../dummy/user';
 
 const InputWrapper = memo(
   ({
@@ -80,7 +81,9 @@ export default function DetailEditPage() {
 
   const onUploadProfileImage = (e) => {
     const file = e.target.files[0];
-    setProfileImage(URL.createObjectURL(file));
+    if (file) {
+      setProfileImage(URL.createObjectURL(file));
+    }
   };
 
   const handleProfileImageClick = () => {
@@ -211,7 +214,13 @@ export default function DetailEditPage() {
   const navigate = useNavigate();
 
   const handleEditComplete = () => {
-    console.log('Data saved successfully:', { myInfo, myContact });
+    const updatedData = {
+      ...myInfo,
+      ...myContact,
+      group: activeBadge,
+    };
+
+    console.log('Data saved successfully:', updatedData);
     setIsEditing({
       name: false,
       job: false,
@@ -224,7 +233,13 @@ export default function DetailEditPage() {
     navigate(`/card/${id}`);
   };
 
-  const profileImageUrl = data.imageUrl || ProfileImgDefault;
+  const profileImageUrl = profileImage || data.imageUrl || ProfileImgDefault;
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
 
   return (
     <>
@@ -232,7 +247,7 @@ export default function DetailEditPage() {
         <S.Header>
           <S.Arrowicon>
             <Link to={`/card/${id}`}>
-              <Icon id='arrow' fill='#2D29FF' width='20' height='20' />
+              <Icon id='arrow' fill='#2D29FF' width='18' height='18' />
             </Link>
           </S.Arrowicon>
           <S.Welletlogo>
@@ -319,10 +334,9 @@ export default function DetailEditPage() {
               badges={filteredBadges}
               activeBadge={activeBadge}
               setActiveBadge={setActiveBadge}
-              fill='#2d29ff'
             />
-            <S.PlusBtnWrapper>
-              <S.PlusText>그룹 추가</S.PlusText>
+            <S.PlusBtnWrapper onClick={openModal}>
+              <S.PlusText>그룹 수정</S.PlusText>
               <S.MoreIcon>
                 <Icon id='more' fill='#2D29FF' />
               </S.MoreIcon>
@@ -330,6 +344,11 @@ export default function DetailEditPage() {
           </S.GroupButtonBox>
         </S.GroupButtonContainer>
       </S.DetailEdit>
+      <AddGroupModal
+        member_id={USER.id}
+        isModalOpen={modalVisible}
+        setIsModalOpen={setModalVisible}
+      />
     </>
   );
 }

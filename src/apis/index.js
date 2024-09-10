@@ -1,0 +1,1 @@
+export { getGroupList } from './group';
