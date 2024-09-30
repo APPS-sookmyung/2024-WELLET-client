@@ -11,11 +11,15 @@ import {
 import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
 import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
+import { getMyCard } from '../../apis/myCard.js';
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [filterdList, setFilterdList] = useState([]);
   useVisibleCardsEffect(setFilterdList, CARDS_SAMPLE_DATA);
+
+  const myCardData = getMyCard({ member_id: 5 });
+  console.log('myCardData: ', myCardData);
 
   return (
     <S.HomePage>
