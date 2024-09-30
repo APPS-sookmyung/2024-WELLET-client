@@ -53,7 +53,7 @@ export const Name = styled.h1`
   letter-spacing: -0.7px;
 `;
 
-export const Job = styled.span`
+export const Role = styled.span`
   color: ${(props) =>
     props.isSelected ? 'var(--white, #FFF)' : 'var(--grey3, #555)'};
   font-size: 12px;

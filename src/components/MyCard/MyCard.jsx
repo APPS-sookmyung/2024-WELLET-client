@@ -4,7 +4,7 @@ import { MdLogin } from 'react-icons/md';
 
 export default function MyCard({
   name,
-  job,
+  role,
   company,
   imageUrl,
   tel,
