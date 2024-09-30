@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './HomePage.style';
 import {
@@ -8,18 +8,42 @@ import {
   MyCard,
   AddGroupModal,
 } from '../../components';
-import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
 import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
 import { getMyCard } from '../../apis/myCard.js';
+import { getCards } from '../../apis/cards.js';
+
+const member_id = 5; // dummy data
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [filterdList, setFilterdList] = useState([]);
-  useVisibleCardsEffect(setFilterdList, CARDS_SAMPLE_DATA);
+  const [myCardData, setMyCardData] = useState([]);
+  const [cardsData, setCardsData] = useState([]);
+  // useVisibleCardsEffect(setFilterdList, cardsData);
 
-  const myCardData = getMyCard({ member_id: 5 });
-  console.log('myCardData: ', myCardData);
+  async function fetchMyCard(member_id) {
+    try {
+      const response = await getMyCard({ member_id: member_id });
+      setMyCardData(response.data);
+    } catch (error) {
+      console.error('내 카드 정보를 불러오지 못했습니다.', error);
+    }
+  }
+
+  async function fetchCards(member_id) {
+    try {
+      const response = await getCards({ member_id: member_id });
+      setCardsData(response.data.cards);
+    } catch (error) {
+      console.error('카드 리스트를 불러오지 못했습니다.', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchMyCard(member_id);
+    fetchCards(member_id);
+  }, []);
 
   return (
     <S.HomePage>
@@ -35,13 +59,14 @@ export default function HomePage() {
         <S.MyCardContainer>
           <MyCard
             backgroundColor='#fff'
-            name={MY_CARD_SAMPLE_DATA.name}
-            job={MY_CARD_SAMPLE_DATA.job}
-            company={MY_CARD_SAMPLE_DATA.company}
-            imageUrl={MY_CARD_SAMPLE_DATA.imageUrl}
-            tel={MY_CARD_SAMPLE_DATA.tel}
-            email={MY_CARD_SAMPLE_DATA.email}
-            address={MY_CARD_SAMPLE_DATA.address}
+            name={myCardData.name}
+            role={myCardData.role}
+            company={myCardData.company}
+            imageUrl={myCardData.imageUrl}
+            phone={myCardData.phone}
+            tel={myCardData.tel}
+            email={myCardData.email}
+            address={myCardData.address}
             onClick={() => navigate('/mypage')}
           />
         </S.MyCardContainer>
@@ -54,13 +79,13 @@ export default function HomePage() {
           <p style={{ color: '#000' }}>둘러보기</p>
           <p style={{ color: '#555' }}>최근 등록된 명함</p>
         </S.CardListTitle>
-        {filterdList.length > 0 && (
+        {cardsData.length > 0 && (
           <S.CardContainer>
-            {filterdList.map((data, index) => (
+            {cardsData.map((data, index) => (
               <CardInfo
                 key={index}
                 name={data.name}
-                job={data.job}
+                role={data.role}
                 company={data.company}
                 imageUrl={data.imageUrl}
               />
