@@ -23,7 +23,7 @@ export const deleteMyCard = async (member_id) => {
 
 // 내 명함 수정
 export const putMyCard = async ({ member_id, data }) => {
-  const response = await authAxios.patch(`/me/${member_id}`, data);
+  const response = await authAxios.put(`/me/${member_id}`, data);
   console.log(response);
   return response;
 };
