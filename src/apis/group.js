@@ -29,7 +29,7 @@ export const putGroup = async ({ name }) => {
   const data = {
     name: name,
   };
-  const response = await authAxios.patch(
+  const response = await authAxios.put(
     `/categories/${member_id}/${category_id}`,
     editedPost
   );
