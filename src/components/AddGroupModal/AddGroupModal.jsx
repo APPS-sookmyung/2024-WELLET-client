@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import { useQuery } from 'react-query';
 import { useQuery } from '@tanstack/react-query';
 import * as S from './AddGroupModal.style';
 import { InputWrapper } from '../InputWrapper';
@@ -11,8 +10,10 @@ export default function AddGroupModal({
   isModalOpen,
   setIsModalOpen,
 }) {
-  // 그룹 리스트 가져오기
-  console.log(member_id);
+  const [newBadgeLabel, setNewBadgeLabel] = useState('');
+  const [badges, setBadges] = useState([]);
+  const [showModal, setShowModal] = useState(isModalOpen);
+
   const {
     data: groupListData,
     isLoading,
@@ -21,34 +22,18 @@ export default function AddGroupModal({
     queryKey: ['groupList', member_id],
     queryFn: () => getGroupList({ member_id }),
     enabled: !!member_id,
-    isError: (error) => {
-      console.log(error);
-    },
   });
 
-  const initialBadges = [
-    { label: '비즈니스', value: '비즈니스' },
-    { label: '방송사', value: '방송사' },
-    { label: '부동산', value: '부동산' },
-    { label: '대학교', value: '대학교' },
-  ];
-
-  const [newBadgeLabel, setNewBadgeLabel] = useState('');
-  const [badges, setBadges] = useState([]);
-  const [initialBadgesState, setInitialBadgesState] = useState(initialBadges);
-  const [showModal, setShowModal] = useState(isModalOpen);
-
-  console.log(groupListData);
-
   useEffect(() => {
-    if (isModalOpen) {
-      setShowModal(true);
-      setInitialBadgesState([...badges]);
-    } else {
-      const timeout = setTimeout(() => setShowModal(false), 400);
-      return () => clearTimeout(timeout);
+    if (groupListData) {
+      console.log('groupListData: ', groupListData.data);
+      const initialBadges = groupListData.data.map((group) => ({
+        label: group.id, // or whatever label makes sense
+        value: group.name,
+      }));
+      setBadges(initialBadges); // Set badges to the fetched groups
     }
-  }, [isModalOpen]);
+  }, [groupListData]);
 
   const handleAddBadge = () => {
     const trimmedLabel = newBadgeLabel.trim();
@@ -71,7 +56,6 @@ export default function AddGroupModal({
   };
 
   const handleCancelBtnClick = () => {
-    setBadges([...initialBadgesState]);
     setIsModalOpen(false);
   };
 

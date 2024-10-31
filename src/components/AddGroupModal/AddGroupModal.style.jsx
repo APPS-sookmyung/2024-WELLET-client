@@ -23,6 +23,9 @@ export const Container = styled.div`
   transition:
     transform 400ms cubic-bezier(0.86, 0, 0.07, 1),
     opacity 400ms cubic-bezier(0.86, 0, 0.07, 1);
+  box-shadow:
+    0px -2px 10px rgba(0, 0, 0, 0.05),
+    0px 2px 10px rgba(0, 0, 0, 0.05);
 `;
 
 export const AddGroupModal = styled.div`
