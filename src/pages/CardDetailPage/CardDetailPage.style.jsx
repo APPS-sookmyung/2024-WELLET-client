@@ -160,6 +160,64 @@ export const GroupButtonBox = styled.div`
   width: 100%;
 `;
 
+export const CardImageContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  justify-content: center;
+`;
+
+export const CardImageBox = styled.div`
+  flex: 1;
+  aspect-ratio: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const Modal = styled.div`
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* 배경 흐리게 처리 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
+
+export const CloseButton = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 14px;
+  padding: 10px;
+  cursor: pointer;
+`;
 //폰트
 export const UserInfoLabel = styled.div`
   color: var(--grey2, #949494);
