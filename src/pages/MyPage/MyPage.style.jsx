@@ -177,6 +177,13 @@ export const MyInfoValue = styled.div`
   letter-spacing: -0.5px;
 `;
 
+export const MyInfoValueNull = styled.div`
+  color: #ff0076;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+`;
+
 export const ContactWrapper = styled.div`
   display: flex;
   justify-content: space-between;

@@ -71,20 +71,43 @@ export default function MyPage() {
           </S.BotBar>
         </S.TopContainer>
 
-      <S.BottomContainer>
-        <S.MyInfoIList>
-          <S.MyInfoTitle>내 정보</S.MyInfoTitle>
-          <S.MyInfoContainer>
-            <S.MyInfoItem>
-              <S.MyInfoLabel>회사명</S.MyInfoLabel>
-              <S.MyInfoValue>{myInfo.company}</S.MyInfoValue>
-            </S.MyInfoItem>
-            <S.MyInfoItem>
-              <S.MyInfoLabel>직책 / 부서</S.MyInfoLabel>
-              <S.MyInfoValue>{`${myInfo.job} / ${myInfo.team}`}</S.MyInfoValue>
-            </S.MyInfoItem>
-          </S.MyInfoContainer>
-        </S.MyInfoIList>
+        <S.BottomContainer>
+          <S.MyInfoIList>
+            <S.MyInfoTitle>내 정보</S.MyInfoTitle>
+            <S.MyInfoContainer>
+              <S.MyInfoItem>
+                <S.MyInfoLabel>회사명</S.MyInfoLabel>
+
+                {myInfo && myInfo.company ? (
+                  <S.MyInfoValue>{myInfo.company}</S.MyInfoValue>
+                ) : (
+                  <S.MyInfoValueNull>
+                    정보가 없습니다. 우측 상단의 편집하기를 눌러 명함을
+                    완성하세요.
+                  </S.MyInfoValueNull>
+                )}
+              </S.MyInfoItem>
+              <S.MyInfoItem>
+                <S.MyInfoLabel>직책 / 부서</S.MyInfoLabel>
+                {myInfo.job ? (
+                  myInfo.team ? (
+                    <S.MyInfoValue>{`${myInfo.job} / ${myInfo.team}`}</S.MyInfoValue>
+                  ) : (
+                    <S.MyInfoValue>
+                      {myInfo.job} / 정보가 없습니다
+                    </S.MyInfoValue>
+                  )
+                ) : myInfo.team ? (
+                  <S.MyInfoValue>정보가 없습니다 / {myInfo.team}</S.MyInfoValue>
+                ) : (
+                  <S.MyInfoValueNull>
+                    정보가 없습니다. 우측 상단의 편집하기를 눌러 명함을
+                    완성하세요.
+                  </S.MyInfoValueNull>
+                )}
+              </S.MyInfoItem>
+            </S.MyInfoContainer>
+          </S.MyInfoIList>
 
           <S.MyInfoIList>
             <S.MyInfoTitle>내 연락처</S.MyInfoTitle>
@@ -92,7 +115,16 @@ export default function MyPage() {
               <S.MyInfoItem>
                 <S.MyInfoLabel>휴대폰</S.MyInfoLabel>
                 <S.ContactWrapper>
-                  <S.MyInfoValue>{myInfo.phone}</S.MyInfoValue>
+                  <S.MyInfoValue>
+                    {myInfo && myInfo.phone ? (
+                      <S.MyInfoValue>{myInfo.phone}</S.MyInfoValue>
+                    ) : (
+                      <S.MyInfoValueNull>
+                        정보가 없습니다. 우측 상단의 편집하기를 눌러 명함을
+                        완성하세요.
+                      </S.MyInfoValueNull>
+                    )}
+                  </S.MyInfoValue>
                   <S.IconBox>
                     <Icon id='message' width='20' height='14' />
                     <Icon id='call' width='20' height='14' />
@@ -102,20 +134,47 @@ export default function MyPage() {
               <S.MyInfoItem>
                 <S.MyInfoLabel>이메일</S.MyInfoLabel>
                 <S.ContactWrapper>
-                  <S.MyInfoValue>{myInfo.email}</S.MyInfoValue>
+                  <S.MyInfoValue>
+                    {myInfo && myInfo.email ? (
+                      <S.MyInfoValue>{myInfo.email}</S.MyInfoValue>
+                    ) : (
+                      <S.MyInfoValueNull>
+                        정보가 없습니다. 우측 상단의 편집하기를 눌러 명함을
+                        완성하세요.
+                      </S.MyInfoValueNull>
+                    )}
+                  </S.MyInfoValue>
                   <Icon id='mail' width='20' height='14' />
                 </S.ContactWrapper>
               </S.MyInfoItem>
               <S.MyInfoItem>
                 <S.MyInfoLabel>유선전화</S.MyInfoLabel>
                 <S.ContactWrapper>
-                  <S.MyInfoValue>{myInfo.tel}</S.MyInfoValue>
+                  <S.MyInfoValue>
+                    {myInfo && myInfo.tel ? (
+                      <S.MyInfoValue>{myInfo.tel}</S.MyInfoValue>
+                    ) : (
+                      <S.MyInfoValueNull>
+                        정보가 없습니다. 우측 상단의 편집하기를 눌러 명함을
+                        완성하세요.
+                      </S.MyInfoValueNull>
+                    )}
+                  </S.MyInfoValue>
                   <Icon id='call' width='20' height='14' />
                 </S.ContactWrapper>
               </S.MyInfoItem>
               <S.MyInfoItem>
                 <S.MyInfoLabel>주소</S.MyInfoLabel>
-                <S.MyInfoValue>{myInfo.address}</S.MyInfoValue>
+                <S.MyInfoValue>
+                  {myInfo && myInfo.address ? (
+                    <S.MyInfoValue>{myInfo.address}</S.MyInfoValue>
+                  ) : (
+                    <S.MyInfoValueNull>
+                      정보가 없습니다. 우측 상단의 편집하기를 눌러 명함을
+                      완성하세요.
+                    </S.MyInfoValueNull>
+                  )}
+                </S.MyInfoValue>
               </S.MyInfoItem>
             </S.MyInfoContainer>
           </S.MyInfoIList>
