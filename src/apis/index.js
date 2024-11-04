@@ -1,1 +1,1 @@
-export { getGroupList } from './group';
+export { getGroupList, postGroup, deleteGroup, putGroup } from './group';
