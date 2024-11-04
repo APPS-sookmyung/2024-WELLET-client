@@ -35,12 +35,25 @@ export default function CardDetailPage() {
     tel: '유선전화없음',
     address: '주소없음',
     memo: '메모없음',
+    pic1: '사진없음',
+    pic2: '사진없음',
   };
 
   const profileImageUrl = data.imageUrl || ProfileImgDefault;
 
   const activeBadge = filteredData ? filteredData.category : '';
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
+  const handleImageClick = (imageUrl) => {
+    setModalImage(imageUrl);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setModalImage(null);
+  };
   return (
     <>
       <S.CardDetail>
@@ -113,7 +126,32 @@ export default function CardDetailPage() {
           <S.GroupButtonBox>
             <DetailBadge badges={filteredBadges} activeBadge={activeBadge} />
           </S.GroupButtonBox>
+          {(data.pic1 || data.pic2) && (
+            <S.CardImageContainer>
+              <S.CardImageBox onClick={() => handleImageClick(data.pic1)}>
+                <img src={data.pic1} alt='사진 1' />
+              </S.CardImageBox>
+              {data.pic2 ? (
+                <S.CardImageBox onClick={() => handleImageClick(data.pic2)}>
+                  <img src={data.pic2} alt='사진 2' />
+                </S.CardImageBox>
+              ) : (
+                <S.CardImageBox />
+              )}
+            </S.CardImageContainer>
+          )}
         </S.BottomContainer>
+        {isModalOpen && (
+          <S.ModalOverlay>
+            <S.Modal>
+              <S.CloseButton onClick={handleCloseModal}>
+                <Icon id='modal-close' width='22' height='22' />
+              </S.CloseButton>
+              <button onClick={handleCloseModal} />
+              <img src={modalImage} alt='Original' />
+            </S.Modal>
+          </S.ModalOverlay>
+        )}
       </S.CardDetail>
     </>
   );
