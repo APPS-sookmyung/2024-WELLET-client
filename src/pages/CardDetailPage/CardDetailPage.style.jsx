@@ -163,22 +163,18 @@ export const GroupButtonBox = styled.div`
 export const CardImageContainer = styled.div`
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding-top: 16px;
   width: 100%;
-  justify-content: center;
+  justify-content: baseline;
 `;
 
 export const CardImageBox = styled.div`
-  flex: 1;
-  aspect-ratio: 1;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 10px;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
   }
 `;
