@@ -8,7 +8,7 @@ export const getGroupList = async ({ member_id }) => {
 };
 
 // 그룹 생성
-export const postGroup = async ({ name }) => {
+export const postGroup = async ({ member_id, name }) => {
   const data = {
     name: name,
   };
@@ -17,7 +17,7 @@ export const postGroup = async ({ name }) => {
 };
 
 // 그룹 삭제
-export const deleteGroup = async (member_id, category_id) => {
+export const deleteGroup = async ({ member_id, category_id }) => {
   const response = await authAxios.delete(
     `/categories/${member_id}/${category_id}`
   );
@@ -25,7 +25,7 @@ export const deleteGroup = async (member_id, category_id) => {
 };
 
 // 그룹 수정
-export const putGroup = async ({ name }) => {
+export const putGroup = async ({ member_id, name }) => {
   const data = {
     name: name,
   };

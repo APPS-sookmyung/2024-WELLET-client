@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo } from 'react';
+import React, { useEffect, useState, useRef, memo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as S from './DetailEditPage.style';
 import Icon from '../../components/Icon/Icon';
@@ -6,6 +6,8 @@ import { BlueBadge, AddGroupModal } from '../../components';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 import USER from '../../dummy/user';
+import { getGroupList } from '../../apis';
+import { useQuery } from '@tanstack/react-query';
 
 const InputWrapper = memo(
   ({
@@ -44,25 +46,41 @@ const InputWrapper = memo(
   }
 );
 
-const badges = [
-  { label: '비즈니스', value: '비즈니스' },
-  { label: '방송사', value: '방송사' },
-  { label: '부동산', value: '부동산' },
-  { label: '대학교', value: '대학교' },
-];
-
 export default function DetailEditPage() {
   const { id } = useParams();
-
   const [activeBadge, setActiveBadge] = useState(null);
+  const member_id = USER.id;
+
+  const {
+    data: groupListData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['groupList', member_id],
+    queryFn: () => getGroupList({ member_id }),
+    enabled: !!member_id,
+  });
+
+  const [badges, setBadges] = useState([]);
+
+  useEffect(() => {
+    if (groupListData) {
+      console.log('groupListData: ', groupListData.data);
+      const initialBadges = groupListData.data.map((group) => ({
+        label: group.id, // or whatever label makes sense
+        value: group.name,
+      }));
+      setBadges(initialBadges); // Set badges to the fetched groups
+    }
+  }, [groupListData]);
 
   const filteredData = CARDS_SAMPLE_DATA.find(
     (data) => data.name === decodeURIComponent(id)
   );
 
-  const [filteredBadges, setFilteredBadges] = useState(() => {
-    return filteredData ? badges : [];
-  });
+  // const [filteredBadges, setFilteredBadges] = useState(() => {
+  //   return filteredData ? groupListData : [];
+  // });
 
   const data = filteredData || {
     imageUrl: '',
@@ -331,7 +349,7 @@ export default function DetailEditPage() {
           <S.GroupButtonBar>그룹</S.GroupButtonBar>
           <S.GroupButtonBox>
             <BlueBadge
-              badges={filteredBadges}
+              badges={badges}
               activeBadge={activeBadge}
               setActiveBadge={setActiveBadge}
             />
@@ -345,7 +363,7 @@ export default function DetailEditPage() {
         </S.GroupButtonContainer>
       </S.DetailEdit>
       <AddGroupModal
-        member_id={USER.id}
+        member_id={member_id}
         isModalOpen={modalVisible}
         setIsModalOpen={setModalVisible}
       />
