@@ -8,7 +8,7 @@ import { HiOutlineLink } from 'react-icons/hi';
 const myInfo = {
   name: '김은지',
   job: 'Web Engineer',
-  team: null,
+  team: '개발팀',
   company: null,
   phone: '010-1234-5678',
   email: 'email@welletapp.co.kr',
@@ -81,7 +81,7 @@ export default function MyPage() {
                   <S.MyInfoValue>{myInfo.company}</S.MyInfoValue>
                 ) : (
                   <S.MyInfoValueNull>
-                    정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
+                    (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
                   </S.MyInfoValueNull>
                 )}
               </S.MyInfoItem>
@@ -92,19 +92,13 @@ export default function MyPage() {
                     myInfo.team ? (
                       `${myInfo.job} / ${myInfo.team}`
                     ) : (
-                      <>
-                        {myInfo.job} /{' '}
-                        <S.MyInfoValueNull>정보가 없습니다. </S.MyInfoValueNull>
-                      </>
+                      <>{myInfo.job}</>
                     )
                   ) : myInfo.team ? (
-                    <>
-                      <S.MyInfoValueNull>정보가 없습니다.</S.MyInfoValueNull> /{' '}
-                      {myInfo.team}
-                    </>
+                    <>{myInfo.team}</>
                   ) : (
                     <S.MyInfoValueNull>
-                      정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
+                      (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
                     </S.MyInfoValueNull>
                   )}
                 </S.MyInfoValue>
@@ -122,7 +116,7 @@ export default function MyPage() {
                     <S.MyInfoValue>{myInfo.phone}</S.MyInfoValue>
                   ) : (
                     <S.MyInfoValueNull>
-                      정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
+                      (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
                     </S.MyInfoValueNull>
                   )}
                   <S.IconBox>
@@ -138,7 +132,7 @@ export default function MyPage() {
                     <S.MyInfoValue>{myInfo.email}</S.MyInfoValue>
                   ) : (
                     <S.MyInfoValueNull>
-                      정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
+                      (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
                     </S.MyInfoValueNull>
                   )}
                   <Icon id='mail' width='20' height='14' />
@@ -151,7 +145,7 @@ export default function MyPage() {
                     <S.MyInfoValue>{myInfo.tel}</S.MyInfoValue>
                   ) : (
                     <S.MyInfoValueNull>
-                      정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
+                      (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
                     </S.MyInfoValueNull>
                   )}
                   <Icon id='call' width='20' height='14' />
@@ -163,7 +157,7 @@ export default function MyPage() {
                   <S.MyInfoValue>{myInfo.address}</S.MyInfoValue>
                 ) : (
                   <S.MyInfoValueNull>
-                    정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
+                    (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
                   </S.MyInfoValueNull>
                 )}
               </S.MyInfoItem>
