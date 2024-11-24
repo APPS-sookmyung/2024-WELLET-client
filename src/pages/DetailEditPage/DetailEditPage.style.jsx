@@ -250,3 +250,38 @@ export const MoreIcon = styled.div`
   height: 11px;
   display: flex;
 `;
+
+export const CardImageContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+  width: 100%;
+  justify-content: baseline;
+`;
+
+export const CardImageBox = styled.div`
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+`;
+
+export const CardGalleryIcon = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 부모의 정중앙으로 이동 */
+  width: 40px; /* 아이콘 크기 */
+  height: 40px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+`;

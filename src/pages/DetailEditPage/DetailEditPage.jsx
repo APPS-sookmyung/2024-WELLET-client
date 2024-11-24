@@ -88,9 +88,14 @@ export default function DetailEditPage() {
 
   const [profileImage, setProfileImage] = useState(null);
 
-  const [selectedImage, setSelectedImage] = useState([]);
+  const [selectedImage, setSelectedImage] = useState({
+    pic1: null,
+    pic2: null,
+  });
 
   const profileImageInputRef = useRef(null);
+  const profileImageInputRef1 = useRef(null);
+  const profileImageInputRef2 = useRef(null);
 
   const onUploadImage = (e) => {
     const files = Array.from(e.target.files || e.dataTransfer.files);
@@ -106,6 +111,26 @@ export default function DetailEditPage() {
 
   const handleProfileImageClick = () => {
     profileImageInputRef.current.click();
+  };
+
+  const handleFirstImageClick = () => {
+    profileImageInputRef1.current.click();
+  };
+
+  const handleSecondImageClick = () => {
+    profileImageInputRef2.current.click();
+  };
+
+  const handleImageUpload = (e, target) => {
+    const file = e.target.files[0];
+    if (file) {
+      const newImageUrl = URL.createObjectURL(file); // 업로드된 파일의 URL 생성
+
+      setSelectedImage((prev) => ({
+        ...prev,
+        [target]: newImageUrl, // target(pic1, pic2)에 따라 상태 업데이트
+      }));
+    }
   };
 
   const [myInfo, setMyInfo] = useState({
@@ -361,6 +386,54 @@ export default function DetailEditPage() {
             </S.PlusBtnWrapper>
           </S.GroupButtonBox>
         </S.GroupButtonContainer>
+        {(data.pic1 || data.pic2) && (
+          <S.CardImageContainer>
+            <S.CardImageBox>
+              <img src={selectedImage.pic1 || data.pic1} alt='사진 1' />
+
+              <S.CardGalleryIcon>
+                <Icon
+                  id='gallery'
+                  fill='#FFFFFF'
+                  width='20'
+                  height='20'
+                  onClick={handleFirstImageClick}
+                />
+                <input
+                  type='file'
+                  accept='image/*'
+                  ref={profileImageInputRef1}
+                  style={{ display: 'none' }}
+                  onChange={(e) => handleImageUpload(e, 'pic1')}
+                />
+              </S.CardGalleryIcon>
+            </S.CardImageBox>
+            {data.pic2 ? (
+              <S.CardImageBox>
+                <img src={selectedImage.pic2 || data.pic2} alt='사진 2' />
+
+                <S.CardGalleryIcon>
+                  <Icon
+                    id='gallery'
+                    fill='#FFFFFF'
+                    width='20'
+                    height='20'
+                    onClick={handleSecondImageClick}
+                  />
+                  <input
+                    type='file'
+                    accept='image/*'
+                    ref={profileImageInputRef2}
+                    style={{ display: 'none' }}
+                    onChange={(e) => handleImageUpload(e, 'pic2')}
+                  />
+                </S.CardGalleryIcon>
+              </S.CardImageBox>
+            ) : (
+              <S.CardImageBox />
+            )}
+          </S.CardImageContainer>
+        )}
       </S.DetailEdit>
       <AddGroupModal
         member_id={member_id}
