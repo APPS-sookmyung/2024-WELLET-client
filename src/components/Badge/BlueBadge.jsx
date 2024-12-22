@@ -24,7 +24,7 @@ export default function BlueBadge({
               X
             </p>
           )}
-          {badge.label}
+          {badge.value}
         </S.BlueBadge>
       ))}
     </>

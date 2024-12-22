@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
-// import { useQuery } from 'react-query';
 import { useQuery } from '@tanstack/react-query';
 import * as S from './AddGroupModal.style';
 import { InputWrapper } from '../InputWrapper';
 import { PrimaryButton, SecondaryButton, BlueBadge } from '../';
-import { getGroupList } from '../../apis';
+import { getGroupList, postGroup, deleteGroup } from '../../apis';
 
 export default function AddGroupModal({
   member_id,
   isModalOpen,
   setIsModalOpen,
 }) {
-  // 그룹 리스트 가져오기
-  console.log(member_id);
+  const [newBadgeLabel, setNewBadgeLabel] = useState('');
+  const [badges, setBadges] = useState([]);
+  const [groupListNames, setGroupListNames] = useState([]); // 상태 추가
+  const [showModal, setShowModal] = useState(isModalOpen);
+
   const {
     data: groupListData,
     isLoading,
@@ -21,34 +23,29 @@ export default function AddGroupModal({
     queryKey: ['groupList', member_id],
     queryFn: () => getGroupList({ member_id }),
     enabled: !!member_id,
-    isError: (error) => {
-      console.log(error);
-    },
   });
 
-  const initialBadges = [
-    { label: '비즈니스', value: '비즈니스' },
-    { label: '방송사', value: '방송사' },
-    { label: '부동산', value: '부동산' },
-    { label: '대학교', value: '대학교' },
-  ];
-
-  const [newBadgeLabel, setNewBadgeLabel] = useState('');
-  const [badges, setBadges] = useState([]);
-  const [initialBadgesState, setInitialBadgesState] = useState(initialBadges);
-  const [showModal, setShowModal] = useState(isModalOpen);
-
-  console.log(groupListData);
-
   useEffect(() => {
-    if (isModalOpen) {
-      setShowModal(true);
-      setInitialBadgesState([...badges]);
-    } else {
-      const timeout = setTimeout(() => setShowModal(false), 400);
-      return () => clearTimeout(timeout);
+    if (groupListData) {
+      console.log('groupListData: ', groupListData.data);
+
+      // 초기 badges와 groupListNames 배열을 생성
+      const initialBadges = groupListData.data.map((group) => ({
+        label: group.id,
+        value: group.name,
+      }));
+
+      // badges 상태 설정
+      setBadges(initialBadges);
+
+      // groupListNames 배열 생성 및 상태 설정
+      const names = groupListData.data.map((group) => group.name);
+      setGroupListNames(names); // 상태로 저장
+
+      // groupListNames을 로그로 출력
+      console.log('groupListNames: ', names);
     }
-  }, [isModalOpen]);
+  }, [groupListData]);
 
   const handleAddBadge = () => {
     const trimmedLabel = newBadgeLabel.trim();
@@ -67,11 +64,33 @@ export default function AddGroupModal({
 
   const handleDoneBtnClick = () => {
     setIsModalOpen(false);
-    console.log(badges);
+
+    // 추가된 badges 찾기
+    const newBadges = badges
+      .filter((badge) => !groupListNames.includes(badge.value)) // badge.value를 사용
+      .map((badge) => badge.value); // badge.name이 아니라 badge.value 사용
+
+    // 각 newBadges에 대해 postGroup 호출
+    newBadges.forEach((badgeName) => {
+      postGroup({ member_id, name: badgeName });
+    });
+
+    // 삭제된 badges의 id값 찾기
+    const deletedBadges = groupListData.data
+      .filter((group) => !badges.some((badge) => badge.value === group.name)) // 현재 badges에 없는 그룹 이름 필터링
+      .map((group) => group.id); // 삭제된 그룹의 ID를 가져옴
+
+    // 각 deletedBadges에 대해 deleteGroup 호출
+    deletedBadges.forEach((category_id) => {
+      deleteGroup({ member_id, category_id });
+    });
+
+    console.log('badges: ', badges);
+    console.log('newBadges: ', newBadges);
+    console.log('deletedBadges: ', deletedBadges);
   };
 
   const handleCancelBtnClick = () => {
-    setBadges([...initialBadgesState]);
     setIsModalOpen(false);
   };
 

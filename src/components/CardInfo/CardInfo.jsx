@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function CardInfo({
   name,
-  team,
-  job,
+  role,
   company,
   imageUrl,
   isDeleteMode = false,
@@ -30,9 +29,9 @@ export default function CardInfo({
         </S.ProfileImgWrapper>
         <S.Info>
           <S.Name isSelected={isSelected}>{name}</S.Name>
-          <S.Job isSelected={isSelected}>
-            {job} / {team}, {company}
-          </S.Job>
+          <S.Role isSelected={isSelected}>
+            {role} / {company}
+          </S.Role>
         </S.Info>
       </S.CardWrapper>
       {!isDeleteMode && (
@@ -57,7 +56,7 @@ export default function CardInfo({
 
 CardInfo.propTypes = {
   name: PropTypes.string.isRequired,
-  job: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
   isDeleteMode: PropTypes.bool,
