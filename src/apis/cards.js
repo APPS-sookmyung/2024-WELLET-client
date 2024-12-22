@@ -27,3 +27,11 @@ export const putCards = async ({ card_id, data }) => {
   // console.log(response);
   return response;
 };
+
+// 명함 검색
+export const searchCards = async ({ keyword }) => {
+  console.log('검색 키워드:', keyword);
+  const response = await authAxios.get(`/cards?keyword=${keyword}`);
+  console.log(response.data.result);
+  return response;
+};

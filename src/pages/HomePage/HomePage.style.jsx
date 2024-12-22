@@ -23,6 +23,25 @@ export const MyCardContainer = styled.div`
   cursor: pointer;
 `;
 
+export const EmptyMyCard = styled.div`
+  background: #5854ff;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 6px;
+  height: 155px;
+  width: 100%;
+  font-size: 12px;
+  color: #c8c8c8;
+
+  p:nth-of-type(2) {
+    text-decoration: underline;
+  }
+`;
+
 export const UpDownBarBox = styled.div`
   height: 34px;
   display: flex;
