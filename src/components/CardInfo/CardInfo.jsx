@@ -5,6 +5,7 @@ import Icon from '../../components/Icon/Icon';
 import { Link } from 'react-router-dom';
 
 export default function CardInfo({
+  id,
   name,
   role,
   company,
@@ -50,11 +51,12 @@ export default function CardInfo({
   return isDeleteMode ? (
     cardContent
   ) : (
-    <Link to={`/card/${name}`}>{cardContent}</Link>
+    <Link to={`/card/${id}`}>{cardContent}</Link>
   );
 }
 
 CardInfo.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,

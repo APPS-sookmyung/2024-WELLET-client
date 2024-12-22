@@ -1,59 +1,37 @@
-import React, { useState, memo, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as S from './MyPageEditPage.style';
 import Icon from '../../components/Icon/Icon';
 import { Link, useNavigate } from 'react-router-dom';
-
-const InputWrapper = memo(
-  ({
-    label,
-    type,
-    placeholder,
-    name,
-    value,
-    onChange,
-    onBlur,
-    onFocus,
-    autoFocus,
-  }) => {
-    return (
-      <S.InputWrapper>
-        <S.InputLabel>{label}</S.InputLabel>
-        <S.InputBox>
-          <S.Input
-            type={type}
-            placeholder={autoFocus ? '' : placeholder}
-            name={name}
-            value={value || ''}
-            onChange={onChange}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            autoFocus={autoFocus}
-          />
-          {!autoFocus && (
-            <S.IconWrapper onClick={() => onFocus(name)}>
-              <Icon id='pencil' fill='none' />
-            </S.IconWrapper>
-          )}
-        </S.InputBox>
-      </S.InputWrapper>
-    );
-  }
-);
+import { getMyCard, putMyCard } from '../../apis';
 
 export default function MyPageEditPage() {
-  const [myInfo, setMyInfo] = useState({
-    name: '김은지',
-    team: '개발팀',
-    job: 'Web Engineer',
-    company: 'WELLET Corp.',
+  const [myInfo, setMyInfo] = useState(null); // API로 받은 사용자 정보 저장
+  const [isEditing, setIsEditing] = useState({
+    name: false,
+    job: false,
+    company: false,
+    phone: false,
+    email: false,
+    tel: false,
+    address: false,
   });
+  const [profileImage, setProfileImage] = useState(null);
+  const profileImageInputRef = useRef(null);
+  const navigate = useNavigate();
 
-  const [myContact, setMyContact] = useState({
-    phone: '010-1234-5678',
-    email: 'email@welletapp.co.kr',
-    tel: '81-2-222-3456',
-    address: '서울시 강남구 테헤란로 134, 5-6층 (역삼동, 포스크타워 역삼)',
-  });
+  // 컴포넌트가 마운트될 때 API로 사용자 정보를 가져옴
+  useEffect(() => {
+    const fetchMyCard = async () => {
+      try {
+        const data = await getMyCard();
+        setMyInfo(data);
+      } catch (error) {
+        console.error('사용자 정보를 불러오는 데 실패했습니다.', error);
+      }
+    };
+
+    fetchMyCard();
+  }, []);
 
   const handleInfoChange = (e) => {
     const { name, value } = e.target;
@@ -63,92 +41,23 @@ export default function MyPageEditPage() {
     }));
   };
 
-  const handleContactChange = (e) => {
-    const { name, value } = e.target;
-    setMyContact((prevContact) => ({
-      ...prevContact,
-      [name]: value,
-    }));
-  };
-
-  const InputData = [
-    {
-      label: '회사명',
-      type: 'text',
-      name: 'company',
-      value: myInfo.company,
-      onChange: handleInfoChange,
-    },
-    {
-      label: '직책',
-      type: 'text',
-      name: 'job',
-      value: myInfo.job,
-      onChange: handleInfoChange,
-    },
-    {
-      label: '부서',
-      type: 'text',
-      name: 'team',
-      value: myInfo.team,
-      onChange: handleInfoChange,
-    },
-    {
-      label: '휴대폰',
-      type: 'tel',
-      name: 'phone',
-      value: myContact.phone,
-      onChange: handleContactChange,
-    },
-    {
-      label: '이메일',
-      type: 'email',
-      name: 'email',
-      value: myContact.email,
-      onChange: handleContactChange,
-    },
-    {
-      label: '유선전화',
-      type: 'tel',
-      name: 'tel',
-      value: myContact.tel,
-      onChange: handleContactChange,
-    },
-    {
-      label: '주소',
-      type: 'text',
-      name: 'address',
-      value: myContact.address,
-      onChange: handleContactChange,
-    },
-  ];
-
-  const [isEditing, setIsEditing] = useState({
-    name: false,
-    team: false,
-    job: false,
-    company: false,
-    phone: false,
-    email: false,
-    tel: false,
-    address: false,
-  });
-
-  const navigate = useNavigate();
-
-  const handleEditComplete = () => {
-    console.log('Data saved successfully:', { myInfo, myContact });
-    setIsEditing({
-      name: false,
-      team: false,
-      job: false,
-      company: false,
-      phone: false,
-      email: false,
-      tel: false,
-      address: false,
-    });
-    navigate('/mypage');
+  const handleEditComplete = async () => {
+    try {
+      const updatedData = await putMyCard(myInfo); // 수정된 데이터 서버에 전송
+      console.log('Data saved successfully:', updatedData);
+      setIsEditing({
+        name: false,
+        job: false,
+        company: false,
+        phone: false,
+        email: false,
+        tel: false,
+        address: false,
+      });
+      navigate('/mypage'); // 수정 완료 후 마이페이지로 이동
+    } catch (error) {
+      console.error('사용자 정보를 저장하는 데 실패했습니다.', error);
+    }
   };
 
   const handleEditClick = (field) => {
@@ -172,13 +81,8 @@ export default function MyPageEditPage() {
     }));
   };
 
-  const [profileImage, setProfileImage] = useState(null);
-
-  const profileImageInputRef = useRef(null);
-
-  const onUploadImage = (event) => {
-    const files = Array.from(event.target.files || event.dataTransfer.files);
-    setSelectedImage(files);
+  const handleProfileImageClick = () => {
+    profileImageInputRef.current.click();
   };
 
   const onUploadProfileImage = (event) => {
@@ -186,97 +90,77 @@ export default function MyPageEditPage() {
     setProfileImage(URL.createObjectURL(file));
   };
 
-  const handleProfileImageClick = () => {
-    profileImageInputRef.current.click();
-  };
+  if (!myInfo) return <div>Loading...</div>; // 데이터가 없으면 로딩 중 화면
 
   return (
-    <>
-      <S.MyEdit>
-        <S.Header>
-          <S.ArrowIcon>
-            <Link to='/mypage'>
-              <Icon id='arrow' fill='#2D29FF' width='20' height='20' />
-            </Link>
-          </S.ArrowIcon>
-          <S.WelletLogo>
-            <Icon id='logo-blue' />
-          </S.WelletLogo>
-          <S.EditIconBox>
-            <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
-          </S.EditIconBox>
-        </S.Header>
-        <S.Body>
-          <S.PicContainer>
-            <S.ProfilePic
-              style={{
-                backgroundImage: `url(${profileImage})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
+    <S.MyEdit>
+      <S.Header>
+        <S.ArrowIcon>
+          <Link to='/mypage'>
+            <Icon id='arrow' fill='#2D29FF' width='20' height='20' />
+          </Link>
+        </S.ArrowIcon>
+        <S.WelletLogo>
+          <Icon id='logo-blue' />
+        </S.WelletLogo>
+        <S.EditIconBox>
+          <S.EditIcon onClick={handleEditComplete}>편집완료</S.EditIcon>
+        </S.EditIconBox>
+      </S.Header>
+      <S.Body>
+        <S.PicContainer>
+          <S.ProfilePic
+            style={{
+              backgroundImage: `url(${profileImage || myInfo.imageUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+          <S.GalleryIcon>
+            <Icon
+              id='gallery'
+              fill='#FFFFFF'
+              width='20'
+              height='20'
+              onClick={handleProfileImageClick}
             />
-            <S.GalleryIcon>
-              <Icon
-                id='gallery'
-                fill='#FFFFFF'
-                width='20'
-                height='20'
-                onClick={handleProfileImageClick}
+            <input
+              type='file'
+              accept='image/*'
+              ref={profileImageInputRef}
+              style={{ display: 'none' }}
+              onChange={onUploadProfileImage}
+            />
+          </S.GalleryIcon>
+        </S.PicContainer>
+        <S.EditInfoContainer>
+          <S.EditName>
+            {isEditing.name ? (
+              <S.InputNameBox
+                type='text'
+                name='name'
+                value={myInfo.name}
+                onChange={handleInfoChange}
+                onBlur={() => handleBlur('name')}
+                onFocus={() => handleFocus('name')}
+                autoFocus
               />
-              <input
-                type='file'
-                accept='image/*'
-                ref={profileImageInputRef}
-                style={{ display: 'none' }}
-                onChange={onUploadProfileImage}
-              />
-            </S.GalleryIcon>
-          </S.PicContainer>
-          <S.EditInfoContainer>
-            <S.EditName>
-              {isEditing.name ? (
-                <S.InputNameBox
-                  type='text'
-                  name='name'
-                  value={myInfo.name}
-                  onChange={handleInfoChange}
-                  onBlur={() => handleBlur('name')}
-                  onFocus={() => handleFocus('name')}
-                  autoFocus
-                />
-              ) : (
-                <>
-                  <S.Name>{myInfo.name}</S.Name>
-                  <S.PencilIcon onClick={() => handleEditClick('name')}>
-                    <Icon id='pencil' fill='#FFF' />
-                  </S.PencilIcon>
-                </>
-              )}
-            </S.EditName>
-            <S.EditGuide>
-              사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
-            </S.EditGuide>
-          </S.EditInfoContainer>
-        </S.Body>
-        <S.InputField>
-          <S.InputContainer>
-            {InputData.map((field, index) => (
-              <InputWrapper
-                key={index}
-                label={field.label}
-                type={field.type}
-                name={field.name}
-                value={isEditing[field.name] ? field.value : ''}
-                placeholder={isEditing[field.name] ? '' : field.value}
-                onChange={field.onChange}
-                onBlur={() => handleBlur(field.name)}
-                onFocus={() => handleFocus(field.name)}
-                autoFocus={isEditing[field.name]}
-              />
-            ))}
-          </S.InputContainer>
-        </S.InputField>
-      </S.MyEdit>
-    </>
+            ) : (
+              <>
+                <S.Name>{myInfo.name}</S.Name>
+                <S.PencilIcon onClick={() => handleEditClick('name')}>
+                  <Icon id='pencil' fill='#FFF' />
+                </S.PencilIcon>
+              </>
+            )}
+          </S.EditName>
+        </S.EditInfoContainer>
+      </S.Body>
+      <S.InputField>
+        <S.InputContainer>
+          {/* 여기에 기존의 InputWrapper 컴포넌트를 활용하여 각 필드를 편집할 수 있습니다 */}
+        </S.InputContainer>
+      </S.InputField>
+    </S.MyEdit>
   );
 }

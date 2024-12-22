@@ -19,7 +19,7 @@ const getTokenFromCookie = () => {
 };
 
 const dummyToken =
-  '여기에 로그인 링크 타고 들어갔을 때 쿠키에 뜨는 토큰값을 넣어주세요';
+  'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzODQ1Njk3MjEwIiwicm9sZSI6IlVTRVIiLCJuaWNrbmFtZSI6Iuq5gO2YnOumvCIsImlkIjozODQ1Njk3MjEwLCJleHAiOjE3MzQ4NjQxODIsImlhdCI6MTczNDg2MDU4MiwidXNlcm5hbWUiOiJjMGVkZWQ0Ny00ZTdiLTQ4ZTAtYTY2OS00NTA4NjhiNmZlOWYifQ.KIS9XLDyKIgulQmxdk3_GKJAmD2j-16cYeoliQAMSrhmTZ9Zpu64TXkoPRM8On_qdUJ4UtyoNQUHNRi6rX1huA';
 
 // 요청을 보낼 때 Bearer Token을 Authorization 헤더에 추가합니다.
 authAxios.interceptors.request.use(

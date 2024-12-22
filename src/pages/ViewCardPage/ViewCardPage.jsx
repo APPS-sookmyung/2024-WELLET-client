@@ -80,6 +80,7 @@ export default function ViewCardPage() {
         <S.CardContainer>
           {filteredData.map((data, index) => (
             <CardInfo
+              id={data.id}
               key={index}
               name={data.name}
               job={data.job}

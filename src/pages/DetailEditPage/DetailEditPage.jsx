@@ -75,7 +75,7 @@ export default function DetailEditPage() {
   }, [groupListData]);
 
   const filteredData = CARDS_SAMPLE_DATA.find(
-    (data) => data.name === decodeURIComponent(id)
+    (data) => data.id === decodeURIComponent(id)
   );
 
   // const [filteredBadges, setFilteredBadges] = useState(() => {

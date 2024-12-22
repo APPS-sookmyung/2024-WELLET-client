@@ -1,43 +1,48 @@
 import * as S from './MyPage.style';
 import Icon from '../../components/Icon/Icon';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineLink } from 'react-icons/hi';
-
-// 더미 데이터
-const myInfo = {
-  name: '김은지',
-  job: 'Web Engineer',
-  team: '개발팀',
-  company: null,
-  phone: '010-1234-5678',
-  email: 'email@welletapp.co.kr',
-  tel: '81-2-222-3456',
-  address: '서울시 강남구 테헤란로 134, 5-6층 (역삼동, 포스크타워 역삼)',
-};
+import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
+import { getMyCard, putMyCard } from '../../apis'; // API 함수 불러오기
 
 export default function MyPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isToastVisible, setIsToastVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // QR 코드 모달 상태
+  const [isToastVisible, setIsToastVisible] = useState(false); // 토스트 메시지 상태
+  const [myInfo, setMyInfo] = useState(MY_CARD_SAMPLE_DATA); // 명함 정보 상태
+
+  // 마이페이지의 명함 정보를 API에서 받아오기
+  useEffect(() => {
+    const fetchMyCard = async () => {
+      try {
+        const response = await getMyCard(); // API로부터 명함 데이터 받아오기
+        setMyInfo(response.data); // 받아온 데이터로 상태 업데이트
+      } catch (error) {
+        console.error('명함 정보를 가져오는 데 실패했습니다.', error);
+      }
+    };
+
+    fetchMyCard();
+  }, []); // 페이지 로딩 시 한 번만 호출
 
   const handleShareClick = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(true); // QR 코드 모달 열기
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsModalOpen(false); // QR 코드 모달 닫기
   };
 
   const handleCopyLinkClick = () => {
-    setIsToastVisible(true);
+    setIsToastVisible(true); // 링크 복사 시 토스트 메시지 보이기
     setTimeout(() => {
-      setIsToastVisible(false);
+      setIsToastVisible(false); // 3초 후 토스트 메시지 숨기기
     }, 3000);
   };
 
   const navigate = useNavigate();
   const handleEditButtonClick = () => {
-    navigate('/mypage/edit');
+    navigate('/mypage/edit'); // 편집 페이지로 이동
   };
 
   return (
@@ -81,7 +86,7 @@ export default function MyPage() {
                   <S.MyInfoValue>{myInfo.company}</S.MyInfoValue>
                 ) : (
                   <S.MyInfoValueNull>
-                    (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
+                    정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
                   </S.MyInfoValueNull>
                 )}
               </S.MyInfoItem>
@@ -92,13 +97,19 @@ export default function MyPage() {
                     myInfo.team ? (
                       `${myInfo.job} / ${myInfo.team}`
                     ) : (
-                      <>{myInfo.job}</>
+                      <>
+                        {myInfo.job} /{' '}
+                        <S.MyInfoValueNull>정보가 없습니다. </S.MyInfoValueNull>
+                      </>
                     )
                   ) : myInfo.team ? (
-                    <>{myInfo.team}</>
+                    <>
+                      <S.MyInfoValueNull>정보가 없습니다.</S.MyInfoValueNull> /{' '}
+                      {myInfo.team}
+                    </>
                   ) : (
                     <S.MyInfoValueNull>
-                      (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
+                      정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
                     </S.MyInfoValueNull>
                   )}
                 </S.MyInfoValue>
@@ -116,7 +127,7 @@ export default function MyPage() {
                     <S.MyInfoValue>{myInfo.phone}</S.MyInfoValue>
                   ) : (
                     <S.MyInfoValueNull>
-                      (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
+                      정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
                     </S.MyInfoValueNull>
                   )}
                   <S.IconBox>
@@ -132,7 +143,7 @@ export default function MyPage() {
                     <S.MyInfoValue>{myInfo.email}</S.MyInfoValue>
                   ) : (
                     <S.MyInfoValueNull>
-                      (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
+                      정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
                     </S.MyInfoValueNull>
                   )}
                   <Icon id='mail' width='20' height='14' />
@@ -145,7 +156,7 @@ export default function MyPage() {
                     <S.MyInfoValue>{myInfo.tel}</S.MyInfoValue>
                   ) : (
                     <S.MyInfoValueNull>
-                      (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
+                      정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
                     </S.MyInfoValueNull>
                   )}
                   <Icon id='call' width='20' height='14' />
@@ -157,7 +168,7 @@ export default function MyPage() {
                   <S.MyInfoValue>{myInfo.address}</S.MyInfoValue>
                 ) : (
                   <S.MyInfoValueNull>
-                    (정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.)
+                    정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
                   </S.MyInfoValueNull>
                 )}
               </S.MyInfoItem>
