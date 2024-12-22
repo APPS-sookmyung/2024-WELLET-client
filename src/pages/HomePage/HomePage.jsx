@@ -54,20 +54,29 @@ export default function HomePage() {
             <p>나의 명함 확인 및 관리하기</p>
           </S.CardListTitle>
         </S.Padding>
-        <S.MyCardContainer>
-          <MyCard
-            backgroundColor='#fff'
-            name={myCardData.name}
-            role={myCardData.role}
-            company={myCardData.company}
-            imageUrl={myCardData.imageUrl}
-            phone={myCardData.phone}
-            tel={myCardData.tel}
-            email={myCardData.email}
-            address={myCardData.address}
-            onClick={() => navigate('/mypage')}
-          />
-        </S.MyCardContainer>
+        {myCardData && myCardData.length > 0 ? (
+          <S.MyCardContainer>
+            <MyCard
+              backgroundColor='#fff'
+              name={myCardData.name}
+              role={myCardData.role}
+              company={myCardData.company}
+              imageUrl={myCardData.imageUrl}
+              phone={myCardData.phone}
+              tel={myCardData.tel}
+              email={myCardData.email}
+              address={myCardData.address}
+              onClick={() => navigate('/mypage')}
+            />
+          </S.MyCardContainer>
+        ) : (
+          <S.MyCardContainer>
+            <S.EmptyMyCard onClick={() => navigate('/mypage')}>
+              <p>아직 등록된 내 명함이 없어요!</p>
+              <p>내 명함 등록하러 가기</p>
+            </S.EmptyMyCard>
+          </S.MyCardContainer>
+        )}
         <S.UpDownBarBox>
           <S.UpDownBar />
         </S.UpDownBarBox>
