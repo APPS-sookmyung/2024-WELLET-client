@@ -1,11 +1,57 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, memo, useRef } from 'react';
 import * as S from './MyPageEditPage.style';
 import Icon from '../../components/Icon/Icon';
 import { Link, useNavigate } from 'react-router-dom';
-import { getMyCard, putMyCard } from '../../apis';
+import { getMyCard, postMyCard, putMyCard } from '../../apis';
+
+const InputWrapper = memo(
+  ({
+    label,
+    type,
+    placeholder,
+    name,
+    value,
+    onChange,
+    onBlur,
+    onFocus,
+    autoFocus,
+  }) => {
+    return (
+      <S.InputWrapper>
+        <S.InputLabel>{label}</S.InputLabel>
+        <S.InputBox>
+          <S.Input
+            type={type}
+            placeholder={autoFocus ? '' : placeholder}
+            name={name}
+            value={value || ''}
+            onChange={onChange}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            autoFocus={autoFocus}
+          />
+          {!autoFocus && (
+            <S.IconWrapper onClick={() => onFocus(name)}>
+              <Icon id='pencil' fill='none' />
+            </S.IconWrapper>
+          )}
+        </S.InputBox>
+      </S.InputWrapper>
+    );
+  }
+);
 
 export default function MyPageEditPage() {
-  const [myInfo, setMyInfo] = useState(null); // API로 받은 사용자 정보 저장
+  const [myInfo, setMyInfo] = useState({
+    name: '',
+    job: '',
+    company: '',
+    phone: '',
+    email: '',
+    tel: '',
+    address: '',
+    team: '',
+  });
   const [isEditing, setIsEditing] = useState({
     name: false,
     job: false,
@@ -19,12 +65,34 @@ export default function MyPageEditPage() {
   const profileImageInputRef = useRef(null);
   const navigate = useNavigate();
 
-  // 컴포넌트가 마운트될 때 API로 사용자 정보를 가져옴
   useEffect(() => {
     const fetchMyCard = async () => {
       try {
-        const data = await getMyCard();
-        setMyInfo(data);
+        const response = await getMyCard();
+        if (response.data) {
+          setMyInfo({
+            name: response.data.name || '',
+            job: response.data.position || '',
+            company: response.data.company || '',
+            phone: response.data.phone || '',
+            email: response.data.email || '',
+            tel: response.data.tel || '',
+            address: response.data.address || '',
+            team: response.data.department || '',
+            imageUrl: response.data.profImgUrl || '',
+          });
+        } else {
+          setMyInfo({
+            name: '',
+            job: '',
+            company: '',
+            phone: '',
+            email: '',
+            tel: '',
+            address: '',
+            team: '',
+          });
+        }
       } catch (error) {
         console.error('사용자 정보를 불러오는 데 실패했습니다.', error);
       }
@@ -41,20 +109,71 @@ export default function MyPageEditPage() {
     }));
   };
 
+  const InputData = [
+    {
+      label: '회사명',
+      type: 'text',
+      name: 'company',
+      value: myInfo?.company || '',
+      onChange: handleInfoChange,
+    },
+    {
+      label: '직책',
+      type: 'text',
+      name: 'job',
+      value: myInfo?.job || '',
+      onChange: handleInfoChange,
+    },
+    {
+      label: '부서',
+      type: 'text',
+      name: 'team',
+      value: myInfo?.team || '',
+      onChange: handleInfoChange,
+    },
+    {
+      label: '휴대폰',
+      type: 'tel',
+      name: 'phone',
+      value: myInfo?.phone || '',
+      onChange: handleInfoChange,
+    },
+    {
+      label: '이메일',
+      type: 'email',
+      name: 'email',
+      value: myInfo?.email || '',
+      onChange: handleInfoChange,
+    },
+    {
+      label: '유선전화',
+      type: 'tel',
+      name: 'tel',
+      value: myInfo?.tel || '',
+      onChange: handleInfoChange,
+    },
+    {
+      label: '주소',
+      type: 'text',
+      name: 'address',
+      value: myInfo?.address || '',
+      onChange: handleInfoChange,
+    },
+  ];
+
+  const saveCard = async () => {
+    const isCardCreated = Object.values(myInfo).some((value) => value);
+    const updatedData = isCardCreated
+      ? await putMyCard({ data: JSON.stringify(myInfo) })
+      : await postMyCard({ data: myInfo });
+    return updatedData;
+  };
+
   const handleEditComplete = async () => {
     try {
-      const updatedData = await putMyCard(myInfo); // 수정된 데이터 서버에 전송
+      const updatedData = await saveCard();
       console.log('Data saved successfully:', updatedData);
-      setIsEditing({
-        name: false,
-        job: false,
-        company: false,
-        phone: false,
-        email: false,
-        tel: false,
-        address: false,
-      });
-      navigate('/mypage'); // 수정 완료 후 마이페이지로 이동
+      navigate('/mypage');
     } catch (error) {
       console.error('사용자 정보를 저장하는 데 실패했습니다.', error);
     }
@@ -90,7 +209,7 @@ export default function MyPageEditPage() {
     setProfileImage(URL.createObjectURL(file));
   };
 
-  if (!myInfo) return <div>Loading...</div>; // 데이터가 없으면 로딩 중 화면
+  if (!myInfo) return <div>Loading...</div>;
 
   return (
     <S.MyEdit>
@@ -154,11 +273,27 @@ export default function MyPageEditPage() {
               </>
             )}
           </S.EditName>
+          <S.EditGuide>
+            사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
+          </S.EditGuide>
         </S.EditInfoContainer>
       </S.Body>
       <S.InputField>
         <S.InputContainer>
-          {/* 여기에 기존의 InputWrapper 컴포넌트를 활용하여 각 필드를 편집할 수 있습니다 */}
+          {InputData.map((field, index) => (
+            <InputWrapper
+              key={index}
+              label={field.label}
+              type={field.type}
+              name={field.name}
+              value={isEditing[field.name] ? field.value : ''}
+              placeholder={isEditing[field.name] ? '' : field.value}
+              onChange={field.onChange}
+              onBlur={() => handleBlur(field.name)}
+              onFocus={() => handleFocus(field.name)}
+              autoFocus={isEditing[field.name]}
+            />
+          ))}
         </S.InputContainer>
       </S.InputField>
     </S.MyEdit>

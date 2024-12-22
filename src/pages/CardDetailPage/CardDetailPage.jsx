@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as S from './CardDetailPage.style';
 import Icon from '../../components/Icon/Icon';
-import { DetailBadge } from '../../components';
+import { BadgeDetail } from '../../components';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
-import { getCards } from '../../apis'; // getCards API 가져오기
-import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
+import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData'; // Import sample data
 
 export default function CardDetailPage() {
-  const { id } = useParams(); // URL 파라미터에서 id 가져오기
+  const { id } = useParams(); // URL parameter to get id
 
   const badges = [
     { label: '비즈니스', value: '비즈니스' },
@@ -17,28 +16,26 @@ export default function CardDetailPage() {
     { label: '대학교', value: '대학교' },
   ];
 
-  // 상태 변수 초기화
+  // Initialize state variables
   const [cardData, setCardData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getCards({ member_id: id }); // getCards API 호출
-        setCardData(response); // API에서 가져온 데이터를 상태로 설정
-      } catch (err) {
-        setError(err.message); // 에러 발생 시 에러 메시지 상태로 설정
-      } finally {
-        setLoading(false); // 로딩 상태 종료
-      }
-    };
+    // Simulate fetching the card by id from CARDS_SAMPLE_DATA
+    const foundCard = CARDS_SAMPLE_DATA.find((card) => card.id === id); // Find card by id
 
-    fetchData(); // 함수 호출
-  }, [id]); // `id` 값이 변경될 때마다 다시 호출
+    if (foundCard) {
+      setCardData(foundCard);
+    } else {
+      setError('Card not found'); // If no card found
+    }
 
-  if (loading) return <S.Loading>Loading...</S.Loading>; // 로딩 중일 때 표시할 메시지
-  if (error) return <S.Error>{`Error: ${error}`}</S.Error>; // 에러 발생 시 표시할 메시지
+    setLoading(false); // End loading once data is found or error occurs
+  }, [id]); // Re-fetch if `id` changes
+
+  if (loading) return <S.Loading>Loading...</S.Loading>; // Display loading state
+  if (error) return <S.Error>{`Error: ${error}`}</S.Error>; // Display error if any
 
   const filteredBadges = cardData
     ? badges.filter((badge) => badge.value === cardData.category)
@@ -141,7 +138,7 @@ export default function CardDetailPage() {
           </S.ContactContainer>
           <S.GroupButtonBar>그룹</S.GroupButtonBar>
           <S.GroupButtonBox>
-            <DetailBadge badges={filteredBadges} activeBadge={activeBadge} />
+            <BadgeDetail badges={filteredBadges} activeBadge={activeBadge} />
           </S.GroupButtonBox>
           {(cardData?.pic1 || cardData?.pic2) && (
             <S.CardImageContainer>

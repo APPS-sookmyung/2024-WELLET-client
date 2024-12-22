@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineLink } from 'react-icons/hi';
 import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
-import { getMyCard, putMyCard } from '../../apis'; // API 함수 불러오기
+import { getMyCard } from '../../apis'; // API 함수 불러오기
 
 export default function MyPage() {
   const [isModalOpen, setIsModalOpen] = useState(false); // QR 코드 모달 상태
@@ -15,15 +15,17 @@ export default function MyPage() {
   useEffect(() => {
     const fetchMyCard = async () => {
       try {
-        const response = await getMyCard(); // API로부터 명함 데이터 받아오기
-        setMyInfo(response.data); // 받아온 데이터로 상태 업데이트
+        const response = await getMyCard();
+        console.log(response); // Check the API response
+        setMyInfo(response.data); // Use sample data if API response is empty
       } catch (error) {
         console.error('명함 정보를 가져오는 데 실패했습니다.', error);
+        setMyInfo(MY_CARD_SAMPLE_DATA); // Use sample data on error
       }
     };
 
     fetchMyCard();
-  }, []); // 페이지 로딩 시 한 번만 호출
+  }, []);
 
   const handleShareClick = () => {
     setIsModalOpen(true); // QR 코드 모달 열기
