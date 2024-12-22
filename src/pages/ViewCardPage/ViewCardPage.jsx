@@ -1,14 +1,15 @@
 import * as S from './ViewCardPage.style';
 import { Header, SearchBar, BlueBadge, CardInfo } from '../../components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Icon from '../../components/Icon/Icon';
-import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
+import { getCards } from '../../apis/cards';
 
 export default function ViewCardPage() {
   const [activeBadge, setActiveBadge] = useState('전체 보기');
   const [isEditCompleteVisible, setIsEditCompleteVisible] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
+  const [cardsData, setCardsData] = useState([]);
   const badges = [
     { label: '전체 보기', value: '전체 보기' },
     { label: '비즈니스', value: '비즈니스' },
@@ -17,10 +18,23 @@ export default function ViewCardPage() {
     { label: '대학교', value: '대학교' },
   ];
 
+  async function fetchCards() {
+    try {
+      const response = await getCards();
+      setCardsData(response.data.cards);
+    } catch (error) {
+      console.error('카드 리스트를 불러오지 못했습니다.', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchCards();
+  }, []);
+
   let filteredData =
     activeBadge === '전체 보기'
-      ? CARDS_SAMPLE_DATA
-      : CARDS_SAMPLE_DATA.filter((data) => data.category === activeBadge);
+      ? cardsData
+      : cardsData.filter((data) => data.category === activeBadge);
 
   // 이름을 기준으로 오름차순 정렬
   filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
