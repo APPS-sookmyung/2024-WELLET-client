@@ -6,7 +6,6 @@ import {
   SearchBar,
   CardInfo,
   MyCard,
-  AddGroupModal,
 } from '../../components';
 import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
