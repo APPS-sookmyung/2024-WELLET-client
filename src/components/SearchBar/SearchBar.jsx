@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from './SearchBar.style';
 import Icon from '../../components/Icon/Icon';
 import { searchCards } from '../../apis/cards.js';
 
 export default function SearchBar({ theme }) {
-  const [keyword, setKeyword] = useState('');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [keyword, setKeyword] = useState(
+    new URLSearchParams(location.search).get('keyword') || ''
+  );
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const keywordFromParams = searchParams.get('keyword');
+    if (keywordFromParams) {
+      setKeyword(keywordFromParams);
+      searchCards(keywordFromParams);
+    }
+  }, [location.search]);
 
   const handleSearch = () => {
     if (keyword.trim() === '') return;
@@ -13,8 +27,26 @@ export default function SearchBar({ theme }) {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.set('keyword', keyword);
+      if (location.pathname === '/home') {
+        navigate(`/card?${searchParams.toString()}`);
+      } else {
+        navigate(`${location.pathname}?${searchParams.toString()}`);
+      }
       handleSearch();
     }
+  };
+
+  const handleSearchIconClick = () => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('keyword', keyword);
+    if (location.pathname === '/home') {
+      navigate(`/card?${searchParams.toString()}`);
+    } else {
+      navigate(`${location.pathname}?${searchParams.toString()}`);
+    }
+    handleSearch();
   };
 
   const iconId =
@@ -27,7 +59,7 @@ export default function SearchBar({ theme }) {
   return (
     <S.SearchBar theme={theme}>
       <S.SearchIcon theme={theme}>
-        <Icon id={iconId} fill='none' />
+        <Icon id={iconId} fill='none' onClick={handleSearchIconClick} />
       </S.SearchIcon>
       <S.SearchInput
         theme={theme}
