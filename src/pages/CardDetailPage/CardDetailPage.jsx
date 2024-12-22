@@ -8,6 +8,7 @@ import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData'; // Import sampl
 
 export default function CardDetailPage() {
   const { id } = useParams(); // URL parameter to get id
+  fdfdf;
 
   const badges = [
     { label: '비즈니스', value: '비즈니스' },
