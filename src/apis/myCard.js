@@ -1,29 +1,29 @@
 import { authAxios } from '../axios';
 
 // 내 명함 가져오기
-export const getMyCard = async ({ member_id }) => {
-  const response = await authAxios.get(`/me/${member_id}`);
+export const getMyCard = async () => {
+  const response = await authAxios.get(`/me`);
   console.log(response);
   return response;
 };
 
 // 내 명함 생성
-export const postMyCard = async ({ member_id, data }) => {
-  const response = await authAxios.post(`/categories/${member_id}`, data);
+export const postMyCard = async ({ data }) => {
+  const response = await authAxios.post(`/categories`, data);
   console.log(response);
   return response;
 };
 
 // 내 명함 삭제
-export const deleteMyCard = async (member_id) => {
-  const response = await authAxios.delete(`/me/${member_id}`);
+export const deleteMyCard = async () => {
+  const response = await authAxios.delete(`/me`);
   console.log(response);
   return response;
 };
 
 // 내 명함 수정
-export const putMyCard = async ({ member_id, data }) => {
-  const response = await authAxios.put(`/me/${member_id}`, data);
+export const putMyCard = async ({ data }) => {
+  const response = await authAxios.put(`/me`, data);
   console.log(response);
   return response;
 };
