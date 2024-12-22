@@ -95,6 +95,7 @@ export default function ViewCardPage() {
           {filteredData.map((data, index) => (
             <CardInfo
               key={index}
+              id={data.id}
               name={data.name}
               job={data.job}
               team={data.team}

@@ -7,6 +7,13 @@ export const getCards = async () => {
   return response;
 };
 
+// 단건 명함 조회
+export const getCardDetail = async ({ card_id }) => {
+  const response = await authAxios.get(`/cards/${card_id}`);
+  console.log(response.data.result);
+  return response;
+};
+
 // 명함 생성
 export const postCards = async ({ data }) => {
   const response = await authAxios.post(`/cards`, data);
