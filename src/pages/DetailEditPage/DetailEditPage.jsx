@@ -5,7 +5,6 @@ import Icon from '../../components/Icon/Icon';
 import { BlueBadge, AddGroupModal } from '../../components';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
-import USER from '../../dummy/user';
 import { getGroupList } from '../../apis';
 import { useQuery } from '@tanstack/react-query';
 
@@ -49,16 +48,15 @@ const InputWrapper = memo(
 export default function DetailEditPage() {
   const { id } = useParams();
   const [activeBadge, setActiveBadge] = useState(null);
-  const member_id = USER.id;
 
   const {
     data: groupListData,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['groupList', member_id],
-    queryFn: () => getGroupList({ member_id }),
-    enabled: !!member_id,
+    queryKey: ['groupList'],
+    queryFn: () => getGroupList(),
+    // enabled: !!member_id,
   });
 
   const [badges, setBadges] = useState([]);
@@ -436,9 +434,10 @@ export default function DetailEditPage() {
         )}
       </S.DetailEdit>
       <AddGroupModal
-        member_id={member_id}
         isModalOpen={modalVisible}
         setIsModalOpen={setModalVisible}
+        badges={badges}
+        setBadges={setBadges}
       />
     </>
   );
