@@ -13,8 +13,6 @@ import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
 import { getMyCard } from '../../apis/myCard.js';
 import { getCards } from '../../apis/cards.js';
 
-const member_id = 5; // dummy data
-
 export default function HomePage() {
   const navigate = useNavigate();
   const [filterdList, setFilterdList] = useState([]);
@@ -22,18 +20,18 @@ export default function HomePage() {
   const [cardsData, setCardsData] = useState([]);
   // useVisibleCardsEffect(setFilterdList, cardsData);
 
-  async function fetchMyCard(member_id) {
+  async function fetchMyCard() {
     try {
-      const response = await getMyCard({ member_id: member_id });
+      const response = await getMyCard();
       setMyCardData(response.data);
     } catch (error) {
       console.error('내 카드 정보를 불러오지 못했습니다.', error);
     }
   }
 
-  async function fetchCards(member_id) {
+  async function fetchCards() {
     try {
-      const response = await getCards({ member_id: member_id });
+      const response = await getCards();
       setCardsData(response.data.cards);
     } catch (error) {
       console.error('카드 리스트를 불러오지 못했습니다.', error);
@@ -41,8 +39,8 @@ export default function HomePage() {
   }
 
   useEffect(() => {
-    fetchMyCard(member_id);
-    fetchCards(member_id);
+    fetchMyCard();
+    fetchCards();
   }, []);
 
   return (
@@ -79,7 +77,7 @@ export default function HomePage() {
           <p style={{ color: '#000' }}>둘러보기</p>
           <p style={{ color: '#555' }}>최근 등록된 명함</p>
         </S.CardListTitle>
-        {cardsData.length > 0 && (
+        {cardsData && cardsData.length > 0 && (
           <S.CardContainer>
             {cardsData.map((data, index) => (
               <CardInfo
