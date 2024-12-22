@@ -24,7 +24,7 @@ export const MyCardContainer = styled.div`
 `;
 
 export const EmptyMyCard = styled.div`
-  background: #fff;
+  background: #5854ff;
   padding: 20px;
   border-radius: 20px;
   display: flex;
