@@ -4,7 +4,7 @@ import * as S from './DetailEditPage.style';
 import Icon from '../../components/Icon/Icon';
 import { BlueBadge, AddGroupModal } from '../../components';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
-import { getGroupList, getCardDetail } from '../../apis';
+import { getGroupList, getCardDetail, putCards } from '../../apis';
 import { useQuery } from '@tanstack/react-query';
 import useFormData from '../../hooks/useFormData';
 
@@ -73,14 +73,62 @@ export default function DetailEditPage() {
 
   // 입력할 데이터
   const InputData = [
-    { label: '회사명', type: 'text', name: 'company', value: info.company, onChange: handleInfoChange },
-    { label: '직책', type: 'text', name: 'job', value: info.job, onChange: handleInfoChange },
-    { label: '부서', type: 'text', name: 'team', value: info.team, onChange: handleInfoChange },
-    { label: '휴대폰', type: 'tel', name: 'phone', value: info.phone, onChange: handleInfoChange },
-    { label: '이메일', type: 'email', name: 'email', value: info.email, onChange: handleInfoChange },
-    { label: '유선전화', type: 'tel', name: 'tel', value: info.tel, onChange: handleInfoChange },
-    { label: '주소', type: 'text', name: 'address', value: info.address, onChange: handleInfoChange },
-    { label: '메모', type: 'text', name: 'memo', value: info.memo, onChange: handleInfoChange },
+    {
+      label: '회사명',
+      type: 'text',
+      name: 'company',
+      value: info.company,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '직책',
+      type: 'text',
+      name: 'position',
+      value: info.position,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '부서',
+      type: 'text',
+      name: 'department',
+      value: info.department,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '휴대폰',
+      type: 'tel',
+      name: 'phone',
+      value: info.phone,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '이메일',
+      type: 'email',
+      name: 'email',
+      value: info.email,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '유선전화',
+      type: 'tel',
+      name: 'tel',
+      value: info.tel,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '주소',
+      type: 'text',
+      name: 'address',
+      value: info.address,
+      onChange: handleInfoChange,
+    },
+    {
+      label: '메모',
+      type: 'text',
+      name: 'memo',
+      value: info.memo,
+      onChange: handleInfoChange,
+    },
   ];
 
   // 카드 상세 데이터
@@ -108,7 +156,7 @@ export default function DetailEditPage() {
 
   useEffect(() => {
     if (inputData) {
-      setInfo(inputData.data);  // inputData로부터 info 상태 업데이트
+      setInfo(inputData.data); // inputData로부터 info 상태 업데이트
     }
   }, [inputData]);
 
@@ -134,24 +182,20 @@ export default function DetailEditPage() {
     }
   };
 
+  // useFormData 훅을 컴포넌트 내에서 호출
+  const updatedDataForm = useFormData({
+    ...info,
+    group: activeBadge,
+  });
+
   const handleEditComplete = async () => {
-    const updatedData = {
-      ...info,
-      group: activeBadge,
-    };
     try {
-      await putCards({ card_id: id, data: useFormData(updatedData) });
-      navigate(`/card/${id}`);  // 편집 완료 후 해당 카드 페이지로 리디렉션
+      await putCards({ card_id: id, data: updatedDataForm() }); // updatedDataForm() 호출
+      navigate(`/card/${id}`); // 편집 완료 후 해당 카드 페이지로 리디렉션
     } catch (error) {
       console.error('데이터를 저장하는 중에 오류가 발생하였습니다.:', error);
     }
   };
-
-  const putCards = async ({ card_id, data }) => {
-    const response = await authAxios.put(`/cards/${card_id}`, data);
-    return response;
-  };
-
   return (
     <>
       <S.DetailEdit>
@@ -198,7 +242,9 @@ export default function DetailEditPage() {
             <S.EditName>
               <S.Name>{info.name}</S.Name>
             </S.EditName>
-            <S.EditGuide>사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요</S.EditGuide>
+            <S.EditGuide>
+              사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
+            </S.EditGuide>
           </S.EditInfoContainer>
         </S.Body>
 
