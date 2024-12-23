@@ -5,9 +5,10 @@ import Icon from '../../components/Icon/Icon';
 import { Link } from 'react-router-dom';
 
 export default function CardInfo({
+  id,
   name,
-  role,
-  company,
+  position,
+  department,
   imageUrl,
   isDeleteMode = false,
   isSelected = false,
@@ -30,7 +31,7 @@ export default function CardInfo({
         <S.Info>
           <S.Name isSelected={isSelected}>{name}</S.Name>
           <S.Role isSelected={isSelected}>
-            {role} / {company}
+            {position} / {department}
           </S.Role>
         </S.Info>
       </S.CardWrapper>
@@ -50,14 +51,15 @@ export default function CardInfo({
   return isDeleteMode ? (
     cardContent
   ) : (
-    <Link to={`/card/${name}`}>{cardContent}</Link>
+    <Link to={`/card/${id}`}>{cardContent}</Link>
   );
 }
 
 CardInfo.propTypes = {
   name: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
+  department: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
   isDeleteMode: PropTypes.bool,
   isSelected: PropTypes.bool,
