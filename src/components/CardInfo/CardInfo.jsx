@@ -56,6 +56,7 @@ export default function CardInfo({
 }
 
 CardInfo.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,
   position: PropTypes.string.isRequired,
