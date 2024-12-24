@@ -6,7 +6,7 @@ export const authAxios = axios.create({
   baseURL: VITE_SERVER_DOMAIN,
   withCredentials: true,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'multipart/form-data',
   },
 });
 

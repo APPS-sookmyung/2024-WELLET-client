@@ -90,9 +90,10 @@ export default function HomePage() {
             {cardsData.map((data, index) => (
               <CardInfo
                 key={index}
+                id={data.id}
                 name={data.name}
-                role={data.role}
-                company={data.company}
+                position={data.position}
+                department={data.department}
                 imageUrl={data.imageUrl}
               />
             ))}
