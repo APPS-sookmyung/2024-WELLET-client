@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './BadgeDetail.style';
 
-export default function BadgeDetail({ badges, activeBadge }) {
+export default function DetailBadge({ badges, activeBadge }) {
   return (
     <>
       {badges.map((badge) => (

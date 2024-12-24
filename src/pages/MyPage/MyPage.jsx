@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { HiOutlineLink } from 'react-icons/hi';
 import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
 import { getMyCard } from '../../apis'; // API 함수 불러오기
+import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 
 export default function MyPage() {
   const [isModalOpen, setIsModalOpen] = useState(false); // QR 코드 모달 상태
@@ -26,7 +27,7 @@ export default function MyPage() {
 
     fetchMyCard();
   }, []);
-
+  const profileImageUrl = myInfo.profImgUrl || ProfileImgDefault;
   const handleShareClick = () => {
     setIsModalOpen(true); // QR 코드 모달 열기
   };
@@ -61,7 +62,11 @@ export default function MyPage() {
           <S.MidBar>
             <S.LeftContainer2 />
             <S.MyInfoSummaryWrapper>
-              <S.ProfileImageWrapper>프로필 사진</S.ProfileImageWrapper>
+              <S.ProfileImageWrapper>
+                <S.PicContainer>
+                  <S.ProfilePic src={profileImageUrl} alt={`나의 프로필`} />
+                </S.PicContainer>
+              </S.ProfileImageWrapper>
             </S.MyInfoSummaryWrapper>
             <S.ShareIconWrapper>
               <Icon
@@ -95,19 +100,21 @@ export default function MyPage() {
               <S.MyInfoItem>
                 <S.MyInfoLabel>직책 / 부서</S.MyInfoLabel>
                 <S.MyInfoValue>
-                  {myInfo.job ? (
-                    myInfo.team ? (
-                      `${myInfo.job} / ${myInfo.team}`
+                  {myInfo.position ? (
+                    myInfo.department ? (
+                      <>
+                        {myInfo.position} / {myInfo.department}
+                      </>
                     ) : (
                       <>
-                        {myInfo.job} /{' '}
-                        <S.MyInfoValueNull>정보가 없습니다. </S.MyInfoValueNull>
+                        {myInfo.position} /{' '}
+                        <S.MyInfoValueNull>정보가 없습니다.</S.MyInfoValueNull>
                       </>
                     )
-                  ) : myInfo.team ? (
+                  ) : myInfo.department ? (
                     <>
                       <S.MyInfoValueNull>정보가 없습니다.</S.MyInfoValueNull> /{' '}
-                      {myInfo.team}
+                      {myInfo.department}
                     </>
                   ) : (
                     <S.MyInfoValueNull>

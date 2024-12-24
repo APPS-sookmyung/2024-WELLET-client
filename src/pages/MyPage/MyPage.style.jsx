@@ -94,6 +94,23 @@ export const ProfileImageWrapper = styled.div`
   background-color: white;
 `;
 
+export const PicContainer = styled.div`
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ProfilePic = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100px;
+  background: #ffffff;
+  position: relative;
+`;
+
 export const BotBar = styled.div`
   width: 100%;
   padding: 6px;

@@ -96,7 +96,6 @@ export default function ViewCardPage() {
             <CardInfo
               id={data.id}
               key={index}
-              id={data.id}
               name={data.name}
               position={data.position}
               department={data.department}

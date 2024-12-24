@@ -3,6 +3,8 @@ import * as S from './MyPageEditPage.style';
 import Icon from '../../components/Icon/Icon';
 import { Link, useNavigate } from 'react-router-dom';
 import { getMyCard, postMyCard, putMyCard } from '../../apis';
+import useFormData from '../../hooks/useFormData';
+import { useQuery } from '@tanstack/react-query';
 
 const InputWrapper = memo(
   ({
@@ -44,62 +46,35 @@ const InputWrapper = memo(
 export default function MyPageEditPage() {
   const [myInfo, setMyInfo] = useState({
     name: '',
-    job: '',
+    position: '',
     company: '',
     phone: '',
     email: '',
     tel: '',
     address: '',
-    team: '',
+    department: '',
+    profImgUrl: '',
   });
-  const [isEditing, setIsEditing] = useState({
-    name: false,
-    job: false,
-    company: false,
-    phone: false,
-    email: false,
-    tel: false,
-    address: false,
-  });
+  const [isEditing, setIsEditing] = useState({});
   const [profileImage, setProfileImage] = useState(null);
   const profileImageInputRef = useRef(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchMyCard = async () => {
-      try {
-        const response = await getMyCard();
-        if (response.data) {
-          setMyInfo({
-            name: response.data.name || '',
-            job: response.data.position || '',
-            company: response.data.company || '',
-            phone: response.data.phone || '',
-            email: response.data.email || '',
-            tel: response.data.tel || '',
-            address: response.data.address || '',
-            team: response.data.department || '',
-            imageUrl: response.data.profImgUrl || '',
-          });
-        } else {
-          setMyInfo({
-            name: '',
-            job: '',
-            company: '',
-            phone: '',
-            email: '',
-            tel: '',
-            address: '',
-            team: '',
-          });
-        }
-      } catch (error) {
-        console.error('사용자 정보를 불러오는 데 실패했습니다.', error);
-      }
-    };
+  const { data: inputData } = useQuery({
+    queryKey: ['myDetail'],
+    queryFn: getMyCard,
+  });
 
-    fetchMyCard();
-  }, []);
+  useEffect(() => {
+    if (inputData) {
+      setMyInfo(inputData.data);
+    }
+  }, [inputData]);
+
+  const updatedDataForm = useFormData({
+    ...myInfo,
+    profImgUrl: profileImage, // 이미지 포함
+  });
 
   const handleInfoChange = (e) => {
     const { name, value } = e.target;
@@ -120,15 +95,15 @@ export default function MyPageEditPage() {
     {
       label: '직책',
       type: 'text',
-      name: 'job',
-      value: myInfo?.job || '',
+      name: 'position',
+      value: myInfo?.position || '',
       onChange: handleInfoChange,
     },
     {
       label: '부서',
       type: 'text',
-      name: 'team',
-      value: myInfo?.team || '',
+      name: 'department',
+      value: myInfo?.department || '',
       onChange: handleInfoChange,
     },
     {
@@ -161,43 +136,22 @@ export default function MyPageEditPage() {
     },
   ];
 
-  const saveCard = async () => {
-    const isCardCreated = Object.values(myInfo).some((value) => value);
-    const updatedData = isCardCreated
-      ? await putMyCard({ data: JSON.stringify(myInfo) })
-      : await postMyCard({ data: myInfo });
-    return updatedData;
-  };
-
   const handleEditComplete = async () => {
     try {
-      const updatedData = await saveCard();
-      console.log('Data saved successfully:', updatedData);
-      navigate('/mypage');
+      if (!myInfo?.id) {
+        console.log('POST 요청: 새 명함 생성');
+        await postMyCard({ data: updatedDataForm() });
+      } else {
+        console.log('PUT 요청: 명함 수정');
+        await putMyCard({ data: updatedDataForm() });
+      }
+      navigate('/mypage'); // 성공 시 페이지 이동
     } catch (error) {
-      console.error('사용자 정보를 저장하는 데 실패했습니다.', error);
+      console.error(
+        '데이터를 저장하는 중에 오류가 발생하였습니다.:',
+        error.response?.data || error.message
+      );
     }
-  };
-
-  const handleEditClick = (field) => {
-    setIsEditing((prev) => ({
-      ...prev,
-      [field]: true,
-    }));
-  };
-
-  const handleBlur = (field) => {
-    setIsEditing((prev) => ({
-      ...prev,
-      [field]: false,
-    }));
-  };
-
-  const handleFocus = (field) => {
-    setIsEditing((prev) => ({
-      ...prev,
-      [field]: true,
-    }));
   };
 
   const handleProfileImageClick = () => {
@@ -206,10 +160,8 @@ export default function MyPageEditPage() {
 
   const onUploadProfileImage = (event) => {
     const file = event.target.files[0];
-    setProfileImage(URL.createObjectURL(file));
+    setProfileImage(file);
   };
-
-  if (!myInfo) return <div>Loading...</div>;
 
   return (
     <S.MyEdit>
@@ -230,7 +182,7 @@ export default function MyPageEditPage() {
         <S.PicContainer>
           <S.ProfilePic
             style={{
-              backgroundImage: `url(${profileImage || myInfo.imageUrl})`,
+              backgroundImage: `url(${profileImage || myInfo.profImgUrl})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -260,14 +212,16 @@ export default function MyPageEditPage() {
                 name='name'
                 value={myInfo.name}
                 onChange={handleInfoChange}
-                onBlur={() => handleBlur('name')}
-                onFocus={() => handleFocus('name')}
+                onBlur={() => setIsEditing({ ...isEditing, name: false })}
+                onFocus={() => setIsEditing({ ...isEditing, name: true })}
                 autoFocus
               />
             ) : (
               <>
                 <S.Name>{myInfo.name}</S.Name>
-                <S.PencilIcon onClick={() => handleEditClick('name')}>
+                <S.PencilIcon
+                  onClick={() => setIsEditing({ ...isEditing, name: true })}
+                >
                   <Icon id='pencil' fill='#FFF' />
                 </S.PencilIcon>
               </>
@@ -286,11 +240,11 @@ export default function MyPageEditPage() {
               label={field.label}
               type={field.type}
               name={field.name}
-              value={isEditing[field.name] ? field.value : ''}
-              placeholder={isEditing[field.name] ? '' : field.value}
+              value={field.value}
+              placeholder={field.value}
               onChange={field.onChange}
-              onBlur={() => handleBlur(field.name)}
-              onFocus={() => handleFocus(field.name)}
+              onBlur={() => setIsEditing({ ...isEditing, [field.name]: false })}
+              onFocus={() => setIsEditing({ ...isEditing, [field.name]: true })}
               autoFocus={isEditing[field.name]}
             />
           ))}
