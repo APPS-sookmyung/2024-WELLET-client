@@ -211,7 +211,7 @@ export const GroupButtonContainer = styled.div`
 `;
 
 export const GroupButtonBar = styled.div`
-  wdith: 100%;
+  width: 100%;
   padding: 0 6px;
   color: var(--grey3, #555);
   font-size: 12px;
