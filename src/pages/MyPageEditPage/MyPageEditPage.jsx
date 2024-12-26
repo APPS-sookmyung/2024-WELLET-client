@@ -71,11 +71,6 @@ export default function MyPageEditPage() {
     }
   }, [inputData]);
 
-  const updatedDataForm = useFormData({
-    ...myInfo,
-    profImgUrl: profileImage, // 이미지 포함
-  });
-
   const handleInfoChange = (e) => {
     const { name, value } = e.target;
     setMyInfo((prevInfo) => ({
@@ -136,6 +131,25 @@ export default function MyPageEditPage() {
     },
   ];
 
+  const updatedDataForm = () => {
+    const formData = new FormData();
+
+    Object.entries(myInfo).forEach(([key, value]) => {
+      if (key !== 'profImgUrl') {
+        formData.append(key, value || '');
+      }
+    });
+
+    // 이미지 파일 추가 (profileImage 상태)
+    if (profileImage) {
+      formData.append('profileImg', profileImage); // 백엔드의 profileImg 필드 이름 사용
+    } else if (myInfo.profImgUrl) {
+      formData.append('profImgUrl', myInfo.profImgUrl); // 기존 이미지 URL 유지
+    }
+
+    return formData; // FormData 반환
+  };
+
   const handleEditComplete = async () => {
     try {
       if (!myInfo?.id) {
@@ -145,7 +159,13 @@ export default function MyPageEditPage() {
         console.log('PUT 요청: 명함 수정');
         await putMyCard({ data: updatedDataForm() });
       }
-      navigate('/mypage'); // 성공 시 페이지 이동
+      setMyInfo((prevInfo) => ({
+        ...prevInfo,
+        ...response.data, // 서버에서 반환된 데이터를 상태에 반영
+        profImgUrl: response.data.profImgUrl || prevInfo.profImgUrl,
+      }));
+      console.log('업데이트된 myInfo:', myInfo);
+      navigate('/mypage');
     } catch (error) {
       console.error(
         '데이터를 저장하는 중에 오류가 발생하였습니다.:',
@@ -160,8 +180,20 @@ export default function MyPageEditPage() {
 
   const onUploadProfileImage = (event) => {
     const file = event.target.files[0];
-    setProfileImage(file);
+    if (file) {
+      const previewUrl = URL.createObjectURL(file);
+      setProfileImage(file); // 파일 객체 저장
+      setMyInfo((prevInfo) => ({
+        ...prevInfo,
+        profImgUrl: previewUrl, // 필요시 URL로 변경 가능
+      }));
+      console.log('선택된 파일:', file.name);
+    } else {
+      console.log('파일이 선택되지 않았습니다.');
+    }
   };
+  console.log('profileImage:', profileImage);
+  console.log('profImgUrl:', myInfo.profImgUrl);
 
   return (
     <S.MyEdit>
@@ -182,7 +214,11 @@ export default function MyPageEditPage() {
         <S.PicContainer>
           <S.ProfilePic
             style={{
-              backgroundImage: `url(${profileImage || myInfo.profImgUrl})`,
+              backgroundImage: profileImage
+                ? `url(${URL.createObjectURL(profileImage)})` // 새로 업로드한 이미지 미리보기
+                : myInfo.profImgUrl
+                  ? `url(${myInfo.profImgUrl})` // 기존 이미지
+                  : '',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
