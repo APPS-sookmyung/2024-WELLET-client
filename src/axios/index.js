@@ -1,12 +1,21 @@
 import axios from 'axios';
 
 const VITE_SERVER_DOMAIN = import.meta.env.VITE_SERVER_DOMAIN;
+const VITE_KAKAO_LOGIN_BASE_URL = import.meta.env.VITE_KAKAO_LOGIN_BASE_URL;
 
 export const authAxios = axios.create({
   baseURL: VITE_SERVER_DOMAIN,
   withCredentials: true,
   headers: {
     'Content-Type': 'multipart/form-data',
+  },
+});
+
+export const testAxios = axios.create({
+  baseURL: VITE_KAKAO_LOGIN_BASE_URL,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
   },
 });
 
@@ -18,8 +27,7 @@ const getTokenFromCookie = () => {
   return dummyToken;
 };
 
-const dummyToken =
-  'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzODQ1Njk3MjEwIiwicm9sZSI6IlVTRVIiLCJuaWNrbmFtZSI6Iuq5gO2YnOumvCIsImlkIjozODQ1Njk3MjEwLCJleHAiOjE3MzQ4Nzk5ODIsImlhdCI6MTczNDg3NjM4MiwidXNlcm5hbWUiOiIwMTVmZDUwNy0zNWJiLTQxNmYtYjQ4OC03Y2JiN2NjYTQ0NjQifQ.Glv2-tcXLiqhI3TasBvC9WmS9P7YE7-AC1RnS9gzl_x0hfBxW5jfcTvsqBS7D6o40rbBKUPU8Iscvs1PsDiB2g';
+const dummyToken = '토큰값';
 // 요청을 보낼 때 Bearer Token을 Authorization 헤더에 추가합니다.
 authAxios.interceptors.request.use(
   (config) => {

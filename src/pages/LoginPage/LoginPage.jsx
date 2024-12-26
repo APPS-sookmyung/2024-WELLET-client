@@ -4,9 +4,19 @@ import login_background_circles from '../../assets/images/login_background_circl
 import login_background_lines from '../../assets/images/login_background_lines.svg';
 import { PrimaryButton, SecondaryButton } from '../../components';
 import { useNavigate } from 'react-router-dom';
+import { kakaoLoginAPI } from '../../apis';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+
+  async function kakaoLogin() {
+    try {
+      const response = await kakaoLoginAPI(); // 카카오 로그인 API 호출
+    } catch (error) {
+      // 로그인 실패 시 처리
+      alert('로그인 실패. 다시 시도.' + error);
+    }
+  }
 
   return (
     <S.Container
@@ -24,7 +34,7 @@ export default function LoginPage() {
             color: '#1A1A1C',
             gap: '2px',
           }}
-          onClick={() => navigate('/home')}
+          onClick={kakaoLogin}
         >
           <S.KakaoIcon>
             <Icon id='kakao' />
