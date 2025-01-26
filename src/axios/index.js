@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const VITE_SERVER_DOMAIN = import.meta.env.VITE_SERVER_DOMAIN;
-const VITE_KAKAO_LOGIN_BASE_URL = import.meta.env.VITE_KAKAO_LOGIN_BASE_URL;
 
 export const authAxios = axios.create({
   baseURL: VITE_SERVER_DOMAIN,
@@ -12,7 +11,7 @@ export const authAxios = axios.create({
 });
 
 export const testAxios = axios.create({
-  baseURL: VITE_KAKAO_LOGIN_BASE_URL,
+  baseURL: VITE_SERVER_DOMAIN,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -20,15 +19,15 @@ export const testAxios = axios.create({
 });
 
 const getTokenFromCookie = () => {
-  // const cookie = document.cookie
-  //   .split('; ')
-  //   .find((row) => row.startsWith('token='));
-  // return cookie ? cookie.split('=')[1] : null;
-  return dummyToken;
+  const cookie = document.cookie;
+  console.log('cookie:', cookie);
+  const tokenCookie = cookie
+    .split('; ')
+    .find((row) => row.startsWith('jwtToken='));
+  console.log('tokenCookie:', tokenCookie);
+  return tokenCookie ? tokenCookie.split('=')[1] : null;
 };
 
-const dummyToken = '토큰값';
-// 요청을 보낼 때 Bearer Token을 Authorization 헤더에 추가합니다.
 authAxios.interceptors.request.use(
   (config) => {
     const token = getTokenFromCookie();
