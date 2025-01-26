@@ -12,7 +12,8 @@ export const authAxios = axios.create({
 
 export const testAxios = axios.create({
   // baseURL: "http://localhost:8080",
-  baseURL: 'https://wellet.store',
+  // baseURL: 'https://wellet.store',
+  baseURL: VITE_SERVER_DOMAIN,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
