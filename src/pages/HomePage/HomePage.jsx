@@ -1,12 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './HomePage.style';
-import {
-  Header,
-  SearchBar,
-  CardInfo,
-  MyCard,
-} from '../../components';
+import { Header, SearchBar, CardInfo, MyCard } from '../../components';
 import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects';
 import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
 import { getMyCard } from '../../apis/myCard.js';
@@ -31,6 +26,7 @@ export default function HomePage() {
   async function fetchCards() {
     try {
       const response = await getCards();
+      const filteredCards = cards.filter((card) => card.id !== myCardData.id);
       setCardsData(response.data.cards);
     } catch (error) {
       console.error('카드 리스트를 불러오지 못했습니다.', error);
@@ -53,7 +49,7 @@ export default function HomePage() {
             <p>나의 명함 확인 및 관리하기</p>
           </S.CardListTitle>
         </S.Padding>
-        {myCardData && myCardData.length > 0 ? (
+        {myCardData && Object.keys(myCardData).length > 0 ? (
           <S.MyCardContainer>
             <MyCard
               backgroundColor='#fff'

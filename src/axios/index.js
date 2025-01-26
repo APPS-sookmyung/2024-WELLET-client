@@ -11,8 +11,6 @@ export const authAxios = axios.create({
 });
 
 export const testAxios = axios.create({
-  // baseURL: "http://localhost:8080",
-  // baseURL: 'https://wellet.store',
   baseURL: VITE_SERVER_DOMAIN,
   withCredentials: true,
   headers: {
@@ -21,15 +19,15 @@ export const testAxios = axios.create({
 });
 
 const getTokenFromCookie = () => {
-  // const cookie = document.cookie
-  //   .split('; ')
-  //   .find((row) => row.startsWith('token='));
-  // return cookie ? cookie.split('=')[1] : null;
-  return dummyToken;
+  const cookie = document.cookie;
+  console.log('cookie:', cookie);
+  const tokenCookie = cookie
+    .split('; ')
+    .find((row) => row.startsWith('jwtToken='));
+  console.log('tokenCookie:', tokenCookie);
+  return tokenCookie ? tokenCookie.split('=')[1] : null;
 };
 
-const dummyToken = '토큰값';
-// 요청을 보낼 때 Bearer Token을 Authorization 헤더에 추가합니다.
 authAxios.interceptors.request.use(
   (config) => {
     const token = getTokenFromCookie();
