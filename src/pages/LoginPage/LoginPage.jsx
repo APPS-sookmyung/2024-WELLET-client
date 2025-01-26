@@ -18,6 +18,15 @@ export default function LoginPage() {
     }
   }
 
+  async function kakaoLogin() {
+    try {
+      const response = await kakaoLoginAPI(); // 카카오 로그인 API 호출
+    } catch (error) {
+      // 로그인 실패 시 처리
+      alert('로그인 실패. 다시 시도.' + error);
+    }
+  }
+
   return (
     <S.Container
       style={{ backgroundImage: `url(${login_background_circles})` }}
