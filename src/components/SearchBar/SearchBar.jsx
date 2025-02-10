@@ -32,8 +32,14 @@ export default function SearchBar({ theme, setSearchData = () => {} }) {
   };
 
   const handleSearch = (event) => {
-    if (event.key === 'Enter' && inputValue.trim()) {
-      navigate(`/card?keyword=${encodeURIComponent(inputValue)}`);
+    if (event.key !== 'Enter') return;
+    const trimmedValue = inputValue.trim();
+    if (trimmedValue || location.pathname !== '/home') {
+      navigate(
+        trimmedValue
+          ? `/card?keyword=${encodeURIComponent(trimmedValue)}`
+          : '/card'
+      );
     }
   };
 
