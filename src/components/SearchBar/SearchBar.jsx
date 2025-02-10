@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getCards, searchCards } from '../../apis';
+import { searchCards } from '../../apis';
 import Icon from '../../components/Icon/Icon';
 import * as S from './SearchBar.style';
 
@@ -29,34 +29,20 @@ export default function SearchBar({
   }, [keyword]);
 
   useEffect(() => {
-    if (debouncedKeyword === '') {
-      fetchCards();
-    } else {
-      fetchSearchCard();
-    }
+    fetchSearchCard();
   }, [debouncedKeyword]);
 
   const fetchSearchCard = async () => {
     try {
-      const response = await searchCards({ keyword: debouncedKeyword });
+      const response = await searchCards({
+        keyword: localStorage.getItem('searchKeyword'),
+      });
       const exceptMyCard = response.data.cards.filter(
         (card) => card.id !== myCardId
       );
       setSearchData(exceptMyCard);
     } catch (error) {
       console.error('검색 요청 실패:', error);
-    }
-  };
-
-  const fetchCards = async () => {
-    try {
-      const response = await getCards();
-      const exceptMyCard = response.data.cards.filter(
-        (card) => card.id !== myCardId
-      );
-      setSearchData(exceptMyCard);
-    } catch (error) {
-      console.error('카드 리스트 불러오기 실패:', error);
     }
   };
 
