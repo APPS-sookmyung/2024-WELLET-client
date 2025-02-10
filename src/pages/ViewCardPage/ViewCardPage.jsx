@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getCards, getCardsByGroup, getGroupList } from '../../apis';
+import { getCards, getCardsByGroup, getGroupList, getMyCard } from '../../apis';
 import { BlueBadge, CardInfo, Header, SearchBar } from '../../components';
 import Icon from '../../components/Icon/Icon';
 import * as S from './ViewCardPage.style';
@@ -11,13 +11,29 @@ export default function ViewCardPage() {
   const [selectedCards, setSelectedCards] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [badges, setBadges] = useState([{ id: 0, name: '전체 보기' }]);
+  const [myCardId, setMyCardId] = useState(null);
+
+  async function fetchMyCard() {
+    try {
+      const response = await getMyCard();
+      setMyCardId(response.data.id);
+    } catch (error) {
+      console.error('카드 리스트를 불러오지 못했습니다.', error);
+    }
+  }
 
   async function fetchCards() {
+    if (!myCardId) return;
     try {
       const { id } = activeBadge;
       const response =
         id === 0 ? await getCards() : await getCardsByGroup({ categoryId: id });
-      setCardsData(response.data.cards);
+
+      const exceptMyCard = response.data.cards.filter(
+        (card) => card.id !== myCardId
+      );
+
+      setCardsData(exceptMyCard);
     } catch (error) {
       console.error('카드 리스트를 불러오지 못했습니다.', error);
     }
@@ -34,12 +50,13 @@ export default function ViewCardPage() {
   }
 
   useEffect(() => {
-    fetchCards();
-  }, [activeBadge]);
-
-  useEffect(() => {
+    fetchMyCard();
     fetchGroups();
   }, []);
+
+  useEffect(() => {
+    fetchCards();
+  }, [myCardId, activeBadge]);
 
   const handleDeleteClick = () => {
     setIsDeleteMode(true);
