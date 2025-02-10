@@ -2,7 +2,7 @@ import { formDataAxios, jsonAxios } from '../axios';
 
 // 내 명함 가져오기
 export const getMyCard = async () => {
-  const response = await jsonAxios.get(`/me`, data);
+  const response = await jsonAxios.get(`/me`);
   console.log('내 명함 가져오기: ', response);
   return response;
 };
