@@ -1,74 +1,38 @@
-import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { BlueBadge, PrimaryButton, SecondaryButton } from '../';
-import { deleteGroup, getGroupList, postGroup } from '../../apis';
+import { deleteGroup, postGroup } from '../../apis';
 import { InputWrapper } from '../InputWrapper';
 import * as S from './AddGroupModal.style';
 
-export default function AddGroupModal({
-  isModalOpen,
-  setIsModalOpen,
-  badges,
-  setBadges,
-}) {
+export default function AddGroupModal({ isModalOpen, setIsModalOpen, badges }) {
   const [newBadgeLabel, setNewBadgeLabel] = useState('');
-  const [groupListNames, setGroupListNames] = useState([]);
   const [modalBadges, setModalBadges] = useState([]);
-  const [previousModalBadges, setPreviousModalBadges] = useState([]);
+  const [prevModalBadges, setPrevModalBadges] = useState([]);
 
-  const {
-    data: groupListData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ['groupList'],
-    queryFn: () => getGroupList(),
-  });
-
-  // 모달이 열릴 때마다 modalBadges를 초기화
   useEffect(() => {
     if (isModalOpen) {
       setNewBadgeLabel('');
       setModalBadges(badges);
-      setPreviousModalBadges(badges);
+      setPrevModalBadges(badges);
     }
   }, [isModalOpen, badges]);
-
-  useEffect(() => {
-    if (groupListData) {
-      console.log('groupListData: ', groupListData.data);
-
-      const initialBadges = groupListData.data.map((group) => ({
-        label: group.id,
-        value: group.name,
-      }));
-
-      const names = groupListData.data.map((group) => group.name);
-      setGroupListNames(names);
-
-      console.log('groupListNames: ', names);
-    }
-  }, [groupListData]);
 
   const handleAddBadge = () => {
     const trimmedLabel = newBadgeLabel.trim();
     if (
       trimmedLabel &&
-      !modalBadges.some((badge) => badge.label === trimmedLabel) &&
-      !badges.some((badge) => badge.value === trimmedLabel)
+      !modalBadges.some((badge) => badge.name === trimmedLabel)
     ) {
       setModalBadges((prev) => [
         ...prev,
-        { label: trimmedLabel, value: trimmedLabel },
+        { id: trimmedLabel, name: trimmedLabel },
       ]);
       setNewBadgeLabel('');
     }
   };
 
-  const handleDeleteBtnClick = (badgeValue) => {
-    setModalBadges((prev) =>
-      prev.filter((badge) => badge.value !== badgeValue)
-    );
+  const handleDeleteBtnClick = (badgeName) => {
+    setModalBadges((prev) => prev.filter((badge) => badge.name !== badgeName));
   };
 
   const fetchPostGroup = async (newGroupName) => {
@@ -93,18 +57,14 @@ export default function AddGroupModal({
     const newBadges = modalBadges
       .filter(
         (badge) =>
-          !previousModalBadges.some(
-            (prevBadge) => prevBadge.value === badge.value
-          )
+          !prevModalBadges.some((prevBadge) => prevBadge.name === badge.name)
       )
-      .map((badge) => badge.value);
+      .map((badge) => badge.name);
 
-    const deletedBadges = previousModalBadges
-      .filter(
-        (prevBadge) =>
-          !modalBadges.some((badge) => badge.value === prevBadge.value)
-      )
-      .map((prevBadge) => prevBadge.label);
+    const deletedBadges = prevModalBadges;
+    filter(
+      (prevBadge) => !modalBadges.some((badge) => badge.name === prevBadge.name)
+    ).map((prevBadge) => prevBadge.label);
 
     newBadges.forEach((badgeName) => {
       fetchPostGroup(badgeName);

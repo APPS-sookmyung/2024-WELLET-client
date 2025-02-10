@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react';
-import { getCards, postCards } from '../../apis/cards';
-import { getGroupList, postGroup } from '../../apis/group';
+import { getCards, getCardsByGroup, getGroupList } from '../../apis';
 import { BlueBadge, CardInfo, Header, SearchBar } from '../../components';
 import Icon from '../../components/Icon/Icon';
 import * as S from './ViewCardPage.style';
 
 export default function ViewCardPage() {
-  const [activeBadge, setActiveBadge] = useState('전체 보기');
+  const [activeBadge, setActiveBadge] = useState({ id: 0, name: '전체 보기' });
   const [isEditCompleteVisible, setIsEditCompleteVisible] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
   const [cardsData, setCardsData] = useState([]);
-  const [groupData, setGroupData] = useState([]);
-  const [badges, setBadges] = useState([
-    { label: '전체 보기', value: '전체 보기' },
-  ]);
+  const [badges, setBadges] = useState([{ id: 0, name: '전체 보기' }]);
 
   async function fetchCards() {
     try {
-      const response = await getCards();
+      const { id } = activeBadge;
+      const response =
+        id === 0 ? await getCards() : await getCardsByGroup({ categoryId: id });
       setCardsData(response.data.cards);
     } catch (error) {
       console.error('카드 리스트를 불러오지 못했습니다.', error);
@@ -28,12 +26,8 @@ export default function ViewCardPage() {
   async function fetchGroups() {
     try {
       const response = await getGroupList();
-      const groups = response.data.map((group) => ({
-        label: group.id,
-        value: group.name,
-      }));
-      setGroupData(response.data);
-      setBadges((prev) => [{ label: '전체 보기', value: '전체 보기' }, ...groups]);
+      const groups = response.data.map(({ id, name }) => ({ id, name }));
+      setBadges([{ id: 0, name: '전체 보기' }, ...groups]);
     } catch (error) {
       console.error('그룹 리스트를 불러오지 못했습니다.', error);
     }
@@ -41,15 +35,11 @@ export default function ViewCardPage() {
 
   useEffect(() => {
     fetchCards();
+  }, [activeBadge]);
+
+  useEffect(() => {
     fetchGroups();
   }, []);
-
-  let filteredData =
-    activeBadge === '전체 보기'
-      ? cardsData
-      : cardsData.filter((data) => data.categoryName === activeBadge); 
-
-  filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
 
   const handleDeleteClick = () => {
     setIsDeleteMode(true);
@@ -77,8 +67,8 @@ export default function ViewCardPage() {
   return (
     <>
       <S.ViewCardPage>
-        <Header color="blue" />
-        <SearchBar theme="white" />
+        <Header color='blue' />
+        <SearchBar theme='white' />
 
         <S.ButtonContainer>
           <S.GroupBadgeWrapper>
@@ -91,7 +81,7 @@ export default function ViewCardPage() {
           <S.EditBadgeWrapper>
             <S.DeleteCardBadge onClick={handleDeleteClick}>
               <S.BadgeText>명함 삭제</S.BadgeText>
-              <Icon id="trash" />
+              <Icon id='trash' />
             </S.DeleteCardBadge>
             {isEditCompleteVisible && (
               <S.EditCompletedBadge onClick={handleEditCompleteClick}>
@@ -102,7 +92,7 @@ export default function ViewCardPage() {
         </S.ButtonContainer>
 
         <S.CardContainer>
-          {filteredData.map((data, index) => (
+          {cardsData.map((data, index) => (
             <CardInfo
               id={data.id}
               key={index}

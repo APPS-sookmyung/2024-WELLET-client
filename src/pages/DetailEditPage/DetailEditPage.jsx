@@ -146,9 +146,9 @@ export default function DetailEditPage() {
 
   useEffect(() => {
     if (groupListData) {
-      const initialBadges = groupListData.data.map((group) => ({
-        label: group.id,
-        value: group.name,
+      const initialBadges = groupListData.data.map(({ id, name }) => ({
+        id,
+        name,
       }));
       setBadges(initialBadges);
     }
@@ -156,9 +156,16 @@ export default function DetailEditPage() {
 
   useEffect(() => {
     if (inputData) {
-      setInfo(inputData.data); // inputData로부터 info 상태 업데이트
+      setInfo(inputData.data);
+
+      const matchedBadge = badges.find(
+        (badge) => badge.name === inputData.data.category
+      );
+      if (matchedBadge) {
+        setActiveBadge(matchedBadge);
+      }
     }
-  }, [inputData]);
+  }, [inputData, badges]);
 
   const onUploadProfileImage = (e) => {
     const file = e.target.files[0];
@@ -326,7 +333,6 @@ export default function DetailEditPage() {
         isModalOpen={modalVisible}
         setIsModalOpen={setModalVisible}
         badges={badges}
-        setBadges={setBadges}
       />
     </>
   );
