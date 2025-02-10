@@ -1,8 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import * as S from './CardInfo.style';
-import Icon from '../../components/Icon/Icon';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Icon from '../../components/Icon/Icon';
+import * as S from './CardInfo.style';
 
 export default function CardInfo({
   id,
@@ -56,11 +56,11 @@ export default function CardInfo({
 }
 
 CardInfo.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  company: PropTypes.string.isRequired,
-  position: PropTypes.string.isRequired,
-  department: PropTypes.string.isRequired,
+  company: PropTypes.string,
+  position: PropTypes.string,
+  department: PropTypes.string,
   imageUrl: PropTypes.string,
   isDeleteMode: PropTypes.bool,
   isSelected: PropTypes.bool,
