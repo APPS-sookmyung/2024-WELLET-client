@@ -1,15 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from './HomePage.style';
-import { Header, SearchBar, CardInfo, MyCard } from '../../components';
-import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects';
-import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
-import { getMyCard } from '../../apis/myCard.js';
 import { getCards } from '../../apis/cards.js';
+import { getMyCard } from '../../apis/myCard.js';
+import { CardInfo, Header, MyCard, SearchBar } from '../../components';
+import * as S from './HomePage.style';
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const [filterdList, setFilterdList] = useState([]);
+  // const [filterdList, setFilterdList] = useState([]);
   const [myCardData, setMyCardData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   // useVisibleCardsEffect(setFilterdList, cardsData);
@@ -26,7 +24,7 @@ export default function HomePage() {
   async function fetchCards() {
     try {
       const response = await getCards();
-      const filteredCards = cards.filter((card) => card.id !== myCardData.id);
+      // const filteredCards = cards.filter((card) => card.id !== myCardData.id);
       setCardsData(response.data.cards);
     } catch (error) {
       console.error('카드 리스트를 불러오지 못했습니다.', error);
@@ -84,14 +82,15 @@ export default function HomePage() {
         {cardsData && cardsData.length > 0 && (
           <S.CardContainer>
             {cardsData.map((data, index) => (
-              <CardInfo
-                key={index}
-                id={data.id}
-                name={data.name}
-                position={data.position}
-                department={data.department}
-                imageUrl={data.imageUrl}
-              />
+              <div key={index}>
+                <CardInfo
+                  id={data.id}
+                  name={data.name}
+                  position={data.position}
+                  department={data.department}
+                  imageUrl={data.imageUrl}
+                />
+              </div>
             ))}
           </S.CardContainer>
         )}
