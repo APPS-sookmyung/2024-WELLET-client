@@ -1,6 +1,6 @@
 export {
   deleteCards,
-  getCardByGroup,
+  getCardsByGroup,
   getCardDetail,
   getCards,
   postCards,

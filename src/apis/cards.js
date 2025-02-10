@@ -15,7 +15,7 @@ export const getCardDetail = async ({ card_id }) => {
 };
 
 // 그룹별 명함 조회
-export const getCardByGroup = async ({ categoryId }) => {
+export const getCardsByGroup = async ({ categoryId }) => {
   const response = await jsonAxios.get(`/cards/categories/${categoryId}`);
   console.log('그룹별 명함 조회: ', response);
   return response;
