@@ -89,7 +89,7 @@ export default function ViewCardPage() {
     }
   };
 
-  const searchKeyword = localStorage.getItem('searchKeyword') || '';
+  const searchKeyword = localStorage.getItem('searchKeyword');
 
   const getDisplayData = () => {
     if (searchKeyword && activeBadge?.id !== 0) {

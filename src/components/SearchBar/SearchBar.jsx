@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { searchCards } from '../../apis';
 import Icon from '../../components/Icon/Icon';
 import * as S from './SearchBar.style';
@@ -9,9 +9,10 @@ export default function SearchBar({
   setSearchData = () => {},
   myCardId,
 }) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [keyword, setKeyword] = useState('');
   const [debouncedKeyword, setDebouncedKeyword] = useState('');
-  const location = useLocation();
 
   useEffect(() => {
     if (location.pathname.startsWith('/card')) {
@@ -33,6 +34,7 @@ export default function SearchBar({
   }, [debouncedKeyword]);
 
   const fetchSearchCard = async () => {
+    if (!myCardId) return;
     try {
       const response = await searchCards({
         keyword: localStorage.getItem('searchKeyword'),
@@ -46,11 +48,13 @@ export default function SearchBar({
     }
   };
 
-  const handleSearch = (event) => {
+  const handleSearch = () => {
     const trimmedValue = keyword.trim();
     if (trimmedValue) {
       localStorage.setItem('searchKeyword', trimmedValue);
-      fetchSearchCard();
+      if (location.pathname === '/home') {
+        navigate('/card');
+      }
     }
   };
 
