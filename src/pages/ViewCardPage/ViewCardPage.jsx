@@ -1,21 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { getCards, getCardsByGroup, getGroupList, getMyCard } from '../../apis';
 import { BlueBadge, CardInfo, Header, SearchBar } from '../../components';
 import Icon from '../../components/Icon/Icon';
 import * as S from './ViewCardPage.style';
 
 export default function ViewCardPage() {
-  const location = useLocation();
-
-  const [searchData, setSearchData] = useState([]);
+  const [myCardId, setMyCardId] = useState(null);
   const [activeBadge, setActiveBadge] = useState({ id: 0, name: '전체 보기' });
   const [isEditCompleteVisible, setIsEditCompleteVisible] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [badges, setBadges] = useState([{ id: 0, name: '전체 보기' }]);
-  const [myCardId, setMyCardId] = useState(null);
+  const [searchData, setSearchData] = useState([]);
 
   async function fetchMyCard() {
     try {
@@ -92,16 +89,15 @@ export default function ViewCardPage() {
     }
   };
 
-  const searchParams = new URLSearchParams(location.search);
-  const keyword = searchParams.get('keyword');
+  const searchKeyword = localStorage.getItem('searchKeyword') || '';
 
   const getDisplayData = () => {
-    if (keyword && activeBadge?.id !== 0) {
+    if (searchKeyword && activeBadge?.id !== 0) {
       return cardsData.filter((card) =>
         searchData.some((searchCard) => searchCard.id === card.id)
       );
     }
-    if (!keyword) {
+    if (!searchKeyword) {
       return cardsData;
     }
     if (activeBadge?.id === 0) {
@@ -116,7 +112,11 @@ export default function ViewCardPage() {
     <>
       <S.ViewCardPage>
         <Header color='blue' />
-        <SearchBar theme='white' setSearchData={setSearchData} />
+        <SearchBar
+          theme='white'
+          setSearchData={setSearchData}
+          myCardId={myCardId}
+        />
 
         <S.ButtonContainer>
           <S.GroupBadgeWrapper>

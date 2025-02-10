@@ -1,45 +1,70 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { searchCards } from '../../apis/cards.js';
+import { useLocation } from 'react-router-dom';
+import { getCards, searchCards } from '../../apis';
 import Icon from '../../components/Icon/Icon';
 import * as S from './SearchBar.style';
 
-export default function SearchBar({ theme, setSearchData = () => {} }) {
+export default function SearchBar({
+  theme,
+  setSearchData = () => {},
+  myCardId,
+}) {
+  const [keyword, setKeyword] = useState('');
+  const [debouncedKeyword, setDebouncedKeyword] = useState('');
   const location = useLocation();
-  const navigate = useNavigate();
-
-  const [inputValue, setInputValue] = useState('');
-  const [searchKeyword, setSearchKeyword] = useState('');
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const keywordFromParams = searchParams.get('keyword') || '';
-    setInputValue(keywordFromParams);
-    setSearchKeyword(keywordFromParams);
-  }, [location.search]);
+    if (location.pathname.startsWith('/card')) {
+      const savedKeyword = localStorage.getItem('searchKeyword') || '';
+      setKeyword(savedKeyword);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
-    searchKeyword && fetchSearchCard();
-  }, [searchKeyword]);
+    const timer = setTimeout(() => {
+      setDebouncedKeyword(keyword);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [keyword]);
+
+  useEffect(() => {
+    if (debouncedKeyword === '') {
+      fetchCards();
+    } else {
+      fetchSearchCard();
+    }
+  }, [debouncedKeyword]);
 
   const fetchSearchCard = async () => {
     try {
-      const response = await searchCards({ keyword: searchKeyword });
-      setSearchData(response.data.cards);
+      const response = await searchCards({ keyword: debouncedKeyword });
+      const exceptMyCard = response.data.cards.filter(
+        (card) => card.id !== myCardId
+      );
+      setSearchData(exceptMyCard);
     } catch (error) {
       console.error('검색 요청 실패:', error);
     }
   };
 
-  const handleSearch = (event) => {
-    if (event.key !== 'Enter') return;
-    const trimmedValue = inputValue.trim();
-    if (trimmedValue || location.pathname !== '/home') {
-      navigate(
-        trimmedValue
-          ? `/card?keyword=${encodeURIComponent(trimmedValue)}`
-          : '/card'
+  const fetchCards = async () => {
+    try {
+      const response = await getCards();
+      const exceptMyCard = response.data.cards.filter(
+        (card) => card.id !== myCardId
       );
+      setSearchData(exceptMyCard);
+    } catch (error) {
+      console.error('카드 리스트 불러오기 실패:', error);
+    }
+  };
+
+  const handleSearch = (event) => {
+    const trimmedValue = keyword.trim();
+    if (trimmedValue) {
+      localStorage.setItem('searchKeyword', trimmedValue);
+      fetchSearchCard();
     }
   };
 
@@ -58,9 +83,13 @@ export default function SearchBar({ theme, setSearchData = () => {} }) {
       <S.SearchInput
         theme={theme}
         placeholder={placeholderText}
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleSearch}
+        value={keyword}
+        onChange={(e) => {
+          const newKeyword = e.target.value;
+          setKeyword(newKeyword);
+          localStorage.setItem('searchKeyword', newKeyword);
+        }}
+        onKeyDown={(e) => e.key === 'Enter' && handleSearch(e)}
       />
     </S.SearchBar>
   );
