@@ -10,22 +10,27 @@ export default function HomePage() {
   // const [filterdList, setFilterdList] = useState([]);
   const [myCardData, setMyCardData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
+  const [myCardId, setMyCardId] = useState(null);
   // useVisibleCardsEffect(setFilterdList, cardsData);
 
   async function fetchMyCard() {
     try {
       const response = await getMyCard();
       setMyCardData(response.data);
+      setMyCardId(response.data.id);
     } catch (error) {
       console.error('내 카드 정보를 불러오지 못했습니다.', error);
     }
   }
 
   async function fetchCards() {
+    if (!myCardId) return;
     try {
       const response = await getCards();
-      // const filteredCards = cards.filter((card) => card.id !== myCardData.id);
-      setCardsData(response.data.cards);
+      const exceptMyCard = response.data.cards.filter(
+        (card) => card.id !== myCardId
+      );
+      setCardsData(exceptMyCard);
     } catch (error) {
       console.error('카드 리스트를 불러오지 못했습니다.', error);
     }
@@ -33,8 +38,13 @@ export default function HomePage() {
 
   useEffect(() => {
     fetchMyCard();
-    fetchCards();
   }, []);
+
+  useEffect(() => {
+    if (myCardData) {
+      fetchCards();
+    }
+  }, [myCardData]);
 
   return (
     <S.HomePage>
