@@ -6,14 +6,14 @@ import Icon from '../../components/Icon/Icon';
 import * as S from './ViewCardPage.style';
 
 export default function ViewCardPage() {
-  const [activeBadge, setActiveBadge] = useState('전체 보기'); // 기본값
+  const [activeBadge, setActiveBadge] = useState('전체 보기');
   const [isEditCompleteVisible, setIsEditCompleteVisible] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [groupData, setGroupData] = useState([]);
   const [badges, setBadges] = useState([
-    { label: '전체 보기', value: '전체 보기' }, // 기본 그룹 추가
+    { label: '전체 보기', value: '전체 보기' },
   ]);
 
   async function fetchCards() {
@@ -29,8 +29,8 @@ export default function ViewCardPage() {
     try {
       const response = await getGroupList();
       const groups = response.data.map((group) => ({
-        label: group.id, // 🔹 label에 id 설정
-        value: group.name, // 🔹 value에 name 설정
+        label: group.id,
+        value: group.name,
       }));
       setGroupData(response.data);
       setBadges((prev) => [{ label: '전체 보기', value: '전체 보기' }, ...groups]);
@@ -47,7 +47,7 @@ export default function ViewCardPage() {
   let filteredData =
     activeBadge === '전체 보기'
       ? cardsData
-      : cardsData.filter((data) => data.categoryName === activeBadge); // 🔹 그룹 이름과 비교하도록 변경
+      : cardsData.filter((data) => data.categoryName === activeBadge); 
 
   filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
 
