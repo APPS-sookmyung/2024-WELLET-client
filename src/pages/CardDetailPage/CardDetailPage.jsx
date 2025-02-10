@@ -1,62 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import * as S from './CardDetailPage.style';
-import Icon from '../../components/Icon/Icon';
-import { DetailBadge } from '../../components';
-import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
-import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { getCardDetail } from '../../apis/cards';
-import { useQuery } from '@tanstack/react-query';
+import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+import Icon from '../../components/Icon/Icon';
+import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData';
+import * as S from './CardDetailPage.style';
 
 export default function CardDetailPage() {
   const [info, setInfo] = useState({});
-  console.log(info);
   const { id } = useParams();
 
-  const { data: inputData } = useQuery({
-    queryKey: ['cardDetail', id],
-    queryFn: () => getCardDetail({ card_id: id }),
-  });
+  async function fetchCardDetail() {
+    try {
+      const response = await getCardDetail({ card_id: id });
+      setInfo(response.data);
+    } catch (error) {
+      console.error('명함 상세 정보를 불러오지 못했습니다.', error);
+    }
+  }
 
   useEffect(() => {
-    if (inputData) {
-      setInfo(inputData.data);
-    }
-  }, [inputData]);
-
-  const badges = [
-    { label: '비즈니스', value: '비즈니스' },
-    { label: '방송사', value: '방송사' },
-    { label: '부동산', value: '부동산' },
-    { label: '대학교', value: '대학교' },
-  ];
+    fetchCardDetail();
+  }, [id]);
 
   const filteredData = CARDS_SAMPLE_DATA.find(
     (data) => data.name === decodeURIComponent(id)
   );
 
-  const filteredBadges = filteredData
-    ? badges.filter((badge) => badge.value === filteredData.category)
-    : [];
-
-  // const data = filteredData || {
-  //   imageUrl: '',
-  //   name: '이름없음',
-  //   job: '직책없음',
-  //   team: '팀없음',
-  //   company: '회사없음',
-  //   phone: '전화번호없음',
-  //   email: '이메일없음',
-  //   tel: '유선전화없음',
-  //   address: '주소없음',
-  //   memo: '메모없음',
-  //   pic1: '사진없음',
-  //   pic2: '사진없음',
-  // };
-
   const profileImageUrl = info.profImgUrl || ProfileImgDefault;
-
-  const activeBadge = filteredData ? filteredData.category : '';
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
@@ -69,6 +40,7 @@ export default function CardDetailPage() {
     setIsModalOpen(false);
     setModalImage(null);
   };
+
   return (
     <>
       <S.CardDetail>
@@ -139,7 +111,7 @@ export default function CardDetailPage() {
           </S.ContactContainer>
           <S.GroupButtonBar>그룹</S.GroupButtonBar>
           <S.GroupButtonBox>
-            <DetailBadge badges={filteredBadges} activeBadge={activeBadge} />
+            <S.GroupButton>{info.category || '그룹'}</S.GroupButton>
           </S.GroupButtonBox>
           {(info.pic1 || info.pic2) && (
             <S.CardImageContainer>
