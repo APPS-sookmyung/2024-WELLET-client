@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import * as S from './AddGroupModal.style';
+import { useEffect, useState } from 'react';
+import { BlueBadge, PrimaryButton, SecondaryButton } from '../';
+import { deleteGroup, getGroupList, postGroup } from '../../apis';
 import { InputWrapper } from '../InputWrapper';
-import { PrimaryButton, SecondaryButton, BlueBadge } from '../';
-import { getGroupList, postGroup, deleteGroup } from '../../apis';
+import * as S from './AddGroupModal.style';
 
 export default function AddGroupModal({
   isModalOpen,
@@ -71,6 +71,22 @@ export default function AddGroupModal({
     );
   };
 
+  const fetchPostGroup = async (newGroupName) => {
+    try {
+      await postGroup({ name: newGroupName });
+    } catch (error) {
+      console.error('그룹 추가 실패: ', error);
+    }
+  };
+
+  const fetchDeleteGroup = async (deleteGroupId) => {
+    try {
+      await deleteGroup({ category_id: deleteGroupId });
+    } catch (error) {
+      console.error('그룹 삭제 실패: ', error);
+    }
+  };
+
   const handleDoneBtnClick = () => {
     setIsModalOpen(false);
 
@@ -90,30 +106,16 @@ export default function AddGroupModal({
       )
       .map((prevBadge) => prevBadge.label);
 
-    if (newBadges.length > 0) {
-      newBadges.forEach((badgeName) => {
-        if (badgeName.trim()) {
-          postGroup({ name: badgeName }).catch((error) => {
-            console.error('Failed to post new group:', error);
-          });
-        }
-      });
-    }
+    newBadges.forEach((badgeName) => {
+      fetchPostGroup(badgeName);
+    });
 
-    // 삭제된 배지 처리
-    if (deletedBadges.length > 0) {
-      deletedBadges.forEach((category_id) => {
-        const encodedCategoryId = encodeURIComponent(category_id); // URL 인코딩
-        deleteGroup({ category_id: encodedCategoryId }).catch((error) => {
-          console.error('Failed to delete group:', error);
-        });
-      });
-    }
+    deletedBadges.forEach((category_id) => {
+      fetchDeleteGroup(category_id);
+    });
 
-    console.log('modalBadges:', modalBadges);
     console.log('newBadges:', newBadges);
     console.log('deletedBadges:', deletedBadges);
-    setBadges(modalBadges);
   };
 
   const handleCancelBtnClick = () => {

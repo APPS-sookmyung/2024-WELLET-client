@@ -272,7 +272,7 @@ export default function DetailEditPage() {
               setActiveBadge={setActiveBadge}
             />
             <S.AddGroupButton onClick={() => setModalVisible(true)}>
-              <p>그룹편집</p>
+              <p>그룹 편집</p>
               <Icon id='circle-plus-blue' width='13' height='13' />
             </S.AddGroupButton>
           </S.GroupButtonBox>
