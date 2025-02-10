@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { getCards, getCardsByGroup, getGroupList, getMyCard } from '../../apis';
 import { BlueBadge, CardInfo, Header, SearchBar } from '../../components';
 import Icon from '../../components/Icon/Icon';
@@ -63,6 +64,7 @@ export default function ViewCardPage() {
       : cardsData.filter((data) => data.categoryName === activeBadge);
 
   filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
+
   useEffect(() => {
     fetchCards();
   }, [myCardId, activeBadge]);
@@ -92,7 +94,23 @@ export default function ViewCardPage() {
 
   const searchParams = new URLSearchParams(location.search);
   const keyword = searchParams.get('keyword');
-  const displayData = keyword ? searchData : cardsData;
+
+  const getDisplayData = () => {
+    if (keyword && activeBadge?.id !== 0) {
+      return cardsData.filter((card) =>
+        searchData.some((searchCard) => searchCard.id === card.id)
+      );
+    }
+    if (!keyword) {
+      return cardsData;
+    }
+    if (activeBadge?.id === 0) {
+      return searchData;
+    }
+    return searchData.filter((data) => data.category === activeBadge?.name);
+  };
+
+  const displayData = getDisplayData();
 
   return (
     <>
