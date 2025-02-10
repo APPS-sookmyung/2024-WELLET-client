@@ -1,52 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import * as S from './SearchBar.style';
-import Icon from '../../components/Icon/Icon';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { searchCards } from '../../apis/cards.js';
+import Icon from '../../components/Icon/Icon';
+import * as S from './SearchBar.style';
 
-export default function SearchBar({ theme }) {
+export default function SearchBar({ theme, setSearchData = () => {} }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [keyword, setKeyword] = useState(
-    new URLSearchParams(location.search).get('keyword') || ''
-  );
+
+  const [inputValue, setInputValue] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const keywordFromParams = searchParams.get('keyword');
-    if (keywordFromParams) {
-      setKeyword(keywordFromParams);
-      searchCards(keywordFromParams);
-    }
+    const keywordFromParams = searchParams.get('keyword') || '';
+    setInputValue(keywordFromParams);
+    setSearchKeyword(keywordFromParams);
   }, [location.search]);
 
-  const handleSearch = () => {
-    if (keyword.trim() === '') return;
-    searchCards(keyword);
-  };
+  useEffect(() => {
+    searchKeyword && fetchSearchCard();
+  }, [searchKeyword]);
 
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      const searchParams = new URLSearchParams(location.search);
-      searchParams.set('keyword', keyword);
-      if (location.pathname === '/home') {
-        navigate(`/card?${searchParams.toString()}`);
-      } else {
-        navigate(`${location.pathname}?${searchParams.toString()}`);
-      }
-      handleSearch();
+  const fetchSearchCard = async () => {
+    try {
+      const response = await searchCards({ keyword: searchKeyword });
+      setSearchData(response.data.cards);
+    } catch (error) {
+      console.error('검색 요청 실패:', error);
     }
   };
 
-  const handleSearchIconClick = () => {
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set('keyword', keyword);
-    if (location.pathname === '/home') {
-      navigate(`/card?${searchParams.toString()}`);
-    } else {
-      navigate(`${location.pathname}?${searchParams.toString()}`);
+  const handleSearch = (event) => {
+    if (event.key === 'Enter' && inputValue.trim()) {
+      navigate(`/card?keyword=${encodeURIComponent(inputValue)}`);
     }
-    handleSearch();
   };
 
   const iconId =
@@ -59,14 +47,14 @@ export default function SearchBar({ theme }) {
   return (
     <S.SearchBar theme={theme}>
       <S.SearchIcon theme={theme}>
-        <Icon id={iconId} fill='none' onClick={handleSearchIconClick} />
+        <Icon id={iconId} fill='none' onClick={handleSearch} />
       </S.SearchIcon>
       <S.SearchInput
         theme={theme}
         placeholder={placeholderText}
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-        onKeyDown={handleKeyDown}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        onKeyDown={handleSearch}
       />
     </S.SearchBar>
   );
