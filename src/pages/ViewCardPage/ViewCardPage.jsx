@@ -1,22 +1,20 @@
-import * as S from './ViewCardPage.style';
-import { Header, SearchBar, BlueBadge, CardInfo } from '../../components';
 import { useEffect, useState } from 'react';
+import { getCards, postCards } from '../../apis/cards';
+import { getGroupList, postGroup } from '../../apis/group';
+import { BlueBadge, CardInfo, Header, SearchBar } from '../../components';
 import Icon from '../../components/Icon/Icon';
-import { getCards } from '../../apis/cards';
+import * as S from './ViewCardPage.style';
 
 export default function ViewCardPage() {
-  const [activeBadge, setActiveBadge] = useState('전체 보기');
+  const [activeBadge, setActiveBadge] = useState('전체 보기'); // 기본값
   const [isEditCompleteVisible, setIsEditCompleteVisible] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
   const [cardsData, setCardsData] = useState([]);
-  const badges = [
-    { label: '전체 보기', value: '전체 보기' },
-    { label: '비즈니스', value: '비즈니스' },
-    { label: '방송사', value: '방송사' },
-    { label: '부동산', value: '부동산' },
-    { label: '대학교', value: '대학교' },
-  ];
+  const [groupData, setGroupData] = useState([]);
+  const [badges, setBadges] = useState([
+    { label: '전체 보기', value: '전체 보기' }, // 기본 그룹 추가
+  ]);
 
   async function fetchCards() {
     try {
@@ -27,16 +25,30 @@ export default function ViewCardPage() {
     }
   }
 
+  async function fetchGroups() {
+    try {
+      const response = await getGroupList();
+      const groups = response.data.map((group) => ({
+        label: group.id, // 🔹 label에 id 설정
+        value: group.name, // 🔹 value에 name 설정
+      }));
+      setGroupData(response.data);
+      setBadges((prev) => [{ label: '전체 보기', value: '전체 보기' }, ...groups]);
+    } catch (error) {
+      console.error('그룹 리스트를 불러오지 못했습니다.', error);
+    }
+  }
+
   useEffect(() => {
     fetchCards();
+    fetchGroups();
   }, []);
 
   let filteredData =
     activeBadge === '전체 보기'
       ? cardsData
-      : cardsData.filter((data) => data.category === activeBadge);
+      : cardsData.filter((data) => data.categoryName === activeBadge); // 🔹 그룹 이름과 비교하도록 변경
 
-  // 이름을 기준으로 오름차순 정렬
   filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
 
   const handleDeleteClick = () => {
@@ -65,10 +77,9 @@ export default function ViewCardPage() {
   return (
     <>
       <S.ViewCardPage>
-        <Header color='blue' />
-        <SearchBar theme='white' />
+        <Header color="blue" />
+        <SearchBar theme="white" />
 
-        {/* 그룹 설정 버튼 */}
         <S.ButtonContainer>
           <S.GroupBadgeWrapper>
             <BlueBadge
@@ -80,7 +91,7 @@ export default function ViewCardPage() {
           <S.EditBadgeWrapper>
             <S.DeleteCardBadge onClick={handleDeleteClick}>
               <S.BadgeText>명함 삭제</S.BadgeText>
-              <Icon id='trash' />
+              <Icon id="trash" />
             </S.DeleteCardBadge>
             {isEditCompleteVisible && (
               <S.EditCompletedBadge onClick={handleEditCompleteClick}>
@@ -90,7 +101,6 @@ export default function ViewCardPage() {
           </S.EditBadgeWrapper>
         </S.ButtonContainer>
 
-        {/* 명함 목록 */}
         <S.CardContainer>
           {filteredData.map((data, index) => (
             <CardInfo
