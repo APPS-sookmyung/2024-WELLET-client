@@ -5,13 +5,14 @@ import Icon from '../../components/Icon/Icon';
 import * as S from './ViewCardPage.style';
 
 export default function ViewCardPage() {
+  const [myCardId, setMyCardId] = useState(null);
   const [activeBadge, setActiveBadge] = useState({ id: 0, name: '전체 보기' });
   const [isEditCompleteVisible, setIsEditCompleteVisible] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [badges, setBadges] = useState([{ id: 0, name: '전체 보기' }]);
-  const [myCardId, setMyCardId] = useState(null);
+  const [searchData, setSearchData] = useState([]);
 
   async function fetchMyCard() {
     try {
@@ -54,6 +55,13 @@ export default function ViewCardPage() {
     fetchGroups();
   }, []);
 
+  let filteredData =
+    activeBadge === '전체 보기'
+      ? cardsData
+      : cardsData.filter((data) => data.categoryName === activeBadge);
+
+  filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
+
   useEffect(() => {
     fetchCards();
   }, [myCardId, activeBadge]);
@@ -81,11 +89,34 @@ export default function ViewCardPage() {
     }
   };
 
+  const searchKeyword = localStorage.getItem('searchKeyword');
+
+  const getDisplayData = () => {
+    if (searchKeyword && activeBadge?.id !== 0) {
+      return cardsData.filter((card) =>
+        searchData.some((searchCard) => searchCard.id === card.id)
+      );
+    }
+    if (!searchKeyword) {
+      return cardsData;
+    }
+    if (activeBadge?.id === 0) {
+      return searchData;
+    }
+    return searchData.filter((data) => data.category === activeBadge?.name);
+  };
+
+  const displayData = getDisplayData();
+
   return (
     <>
       <S.ViewCardPage>
         <Header color='blue' />
-        <SearchBar theme='white' />
+        <SearchBar
+          theme='white'
+          setSearchData={setSearchData}
+          myCardId={myCardId}
+        />
 
         <S.ButtonContainer>
           <S.GroupBadgeWrapper>
@@ -99,6 +130,7 @@ export default function ViewCardPage() {
             <S.DeleteCardBadge onClick={handleDeleteClick}>
               <S.BadgeText>명함 삭제</S.BadgeText>
               <Icon id='trash' />
+              <Icon id='trash' />
             </S.DeleteCardBadge>
             {isEditCompleteVisible && (
               <S.EditCompletedBadge onClick={handleEditCompleteClick}>
@@ -109,7 +141,7 @@ export default function ViewCardPage() {
         </S.ButtonContainer>
 
         <S.CardContainer>
-          {cardsData.map((data, index) => (
+          {displayData.map((data, index) => (
             <CardInfo
               id={data.id}
               key={index}
