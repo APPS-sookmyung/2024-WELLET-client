@@ -29,17 +29,17 @@ export default function MyPage() {
   }, []);
   const profileImageUrl = myInfo.profImgUrl || ProfileImgDefault;
   const handleShareClick = () => {
-    setIsModalOpen(true); // QR 코드 모달 열기
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // QR 코드 모달 닫기
+    setIsModalOpen(false);
   };
 
   const handleCopyLinkClick = () => {
-    setIsToastVisible(true); // 링크 복사 시 토스트 메시지 보이기
+    setIsToastVisible(true);
     setTimeout(() => {
-      setIsToastVisible(false); // 3초 후 토스트 메시지 숨기기
+      setIsToastVisible(false);
     }, 3000);
   };
 
