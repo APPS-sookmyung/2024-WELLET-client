@@ -140,6 +140,7 @@ export default function MyPageEditPage() {
 
     Object.entries(myInfo).forEach(([key, value]) => {
       if (key !== 'profImgUrl' && key !== 'profImg') {
+
         formData.append(key, value || '');
       }
     });
@@ -154,6 +155,7 @@ export default function MyPageEditPage() {
       formData.append('profImgUrl', null);
     }
     return formData;
+
   };
 
   const handleEditComplete = async () => {
@@ -193,6 +195,8 @@ export default function MyPageEditPage() {
       }));
     }
   };
+  console.log('profileImage:', profileImage);
+  console.log('profImgUrl:', myInfo.profImgUrl);
 
   return (
     <S.MyEdit>

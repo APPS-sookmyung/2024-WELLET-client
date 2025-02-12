@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useRef, memo } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import * as S from './DetailEditPage.style';
-import Icon from '../../components/Icon/Icon';
-import { BlueBadge, AddGroupModal } from '../../components';
-import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
-import { getGroupList, getCardDetail, putCards } from '../../apis';
 import { useQuery } from '@tanstack/react-query';
+import React, { memo, useEffect, useRef, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { getCardDetail, getGroupList, putCards } from '../../apis';
+import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+import { AddGroupModal, BlueBadge } from '../../components';
+import Icon from '../../components/Icon/Icon';
 import useFormData from '../../hooks/useFormData';
+import * as S from './DetailEditPage.style';
 
 const InputWrapper = memo(
   ({
@@ -146,9 +146,9 @@ export default function DetailEditPage() {
 
   useEffect(() => {
     if (groupListData) {
-      const initialBadges = groupListData.data.map((group) => ({
-        label: group.id,
-        value: group.name,
+      const initialBadges = groupListData.data.map(({ id, name }) => ({
+        id,
+        name,
       }));
       setBadges(initialBadges);
     }
@@ -156,9 +156,16 @@ export default function DetailEditPage() {
 
   useEffect(() => {
     if (inputData) {
-      setInfo(inputData.data); // inputData로부터 info 상태 업데이트
+      setInfo(inputData.data);
+
+      const matchedBadge = badges.find(
+        (badge) => badge.name === inputData.data.category
+      );
+      if (matchedBadge) {
+        setActiveBadge(matchedBadge);
+      }
     }
-  }, [inputData]);
+  }, [inputData, badges]);
 
   const onUploadProfileImage = (e) => {
     const file = e.target.files[0];
@@ -271,6 +278,10 @@ export default function DetailEditPage() {
               activeBadge={activeBadge}
               setActiveBadge={setActiveBadge}
             />
+            <S.AddGroupButton onClick={() => setModalVisible(true)}>
+              <p>그룹 편집</p>
+              <Icon id='circle-plus-blue' width='13' height='13' />
+            </S.AddGroupButton>
           </S.GroupButtonBox>
         </S.GroupButtonContainer>
 
@@ -322,7 +333,6 @@ export default function DetailEditPage() {
         isModalOpen={modalVisible}
         setIsModalOpen={setModalVisible}
         badges={badges}
-        setBadges={setBadges}
       />
     </>
   );

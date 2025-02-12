@@ -1,52 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import * as S from './SearchBar.style';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { searchCards } from '../../apis';
 import Icon from '../../components/Icon/Icon';
-import { searchCards } from '../../apis/cards.js';
+import * as S from './SearchBar.style';
 
-export default function SearchBar({ theme }) {
-  const location = useLocation();
+export default function SearchBar({
+  theme,
+  setSearchData = () => {},
+  myCardId,
+}) {
   const navigate = useNavigate();
-  const [keyword, setKeyword] = useState(
-    new URLSearchParams(location.search).get('keyword') || ''
-  );
+  const location = useLocation();
+  const [keyword, setKeyword] = useState('');
+  const [debouncedKeyword, setDebouncedKeyword] = useState('');
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const keywordFromParams = searchParams.get('keyword');
-    if (keywordFromParams) {
-      setKeyword(keywordFromParams);
-      searchCards(keywordFromParams);
+    if (location.pathname.startsWith('/card')) {
+      const savedKeyword = localStorage.getItem('searchKeyword') || '';
+      setKeyword(savedKeyword);
     }
-  }, [location.search]);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedKeyword(keyword);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [keyword]);
+
+  useEffect(() => {
+    fetchSearchCard();
+  }, [debouncedKeyword]);
+
+  const fetchSearchCard = async () => {
+    if (!myCardId) return;
+    try {
+      const response = await searchCards({
+        keyword: localStorage.getItem('searchKeyword'),
+      });
+      const exceptMyCard = response.data.cards.filter(
+        (card) => card.id !== myCardId
+      );
+      setSearchData(exceptMyCard);
+    } catch (error) {
+      console.error('검색 요청 실패:', error);
+    }
+  };
 
   const handleSearch = () => {
-    if (keyword.trim() === '') return;
-    searchCards(keyword);
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      const searchParams = new URLSearchParams(location.search);
-      searchParams.set('keyword', keyword);
+    const trimmedValue = keyword.trim();
+    if (trimmedValue) {
+      localStorage.setItem('searchKeyword', trimmedValue);
       if (location.pathname === '/home') {
-        navigate(`/card?${searchParams.toString()}`);
-      } else {
-        navigate(`${location.pathname}?${searchParams.toString()}`);
+        navigate('/card');
       }
-      handleSearch();
     }
-  };
-
-  const handleSearchIconClick = () => {
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set('keyword', keyword);
-    if (location.pathname === '/home') {
-      navigate(`/card?${searchParams.toString()}`);
-    } else {
-      navigate(`${location.pathname}?${searchParams.toString()}`);
-    }
-    handleSearch();
   };
 
   const iconId =
@@ -59,14 +68,18 @@ export default function SearchBar({ theme }) {
   return (
     <S.SearchBar theme={theme}>
       <S.SearchIcon theme={theme}>
-        <Icon id={iconId} fill='none' onClick={handleSearchIconClick} />
+        <Icon id={iconId} fill='none' onClick={handleSearch} />
       </S.SearchIcon>
       <S.SearchInput
         theme={theme}
         placeholder={placeholderText}
         value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-        onKeyDown={handleKeyDown}
+        onChange={(e) => {
+          const newKeyword = e.target.value;
+          setKeyword(newKeyword);
+          localStorage.setItem('searchKeyword', newKeyword);
+        }}
+        onKeyDown={(e) => e.key === 'Enter' && handleSearch(e)}
       />
     </S.SearchBar>
   );

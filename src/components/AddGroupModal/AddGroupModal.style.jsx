@@ -9,6 +9,7 @@ export const BackgroundBlur = styled.div`
   backdrop-filter: blur(10px);
   opacity: ${({ isModalOpen }) => (isModalOpen ? 1 : 0)};
   transition: opacity 300ms ease;
+  z-index: 2;
 `;
 
 export const Container = styled.div`
@@ -17,6 +18,7 @@ export const Container = styled.div`
   padding-bottom: 70px;
   width: 100%;
   max-width: 768px;
+  z-index: 3;
   transform: ${({ isModalOpen }) =>
     isModalOpen ? 'translateY(0)' : 'translateY(100%)'};
   opacity: ${({ isModalOpen }) => (isModalOpen ? 1 : 0)};

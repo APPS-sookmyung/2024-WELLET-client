@@ -1,18 +1,24 @@
 import React, { useRef, useState } from 'react';
-import * as S from './AddCardPage.style';
 import {
-  Header,
-  SearchBar,
   BlueBadge,
+  Header,
   PrimaryButton,
+  SearchBar,
   SecondaryButton,
 } from '../../components';
-import ImageInputForm from './ImageInputForm';
+import * as S from './AddCardPage.style';
 import DirectInputForm from './DirectInputForm';
+import ImageInputForm from './ImageInputForm';
 
 export default function AddCardPage() {
-  const [activeBadge, setActiveBadge] = useState('이미지로 입력');
-  const [activeGroupBadge, setActiveGroupBadge] = useState('비즈니스');
+  const [activeBadge, setActiveBadge] = useState({
+    id: 1,
+    name: '이미지로 입력',
+  });
+  const [activeGroupBadge, setActiveGroupBadge] = useState({
+    id: 1,
+    name: '비즈니스',
+  });
   const [selectedImage, setSelectedImage] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -21,14 +27,14 @@ export default function AddCardPage() {
   const profileImageInputRef = useRef(null);
 
   const badges = [
-    { label: '이미지로 입력', value: '이미지로 입력' },
-    { label: '직접 입력', value: '직접 입력' },
+    { id: 1, name: '이미지로 입력' },
+    { id: 2, name: '직접 입력' },
   ];
 
   const groupBadges = [
-    { label: '비즈니스', value: '비즈니스' },
-    { label: '음식점', value: '음식점' },
-    { label: '학교', value: '학교' },
+    { id: 1, name: '비즈니스' },
+    { id: 2, name: '음식점' },
+    { id: 3, name: '학교' },
   ];
 
   const inputFields = [
@@ -117,7 +123,7 @@ export default function AddCardPage() {
         />
       </S.ButtonContainer>
 
-      {activeBadge === '이미지로 입력' ? (
+      {activeBadge.name === '이미지로 입력' ? (
         <ImageInputForm
           selectedImage={selectedImage}
           onUploadImage={onUploadImage}
