@@ -148,11 +148,7 @@ export default function MyPageEditPage() {
       formData.append('profImg', myInfo.profImg);
     }
 
-    if (myInfo.profImgUrl) {
-      formData.append('profImgUrl', myInfo.profImgUrl);
-    } else {
-      formData.append('profImgUrl', null);
-    }
+    formData.append('profImgUrl', myInfo.profImgUrl || '');
     return formData;
   };
 
@@ -212,15 +208,11 @@ export default function MyPageEditPage() {
       <S.Body>
         <S.PicContainer>
           <S.ProfilePic
-            style={{
-              backgroundImage: myInfo.profImg
-                ? `url(${URL.createObjectURL(myInfo.profImg)})`
-                : myInfo.profImgUrl
-                  ? `url(${myInfo.profImgUrl})`
-                  : '',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
+            profileImgUrl={
+              myInfo.profImg
+                ? URL.createObjectURL(myInfo.profImg)
+                : myInfo.profImgUrl || ''
+            }
           />
           <S.GalleryIcon>
             <Icon

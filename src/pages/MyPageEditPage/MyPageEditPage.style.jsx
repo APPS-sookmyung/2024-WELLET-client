@@ -76,7 +76,10 @@ export const ProfilePic = styled.div`
   width: 68px;
   height: 68px;
   border-radius: 68px;
-  background: #2d29ff4c;
+  background: ${({ profileImgUrl }) =>
+    profileImgUrl ? `url(${profileImgUrl})` : '#2d29ff4c'};
+  background-size: cover;
+  background-position: center;
 `;
 
 export const GalleryIcon = styled.button`
