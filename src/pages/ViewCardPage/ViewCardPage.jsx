@@ -1,43 +1,70 @@
-import * as S from './ViewCardPage.style';
-import { Header, SearchBar, BlueBadge, CardInfo } from '../../components';
 import { useEffect, useState } from 'react';
+import { getCards, getCardsByGroup, getGroupList, getMyCard } from '../../apis';
+import { BlueBadge, CardInfo, Header, SearchBar } from '../../components';
 import Icon from '../../components/Icon/Icon';
-import { getCards } from '../../apis/cards';
+import * as S from './ViewCardPage.style';
 
 export default function ViewCardPage() {
-  const [activeBadge, setActiveBadge] = useState('전체 보기');
+  const [myCardId, setMyCardId] = useState(null);
+  const [activeBadge, setActiveBadge] = useState({ id: 0, name: '전체 보기' });
   const [isEditCompleteVisible, setIsEditCompleteVisible] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
   const [cardsData, setCardsData] = useState([]);
-  const badges = [
-    { label: '전체 보기', value: '전체 보기' },
-    { label: '비즈니스', value: '비즈니스' },
-    { label: '방송사', value: '방송사' },
-    { label: '부동산', value: '부동산' },
-    { label: '대학교', value: '대학교' },
-  ];
+  const [badges, setBadges] = useState([{ id: 0, name: '전체 보기' }]);
+  const [searchData, setSearchData] = useState([]);
 
-  async function fetchCards() {
+  async function fetchMyCard() {
     try {
-      const response = await getCards();
-      setCardsData(response.data.cards);
+      const response = await getMyCard();
+      setMyCardId(response.data.id);
     } catch (error) {
       console.error('카드 리스트를 불러오지 못했습니다.', error);
     }
   }
 
+  async function fetchCards() {
+    if (!myCardId) return;
+    try {
+      const { id } = activeBadge;
+      const response =
+        id === 0 ? await getCards() : await getCardsByGroup({ categoryId: id });
+
+      const exceptMyCard = response.data.cards.filter(
+        (card) => card.id !== myCardId
+      );
+
+      setCardsData(exceptMyCard);
+    } catch (error) {
+      console.error('카드 리스트를 불러오지 못했습니다.', error);
+    }
+  }
+
+  async function fetchGroups() {
+    try {
+      const response = await getGroupList();
+      const groups = response.data.map(({ id, name }) => ({ id, name }));
+      setBadges([{ id: 0, name: '전체 보기' }, ...groups]);
+    } catch (error) {
+      console.error('그룹 리스트를 불러오지 못했습니다.', error);
+    }
+  }
+
   useEffect(() => {
-    fetchCards();
+    fetchMyCard();
+    fetchGroups();
   }, []);
 
   let filteredData =
     activeBadge === '전체 보기'
       ? cardsData
-      : cardsData.filter((data) => data.category === activeBadge);
+      : cardsData.filter((data) => data.categoryName === activeBadge);
 
-  // 이름을 기준으로 오름차순 정렬
   filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
+
+  useEffect(() => {
+    fetchCards();
+  }, [myCardId, activeBadge]);
 
   const handleDeleteClick = () => {
     setIsDeleteMode(true);
@@ -62,13 +89,35 @@ export default function ViewCardPage() {
     }
   };
 
+  const searchKeyword = localStorage.getItem('searchKeyword');
+
+  const getDisplayData = () => {
+    if (searchKeyword && activeBadge?.id !== 0) {
+      return cardsData.filter((card) =>
+        searchData.some((searchCard) => searchCard.id === card.id)
+      );
+    }
+    if (!searchKeyword) {
+      return cardsData;
+    }
+    if (activeBadge?.id === 0) {
+      return searchData;
+    }
+    return searchData.filter((data) => data.category === activeBadge?.name);
+  };
+
+  const displayData = getDisplayData();
+
   return (
     <>
       <S.ViewCardPage>
         <Header color='blue' />
-        <SearchBar theme='white' />
+        <SearchBar
+          theme='white'
+          setSearchData={setSearchData}
+          myCardId={myCardId}
+        />
 
-        {/* 그룹 설정 버튼 */}
         <S.ButtonContainer>
           <S.GroupBadgeWrapper>
             <BlueBadge
@@ -81,6 +130,7 @@ export default function ViewCardPage() {
             <S.DeleteCardBadge onClick={handleDeleteClick}>
               <S.BadgeText>명함 삭제</S.BadgeText>
               <Icon id='trash' />
+              <Icon id='trash' />
             </S.DeleteCardBadge>
             {isEditCompleteVisible && (
               <S.EditCompletedBadge onClick={handleEditCompleteClick}>
@@ -90,9 +140,8 @@ export default function ViewCardPage() {
           </S.EditBadgeWrapper>
         </S.ButtonContainer>
 
-        {/* 명함 목록 */}
         <S.CardContainer>
-          {filteredData.map((data, index) => (
+          {displayData.map((data, index) => (
             <CardInfo
               id={data.id}
               key={index}
