@@ -189,8 +189,6 @@ export default function MyPageEditPage() {
       }));
     }
   };
-  console.log('profileImage:', profileImage);
-  console.log('profImgUrl:', myInfo.profImgUrl);
 
   return (
     <S.MyEdit>
