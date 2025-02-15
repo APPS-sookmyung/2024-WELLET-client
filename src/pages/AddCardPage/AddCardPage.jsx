@@ -38,8 +38,16 @@ export default function AddCardPage() {
   ];
 
   const inputFields = [
-    { label: '이름', type: 'text', placeholder: '이름을 입력하세요' },
-    { label: '회사명', type: 'text', placeholder: 'WELLET Corp.' },
+    {
+      label: '이름 *',
+      type: 'text',
+      placeholder: '이름을 입력하세요',
+    },
+    {
+      label: '회사명 *',
+      type: 'text',
+      placeholder: 'WELLET Corp.',
+    },
     {
       label: '부서',
       type: 'text',
@@ -50,19 +58,31 @@ export default function AddCardPage() {
       type: 'text',
       placeholder: '사원',
     },
-    { label: '휴대폰', type: 'tel', placeholder: '010-1234-5678' },
     {
-      label: '이메일',
+      label: '휴대폰 *',
+      type: 'tel',
+      placeholder: '010-1234-5678',
+    },
+    {
+      label: '이메일 *',
       type: 'email',
       placeholder: 'email@welletapp.co.kr',
     },
-    { label: '유선전화', type: 'tel', placeholder: '81-2-222-3456' },
+    {
+      label: '유선전화',
+      type: 'tel',
+      placeholder: '81-2-222-3456',
+    },
     {
       label: '주소',
       type: 'text',
       placeholder: '서울특별시 용산구 청파로 47길 100(청파동 2가)',
     },
-    { label: '메모', type: 'text', placeholder: '메모' },
+    {
+      label: '메모',
+      type: 'text',
+      placeholder: '메모',
+    },
   ];
 
   const onUploadImage = (event) => {
