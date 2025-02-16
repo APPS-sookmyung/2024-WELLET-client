@@ -62,7 +62,8 @@ export default function HomePage() {
             <MyCard
               backgroundColor='#fff'
               name={myCardData.name}
-              role={myCardData.role}
+              department={myCardData.department}
+              position={myCardData.position}
               company={myCardData.company}
               imageUrl={myCardData.imageUrl}
               phone={myCardData.phone}

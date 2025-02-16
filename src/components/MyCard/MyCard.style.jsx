@@ -9,6 +9,11 @@ export const MyCard = styled.div`
   transition: background 0.3s;
 `;
 
+export const ImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const ProfileImg = styled.div`
   min-width: 68px;
   min-height: 68px;
@@ -26,7 +31,7 @@ export const ProfileImg = styled.div`
 `;
 
 export const ProfileText = styled.div`
-  padding-left: 20px;
+  padding-left: 18px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,20 +40,20 @@ export const ProfileText = styled.div`
 export const Name = styled.div`
   font-size: 18px;
   font-weight: 600;
-  padding: 3px 0;
+  line-height: 1.5;
   color: #1a1a1a;
 `;
 
 export const Team = styled.div`
   font-size: 12px;
   font-weight: 400;
-  padding-bottom: 11px;
+  padding-bottom: 10px;
   color: #1a1a1a;
 `;
 
 export const ExtraInfo = styled.div`
   display: flex;
-  gap: 4px;
+  gap: 7px;
   padding: 2px 0;
   color: #555;
 
