@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   BlueBadge,
   Header,
@@ -9,146 +9,207 @@ import {
 import * as S from './AddCardPage.style';
 import DirectInputForm from './DirectInputForm';
 import ImageInputForm from './ImageInputForm';
+import { postCards } from '../../apis/cards.js';
+import { getGroupList } from '../../apis/group.js';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function AddCardPage() {
+  const navigate = useNavigate();
   const [activeBadge, setActiveBadge] = useState({
     id: 1,
     name: '이미지로 입력',
   });
-  const [activeGroupBadge, setActiveGroupBadge] = useState({
-    id: 1,
-    name: '비즈니스',
-  });
+  const [groupBadges, setGroupBadges] = useState([]);
+  const [activeGroupBadge, setActiveGroupBadge] = useState(null);
   const [selectedImage, setSelectedImage] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
-  const [isDragOver, setIsDragOver] = useState(false);
-
-  const imageInputRef = useRef(null);
+  const [profilePreview, setProfilePreview] = useState(null);
   const profileImageInputRef = useRef(null);
 
-  const badges = [
-    { id: 1, name: '이미지로 입력' },
-    { id: 2, name: '직접 입력' },
-  ];
+  const [cardInputData, setCardInputData] = useState({
+    name: '',
+    position: '',
+    department: '',
+    company: '',
+    phone: '',
+    email: '',
+    tel: '',
+    address: '',
+    memo: '',
+  });
 
-  const groupBadges = [
-    { id: 1, name: '비즈니스' },
-    { id: 2, name: '음식점' },
-    { id: 3, name: '학교' },
-  ];
+  // 그룹 리스트 가져오기
+  useEffect(() => {
+    const fetchGroupData = async () => {
+      try {
+        const response = await getGroupList();
+        console.log('그룹 리스트 API 응답: ', response.data);
 
-  const inputFields = [
-    { label: '이름', type: 'text', placeholder: '이름을 입력하세요' },
-    { label: '회사명', type: 'text', placeholder: 'WELLET Corp.' },
-    {
-      label: '부서',
-      type: 'text',
-      placeholder: '신규 개발팀',
-    },
-    {
-      label: '직책',
-      type: 'text',
-      placeholder: '사원',
-    },
-    { label: '휴대폰', type: 'tel', placeholder: '010-1234-5678' },
-    {
-      label: '이메일',
-      type: 'email',
-      placeholder: 'email@welletapp.co.kr',
-    },
-    { label: '유선전화', type: 'tel', placeholder: '81-2-222-3456' },
-    {
-      label: '주소',
-      type: 'text',
-      placeholder: '서울특별시 용산구 청파로 47길 100(청파동 2가)',
-    },
-    { label: '메모', type: 'text', placeholder: '메모' },
-  ];
+        const groupList = response.data || [];
+        setGroupBadges(groupList);
 
-  const onUploadImage = (event) => {
-    const files = Array.from(event.target.files || event.dataTransfer.files);
-    const newImages = files.slice(0, 2);
-    setSelectedImage((prevImages) =>
-      [...prevImages.slice(0, 2), ...newImages].slice(0, 2)
-    );
+        if (groupList.length > 0) {
+          setActiveGroupBadge(groupList[0]);
+        }
+      } catch (error) {
+        console.error('그룹 리스트를 가져오는 데 실패:', error);
+      }
+    };
+
+    fetchGroupData();
+  }, []);
+
+  // 그룹선택 확인
+  const handleGroupBadgeChange = (badge) => {
+    console.log('선택된 그룹:', badge); // 확인용 로그
+    setActiveGroupBadge(badge);
   };
 
-  const handleButtonClick = () => {
-    imageInputRef.current.click();
+  const handleDirectInputChange = (field, value) => {
+    setCardInputData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const onUploadProfileImage = (event) => {
+  const handleSubmitButtonClick = async () => {
+    console.log('현재 입력된 값:', cardInputData);
+    console.log('선택된 그룹:', activeGroupBadge);
+
+    if (
+      !cardInputData.name ||
+      !cardInputData.company ||
+      !cardInputData.phone ||
+      !activeGroupBadge
+    ) {
+      alert('필수값을 모두 입력해주세요.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('name', cardInputData.name);
+    formData.append('position', cardInputData.position);
+    formData.append('department', cardInputData.department);
+    formData.append('company', cardInputData.company);
+    formData.append('phone', cardInputData.phone);
+    formData.append('email', cardInputData.email);
+    formData.append('tel', cardInputData.tel);
+    formData.append('address', cardInputData.address);
+    formData.append('memo', cardInputData.memo);
+    formData.append('categoryName', activeGroupBadge.name);
+
+    if (profileImage) {
+      formData.append('profImgUrl', profileImage);
+    }
+
+    selectedImage.forEach((image, index) => {
+      formData.append(index === 0 ? 'frontImgUrl' : 'backImgUrl', image);
+    });
+
+    console.log('FormData 확인:', Array.from(formData.entries()));
+
+    try {
+      const response = await postCards({ data: formData });
+      alert('명함이 성공적으로 등록되었습니다.');
+      console.log('명함 등록 API 응답:', response);
+
+      navigate('/card');
+    } catch (error) {
+      console.error('명함 등록 실패: ', error);
+      alert(error.response?.data?.message || '명함 등록에 실패했습니다.');
+    }
+  };
+
+  const handleProfileImageUpload = (event) => {
     const file = event.target.files[0];
-    setProfileImage(URL.createObjectURL(file));
-  };
-
-  const handleProfileImageClick = () => {
-    profileImageInputRef.current.click();
-  };
-
-  const handleDragOver = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setIsDragOver(true);
-  };
-
-  const handleDragLeave = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setIsDragOver(false);
-  };
-
-  const handleDrop = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setIsDragOver(false);
-    onUploadImage(event);
+    setProfileImage(file);
+    setProfilePreview(URL.createObjectURL(file));
   };
 
   return (
     <S.AddCardPage>
       <Header color='blue' />
       <SearchBar theme='white' />
-
       <S.TitleContainer>
         <S.Title>명함 추가하기</S.Title>
         <S.Subtitle>사진을 첨부 / 직접 입력하여 명함 추가하기</S.Subtitle>
       </S.TitleContainer>
-
       <S.ButtonContainer>
         <BlueBadge
-          badges={badges}
+          badges={[
+            { id: 1, name: '이미지로 입력' },
+            { id: 2, name: '직접 입력' },
+          ]}
           activeBadge={activeBadge}
           setActiveBadge={setActiveBadge}
         />
       </S.ButtonContainer>
-
       {activeBadge.name === '이미지로 입력' ? (
         <ImageInputForm
           selectedImage={selectedImage}
-          onUploadImage={onUploadImage}
-          handleButtonClick={handleButtonClick}
-          imageInputRef={imageInputRef}
-          isDragOver={isDragOver}
-          handleDragOver={handleDragOver}
-          handleDragLeave={handleDragLeave}
-          handleDrop={handleDrop}
+          onUploadImage={handleProfileImageUpload}
         />
       ) : (
         <DirectInputForm
-          profileImage={profileImage}
-          onUploadProfileImage={onUploadProfileImage}
-          handleProfileImageClick={handleProfileImageClick}
+          profileImage={profilePreview}
+          onUploadProfileImage={handleProfileImageUpload}
           profileImageInputRef={profileImageInputRef}
-          inputFields={inputFields}
+          inputFields={[
+            {
+              label: '이름 *',
+              type: 'text',
+              placeholder: '이름을 입력하세요',
+              field: 'name',
+            },
+            {
+              label: '회사명 *',
+              type: 'text',
+              placeholder: 'WELLET Corp.',
+              field: 'company',
+            },
+            {
+              label: '부서',
+              type: 'text',
+              placeholder: '신규 개발팀',
+              field: 'department',
+            },
+            {
+              label: '직책',
+              type: 'text',
+              placeholder: '사원',
+              field: 'position',
+            },
+            {
+              label: '휴대폰 *',
+              type: 'tel',
+              placeholder: '010-1234-5678',
+              field: 'phone',
+            },
+            {
+              label: '이메일 *',
+              type: 'email',
+              placeholder: 'email@welletapp.co.kr',
+              field: 'email',
+            },
+            {
+              label: '유선전화',
+              type: 'tel',
+              placeholder: '81-2-222-3456',
+              field: 'tel',
+            },
+            {
+              label: '주소',
+              type: 'text',
+              placeholder: '서울특별시 용산구 청파로 47길 100(청파동 2가)',
+              field: 'address',
+            },
+            { label: '메모', type: 'text', placeholder: '메모', field: 'memo' },
+          ]}
           activeGroupBadge={activeGroupBadge}
           groupBadges={groupBadges}
-          setActiveGroupBadge={setActiveGroupBadge}
+          setActiveGroupBadge={handleGroupBadgeChange}
+          onChange={handleDirectInputChange}
         />
       )}
-
       <S.ActionBtnContainer>
-        <PrimaryButton>등록</PrimaryButton>
+        <PrimaryButton onClick={handleSubmitButtonClick}>등록</PrimaryButton>
         <SecondaryButton>취소</SecondaryButton>
       </S.ActionBtnContainer>
     </S.AddCardPage>
