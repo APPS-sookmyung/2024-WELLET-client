@@ -11,8 +11,10 @@ import DirectInputForm from './DirectInputForm';
 import ImageInputForm from './ImageInputForm';
 import { postCards } from '../../apis/cards.js';
 import { getGroupList } from '../../apis/group.js';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function AddCardPage() {
+  const navigate = useNavigate();
   const [activeBadge, setActiveBadge] = useState({
     id: 1,
     name: '이미지로 입력',
@@ -107,6 +109,8 @@ export default function AddCardPage() {
       const response = await postCards({ data: formData });
       alert('명함이 성공적으로 등록되었습니다.');
       console.log('명함 등록 API 응답:', response);
+
+      navigate('/card');
     } catch (error) {
       console.error('명함 등록 실패: ', error);
       alert(error.response?.data?.message || '명함 등록에 실패했습니다.');
