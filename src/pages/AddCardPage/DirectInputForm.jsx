@@ -5,20 +5,21 @@ import { InputWrapper, BlueBadge } from '../../components';
 export default function DirectInputForm({
   profileImage,
   onUploadProfileImage,
-  handleProfileImageClick,
   profileImageInputRef,
   inputFields,
   activeGroupBadge,
   groupBadges,
   setActiveGroupBadge,
+  onChange,
 }) {
   return (
     <S.DashedBorder>
       <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
 
+      {/* 프로필 사진 등록 */}
       <S.RegisterImageContainer>
         <S.SelectImg
-          onClick={handleProfileImageClick}
+          onClick={() => profileImageInputRef.current.click()}
           style={{
             backgroundImage: `url(${profileImage})`,
             backgroundSize: 'cover',
@@ -44,6 +45,7 @@ export default function DirectInputForm({
         />
       </S.RegisterImageContainer>
 
+      {/* 입력 필드 */}
       <S.InputContainer>
         {inputFields.map((field, index) => (
           <InputWrapper
@@ -51,18 +53,26 @@ export default function DirectInputForm({
             label={field.label}
             type={field.type}
             placeholder={field.placeholder}
+            onChange={(e) =>
+              onChange(field.label.toLowerCase(), e.target.value)
+            }
           />
         ))}
       </S.InputContainer>
 
+      {/* 그룹 선택 */}
       <S.GroupContainer>
         <S.InputLabel>그룹</S.InputLabel>
         <S.GroupButtonWrapper>
-          <BlueBadge
-            badges={groupBadges}
-            activeBadge={activeGroupBadge}
-            setActiveBadge={setActiveGroupBadge}
-          />
+          {groupBadges.length > 0 ? (
+            <BlueBadge
+              badges={groupBadges}
+              activeBadge={activeGroupBadge}
+              setActiveBadge={setActiveGroupBadge}
+            />
+          ) : (
+            <p>그룹이 없습니다.</p>
+          )}
         </S.GroupButtonWrapper>
       </S.GroupContainer>
     </S.DashedBorder>
