@@ -53,9 +53,7 @@ export default function DirectInputForm({
             label={field.label}
             type={field.type}
             placeholder={field.placeholder}
-            onChange={(e) =>
-              onChange(field.label.toLowerCase(), e.target.value)
-            }
+            onChange={(e) => onChange(field.field, e.target.value)}
           />
         ))}
       </S.InputContainer>

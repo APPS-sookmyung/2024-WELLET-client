@@ -22,7 +22,7 @@ export default function AddCardPage() {
   const [selectedImage, setSelectedImage] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
   const [profilePreview, setProfilePreview] = useState(null);
-  const profileImageInputRef = useRef(null); // 최상단에서 선언
+  const profileImageInputRef = useRef(null);
 
   const [cardInputData, setCardInputData] = useState({
     name: '',
@@ -57,11 +57,20 @@ export default function AddCardPage() {
     fetchGroupData();
   }, []);
 
+  // 그룹선택 확인
+  const handleGroupBadgeChange = (badge) => {
+    console.log('선택된 그룹:', badge); // 확인용 로그
+    setActiveGroupBadge(badge);
+  };
+
   const handleDirectInputChange = (field, value) => {
     setCardInputData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmitButtonClick = async () => {
+    console.log('현재 입력된 값:', cardInputData);
+    console.log('선택된 그룹:', activeGroupBadge);
+
     if (
       !cardInputData.name ||
       !cardInputData.company ||
@@ -82,7 +91,7 @@ export default function AddCardPage() {
     formData.append('tel', cardInputData.tel);
     formData.append('address', cardInputData.address);
     formData.append('memo', cardInputData.memo);
-    formData.append('category', activeGroupBadge.name);
+    formData.append('categoryName', activeGroupBadge.name);
 
     if (profileImage) {
       formData.append('profImgUrl', profileImage);
@@ -91,6 +100,8 @@ export default function AddCardPage() {
     selectedImage.forEach((image, index) => {
       formData.append(index === 0 ? 'frontImgUrl' : 'backImgUrl', image);
     });
+
+    console.log('FormData 확인:', Array.from(formData.entries()));
 
     try {
       const response = await postCards({ data: formData });
@@ -135,57 +146,61 @@ export default function AddCardPage() {
         <DirectInputForm
           profileImage={profilePreview}
           onUploadProfileImage={handleProfileImageUpload}
-          profileImageInputRef={profileImageInputRef} // 여기에서 props로 전달
+          profileImageInputRef={profileImageInputRef}
           inputFields={[
             {
               label: '이름 *',
               type: 'text',
               placeholder: '이름을 입력하세요',
+              field: 'name',
             },
             {
               label: '회사명 *',
               type: 'text',
               placeholder: 'WELLET Corp.',
+              field: 'company',
             },
             {
               label: '부서',
               type: 'text',
               placeholder: '신규 개발팀',
+              field: 'department',
             },
             {
               label: '직책',
               type: 'text',
               placeholder: '사원',
+              field: 'position',
             },
             {
               label: '휴대폰 *',
               type: 'tel',
               placeholder: '010-1234-5678',
+              field: 'phone',
             },
             {
               label: '이메일 *',
               type: 'email',
               placeholder: 'email@welletapp.co.kr',
+              field: 'email',
             },
             {
               label: '유선전화',
               type: 'tel',
               placeholder: '81-2-222-3456',
+              field: 'tel',
             },
             {
               label: '주소',
               type: 'text',
               placeholder: '서울특별시 용산구 청파로 47길 100(청파동 2가)',
+              field: 'address',
             },
-            {
-              label: '메모',
-              type: 'text',
-              placeholder: '메모',
-            },
+            { label: '메모', type: 'text', placeholder: '메모', field: 'memo' },
           ]}
           activeGroupBadge={activeGroupBadge}
           groupBadges={groupBadges}
-          setActiveGroupBadge={setActiveGroupBadge}
+          setActiveGroupBadge={handleGroupBadgeChange}
           onChange={handleDirectInputChange}
         />
       )}
