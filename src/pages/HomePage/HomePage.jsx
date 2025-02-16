@@ -65,7 +65,7 @@ export default function HomePage() {
               department={myCardData.department}
               position={myCardData.position}
               company={myCardData.company}
-              imageUrl={myCardData.imageUrl}
+              imageUrl={myCardData.profImgUrl}
               phone={myCardData.phone}
               tel={myCardData.tel}
               email={myCardData.email}
