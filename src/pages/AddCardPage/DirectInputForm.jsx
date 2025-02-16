@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './AddCardPage.style';
 import Icon from '../../components/Icon/Icon';
 import { InputWrapper, BlueBadge } from '../../components';

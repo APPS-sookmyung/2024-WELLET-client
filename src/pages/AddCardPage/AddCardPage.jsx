@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   BlueBadge,
   Header,
@@ -9,6 +9,7 @@ import {
 import * as S from './AddCardPage.style';
 import DirectInputForm from './DirectInputForm';
 import ImageInputForm from './ImageInputForm';
+import { postCards } from '../../apis/cards.js';
 
 export default function AddCardPage() {
   const [activeBadge, setActiveBadge] = useState({
@@ -21,6 +22,30 @@ export default function AddCardPage() {
   });
   const [selectedImage, setSelectedImage] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
+  const [cardInputData, setCardInputData] = useState({
+    name: '',
+    position: '',
+    department: '',
+    company: '',
+    phone: '',
+    email: '',
+    tel: '',
+    address: '',
+    memo: '',
+  });
+
+  const handleSubmitButtonClick = async () => {
+    if (
+      !cardInputData.name ||
+      !cardInputData.company ||
+      !cardInputData.phone ||
+      !activeGroupBadge.name
+    ) {
+      alert('필수값을 모두 입력해주세요.');
+      return;
+    }
+  };
+
   const [isDragOver, setIsDragOver] = useState(false);
 
   const imageInputRef = useRef(null);
@@ -168,7 +193,7 @@ export default function AddCardPage() {
       )}
 
       <S.ActionBtnContainer>
-        <PrimaryButton>등록</PrimaryButton>
+        <PrimaryButton onClick={handleSubmitButtonClick}>등록</PrimaryButton>
         <SecondaryButton>취소</SecondaryButton>
       </S.ActionBtnContainer>
     </S.AddCardPage>
