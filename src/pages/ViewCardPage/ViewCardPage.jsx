@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import { getCards, getCardsByGroup, getGroupList, getMyCard } from '../../apis';
+import {
+  getCards,
+  getCardsByGroup,
+  getGroupList,
+  getMyCard,
+  patchCards,
+} from '../../apis';
 import { BlueBadge, CardInfo, Header, SearchBar } from '../../components';
 import Icon from '../../components/Icon/Icon';
 import * as S from './ViewCardPage.style';
@@ -33,7 +39,6 @@ export default function ViewCardPage() {
       const exceptMyCard = response.data.cards.filter(
         (card) => card.id !== myCardId
       );
-
       setCardsData(exceptMyCard);
     } catch (error) {
       console.error('카드 리스트를 불러오지 못했습니다.', error);
@@ -55,20 +60,37 @@ export default function ViewCardPage() {
     fetchGroups();
   }, []);
 
-  let filteredData =
-    activeBadge === '전체 보기'
-      ? cardsData
-      : cardsData.filter((data) => data.categoryName === activeBadge);
-
-  filteredData = filteredData.sort((a, b) => a.name.localeCompare(b.name));
-
   useEffect(() => {
     fetchCards();
   }, [myCardId, activeBadge]);
 
-  const handleDeleteClick = () => {
-    setIsDeleteMode(true);
-    setIsEditCompleteVisible(true);
+  const handleDeleteClick = async () => {
+    if (!isDeleteMode) {
+      setIsDeleteMode(true);
+      setIsEditCompleteVisible(true);
+      return;
+    }
+
+    if (selectedCards.length === 0) {
+      setIsDeleteMode(false);
+      setIsEditCompleteVisible(false);
+      return;
+    }
+
+    try {
+      console.log('삭제할 카드 ID 목록:', selectedCards);
+
+      const sortedList = selectedCards.sort((a, b) => a - b);
+      await patchCards({ cardList: sortedList });
+
+      setSelectedCards([]);
+      setIsDeleteMode(false);
+      setIsEditCompleteVisible(false);
+
+      await fetchCards();
+    } catch (error) {
+      console.error('카드 삭제에 실패했습니다.', error);
+    }
   };
 
   const handleEditCompleteClick = () => {
@@ -77,17 +99,19 @@ export default function ViewCardPage() {
     setIsEditCompleteVisible(false);
   };
 
-  const handleCardClick = (index) => {
+  const handleCardClick = (cardId) => {
     if (isDeleteMode) {
-      setSelectedCards((prevSelected) => {
-        if (prevSelected.includes(index)) {
-          return prevSelected.filter((i) => i !== index);
-        } else {
-          return [...prevSelected, index];
-        }
-      });
+      setSelectedCards((prevSelected) =>
+        prevSelected.includes(cardId)
+          ? prevSelected.filter((id) => id !== cardId)
+          : [...prevSelected, cardId]
+      );
     }
   };
+
+  useEffect(() => {
+    console.log('선택된 카드 ID 목록:', selectedCards);
+  }, [selectedCards]);
 
   const searchKeyword = localStorage.getItem('searchKeyword');
 
@@ -140,18 +164,18 @@ export default function ViewCardPage() {
         </S.ButtonContainer>
 
         <S.CardContainer>
-          {displayData.map((data, index) => (
+          {displayData.map((data) => (
             <CardInfo
               id={data.id}
-              key={index}
+              key={data.id}
               name={data.name}
               position={data.position}
               department={data.department}
               company={data.company}
               imageUrl={data.imageUrl}
               isDeleteMode={isDeleteMode}
-              isSelected={selectedCards.includes(index)}
-              onClick={() => handleCardClick(index)}
+              isSelected={selectedCards.includes(data.id)}
+              onClick={() => handleCardClick(data.id)}
             />
           ))}
         </S.CardContainer>
