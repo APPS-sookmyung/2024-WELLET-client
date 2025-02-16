@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   BlueBadge,
   Header,
@@ -11,14 +12,17 @@ import DirectInputForm from './DirectInputForm';
 import ImageInputForm from './ImageInputForm';
 import { postCards } from '../../apis/cards.js';
 import { getGroupList } from '../../apis/group.js';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function AddCardPage() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const mode = searchParams.get('mode') || 'image';
+
   const [activeBadge, setActiveBadge] = useState({
-    id: 1,
-    name: '이미지로 입력',
+    id: mode === 'image' ? 1 : 2,
+    name: mode === 'image' ? '이미지로 입력' : '직접 입력',
   });
+
   const [groupBadges, setGroupBadges] = useState([]);
   const [activeGroupBadge, setActiveGroupBadge] = useState(null);
   const [selectedImage, setSelectedImage] = useState([]);
@@ -38,16 +42,12 @@ export default function AddCardPage() {
     memo: '',
   });
 
-  // 그룹 리스트 가져오기
   useEffect(() => {
     const fetchGroupData = async () => {
       try {
         const response = await getGroupList();
-        console.log('그룹 리스트 API 응답: ', response.data);
-
         const groupList = response.data || [];
         setGroupBadges(groupList);
-
         if (groupList.length > 0) {
           setActiveGroupBadge(groupList[0]);
         }
@@ -55,24 +55,15 @@ export default function AddCardPage() {
         console.error('그룹 리스트를 가져오는 데 실패:', error);
       }
     };
-
     fetchGroupData();
   }, []);
 
-  // 그룹선택 확인
-  const handleGroupBadgeChange = (badge) => {
-    console.log('선택된 그룹:', badge); // 확인용 로그
-    setActiveGroupBadge(badge);
-  };
-
-  const handleDirectInputChange = (field, value) => {
-    setCardInputData((prev) => ({ ...prev, [field]: value }));
+  const handleBadgeChange = (badge) => {
+    setActiveBadge(badge);
+    setSearchParams({ mode: badge.id === 1 ? 'image' : 'direct' });
   };
 
   const handleSubmitButtonClick = async () => {
-    console.log('현재 입력된 값:', cardInputData);
-    console.log('선택된 그룹:', activeGroupBadge);
-
     if (
       !cardInputData.name ||
       !cardInputData.company ||
@@ -103,13 +94,9 @@ export default function AddCardPage() {
       formData.append(index === 0 ? 'frontImgUrl' : 'backImgUrl', image);
     });
 
-    console.log('FormData 확인:', Array.from(formData.entries()));
-
     try {
-      const response = await postCards({ data: formData });
+      await postCards({ data: formData });
       alert('명함이 성공적으로 등록되었습니다.');
-      console.log('명함 등록 API 응답:', response);
-
       navigate('/card');
     } catch (error) {
       console.error('명함 등록 실패: ', error);
@@ -138,7 +125,7 @@ export default function AddCardPage() {
             { id: 2, name: '직접 입력' },
           ]}
           activeBadge={activeBadge}
-          setActiveBadge={setActiveBadge}
+          setActiveBadge={handleBadgeChange}
         />
       </S.ButtonContainer>
       {activeBadge.name === '이미지로 입력' ? (
@@ -204,13 +191,17 @@ export default function AddCardPage() {
           ]}
           activeGroupBadge={activeGroupBadge}
           groupBadges={groupBadges}
-          setActiveGroupBadge={handleGroupBadgeChange}
-          onChange={handleDirectInputChange}
+          setActiveGroupBadge={setActiveGroupBadge}
+          onChange={(field, value) =>
+            setCardInputData((prev) => ({ ...prev, [field]: value }))
+          }
         />
       )}
       <S.ActionBtnContainer>
         <PrimaryButton onClick={handleSubmitButtonClick}>등록</PrimaryButton>
-        <SecondaryButton>취소</SecondaryButton>
+        <SecondaryButton onClick={() => navigate('/card')}>
+          취소
+        </SecondaryButton>
       </S.ActionBtnContainer>
     </S.AddCardPage>
   );
