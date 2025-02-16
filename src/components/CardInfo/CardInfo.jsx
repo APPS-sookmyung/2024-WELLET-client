@@ -31,7 +31,7 @@ export default function CardInfo({
         <S.Info>
           <S.Name isSelected={isSelected}>{name}</S.Name>
           <S.Role isSelected={isSelected}>
-            {position} / {department}
+            {department} {department && position ? `/ ${position}` : position}
           </S.Role>
         </S.Info>
       </S.CardWrapper>
