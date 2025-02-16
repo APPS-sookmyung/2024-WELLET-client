@@ -71,7 +71,6 @@ export default function DetailEditPage() {
     }));
   };
 
-  // 입력할 데이터
   const InputData = [
     {
       label: '회사명',
@@ -131,7 +130,6 @@ export default function DetailEditPage() {
     },
   ];
 
-  // 카드 상세 데이터
   const { data: inputData } = useQuery({
     queryKey: ['cardDetail', id],
     queryFn: () => getCardDetail({ card_id: id }),
@@ -167,6 +165,13 @@ export default function DetailEditPage() {
     }
   }, [inputData, badges]);
 
+  const handleGroupChange = (updatedBadges) => {
+    setBadges(updatedBadges);
+    if (updatedBadges.length > 0) {
+      setActiveBadge(updatedBadges[0]);
+    }
+  };
+
   const onUploadProfileImage = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -181,15 +186,14 @@ export default function DetailEditPage() {
   const handleImageUpload = (e, target) => {
     const file = e.target.files[0];
     if (file) {
-      const newImageUrl = URL.createObjectURL(file); // 업로드된 파일의 URL 생성
+      const newImageUrl = URL.createObjectURL(file);
       setSelectedImage((prev) => ({
         ...prev,
-        [target]: newImageUrl, // target(pic1, pic2)에 따라 상태 업데이트
+        [target]: newImageUrl,
       }));
     }
   };
 
-  // useFormData 훅을 컴포넌트 내에서 호출
   const updatedDataForm = useFormData({
     ...info,
     group: activeBadge,
@@ -197,8 +201,8 @@ export default function DetailEditPage() {
 
   const handleEditComplete = async () => {
     try {
-      await putCards({ card_id: id, data: updatedDataForm() }); // updatedDataForm() 호출
-      navigate(`/card/${id}`); // 편집 완료 후 해당 카드 페이지로 리디렉션
+      await putCards({ card_id: id, data: updatedDataForm() });
+      navigate(`/card/${id}`);
     } catch (error) {
       console.error('데이터를 저장하는 중에 오류가 발생하였습니다.:', error);
     }
@@ -333,6 +337,7 @@ export default function DetailEditPage() {
         isModalOpen={modalVisible}
         setIsModalOpen={setModalVisible}
         badges={badges}
+        onGroupChange={handleGroupChange}
       />
     </>
   );
