@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   BlueBadge,
   Header,
@@ -32,10 +32,16 @@ export default function AddCardPage() {
     tel: '',
     address: '',
     memo: '',
+    category: '비즈니스',
   });
+
   const handleDirectInputChange = (field, value) => {
     setCardInputData((prev) => ({ ...prev, [field]: value }));
   };
+
+  // email과 phone 유효성 검사
+  const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
+  const isValidPhone = (phone) => /^\d{3}-\d{3,4}-\d{4}$/.test(phone);
 
   const handleSubmitButtonClick = async () => {
     if (
@@ -46,6 +52,45 @@ export default function AddCardPage() {
     ) {
       alert('필수값을 모두 입력해주세요.');
       return;
+    }
+
+    if (cardInputData.phone && !isValidPhone(cardInputData.phone)) {
+      alert('휴대폰 번호 형식이 올바르지 않습니다.');
+      return;
+    }
+
+    if (cardInputData.email && !isValidEmail(cardInputData.email)) {
+      alert('이메일 형식이 올바르지 않습니다.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('name', cardInputData.name);
+    formData.append('position', cardInputData.position);
+    formData.append('department', cardInputData.department);
+    formData.append('company', cardInputData.company);
+    formData.append('phone', cardInputData.phone);
+    formData.append('email', cardInputData.email);
+    formData.append('tel', cardInputData.tel);
+    formData.append('address', cardInputData.address);
+    formData.append('memo', cardInputData.memo);
+    formData.append('category', activeGroupBadge.name);
+
+    if (profileImage) {
+      formData.append('profImgUrl', profileImage);
+    }
+
+    selectedImage.forEach((image, index) => {
+      formData.append(index === 0 ? 'frontImgUrl' : 'backImgUrl', image);
+    });
+
+    try {
+      const response = await postCards({ data: formData });
+      alert('명함이 성공적으로 등록되었습니다.');
+      console.log('명함 등록 API 응답:', response);
+    } catch (error) {
+      console.error('명함 등록 실패: ', error);
+      alert('명함 등록에 실패했습니다.');
     }
   };
 
@@ -127,7 +172,8 @@ export default function AddCardPage() {
 
   const onUploadProfileImage = (event) => {
     const file = event.target.files[0];
-    setProfileImage(URL.createObjectURL(file));
+    // setProfileImage(URL.createObjectURL(file));
+    setProfileImage(file);
   };
 
   const handleProfileImageClick = () => {
