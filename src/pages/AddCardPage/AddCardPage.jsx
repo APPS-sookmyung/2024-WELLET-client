@@ -33,6 +33,9 @@ export default function AddCardPage() {
     address: '',
     memo: '',
   });
+  const handleDirectInputChange = (field, value) => {
+    setCardInputData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleSubmitButtonClick = async () => {
     if (
@@ -189,6 +192,7 @@ export default function AddCardPage() {
           activeGroupBadge={activeGroupBadge}
           groupBadges={groupBadges}
           setActiveGroupBadge={setActiveGroupBadge}
+          onChange={handleDirectInputChange}
         />
       )}
 
