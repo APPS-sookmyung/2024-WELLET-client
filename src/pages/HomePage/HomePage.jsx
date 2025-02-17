@@ -3,15 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { getCards } from '../../apis/cards.js';
 import { getMyCard } from '../../apis/myCard.js';
 import { CardInfo, Header, MyCard, SearchBar } from '../../components';
+import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects.js';
 import * as S from './HomePage.style';
 
 export default function HomePage() {
   const navigate = useNavigate();
-  // const [filterdList, setFilterdList] = useState([]);
+  const [visibleList, setVisibleList] = useState([]);
   const [myCardData, setMyCardData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [myCardId, setMyCardId] = useState(null);
-  // useVisibleCardsEffect(setFilterdList, cardsData);
+  useVisibleCardsEffect(setVisibleList, cardsData);
 
   async function fetchMyCard() {
     try {
@@ -92,7 +93,7 @@ export default function HomePage() {
         </S.CardListTitle>
         {cardsData && cardsData.length > 0 && (
           <S.CardContainer>
-            {cardsData.map((data, index) => (
+            {visibleList.map((data, index) => (
               <div key={index}>
                 <CardInfo
                   id={data.id}
