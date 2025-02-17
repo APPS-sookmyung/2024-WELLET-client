@@ -27,3 +27,10 @@ export const putMyCard = async ({ data }) => {
   console.log('내 명함 수정: ', response);
   return response;
 };
+
+// 내 명함 프로필사진 수정
+export const putMyImg = async ({ data }) => {
+  const response = await formDataAxios.put(`/me/images`, data);
+  console.log('내 명함 이미지 수정: ', response);
+  return response;
+};

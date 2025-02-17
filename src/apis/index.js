@@ -9,4 +9,10 @@ export {
 } from './cards';
 export { deleteGroup, getGroupList, postGroup, putGroup } from './group';
 export { kakaoLoginAPI } from './login';
-export { deleteMyCard, getMyCard, postMyCard, putMyCard } from './myCard';
+export {
+  deleteMyCard,
+  getMyCard,
+  postMyCard,
+  putMyCard,
+  putMyImg,
+} from './myCard';
