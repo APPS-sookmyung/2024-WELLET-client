@@ -29,8 +29,8 @@ export const postCards = async ({ data }) => {
 };
 
 // 명함 삭제
-export const deleteCards = async ({ card_id }) => {
-  const response = await jsonAxios.delete(`/cards/${card_id}`);
+export const patchCards = async ({ cardList }) => {
+  const response = await jsonAxios.patch(`/cards`, cardList);
   console.log('명함 삭제: ', response);
   return response;
 };
