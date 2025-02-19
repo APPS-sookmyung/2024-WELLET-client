@@ -4,24 +4,23 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineLink } from 'react-icons/hi';
 import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
-import { getMyCard } from '../../apis'; // API 함수 불러오기
+import { getMyCard } from '../../apis';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 
 export default function MyPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false); // QR 코드 모달 상태
-  const [isToastVisible, setIsToastVisible] = useState(false); // 토스트 메시지 상태
-  const [myInfo, setMyInfo] = useState(MY_CARD_SAMPLE_DATA); // 명함 정보 상태
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isToastVisible, setIsToastVisible] = useState(false);
+  const [myInfo, setMyInfo] = useState(MY_CARD_SAMPLE_DATA);
 
-  // 마이페이지의 명함 정보를 API에서 받아오기
   useEffect(() => {
     const fetchMyCard = async () => {
       try {
         const response = await getMyCard();
-        console.log(response); // Check the API response
-        setMyInfo(response.data); // Use sample data if API response is empty
+        console.log(response);
+        setMyInfo(response.data);
       } catch (error) {
         console.error('명함 정보를 가져오는 데 실패했습니다.', error);
-        setMyInfo(MY_CARD_SAMPLE_DATA); // Use sample data on error
+        setMyInfo(MY_CARD_SAMPLE_DATA);
       }
     };
 
@@ -45,7 +44,7 @@ export default function MyPage() {
 
   const navigate = useNavigate();
   const handleEditButtonClick = () => {
-    navigate('/mypage/edit'); // 편집 페이지로 이동
+    navigate('/mypage/edit');
   };
 
   return (
@@ -139,10 +138,6 @@ export default function MyPage() {
                       정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
                     </S.MyInfoValueNull>
                   )}
-                  <S.IconBox>
-                    <Icon id='message' width='20' height='14' />
-                    <Icon id='call' width='20' height='14' />
-                  </S.IconBox>
                 </S.ContactWrapper>
               </S.MyInfoItem>
               <S.MyInfoItem>
@@ -155,7 +150,6 @@ export default function MyPage() {
                       정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
                     </S.MyInfoValueNull>
                   )}
-                  <Icon id='mail' width='20' height='14' />
                 </S.ContactWrapper>
               </S.MyInfoItem>
               <S.MyInfoItem>
@@ -168,7 +162,6 @@ export default function MyPage() {
                       정보가 없습니다. 편집하기를 눌러 명함을 완성하세요.
                     </S.MyInfoValueNull>
                   )}
-                  <Icon id='call' width='20' height='14' />
                 </S.ContactWrapper>
               </S.MyInfoItem>
               <S.MyInfoItem>
