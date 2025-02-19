@@ -2,7 +2,7 @@ import React, { useState, useEffect, memo, useRef } from 'react';
 import * as S from './MyPageEditPage.style';
 import Icon from '../../components/Icon/Icon';
 import { Link, useNavigate } from 'react-router-dom';
-import { getMyCard, postMyCard, putMyCard } from '../../apis';
+import { getMyCard, postMyCard, putMyCard, putMyImg } from '../../apis';
 import useFormData from '../../hooks/useFormData';
 import { useQuery } from '@tanstack/react-query';
 
@@ -134,12 +134,11 @@ export default function MyPageEditPage() {
       onChange: handleInfoChange,
     },
   ];
-
   const updatedDataForm = () => {
     const formData = new FormData();
 
     Object.entries(myInfo).forEach(([key, value]) => {
-      if (key !== 'profImgUrl' && key !== 'profImg') {
+      if (key !== 'profImgUrl' && value) {
         formData.append(key, value || '');
       }
     });
@@ -147,8 +146,6 @@ export default function MyPageEditPage() {
     if (myInfo.profImg instanceof File) {
       formData.append('profImg', myInfo.profImg);
     }
-
-    formData.append('profImgUrl', myInfo.profImgUrl || '');
     return formData;
   };
 
@@ -167,8 +164,6 @@ export default function MyPageEditPage() {
       setMyInfo((prevInfo) => ({
         ...prevInfo,
         ...response.data,
-        profImgUrl: response.data.profImgUrl || prevInfo.profImgUrl,
-        profImg: response.data.profImg || prevInfo.profImg,
       }));
       navigate('/mypage');
     } catch (error) {
@@ -180,13 +175,32 @@ export default function MyPageEditPage() {
     profileImageInputRef.current.click();
   };
 
-  const onUploadProfileImage = (event) => {
+  const onUploadProfileImage = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      setMyInfo((prevInfo) => ({
-        ...prevInfo,
-        profImg: file,
-      }));
+    if (!file) return;
+
+    try {
+      const formData = new FormData();
+      formData.append('profImg', file);
+
+      console.log('프로필 이미지 업로드 요청:', file);
+
+      const response = await putMyImg(formData);
+      console.log('업로드 응답:', response.data);
+
+      if (response.data?.profImgUrl) {
+        setMyInfo((prevInfo) => ({
+          ...prevInfo,
+          profImgUrl: response.data.profImgUrl,
+        }));
+      } else {
+        console.error('서버 응답에 profImgUrl 없음:', response.data);
+      }
+    } catch (error) {
+      console.error(
+        '프로필 이미지 업로드 오류:',
+        error.response?.data || error.message
+      );
     }
   };
 
@@ -207,13 +221,7 @@ export default function MyPageEditPage() {
       </S.Header>
       <S.Body>
         <S.PicContainer>
-          <S.ProfilePic
-            profileImgUrl={
-              myInfo.profImg
-                ? URL.createObjectURL(myInfo.profImg)
-                : myInfo.profImgUrl || ''
-            }
-          />
+          <S.ProfilePic profileImgUrl={myInfo.profImgUrl} />
           <S.GalleryIcon>
             <Icon
               id='gallery'
