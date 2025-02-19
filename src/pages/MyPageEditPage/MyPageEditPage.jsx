@@ -177,6 +177,7 @@ export default function MyPageEditPage() {
 
   const onUploadProfileImage = async (event) => {
     const file = event.target.files[0];
+
     if (!file) return;
 
     try {
