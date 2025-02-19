@@ -12,6 +12,7 @@ import DirectInputForm from './DirectInputForm';
 import ImageInputForm from './ImageInputForm';
 import { postCards } from '../../apis/cards.js';
 import { getGroupList } from '../../apis/group.js';
+import { postOCR } from '../../apis/ocr.js';
 
 export default function AddCardPage() {
   const navigate = useNavigate();
