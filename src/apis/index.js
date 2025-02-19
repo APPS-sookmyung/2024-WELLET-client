@@ -1,5 +1,5 @@
 export {
-  deleteCards,
+  patchCards,
   getCardsByGroup,
   getCardDetail,
   getCards,

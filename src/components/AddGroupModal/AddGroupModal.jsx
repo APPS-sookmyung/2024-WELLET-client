@@ -4,7 +4,12 @@ import { deleteGroup, postGroup } from '../../apis';
 import { InputWrapper } from '../InputWrapper';
 import * as S from './AddGroupModal.style';
 
-export default function AddGroupModal({ isModalOpen, setIsModalOpen, badges }) {
+export default function AddGroupModal({
+  isModalOpen,
+  setIsModalOpen,
+  badges,
+  onGroupChange,
+}) {
   const [newBadgeLabel, setNewBadgeLabel] = useState('');
   const [modalBadges, setModalBadges] = useState([]);
   const [prevModalBadges, setPrevModalBadges] = useState([]);
@@ -54,28 +59,30 @@ export default function AddGroupModal({ isModalOpen, setIsModalOpen, badges }) {
   const handleDoneBtnClick = () => {
     setIsModalOpen(false);
 
-    const newBadges = modalBadges
+    const newBadgeIds = modalBadges
       .filter(
         (badge) =>
-          !prevModalBadges.some((prevBadge) => prevBadge.name === badge.name)
+          !prevModalBadges.some((prevBadge) => prevBadge.id === badge.id)
       )
-      .map((badge) => badge.name);
+      .map((badge) => badge.id);
 
-    const deletedBadges = prevModalBadges;
-    filter(
-      (prevBadge) => !modalBadges.some((badge) => badge.name === prevBadge.name)
-    ).map((prevBadge) => prevBadge.label);
+    const deletedBadgeIds = prevModalBadges
+      .filter(
+        (prevBadge) => !modalBadges.some((badge) => badge.id === prevBadge.id)
+      )
+      .map((prevBadge) => prevBadge.id);
 
-    newBadges.forEach((badgeName) => {
-      fetchPostGroup(badgeName);
+    newBadgeIds.forEach((badgeId) => {
+      fetchPostGroup(badgeId);
     });
 
-    deletedBadges.forEach((category_id) => {
-      fetchDeleteGroup(category_id);
+    deletedBadgeIds.forEach((badgeId) => {
+      fetchDeleteGroup(badgeId);
     });
 
-    console.log('newBadges:', newBadges);
-    console.log('deletedBadges:', deletedBadges);
+    onGroupChange(modalBadges);
+    console.log('newBadgeIds:', newBadgeIds);
+    console.log('deletedBadgeIds:', deletedBadgeIds);
   };
 
   const handleCancelBtnClick = () => {
