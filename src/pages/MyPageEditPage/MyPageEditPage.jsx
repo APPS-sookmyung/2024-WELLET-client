@@ -2,7 +2,7 @@ import React, { useState, useEffect, memo, useRef } from 'react';
 import * as S from './MyPageEditPage.style';
 import Icon from '../../components/Icon/Icon';
 import { Link, useNavigate } from 'react-router-dom';
-import { getMyCard, postMyCard, putMyCard } from '../../apis';
+import { getMyCard, postMyCard, putMyCard, putMyImg } from '../../apis';
 import useFormData from '../../hooks/useFormData';
 import { useQuery } from '@tanstack/react-query';
 
@@ -53,10 +53,11 @@ export default function MyPageEditPage() {
     tel: '',
     address: '',
     department: '',
+    profImg: null,
     profImgUrl: '',
   });
+
   const [isEditing, setIsEditing] = useState({});
-  const [profileImage, setProfileImage] = useState(null);
   const profileImageInputRef = useRef(null);
   const navigate = useNavigate();
 
@@ -67,7 +68,10 @@ export default function MyPageEditPage() {
 
   useEffect(() => {
     if (inputData) {
-      setMyInfo(inputData.data);
+      setMyInfo({
+        ...inputData.data,
+        profImgUrl: inputData.data.profImgUrl || '',
+      });
     }
   }, [inputData]);
 
@@ -130,47 +134,40 @@ export default function MyPageEditPage() {
       onChange: handleInfoChange,
     },
   ];
-
   const updatedDataForm = () => {
     const formData = new FormData();
 
     Object.entries(myInfo).forEach(([key, value]) => {
-      if (key !== 'profImgUrl') {
+      if (key !== 'profImgUrl' && value) {
         formData.append(key, value || '');
       }
     });
 
-    // 이미지 파일 추가 (profileImage 상태)
-    if (profileImage) {
-      formData.append('profileImg', profileImage); // 백엔드의 profileImg 필드 이름 사용
-    } else if (myInfo.profImgUrl) {
-      formData.append('profImgUrl', myInfo.profImgUrl); // 기존 이미지 URL 유지
+    if (myInfo.profImg instanceof File) {
+      formData.append('profImg', myInfo.profImg);
     }
-
-    return formData; // FormData 반환
+    return formData;
   };
 
   const handleEditComplete = async () => {
     try {
+      let response;
       if (!myInfo?.id) {
         console.log('POST 요청: 새 명함 생성');
-        await postMyCard({ data: updatedDataForm() });
+        response = await postMyCard({ data: updatedDataForm() });
       } else {
         console.log('PUT 요청: 명함 수정');
-        await putMyCard({ data: updatedDataForm() });
+        response = await putMyCard({ data: updatedDataForm() });
       }
+      console.log('PUT 응답 데이터:', response.data);
+
       setMyInfo((prevInfo) => ({
         ...prevInfo,
-        ...response.data, // 서버에서 반환된 데이터를 상태에 반영
-        profImgUrl: response.data.profImgUrl || prevInfo.profImgUrl,
+        ...response.data,
       }));
-      console.log('업데이트된 myInfo:', myInfo);
       navigate('/mypage');
     } catch (error) {
-      console.error(
-        '데이터를 저장하는 중에 오류가 발생하였습니다.:',
-        error.response?.data || error.message
-      );
+      console.error('데이터 저장 오류:', error.response?.data || error.message);
     }
   };
 
@@ -178,22 +175,35 @@ export default function MyPageEditPage() {
     profileImageInputRef.current.click();
   };
 
-  const onUploadProfileImage = (event) => {
+  const onUploadProfileImage = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setProfileImage(file); // 파일 객체 저장
-      setMyInfo((prevInfo) => ({
-        ...prevInfo,
-        profImgUrl: previewUrl, // 필요시 URL로 변경 가능
-      }));
-      console.log('선택된 파일:', file.name);
-    } else {
-      console.log('파일이 선택되지 않았습니다.');
+
+    if (!file) return;
+
+    try {
+      const formData = new FormData();
+      formData.append('profImg', file);
+
+      console.log('프로필 이미지 업로드 요청:', file);
+
+      const response = await putMyImg(formData);
+      console.log('업로드 응답:', response.data);
+
+      if (response.data?.profImgUrl) {
+        setMyInfo((prevInfo) => ({
+          ...prevInfo,
+          profImgUrl: response.data.profImgUrl,
+        }));
+      } else {
+        console.error('서버 응답에 profImgUrl 없음:', response.data);
+      }
+    } catch (error) {
+      console.error(
+        '프로필 이미지 업로드 오류:',
+        error.response?.data || error.message
+      );
     }
   };
-  console.log('profileImage:', profileImage);
-  console.log('profImgUrl:', myInfo.profImgUrl);
 
   return (
     <S.MyEdit>
@@ -212,17 +222,7 @@ export default function MyPageEditPage() {
       </S.Header>
       <S.Body>
         <S.PicContainer>
-          <S.ProfilePic
-            style={{
-              backgroundImage: profileImage
-                ? `url(${URL.createObjectURL(profileImage)})` // 새로 업로드한 이미지 미리보기
-                : myInfo.profImgUrl
-                  ? `url(${myInfo.profImgUrl})` // 기존 이미지
-                  : '',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
+          <S.ProfilePic profileImgUrl={myInfo.profImgUrl} />
           <S.GalleryIcon>
             <Icon
               id='gallery'

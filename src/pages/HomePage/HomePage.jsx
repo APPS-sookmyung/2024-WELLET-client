@@ -1,33 +1,37 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from './HomePage.style';
-import { Header, SearchBar, CardInfo, MyCard } from '../../components';
-import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects';
-import CARDS_SAMPLE_DATA from '../../constants/cardsSampleData.js';
-import { getMyCard } from '../../apis/myCard.js';
 import { getCards } from '../../apis/cards.js';
+import { getMyCard } from '../../apis/myCard.js';
+import { CardInfo, Header, MyCard, SearchBar } from '../../components';
+import { useVisibleCardsEffect } from '../../utils/HomePageUtils/homePageEffects.js';
+import * as S from './HomePage.style';
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const [filterdList, setFilterdList] = useState([]);
+  const [visibleList, setVisibleList] = useState([]);
   const [myCardData, setMyCardData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
-  // useVisibleCardsEffect(setFilterdList, cardsData);
+  const [myCardId, setMyCardId] = useState(null);
+  useVisibleCardsEffect(setVisibleList, cardsData);
 
   async function fetchMyCard() {
     try {
       const response = await getMyCard();
       setMyCardData(response.data);
+      setMyCardId(response.data.id);
     } catch (error) {
       console.error('내 카드 정보를 불러오지 못했습니다.', error);
     }
   }
 
   async function fetchCards() {
+    if (!myCardId) return;
     try {
       const response = await getCards();
-      const filteredCards = cards.filter((card) => card.id !== myCardData.id);
-      setCardsData(response.data.cards);
+      const exceptMyCard = response.data.cards.filter(
+        (card) => card.id !== myCardId
+      );
+      setCardsData(exceptMyCard);
     } catch (error) {
       console.error('카드 리스트를 불러오지 못했습니다.', error);
     }
@@ -35,8 +39,13 @@ export default function HomePage() {
 
   useEffect(() => {
     fetchMyCard();
-    fetchCards();
   }, []);
+
+  useEffect(() => {
+    if (myCardData) {
+      fetchCards();
+    }
+  }, [myCardData]);
 
   return (
     <S.HomePage>
@@ -54,9 +63,10 @@ export default function HomePage() {
             <MyCard
               backgroundColor='#fff'
               name={myCardData.name}
-              role={myCardData.role}
+              department={myCardData.department}
+              position={myCardData.position}
               company={myCardData.company}
-              imageUrl={myCardData.imageUrl}
+              imageUrl={myCardData.profImgUrl}
               phone={myCardData.phone}
               tel={myCardData.tel}
               email={myCardData.email}
@@ -83,15 +93,16 @@ export default function HomePage() {
         </S.CardListTitle>
         {cardsData && cardsData.length > 0 && (
           <S.CardContainer>
-            {cardsData.map((data, index) => (
-              <CardInfo
-                key={index}
-                id={data.id}
-                name={data.name}
-                position={data.position}
-                department={data.department}
-                imageUrl={data.imageUrl}
-              />
+            {visibleList.map((data, index) => (
+              <div key={index}>
+                <CardInfo
+                  id={data.id}
+                  name={data.name}
+                  position={data.position}
+                  department={data.department}
+                  imageUrl={data.imageUrl}
+                />
+              </div>
             ))}
           </S.CardContainer>
         )}

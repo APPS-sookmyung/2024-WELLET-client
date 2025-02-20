@@ -87,11 +87,12 @@ export const ProfileImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 97px;
-  height: 97px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   border: 1px solid white; /* 임시 코드 */
   background-color: white;
+  overflow: hidden;
 `;
 
 export const PicContainer = styled.div`
@@ -106,7 +107,7 @@ export const ProfilePic = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 100px;
+  border-radius: 50%;
   background: #ffffff;
   position: relative;
 `;

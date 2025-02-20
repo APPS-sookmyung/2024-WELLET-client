@@ -221,10 +221,30 @@ export const GroupButtonBar = styled.div`
 `;
 
 export const GroupButtonBox = styled.div`
-  width: 100%;
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   padding: 5px 0;
+  width: 100%;
+`;
+
+export const AddGroupButton = styled.button`
+  display: flex;
+  align-items: center;
+  padding: 5px 9px 4px 9px;
+  gap: 4px;
+  white-space: nowrap;
+
+  color: var(--primary, #2d29ff);
+
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.55px;
+
+  border-radius: 10px;
+  background: var(--color-1, #ebf3fe);
 `;
 
 export const PlusBtnWrapper = styled.button`

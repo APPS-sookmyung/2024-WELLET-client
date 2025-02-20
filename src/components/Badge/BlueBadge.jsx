@@ -11,20 +11,20 @@ export default function BlueBadge({
     <>
       {badges.map((badge) => (
         <S.BlueBadge
-          key={badge.value}
-          isActive={activeBadge ? activeBadge === badge.value : false}
-          onClick={() => setActiveBadge && setActiveBadge(badge.value)}
+          key={badge.id}
+          isActive={activeBadge ? activeBadge.id === badge.id : false}
+          onClick={() => setActiveBadge && setActiveBadge(badge)}
         >
           {xBtnClick && (
             <p
               onClick={(e) => {
-                xBtnClick(badge.value);
+                xBtnClick(badge.name);
               }}
             >
               X
             </p>
           )}
-          {badge.value}
+          {badge.name}
         </S.BlueBadge>
       ))}
     </>

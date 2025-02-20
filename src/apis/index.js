@@ -1,11 +1,18 @@
-export { getGroupList, postGroup, deleteGroup, putGroup } from './group';
 export {
-  getCards,
+  patchCards,
+  getCardsByGroup,
   getCardDetail,
+  getCards,
   postCards,
-  deleteCards,
   putCards,
   searchCards,
 } from './cards';
-export { getMyCard, postMyCard, deleteMyCard, putMyCard } from './myCard';
+export { deleteGroup, getGroupList, postGroup, putGroup } from './group';
 export { kakaoLoginAPI } from './login';
+export {
+  deleteMyCard,
+  getMyCard,
+  postMyCard,
+  putMyCard,
+  putMyImg,
+} from './myCard';
