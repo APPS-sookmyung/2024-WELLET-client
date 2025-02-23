@@ -88,11 +88,11 @@ export default function AddCardPage() {
     formData.append('categoryName', activeGroupBadge.name);
 
     if (profileImage) {
-      formData.append('profImgUrl', profileImage);
+      formData.append('profImg', profileImage);
     }
 
     selectedImage.forEach((image, index) => {
-      formData.append(index === 0 ? 'frontImgUrl' : 'backImgUrl', image);
+      formData.append(index === 0 ? 'frontImg' : 'backImg', image);
     });
 
     try {
