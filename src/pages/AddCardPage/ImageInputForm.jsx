@@ -49,15 +49,15 @@ export default function ImageInputForm({
           <S.ImportImageBtnWrapper>
             <S.ImportImageBtn htmlFor='image-file'>
               파일 가져오기
-            <input
+              <input
                 id='image-file'
-              type='file'
-              accept='image/*'
-              ref={imageInputRef}
-              style={{ display: 'none' }}
-              onChange={onUploadImage}
-              multiple
-            />
+                type='file'
+                accept='image/*'
+                ref={imageInputRef}
+                style={{ display: 'none' }}
+                onChange={onUploadImage}
+                multiple
+              />
             </S.ImportImageBtn>
           </S.ImportImageBtnWrapper>
         )}
