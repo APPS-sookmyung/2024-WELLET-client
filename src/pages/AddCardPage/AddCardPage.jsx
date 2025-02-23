@@ -65,7 +65,57 @@ export default function AddCardPage() {
     setSearchParams({ mode: badge.id === 1 ? 'image' : 'direct' });
   };
 
+  const handleCardImageUpload = (event) => {
+    const files = Array.from(event.target.files);
+    if (files.length === 0) return;
+
+    setSelectedImage((prevImages) => {
+      const newImages = [...prevImages, ...files].slice(0, 2);
+      return newImages;
+    });
+
+    event.target.value = '';
+  };
+
   const handleSubmitButtonClick = async () => {
+    if (activeBadge.id === 1) {
+      if (selectedImage.length === 0) {
+        alert('이미지를 입력해주세요');
+        return;
+      }
+
+      const formData = new FormData();
+      selectedImage.forEach((image, index) => {
+        formData.append(index === 0 ? 'frontImg' : 'backImg', image);
+      });
+
+      try {
+        const response = await postOCR(formData);
+        const ocrData = response.data;
+
+        setCardInputData({
+          name: ocrData.name || '',
+          position: ocrData.position || '',
+          department: '',
+          company: '',
+          phone: ocrData.mobile || '',
+          email: ocrData.email || '',
+          tel: ocrData.tel || '',
+          address: ocrData.address || '',
+          memo: '',
+        });
+
+        setActiveBadge({ id: 2, name: '직접 입력' });
+        setSearchParams({ mode: 'direct' });
+      } catch (error) {
+        console.log('OCR 실패: ', error);
+        alert(
+          error.response?.data?.message || '명함 이미지 인식에 실패했습니다.'
+        );
+      }
+      return;
+    }
+
     if (
       !cardInputData.name ||
       !cardInputData.company ||
@@ -102,6 +152,7 @@ export default function AddCardPage() {
 
   const handleProfileImageUpload = (event) => {
     const file = event.target.files[0];
+    if (!file) return;
     setProfileImage(file);
     setProfilePreview(URL.createObjectURL(file));
   };
@@ -124,10 +175,10 @@ export default function AddCardPage() {
           setActiveBadge={handleBadgeChange}
         />
       </S.ButtonContainer>
-      {activeBadge.name === '이미지로 입력' ? (
+      {activeBadge.id === 1 ? (
         <ImageInputForm
           selectedImage={selectedImage}
-          onUploadImage={handleProfileImageUpload}
+          onUploadImage={handleCardImageUpload}
         />
       ) : (
         <DirectInputForm
@@ -144,7 +195,9 @@ export default function AddCardPage() {
         />
       )}
       <S.ActionBtnContainer>
-        <PrimaryButton onClick={handleSubmitButtonClick}>등록</PrimaryButton>
+        <PrimaryButton onClick={handleSubmitButtonClick}>
+          {activeBadge.id === 1 ? '이미지 등록' : '등록'}
+        </PrimaryButton>
         <SecondaryButton onClick={() => navigate('/card')}>
           취소
         </SecondaryButton>
