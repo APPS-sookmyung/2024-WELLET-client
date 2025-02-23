@@ -47,8 +47,10 @@ export default function ImageInputForm({
         </S.AddBoxDescWrapper>
         {selectedImage.length < 2 && ( // 두 장 이하일 때만 파일 가져오기 버튼을 보여줌
           <S.ImportImageBtnWrapper>
-            <S.ImportImageBtn>파일 가져오기</S.ImportImageBtn>
+            <S.ImportImageBtn htmlFor='image-file'>
+              파일 가져오기
             <input
+                id='image-file'
               type='file'
               accept='image/*'
               ref={imageInputRef}
@@ -56,6 +58,7 @@ export default function ImageInputForm({
               onChange={onUploadImage}
               multiple
             />
+            </S.ImportImageBtn>
           </S.ImportImageBtnWrapper>
         )}
         {selectedImage.length > 0 && (
