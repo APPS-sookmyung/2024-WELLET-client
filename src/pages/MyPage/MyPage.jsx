@@ -59,7 +59,6 @@ export default function MyPage() {
             </S.EditButton>
           </S.TopBar>
           <S.MidBar>
-            <S.LeftContainer2 />
             <S.MyInfoSummaryWrapper>
               <S.ProfileImageWrapper>
                 <S.PicContainer>
@@ -67,14 +66,6 @@ export default function MyPage() {
                 </S.PicContainer>
               </S.ProfileImageWrapper>
             </S.MyInfoSummaryWrapper>
-            <S.ShareIconWrapper>
-              <Icon
-                id='share'
-                width='11'
-                height='17'
-                onClick={handleShareClick}
-              />
-            </S.ShareIconWrapper>
           </S.MidBar>
           <S.BotBar>
             <S.MyName>{myInfo.name}</S.MyName>
