@@ -12,6 +12,8 @@ import DirectInputForm from './DirectInputForm';
 import ImageInputForm from './ImageInputForm';
 import { postCards } from '../../apis/cards.js';
 import { getGroupList } from '../../apis/group.js';
+import { postOCR } from '../../apis/ocr.js';
+import INPUT_FIELDS from './inputFields';
 
 export default function AddCardPage() {
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ export default function AddCardPage() {
 
   const [groupBadges, setGroupBadges] = useState([]);
   const [activeGroupBadge, setActiveGroupBadge] = useState(null);
-  const [selectedImage, setSelectedImage] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
   const [profilePreview, setProfilePreview] = useState(null);
   const profileImageInputRef = useRef(null);
@@ -63,7 +65,56 @@ export default function AddCardPage() {
     setSearchParams({ mode: badge.id === 1 ? 'image' : 'direct' });
   };
 
+  const handleCardImageUpload = (event) => {
+    const files = Array.from(event.target.files);
+
+    if (files.length === 0) {
+      return;
+    }
+
+    setSelectedImage(files[0]);
+
+    event.target.value = '';
+  };
+
   const handleSubmitButtonClick = async () => {
+    if (activeBadge.id === 1) {
+      if (selectedImage === null) {
+        alert('이미지를 입력해주세요');
+        return;
+      }
+
+      const formData = new FormData();
+
+      formData.append('file', selectedImage);
+
+      try {
+        const { data } = await postOCR(formData);
+        const { address, company, email, mobile, name, position, tel } = data;
+
+        setCardInputData({
+          name,
+          position,
+          department: '',
+          company,
+          phone: mobile,
+          email,
+          tel,
+          address,
+          memo: '',
+        });
+
+        setActiveBadge({ id: 2, name: '직접 입력' });
+        setSearchParams({ mode: 'direct' });
+      } catch (error) {
+        console.log('OCR 실패: ', error);
+        alert(
+          error.response?.data?.message || '명함 이미지 인식에 실패했습니다.'
+        );
+      }
+      return;
+    }
+
     if (
       !cardInputData.name ||
       !cardInputData.company ||
@@ -75,24 +126,14 @@ export default function AddCardPage() {
     }
 
     const formData = new FormData();
-    formData.append('name', cardInputData.name);
-    formData.append('position', cardInputData.position);
-    formData.append('department', cardInputData.department);
-    formData.append('company', cardInputData.company);
-    formData.append('phone', cardInputData.phone);
-    formData.append('email', cardInputData.email);
-    formData.append('tel', cardInputData.tel);
-    formData.append('address', cardInputData.address);
-    formData.append('memo', cardInputData.memo);
+    Object.entries(cardInputData).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
     formData.append('categoryName', activeGroupBadge.name);
 
     if (profileImage) {
-      formData.append('profImgUrl', profileImage);
+      formData.append('profImg', profileImage);
     }
-
-    selectedImage.forEach((image, index) => {
-      formData.append(index === 0 ? 'frontImgUrl' : 'backImgUrl', image);
-    });
 
     try {
       await postCards({ data: formData });
@@ -106,6 +147,7 @@ export default function AddCardPage() {
 
   const handleProfileImageUpload = (event) => {
     const file = event.target.files[0];
+    if (!file) return;
     setProfileImage(file);
     setProfilePreview(URL.createObjectURL(file));
   };
@@ -128,77 +170,30 @@ export default function AddCardPage() {
           setActiveBadge={handleBadgeChange}
         />
       </S.ButtonContainer>
-      {activeBadge.name === '이미지로 입력' ? (
+      {activeBadge.id === 1 ? (
         <ImageInputForm
           selectedImage={selectedImage}
-          onUploadImage={handleProfileImageUpload}
+          onUploadImage={handleCardImageUpload}
         />
       ) : (
         <DirectInputForm
           profileImage={profilePreview}
           onUploadProfileImage={handleProfileImageUpload}
           profileImageInputRef={profileImageInputRef}
-          inputFields={[
-            {
-              label: '이름 *',
-              type: 'text',
-              placeholder: '이름을 입력하세요',
-              field: 'name',
-            },
-            {
-              label: '회사명 *',
-              type: 'text',
-              placeholder: 'WELLET Corp.',
-              field: 'company',
-            },
-            {
-              label: '부서',
-              type: 'text',
-              placeholder: '신규 개발팀',
-              field: 'department',
-            },
-            {
-              label: '직책',
-              type: 'text',
-              placeholder: '사원',
-              field: 'position',
-            },
-            {
-              label: '휴대폰 *',
-              type: 'tel',
-              placeholder: '010-1234-5678',
-              field: 'phone',
-            },
-            {
-              label: '이메일 *',
-              type: 'email',
-              placeholder: 'email@welletapp.co.kr',
-              field: 'email',
-            },
-            {
-              label: '유선전화',
-              type: 'tel',
-              placeholder: '81-2-222-3456',
-              field: 'tel',
-            },
-            {
-              label: '주소',
-              type: 'text',
-              placeholder: '서울특별시 용산구 청파로 47길 100(청파동 2가)',
-              field: 'address',
-            },
-            { label: '메모', type: 'text', placeholder: '메모', field: 'memo' },
-          ]}
+          inputFields={INPUT_FIELDS}
           activeGroupBadge={activeGroupBadge}
           groupBadges={groupBadges}
           setActiveGroupBadge={setActiveGroupBadge}
+          value={cardInputData}
           onChange={(field, value) =>
             setCardInputData((prev) => ({ ...prev, [field]: value }))
           }
         />
       )}
       <S.ActionBtnContainer>
-        <PrimaryButton onClick={handleSubmitButtonClick}>등록</PrimaryButton>
+        <PrimaryButton onClick={handleSubmitButtonClick}>
+          {activeBadge.id === 1 ? '이미지 등록' : '등록'}
+        </PrimaryButton>
         <SecondaryButton onClick={() => navigate('/card')}>
           취소
         </SecondaryButton>

@@ -121,7 +121,7 @@ export const PreviewContainer = styled.div`
 
 export const PreviewImage = styled.img``;
 
-export const ImportImageBtn = styled.button`
+export const ImportImageBtn = styled.label`
   display: flex;
   flex-direction: column;
   justify-content: center;

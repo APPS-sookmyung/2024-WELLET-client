@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './AddCardPage.style';
 import Icon from '../../components/Icon/Icon';
 
@@ -46,28 +45,27 @@ export default function ImageInputForm({
             <S.AddBoxText>이미지 한 장 당 최대 크기는 1MB 입니다.</S.AddBoxText>
           </S.AddBoxDesc>
         </S.AddBoxDescWrapper>
-        {selectedImage.length < 2 && ( // 두 장 이하일 때만 파일 가져오기 버튼을 보여줌
+        {selectedImage === null && (
           <S.ImportImageBtnWrapper>
-            <S.ImportImageBtn>파일 가져오기</S.ImportImageBtn>
-            <input
-              type='file'
-              accept='image/*'
-              ref={imageInputRef}
-              style={{ display: 'none' }}
-              onChange={onUploadImage}
-              multiple
-            />
+            <S.ImportImageBtn htmlFor='image-file'>
+              파일 가져오기
+              <input
+                id='image-file'
+                type='file'
+                accept='image/*'
+                ref={imageInputRef}
+                style={{ display: 'none' }}
+                onChange={onUploadImage}
+              />
+            </S.ImportImageBtn>
           </S.ImportImageBtnWrapper>
         )}
-        {selectedImage.length > 0 && (
+        {selectedImage !== null && (
           <S.PreviewContainer>
-            {selectedImage.map((file, index) => (
-              <S.PreviewImage
-                key={index}
-                src={URL.createObjectURL(file)}
-                alt={`preview ${index}`}
-              />
-            ))}
+            <S.PreviewImage
+              src={URL.createObjectURL(selectedImage)}
+              alt='preview'
+            />
           </S.PreviewContainer>
         )}
       </S.AddImageContainer>
