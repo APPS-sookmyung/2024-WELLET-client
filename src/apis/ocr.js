@@ -1,10 +1,8 @@
 import { jsonAxios } from '../axios';
 
 // ocr
-export const postOCR = async (file) => {
-  const formData = new FormData();
-  formData.append('file', file);
-  const response = await jsonAxios.post(`/ocr`, formData, {
+export const postOCR = async (body) => {
+  const response = await jsonAxios.post('/ocr', body, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },

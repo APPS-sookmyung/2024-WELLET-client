@@ -27,7 +27,7 @@ export default function AddCardPage() {
 
   const [groupBadges, setGroupBadges] = useState([]);
   const [activeGroupBadge, setActiveGroupBadge] = useState(null);
-  const [selectedImage, setSelectedImage] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
   const [profilePreview, setProfilePreview] = useState(null);
   const profileImageInputRef = useRef(null);
@@ -67,41 +67,40 @@ export default function AddCardPage() {
 
   const handleCardImageUpload = (event) => {
     const files = Array.from(event.target.files);
-    if (files.length === 0) return;
 
-    setSelectedImage((prevImages) => {
-      const newImages = [...prevImages, ...files].slice(0, 2);
-      return newImages;
-    });
+    if (files.length === 0) {
+      return;
+    }
+
+    setSelectedImage(files[0]);
 
     event.target.value = '';
   };
 
   const handleSubmitButtonClick = async () => {
     if (activeBadge.id === 1) {
-      if (selectedImage.length === 0) {
+      if (selectedImage === null) {
         alert('이미지를 입력해주세요');
         return;
       }
 
       const formData = new FormData();
-      selectedImage.forEach((image, index) => {
-        formData.append(index === 0 ? 'frontImg' : 'backImg', image);
-      });
+
+      formData.append('file', selectedImage);
 
       try {
-        const response = await postOCR(formData);
-        const ocrData = response.data;
+        const { data } = await postOCR(formData);
+        const { address, company, email, mobile, name, position, tel } = data;
 
         setCardInputData({
-          name: ocrData.name || '',
-          position: ocrData.position || '',
+          name,
+          position,
           department: '',
-          company: '',
-          phone: ocrData.mobile || '',
-          email: ocrData.email || '',
-          tel: ocrData.tel || '',
-          address: ocrData.address || '',
+          company,
+          phone: mobile,
+          email,
+          tel,
+          address,
           memo: '',
         });
 
@@ -135,10 +134,6 @@ export default function AddCardPage() {
     if (profileImage) {
       formData.append('profImg', profileImage);
     }
-
-    selectedImage.forEach((image, index) => {
-      formData.append(index === 0 ? 'frontImg' : 'backImg', image);
-    });
 
     try {
       await postCards({ data: formData });
@@ -189,6 +184,7 @@ export default function AddCardPage() {
           activeGroupBadge={activeGroupBadge}
           groupBadges={groupBadges}
           setActiveGroupBadge={setActiveGroupBadge}
+          value={cardInputData}
           onChange={(field, value) =>
             setCardInputData((prev) => ({ ...prev, [field]: value }))
           }

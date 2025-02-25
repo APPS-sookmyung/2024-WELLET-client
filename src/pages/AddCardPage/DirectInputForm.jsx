@@ -10,6 +10,7 @@ export default function DirectInputForm({
   activeGroupBadge,
   groupBadges,
   setActiveGroupBadge,
+  value,
   onChange,
 }) {
   return (
@@ -53,6 +54,7 @@ export default function DirectInputForm({
             label={field.label}
             type={field.type}
             placeholder={field.placeholder}
+            value={value[field.field]}
             onChange={(e) => onChange(field.field, e.target.value)}
           />
         ))}
