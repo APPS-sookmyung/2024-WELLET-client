@@ -63,7 +63,7 @@ export default function CardDetailPage() {
             <S.NameBox>
               <S.NameFont>{info.name}</S.NameFont>
               <S.JobTeamFont>
-                {info.position} / {info.department}
+                {`${info.position || ''}${info.position && info.department ? ' / ' : ''}${info.department || ''}`}
               </S.JobTeamFont>
               <S.ComFont>{info.company}</S.ComFont>
             </S.NameBox>
