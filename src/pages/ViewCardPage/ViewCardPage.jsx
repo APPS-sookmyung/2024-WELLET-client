@@ -77,6 +77,12 @@ export default function ViewCardPage() {
       return;
     }
 
+    const isConfirmed = window.confirm('정말 삭제하시겠습니까?');
+
+    if (!isConfirmed) {
+      return;
+    }
+
     try {
       console.log('삭제할 카드 ID 목록:', selectedCards);
 
@@ -88,6 +94,7 @@ export default function ViewCardPage() {
       setIsEditCompleteVisible(false);
 
       await fetchCards();
+      alert('명함이 삭제되었습니다.');
     } catch (error) {
       console.error('카드 삭제에 실패했습니다.', error);
     }
