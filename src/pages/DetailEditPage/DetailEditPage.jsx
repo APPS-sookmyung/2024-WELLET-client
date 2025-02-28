@@ -4,7 +4,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   getCardDetail,
   getGroupList,
-  putGroup,
   putCards,
   putCardsPf,
   putCardsImg,
@@ -218,13 +217,20 @@ export default function DetailEditPage() {
 
   const updatedDataForm = useFormData({
     ...info,
-    //group: activeBadge,
     categoryName: activeBadge?.name,
   });
 
   const handleEditComplete = async () => {
+    const updatedData = updatedDataForm();
+    if (activeBadge) {
+      updatedData.categoryName = activeBadge.name;
+      updatedData.category = activeBadge.name;
+    }
+    setInfo(updatedData);
     try {
       await putCards({ card_id: id, data: updatedDataForm() });
+      const updatedCard = await getCardDetail({ card_id: id });
+      setInfo(updatedCard.data);
       navigate(`/card/${id}`);
     } catch (error) {
       console.error('데이터를 저장하는 중에 오류가 발생하였습니다.:', error);
@@ -322,6 +328,7 @@ export default function DetailEditPage() {
               badges={badges}
               activeBadge={activeBadge}
               setActiveBadge={setActiveBadge}
+              setInfo={setInfo}
             />
             <S.AddGroupButton onClick={() => setModalVisible(true)}>
               <p>그룹 편집</p>
