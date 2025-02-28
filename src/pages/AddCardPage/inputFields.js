@@ -30,7 +30,7 @@ const INPUT_FIELDS = [
     field: 'phone',
   },
   {
-    label: '이메일 *',
+    label: '이메일',
     type: 'email',
     placeholder: 'email@welletapp.co.kr',
     field: 'email',
