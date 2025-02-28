@@ -128,13 +128,17 @@ export const ContactContainer = styled.div`
 export const ContactWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 1px;
+
+  svg {
+    padding: 4px 4px 8px 4px;
+    cursor: pointer;
+  }
 `;
 
 export const IconBox = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 8px;
+  height: 100%;
 `;
 
 export const ConBar = styled.div`
@@ -221,7 +225,7 @@ export const ModalOverlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6); /* 배경 흐리게 처리 */
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -236,7 +240,7 @@ export const CloseButton = styled.div`
   padding: 10px;
   cursor: pointer;
 `;
-//폰트
+
 export const UserInfoLabel = styled.div`
   color: var(--grey2, #949494);
   font-size: 11px;

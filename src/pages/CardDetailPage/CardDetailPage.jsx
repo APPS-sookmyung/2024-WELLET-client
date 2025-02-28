@@ -84,24 +84,30 @@ export default function CardDetailPage() {
                 </S.IconBox>
               </S.ContactWrapper>
             </S.InfoBox>
-            <S.InfoBox>
-              <S.UserInfoLabel>이메일</S.UserInfoLabel>
-              <S.ContactWrapper>
-                <S.UserInfoValue>{info.email}</S.UserInfoValue>
-                <Icon id='mail' width='20' height='14' />
-              </S.ContactWrapper>
-            </S.InfoBox>
-            <S.InfoBox>
-              <S.UserInfoLabel>유선전화</S.UserInfoLabel>
-              <S.ContactWrapper>
-                <S.UserInfoValue>{info.tel}</S.UserInfoValue>
-                <Icon id='call' width='20' height='14' />
-              </S.ContactWrapper>
-            </S.InfoBox>
-            <S.InfoBox>
-              <S.UserInfoLabel>주소</S.UserInfoLabel>
-              <S.UserInfoValue>{info.address}</S.UserInfoValue>
-            </S.InfoBox>
+            {info.email && (
+              <S.InfoBox>
+                <S.UserInfoLabel>이메일</S.UserInfoLabel>
+                <S.ContactWrapper>
+                  <S.UserInfoValue>{info.email}</S.UserInfoValue>
+                  <Icon id='mail' width='20' height='14' />
+                </S.ContactWrapper>
+              </S.InfoBox>
+            )}
+            {info.tel && (
+              <S.InfoBox>
+                <S.UserInfoLabel>유선전화</S.UserInfoLabel>
+                <S.ContactWrapper>
+                  <S.UserInfoValue>{info.tel}</S.UserInfoValue>
+                  <Icon id='call' width='20' height='14' />
+                </S.ContactWrapper>
+              </S.InfoBox>
+            )}
+            {info.address && (
+              <S.InfoBox>
+                <S.UserInfoLabel>주소</S.UserInfoLabel>
+                <S.UserInfoValue>{info.address}</S.UserInfoValue>
+              </S.InfoBox>
+            )}
           </S.ContactContainer>
           <S.ConBar>메모</S.ConBar>
           <S.ContactContainer>
