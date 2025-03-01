@@ -76,7 +76,7 @@ export const ProfilePic = styled.div`
   width: 68px;
   height: 68px;
   border-radius: 68px;
-  background: #2d29ff4c;
+  background: #ffffff;
 `;
 
 export const Galleryicon = styled.button`

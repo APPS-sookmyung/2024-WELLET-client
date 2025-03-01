@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './BlueBadge.style';
 
 export default function BlueBadge({
@@ -6,14 +6,30 @@ export default function BlueBadge({
   activeBadge,
   setActiveBadge,
   xBtnClick,
+  setInfo,
 }) {
+  useEffect(() => {
+    if (activeBadge && setInfo) {
+      setInfo((prev) => ({
+        ...prev,
+        categoryName: activeBadge.name,
+        category: activeBadge.name,
+      }));
+    }
+  }, [activeBadge, setInfo]);
+
+  const handleBadgeClick = (badge) => {
+    console.log('선택된 뱃지:', badge);
+    setActiveBadge(badge);
+  };
+
   return (
     <>
       {badges.map((badge) => (
         <S.BlueBadge
           key={badge.id}
           isActive={activeBadge ? activeBadge.id === badge.id : false}
-          onClick={() => setActiveBadge && setActiveBadge(badge)}
+          onClick={() => handleBadgeClick(badge)}
         >
           {xBtnClick && (
             <p

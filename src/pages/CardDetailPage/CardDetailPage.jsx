@@ -113,14 +113,14 @@ export default function CardDetailPage() {
           <S.GroupButtonBox>
             <S.GroupButton>{info.category || '그룹'}</S.GroupButton>
           </S.GroupButtonBox>
-          {(info.pic1 || info.pic2) && (
+          {(info.frontImg || info.backImg) && (
             <S.CardImageContainer>
-              <S.CardImageBox onClick={() => handleImageClick(info.pic1)}>
-                <img src={info.pic1} alt='사진 1' />
+              <S.CardImageBox onClick={() => handleImageClick(info.frontImg)}>
+                <img src={info.frontImg} alt='사진 1' />
               </S.CardImageBox>
-              {info.pic2 ? (
-                <S.CardImageBox onClick={() => handleImageClick(info.pic2)}>
-                  <img src={info.pic2} alt='사진 2' />
+              {info.backImg ? (
+                <S.CardImageBox onClick={() => handleImageClick(info.backImg)}>
+                  <img src={info.backImg} alt='사진 2' />
                 </S.CardImageBox>
               ) : (
                 <S.CardImageBox />

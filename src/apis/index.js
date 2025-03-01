@@ -6,6 +6,8 @@ export {
   postCards,
   putCards,
   searchCards,
+  putCardsPf,
+  putCardsImg,
 } from './cards';
 export { deleteGroup, getGroupList, postGroup, putGroup } from './group';
 export { kakaoLoginAPI } from './login';

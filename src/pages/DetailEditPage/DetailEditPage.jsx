@@ -1,7 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { getCardDetail, getGroupList, putCards } from '../../apis';
+import {
+  getCardDetail,
+  getGroupList,
+  putCards,
+  putCardsPf,
+  putCardsImg,
+} from '../../apis';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 import { AddGroupModal, BlueBadge } from '../../components';
 import Icon from '../../components/Icon/Icon';
@@ -54,8 +60,8 @@ export default function DetailEditPage() {
   const [profileImage, setProfileImage] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState({
-    pic1: null,
-    pic2: null,
+    frontImg: null,
+    backImg: null,
   });
   const [info, setInfo] = useState({});
 
@@ -70,6 +76,8 @@ export default function DetailEditPage() {
       [name]: value,
     }));
   };
+
+  const [isEditing, setIsEditing] = useState({});
 
   const InputData = [
     {
@@ -135,7 +143,8 @@ export default function DetailEditPage() {
     queryFn: () => getCardDetail({ card_id: id }),
   });
 
-  const profileImageUrl = profileImage || ProfileImgDefault;
+  const profileImageUrl =
+    profileImage || inputData?.data.profImgUrl || ProfileImgDefault;
 
   const { data: groupListData } = useQuery({
     queryKey: ['groupList'],
@@ -166,16 +175,25 @@ export default function DetailEditPage() {
   }, [inputData, badges]);
 
   const handleGroupChange = (updatedBadges) => {
+    console.log('Updated badges:', updatedBadges);
     setBadges(updatedBadges);
     if (updatedBadges.length > 0) {
       setActiveBadge(updatedBadges[0]);
     }
   };
 
-  const onUploadProfileImage = (e) => {
+  const onUploadProfileImage = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setProfileImage(URL.createObjectURL(file));
+    if (!file) return;
+
+    setProfileImage(URL.createObjectURL(file));
+    try {
+      const formData = new FormData();
+      formData.append('profImg', file);
+      await putCardsPf({ card_id: id, data: formData });
+      console.log('프로필 이미지가 성공적으로 업데이트되었습니다.');
+    } catch (error) {
+      console.error('프로필 이미지 업데이트 중 오류 발생:', error);
     }
   };
 
@@ -183,9 +201,12 @@ export default function DetailEditPage() {
     profileImageInputRef.current.click();
   };
 
-  const handleImageUpload = (e, target) => {
+  const handleImageUpload = async (e, target) => {
     const file = e.target.files[0];
     if (file) {
+      const formData = new FormData();
+      formData.append(target, file);
+      await putCardsImg({ card_id: id, data: formData });
       const newImageUrl = URL.createObjectURL(file);
       setSelectedImage((prev) => ({
         ...prev,
@@ -196,12 +217,20 @@ export default function DetailEditPage() {
 
   const updatedDataForm = useFormData({
     ...info,
-    group: activeBadge,
+    categoryName: activeBadge?.name,
   });
 
   const handleEditComplete = async () => {
+    const updatedData = updatedDataForm();
+    if (activeBadge) {
+      updatedData.categoryName = activeBadge.name;
+      updatedData.category = activeBadge.name;
+    }
+    setInfo(updatedData);
     try {
       await putCards({ card_id: id, data: updatedDataForm() });
+      const updatedCard = await getCardDetail({ card_id: id });
+      setInfo(updatedCard.data);
       navigate(`/card/${id}`);
     } catch (error) {
       console.error('데이터를 저장하는 중에 오류가 발생하였습니다.:', error);
@@ -251,7 +280,25 @@ export default function DetailEditPage() {
           </S.PicContainer>
           <S.EditInfoContainer>
             <S.EditName>
-              <S.Name>{info.name}</S.Name>
+              {isEditing.name ? (
+                <S.InputNameBox
+                  type='text'
+                  name='name'
+                  value={info.name}
+                  onChange={handleInfoChange}
+                  onBlur={() => setIsEditing({ ...isEditing, name: false })}
+                  autoFocus
+                />
+              ) : (
+                <>
+                  <S.Name>{info.name}</S.Name>
+                  <S.PencilIcon
+                    onClick={() => setIsEditing({ ...isEditing, name: true })}
+                  >
+                    <Icon id='pencil' fill='#FFF' />
+                  </S.PencilIcon>
+                </>
+              )}
             </S.EditName>
             <S.EditGuide>
               사진 아이콘을 클릭하여 명함에 들어갈 프로필 사진을 수정하세요
@@ -281,6 +328,7 @@ export default function DetailEditPage() {
               badges={badges}
               activeBadge={activeBadge}
               setActiveBadge={setActiveBadge}
+              setInfo={setInfo}
             />
             <S.AddGroupButton onClick={() => setModalVisible(true)}>
               <p>그룹 편집</p>
@@ -290,47 +338,52 @@ export default function DetailEditPage() {
         </S.GroupButtonContainer>
 
         {/* 이미지 업로드 */}
-        <S.CardImageContainer>
-          <S.CardImageBox>
-            <img src={selectedImage.pic1 || info.pic1} alt='사진 1' />
-            <S.CardGalleryIcon>
-              <Icon
-                id='gallery'
-                fill='#FFFFFF'
-                width='20'
-                height='20'
-                onClick={() => profileImageInputRef1.current.click()}
-              />
-              <input
-                type='file'
-                accept='image/*'
-                ref={profileImageInputRef1}
-                style={{ display: 'none' }}
-                onChange={(e) => handleImageUpload(e, 'pic1')}
-              />
-            </S.CardGalleryIcon>
-          </S.CardImageBox>
-
-          <S.CardImageBox>
-            <img src={selectedImage.pic2 || info.pic2} alt='사진 2' />
-            <S.CardGalleryIcon>
-              <Icon
-                id='gallery'
-                fill='#FFFFFF'
-                width='20'
-                height='20'
-                onClick={() => profileImageInputRef2.current.click()}
-              />
-              <input
-                type='file'
-                accept='image/*'
-                ref={profileImageInputRef2}
-                style={{ display: 'none' }}
-                onChange={(e) => handleImageUpload(e, 'pic2')}
-              />
-            </S.CardGalleryIcon>
-          </S.CardImageBox>
-        </S.CardImageContainer>
+        {(info.frontImg || info.backImg) && (
+          <S.CardImageContainer>
+            <S.CardImageBox>
+              <img src={selectedImage.frontImg || info.frontImg} alt='사진 1' />
+              <S.CardGalleryIcon>
+                <Icon
+                  id='gallery'
+                  fill='#FFFFFF'
+                  width='20'
+                  height='20'
+                  onClick={() => profileImageInputRef1.current.click()}
+                />
+                <input
+                  type='file'
+                  accept='image/*'
+                  ref={profileImageInputRef1}
+                  style={{ display: 'none' }}
+                  onChange={(e) => handleImageUpload(e, 'frontImg')}
+                />
+              </S.CardGalleryIcon>
+            </S.CardImageBox>
+            {info.backImg ? (
+              <S.CardImageBox>
+                <img src={selectedImage.backImg || info.backImg} alt='사진 2' />
+                <S.CardGalleryIcon>
+                  <Icon
+                    id='gallery'
+                    fill='#FFFFFF'
+                    width='20'
+                    height='20'
+                    onClick={() => profileImageInputRef2.current.click()}
+                  />
+                  <input
+                    type='file'
+                    accept='image/*'
+                    ref={profileImageInputRef2}
+                    style={{ display: 'none' }}
+                    onChange={(e) => handleImageUpload(e, 'backImg')}
+                  />
+                </S.CardGalleryIcon>
+              </S.CardImageBox>
+            ) : (
+              <S.CardImageBox />
+            )}
+          </S.CardImageContainer>
+        )}
       </S.DetailEdit>
 
       <AddGroupModal
