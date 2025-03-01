@@ -15,10 +15,9 @@ export const ImageContainer = styled.div`
 `;
 
 export const ProfileImg = styled.div`
-  min-width: 68px;
-  min-height: 68px;
-  max-width: 68px;
-  max-height: 68px;
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
   border-radius: 50%;
   display: flex;
 

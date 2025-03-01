@@ -16,7 +16,7 @@ export default function MyCard({
 }) {
   return (
     <S.MyCard onClick={onClick} style={{ backgroundColor: backgroundColor }}>
-      <S.ImageContainer  >
+      <S.ImageContainer>
         <S.ProfileImg style={{ marginBottom: address ? '24px' : '12px' }}>
           <img src={imageUrl || ProfileImgDefault} alt={`${name} 프로필`} />
         </S.ProfileImg>
@@ -25,7 +25,7 @@ export default function MyCard({
       <S.ProfileText>
         <S.Name>{name}</S.Name>
         <S.Team>
-          {company} | {department} | {position}
+          {`${company || ''}${company && (department || position) ? ' | ' : ''}${department || ''}${department && position ? ' | ' : ''}${position || ''}`}
         </S.Team>
         <S.ExtraInfo>
           <p>PHONE</p>
