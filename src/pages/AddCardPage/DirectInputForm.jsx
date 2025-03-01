@@ -62,7 +62,7 @@ export default function DirectInputForm({
 
       {/* 그룹 선택 */}
       <S.GroupContainer>
-        <S.InputLabel>그룹</S.InputLabel>
+        <S.InputLabel>그룹 *</S.InputLabel>
         <S.GroupButtonWrapper>
           {groupBadges.length > 0 ? (
             <BlueBadge

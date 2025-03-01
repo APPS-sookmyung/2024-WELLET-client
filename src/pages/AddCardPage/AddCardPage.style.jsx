@@ -198,9 +198,9 @@ export const GroupContainer = styled.div`
 export const InputLabel = styled.label`
   padding: 0 6px;
   color: var(--grey3, #555);
-  font-size: 11px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  font-size: 12px;
+  line-height: 130%;
+  letter-spacing: -0.6px;
 `;
 
 export const GroupButtonWrapper = styled.div`
