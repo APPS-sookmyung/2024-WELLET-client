@@ -1,12 +1,12 @@
+import { Global, css } from '@emotion/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import { RouterProvider } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import router from './router';
-import { Global, css } from '@emotion/react';
-import { pretendardFont, resetStyles, welletStyles } from './styles';
 import { Layout } from './components';
+import './index.css';
+import router from './router';
+import { pretendardFont, resetStyles, welletStyles } from './styles';
 
 const queryClient = new QueryClient();
 const App = () => (
@@ -19,7 +19,7 @@ const App = () => (
       `}
     />
     <RouterProvider router={router}>
-      <Layout></Layout>
+      <Layout />
     </RouterProvider>
   </>
 );
