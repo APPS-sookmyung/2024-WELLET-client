@@ -179,7 +179,7 @@ export default function ViewCardPage() {
               position={data.position}
               department={data.department}
               company={data.company}
-              imageUrl={data.imageUrl}
+              imageUrl={data.profImgUrl}
               isDeleteMode={isDeleteMode}
               isSelected={selectedCards.includes(data.id)}
               onClick={() => handleCardClick(data.id)}

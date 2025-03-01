@@ -100,7 +100,7 @@ export default function HomePage() {
                   name={data.name}
                   position={data.position}
                   department={data.department}
-                  imageUrl={data.imageUrl}
+                  imageUrl={data.profImgUrl}
                 />
               </div>
             ))}
