@@ -67,14 +67,29 @@ export default function AddCardPage() {
 
   const handleCardImageUpload = (event) => {
     const files = Array.from(event.target.files);
+    if (files.length === 0) return;
+    setSelectedImage(files[0]);
+    event.target.value = '';
+  };
 
-    if (files.length === 0) {
-      return;
+  const formatPhoneNumber = (value) => {
+    let onlyNumbers = value.replace(/\D/g, '');
+
+    if (onlyNumbers.startsWith('82')) {
+      if (onlyNumbers.startsWith('8210')) {
+        onlyNumbers = '010' + onlyNumbers.slice(4);
+      } else {
+        onlyNumbers = '010' + onlyNumbers.slice(2);
+      }
     }
 
-    setSelectedImage(files[0]);
-
-    event.target.value = '';
+    if (onlyNumbers.length <= 3) {
+      return onlyNumbers;
+    } else if (onlyNumbers.length <= 7) {
+      return `${onlyNumbers.slice(0, 3)}-${onlyNumbers.slice(3)}`;
+    } else {
+      return `${onlyNumbers.slice(0, 3)}-${onlyNumbers.slice(3, 7)}-${onlyNumbers.slice(7, 11)}`;
+    }
   };
 
   const handleSubmitButtonClick = async () => {
@@ -85,7 +100,6 @@ export default function AddCardPage() {
       }
 
       const formData = new FormData();
-
       formData.append('file', selectedImage);
 
       try {
@@ -93,15 +107,15 @@ export default function AddCardPage() {
         const { address, company, email, mobile, name, position, tel } = data;
 
         setCardInputData({
-          name,
-          position,
-          department: '',
-          company,
-          phone: mobile,
-          email,
-          tel,
-          address,
-          memo: '',
+          name: name || '',
+          position: position || '',
+          department: department || '',
+          company: company || '',
+          phone: mobile ? formatPhoneNumber(mobile) : '',
+          email: email || '',
+          tel: tel || '',
+          address: address || '',
+          memo: memo || '',
         });
 
         setActiveBadge({ id: 2, name: '직접 입력' });
@@ -186,7 +200,10 @@ export default function AddCardPage() {
           setActiveGroupBadge={setActiveGroupBadge}
           value={cardInputData}
           onChange={(field, value) =>
-            setCardInputData((prev) => ({ ...prev, [field]: value }))
+            setCardInputData((prev) => ({
+              ...prev,
+              [field]: field === 'phone' ? formatPhoneNumber(value) : value,
+            }))
           }
         />
       )}
