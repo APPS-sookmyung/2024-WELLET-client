@@ -157,7 +157,7 @@ export default function AddCardPage() {
       <Header color='blue' />
       <SearchBar theme='white' />
       <S.TitleContainer>
-        <S.Title>명함 추가하기</S.Title>
+        <S.Title>명함 추가</S.Title>
         <S.Subtitle>사진을 첨부 / 직접 입력하여 명함 추가하기</S.Subtitle>
       </S.TitleContainer>
       <S.ButtonContainer>

@@ -64,16 +64,16 @@ export const Container = styled.div`
 export const CardListTitle = styled.div`
   display: flex;
   color: #fff;
-  gap: 6px;
+  gap: 10px;
   padding: 4px 0 10px 0;
 
   p:nth-of-type(1) {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
   }
 
   p:nth-of-type(2) {
-    font-size: 11px;
+    font-size: 14px;
     display: flex;
     align-items: end;
     font-weight: 400;
@@ -102,7 +102,7 @@ export const EditBtn = styled.button`
 `;
 
 export const EditText = styled.p`
-  font-size: 9px;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
   color: #2d29ff;

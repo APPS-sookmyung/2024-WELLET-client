@@ -41,11 +41,9 @@ export const EditIcon = styled.div`
   border-radius: 10px;
   background: var(--color-1, #ebf3fe);
   color: var(--primary, #2d29ff);
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
-  width: 60px;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -143,7 +141,7 @@ export const IconBox = styled.div`
 
 export const ConBar = styled.div`
   color: var(--grey4, #1a1a1a);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -152,9 +150,8 @@ export const ConBar = styled.div`
 
 export const GroupButtonBar = styled.div`
   width: 100%;
-  color: var(--grey3, #555);
-  font-size: 11px;
-  font-weight: 400;
+  color: #1a1a1a;
+  font-size: 16px;
   line-height: 130%;
   letter-spacing: -0.55px;
   padding: 8px;
@@ -174,7 +171,7 @@ export const GroupButton = styled.div`
   background: var(--primary, #2d29ff);
   padding: 4px 10px;
   color: var(--white, #fff);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.55px;
   border: none;
@@ -243,7 +240,7 @@ export const CloseButton = styled.div`
 
 export const UserInfoLabel = styled.div`
   color: var(--grey2, #949494);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -259,7 +256,7 @@ export const UserInfoValue = styled.div`
 
 export const NameFont = styled.div`
   color: var(--white, #fff);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -267,7 +264,7 @@ export const NameFont = styled.div`
 
 export const JobTeamFont = styled.div`
   color: var(--white, #fff);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -275,8 +272,7 @@ export const JobTeamFont = styled.div`
 
 export const ComFont = styled.div`
   color: var(--grey1, #c8c8c8);
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;

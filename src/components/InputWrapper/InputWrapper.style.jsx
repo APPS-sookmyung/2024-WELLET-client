@@ -9,7 +9,7 @@ export const InputWrapper = styled.div`
 export const InputLabel = styled.label`
   padding: 0 6px;
   color: var(--grey3, #555);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.6px;
 `;
@@ -35,4 +35,3 @@ export const Input = styled.input`
   letter-spacing: -0.7px;
   outline: none;
 `;
-

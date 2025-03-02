@@ -8,13 +8,13 @@ export const AddCardPage = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   padding: 5px 0 8px;
 `;
 
 export const Title = styled.h1`
   color: var(--grey4, #1a1a1a);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -22,7 +22,7 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.p`
   color: var(--grey3, #555);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.55px;
 `;
@@ -168,7 +168,7 @@ export const RegisterText = styled.div`
 
 export const RegisterTitle = styled.h3`
   color: var(--grey3, #555);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.7px;
@@ -177,7 +177,7 @@ export const RegisterTitle = styled.h3`
 export const RegisterSubTitle = styled.p`
   display: flex;
   color: var(--grey2, #949494);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 130%;
   letter-spacing: -0.55px;
 `;

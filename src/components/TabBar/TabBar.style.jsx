@@ -48,7 +48,7 @@ export const Text = styled.span`
   justify-content: center;
   align-items: center;
   color: ${(props) => (props.isactive ? '#2D29FF' : '#C8C8C8')};
-  font-size: 11px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.55px;
 `;

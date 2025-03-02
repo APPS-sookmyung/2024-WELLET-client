@@ -35,7 +35,7 @@ export const SearchInput = styled.input`
   width: 100%;
   color: ${({ theme }) =>
     theme === 'white' ? ' var(--grey2, #949494);' : 'var(--grey1, #C8C8C8);'};
-  font-size: 11px;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
 

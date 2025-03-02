@@ -10,7 +10,7 @@ export const SecondaryButton = styled.button`
   background: var(--blue-2, #ebebff);
   color: var(--grey3, #555);
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 150%;
   letter-spacing: -0.5px;
   transition: background 0.3s ease;

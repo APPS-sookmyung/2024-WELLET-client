@@ -10,7 +10,7 @@ export const BlueBadge = styled.button`
   padding: 4px 10px;
   color: ${(props) =>
     props.isActive ? 'var(--white, #fff)' : 'var(--primary, #2d29ff)'};
-  font-size: 11px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.55px;
   border: none;
