@@ -37,14 +37,14 @@ export const ProfileText = styled.div`
 `;
 
 export const Name = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.5;
   color: #1a1a1a;
 `;
 
 export const Team = styled.div`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   padding-bottom: 10px;
   color: #1a1a1a;

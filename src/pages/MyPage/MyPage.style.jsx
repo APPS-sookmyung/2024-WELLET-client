@@ -169,7 +169,7 @@ export const MyInfoItem = styled.div`
 
 export const MyInfoLabel = styled.div`
   color: var(--grey2, #949494);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;

@@ -109,12 +109,14 @@ export default function CardDetailPage() {
               </S.InfoBox>
             )}
           </S.ContactContainer>
+
           <S.ConBar>메모</S.ConBar>
           <S.ContactContainer>
             <S.InfoBox>
               <S.UserInfoValue>{info.memo}</S.UserInfoValue>
             </S.InfoBox>
           </S.ContactContainer>
+
           <S.GroupButtonBar>그룹</S.GroupButtonBar>
           <S.GroupButtonBox>
             <S.GroupButton>{info.category || '그룹'}</S.GroupButton>

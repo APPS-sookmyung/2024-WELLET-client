@@ -47,7 +47,7 @@ export const Info = styled.div`
 export const Name = styled.h1`
   color: ${(props) =>
     props.isSelected ? 'var(--white, #FFF)' : 'var(--grey3, #555)'};
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.7px;
@@ -56,7 +56,7 @@ export const Name = styled.h1`
 export const Role = styled.span`
   color: ${(props) =>
     props.isSelected ? 'var(--white, #FFF)' : 'var(--grey3, #555)'};
-  font-size: 12px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.6px;
 `;

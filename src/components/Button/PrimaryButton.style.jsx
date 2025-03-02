@@ -10,7 +10,7 @@ export const PrimaryButton = styled.button`
   background: var(--primary, #2d29ff);
   color: var(--white, #fff);
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 150%;
   letter-spacing: -0.5px;
   transition: background 0.3s ease;

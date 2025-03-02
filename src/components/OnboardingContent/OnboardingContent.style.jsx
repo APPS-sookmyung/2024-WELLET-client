@@ -37,7 +37,7 @@ export const T = styled.div`
 `;
 
 export const BigText = styled.p`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -51,7 +51,7 @@ export const BigText = styled.p`
 `;
 
 export const SmallText = styled.p`
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 130%;
   letter-spacing: -0.6px;

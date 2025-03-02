@@ -58,7 +58,7 @@ export const BadgeText = styled.p`
   justify-content: center;
   align-items: center;
   color: #ff0076;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.55px;
 `;
