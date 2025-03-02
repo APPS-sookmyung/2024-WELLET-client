@@ -1,6 +1,11 @@
 import * as S from './AddCardPage.style';
 import Icon from '../../components/Icon/Icon';
 
+const UPLOAD_GUIDELINES = [
+  '이미지는 1장만 업로드할 수 있습니다.',
+  '업로드 가능한 최대 크기는 1MB 입니다.',
+];
+
 export default function ImageInputForm({
   selectedImage,
   onUploadImage,
@@ -28,14 +33,12 @@ export default function ImageInputForm({
           이미지 파일을 여기에 끌어다 놓으세요.
         </S.AddBoxSubTitle>
         <S.AddBoxDescWrapper>
-          <S.AddBoxDesc>
-            <Icon id='dot' />
-            <S.AddBoxText>이미지는 1장만 업로드할 수 있습니다.</S.AddBoxText>
-          </S.AddBoxDesc>
-          <S.AddBoxDesc>
-            <Icon id='dot' />
-            <S.AddBoxText>업로드 가능한 최대 크기는 1MB 입니다.</S.AddBoxText>
-          </S.AddBoxDesc>
+          {UPLOAD_GUIDELINES.map((guideline, index) => (
+            <S.AddBoxDesc key={index}>
+              <Icon id='dot' />
+              <S.AddBoxText>{guideline}</S.AddBoxText>
+            </S.AddBoxDesc>
+          ))}
         </S.AddBoxDescWrapper>
         {selectedImage === null && (
           <S.ImportImageBtnWrapper>
