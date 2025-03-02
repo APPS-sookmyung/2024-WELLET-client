@@ -30,19 +30,11 @@ export default function ImageInputForm({
         <S.AddBoxDescWrapper>
           <S.AddBoxDesc>
             <Icon id='dot' />
-            <S.AddBoxText>
-              선택한 모든 명함 이미지는 앞면으로 인식합니다.
-            </S.AddBoxText>
+            <S.AddBoxText>이미지는 1장만 업로드할 수 있습니다.</S.AddBoxText>
           </S.AddBoxDesc>
           <S.AddBoxDesc>
             <Icon id='dot' />
-            <S.AddBoxText>
-              이미지는 한 번에 2장까지 업로드할 수 있습니다.
-            </S.AddBoxText>
-          </S.AddBoxDesc>
-          <S.AddBoxDesc>
-            <Icon id='dot' />
-            <S.AddBoxText>이미지 한 장 당 최대 크기는 1MB 입니다.</S.AddBoxText>
+            <S.AddBoxText>업로드 가능한 최대 크기는 1MB 입니다.</S.AddBoxText>
           </S.AddBoxDesc>
         </S.AddBoxDescWrapper>
         {selectedImage === null && (
