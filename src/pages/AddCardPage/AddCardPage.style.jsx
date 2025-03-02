@@ -55,7 +55,7 @@ export const AddImageContainer = styled.div`
 export const AddBoxTitle = styled.h3`
   margin: 6px 0 13px;
   color: var(--primary, #2d29ff);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.7px;
@@ -73,7 +73,7 @@ export const AddBoxSubTitle = styled.p`
   padding: 10px 0 16px;
   color: var(--grey2, #949494);
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
@@ -101,7 +101,7 @@ export const AddBoxDesc = styled.div`
 export const AddBoxText = styled.p`
   color: var(--grey2, #949494);
   text-align: center;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
@@ -109,7 +109,7 @@ export const AddBoxText = styled.p`
 export const ImportImageBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 14px;
+  padding: 10px;
 `;
 
 export const PreviewContainer = styled.div`
@@ -126,14 +126,15 @@ export const ImportImageBtn = styled.label`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 4px 10px;
+  padding: 10px 14px;
   gap: 8px;
   border-radius: 10px;
   background: var(--primary, #2d29ff);
   color: var(--white, #fff);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.5px;
+  cursor: pointer;
 `;
 
 // 직접 입력으로 명함 추가
