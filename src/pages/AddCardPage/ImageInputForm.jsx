@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import * as S from './AddCardPage.style';
 import Icon from '../../components/Icon/Icon';
 
@@ -6,16 +7,53 @@ const UPLOAD_GUIDELINES = [
   '업로드 가능한 최대 크기는 1MB 입니다.',
 ];
 
-export default function ImageInputForm({
-  selectedImage,
-  onUploadImage,
-  handleButtonClick,
-  imageInputRef,
-  isDragOver,
-  handleDragOver,
-  handleDragLeave,
-  handleDrop,
-}) {
+export default function ImageInputForm({ selectedImage, onUploadImage }) {
+  const [isDragOver, setIsDragOver] = useState(false);
+  const imageInputRef = useRef(null);
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragOver(false);
+
+    const files = event.dataTransfer.files;
+    if (files.length > 0) {
+      handleFileUpload(files[0]);
+    }
+  };
+
+  const handleFileUpload = (file) => {
+    if (!file.type.startsWith('image/')) {
+      alert('이미지 파일만 업로드할 수 있습니다.');
+      return;
+    }
+
+    if (file.size > 1024 * 1024) {
+      alert('업로드 가능한 최대 크기는 1MB입니다.');
+      return;
+    }
+
+    onUploadImage({ target: { files: [file] } });
+  };
+
+  const handleFileChange = (event) => {
+    if (event.target.files.length === 0) return;
+
+    const file = event.target.files[0];
+    handleFileUpload(file);
+
+    event.target.value = '';
+  };
+
   return (
     <S.DashedBorder
       onDragOver={handleDragOver}
@@ -23,7 +61,7 @@ export default function ImageInputForm({
       onDrop={handleDrop}
       isDragOver={isDragOver}
     >
-      <S.AddImageContainer onClick={handleButtonClick}>
+      <S.AddImageContainer>
         <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
         <S.AddBoxIconWrapper>
           <Icon id='circle-plus' fill='none' />
@@ -40,7 +78,7 @@ export default function ImageInputForm({
             </S.AddBoxDesc>
           ))}
         </S.AddBoxDescWrapper>
-        {selectedImage === null && (
+        {!selectedImage && (
           <S.ImportImageBtnWrapper>
             <S.ImportImageBtn htmlFor='image-file'>
               파일 가져오기
@@ -50,12 +88,12 @@ export default function ImageInputForm({
                 accept='image/*'
                 ref={imageInputRef}
                 style={{ display: 'none' }}
-                onChange={onUploadImage}
+                onChange={handleFileChange}
               />
             </S.ImportImageBtn>
           </S.ImportImageBtnWrapper>
         )}
-        {selectedImage !== null && (
+        {selectedImage && (
           <S.PreviewContainer>
             <S.PreviewImage
               src={URL.createObjectURL(selectedImage)}
