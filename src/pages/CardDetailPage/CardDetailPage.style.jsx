@@ -53,7 +53,7 @@ export const EditIcon = styled.div`
 export const MidBar = styled.div`
   width: 100%;
   display: inline-flex;
-  padding: 24px 0 12px;
+  padding: 18px 0 12px;
   justify-content: center;
 `;
 
@@ -95,6 +95,10 @@ export const SubBar = styled.div`
   border-radius: 4px;
   background: #8776ff;
   padding: 0px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const BottomContainer = styled.div`
