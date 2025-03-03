@@ -64,15 +64,15 @@ export default function DirectInputForm({
       <S.GroupContainer>
         <S.InputLabel>그룹 *</S.InputLabel>
         <S.GroupButtonWrapper>
-          {groupBadges.length > 0 ? (
-            <BlueBadge
-              badges={groupBadges}
-              activeBadge={activeGroupBadge}
-              setActiveBadge={setActiveGroupBadge}
-            />
-          ) : (
-            <p>그룹이 없습니다.</p>
-          )}
+          <BlueBadge
+            badges={groupBadges ?? []}
+            activeBadge={activeGroupBadge}
+            setActiveBadge={setActiveGroupBadge}
+          />
+          <S.AddGroupButton>
+            <p>그룹 편집</p>
+            <Icon id='circle-plus-blue' width='13' height='13' />
+          </S.AddGroupButton>
         </S.GroupButtonWrapper>
       </S.GroupContainer>
     </S.DashedBorder>
