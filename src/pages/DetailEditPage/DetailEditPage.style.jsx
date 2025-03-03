@@ -271,7 +271,7 @@ export const MoreIcon = styled.div`
 export const CardImageContainer = styled.div`
   display: flex;
   gap: 20px;
-  padding: 16px;
+  padding: 0 4px 16px;
   width: 100%;
   justify-content: baseline;
 `;
@@ -286,6 +286,27 @@ export const CardImageBox = styled.div`
     height: 100px;
     object-fit: cover;
   }
+`;
+
+export const CardAddImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  gap: 2px;
+  padding: 0 16px 30px 16px;
+  width: 100%;
+`;
+
+export const AddCardImage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: #f4f4f9;
+  cursor: pointer;
 `;
 
 export const CardGalleryIcon = styled.button`
