@@ -31,7 +31,6 @@ export const WelletLogo = styled.div`
 `;
 
 export const EditIconBox = styled.div`
-  width: 60px;
   display: flex;
   justify-content: end;
 `;
@@ -41,8 +40,7 @@ export const EditIcon = styled.button`
   border-radius: 10px;
   background: var(--color-1, #ebf3fe);
   color: var(--primary, #2d29ff);
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
   height: 24px;
@@ -94,11 +92,11 @@ export const GalleryIcon = styled.button`
 
 export const EditGuide = styled.div`
   color: var(--grey2, #949494);
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.55px;
   padding: 0px 0;
+  word-break: keep-all;
 `;
 
 export const EditInfoContainer = styled.div`
@@ -119,7 +117,7 @@ export const InputNameBox = styled.input`
 
 export const Name = styled.div`
   color: var(--grey4, #1a1a1a);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -138,15 +136,6 @@ export const PencilIcon = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-`;
-
-export const EditInfo = styled.div`
-  color: var(--grey4, #1a1a1a);
-  font-size: 11px;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.5px;
-  display: flex;
 `;
 
 export const InputField = styled.div`
@@ -171,7 +160,7 @@ export const InputWrapper = styled.div`
 export const InputLabel = styled.label`
   padding: 0 6px;
   color: var(--grey3, #555);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.6px;
 `;
@@ -192,14 +181,11 @@ export const Input = styled.input`
   border: none;
   background-color: transparent;
   width: 100%;
-  color: var(--grey2, #949494);
+  color: var(--grey4, #1a1a1a);
   font-size: 14px;
   line-height: 140%;
   letter-spacing: -0.7px;
   outline: none;
-  &:focus {
-    color: #000;
-  }
 `;
 
 export const IconWrapper = styled.div`
