@@ -6,6 +6,7 @@ import {
   PrimaryButton,
   SearchBar,
   SecondaryButton,
+  ImageUploadOverlay,
 } from '../../components';
 import * as S from './AddCardPage.style';
 import DirectInputForm from './DirectInputForm';
@@ -190,11 +191,13 @@ export default function AddCardPage() {
         />
       </S.ButtonContainer>
       {activeBadge.id === 1 ? (
-        <ImageInputForm
-          selectedImage={selectedImage}
-          onUploadImage={handleCardImageUpload}
-          isLoading={isLoading}
-        />
+        <ImageUploadOverlay isLoading={isLoading}>
+          <ImageInputForm
+            selectedImage={selectedImage}
+            onUploadImage={handleCardImageUpload}
+            isLoading={isLoading}
+          />
+        </ImageUploadOverlay>
       ) : (
         <DirectInputForm
           profileImage={profilePreview}
