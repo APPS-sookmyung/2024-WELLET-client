@@ -63,6 +63,10 @@ export default function DetailEditPage() {
     frontImg: null,
     backImg: null,
   });
+  const [selectedFiles, setSelectedFiles] = useState({
+    frontImg: null,
+    backImg: null,
+  });
   const [info, setInfo] = useState({});
 
   const profileImageInputRef = useRef(null);
@@ -163,7 +167,16 @@ export default function DetailEditPage() {
 
   useEffect(() => {
     if (inputData) {
-      setInfo(inputData.data);
+      setInfo({
+        ...inputData.data,
+        frontImg: inputData.data.frontImgUrl,
+        backImg: inputData.data.backImgUrl,
+        profImg: inputData.data.profImgUrl,
+      });
+      setSelectedImage({
+        frontImg: inputData.data.frontImgUrl,
+        backImg: inputData.data.backImgUrl,
+      });
 
       const matchedBadge = badges.find(
         (badge) => badge.name === inputData.data.category
@@ -191,6 +204,11 @@ export default function DetailEditPage() {
       const formData = new FormData();
       formData.append('profImg', file);
       await putCardsPf({ card_id: id, data: formData });
+      setInfo((prev) => ({
+        ...prev,
+        profImgUrl: URL.createObjectURL(file),
+      }));
+
       console.log('프로필 이미지가 성공적으로 업데이트되었습니다.');
     } catch (error) {
       console.error('프로필 이미지 업데이트 중 오류 발생:', error);
@@ -204,14 +222,39 @@ export default function DetailEditPage() {
   const handleImageUpload = async (e, target) => {
     const file = e.target.files[0];
     if (file) {
-      const formData = new FormData();
-      formData.append(target, file);
-      await putCardsImg({ card_id: id, data: formData });
+      // 미리보기 이미지 URL 생성
       const newImageUrl = URL.createObjectURL(file);
-      setSelectedImage((prev) => ({
+
+      // info 상태를 업데이트하여 미리보기 화면에 반영
+      setInfo((prev) => ({
         ...prev,
-        [target]: newImageUrl,
+        [`${target}Url`]: newImageUrl, // frontImgUrl 또는 backImgUrl에 미리보기 URL 추가
       }));
+
+      const updatedFiles = { ...selectedFiles, [target]: file };
+      setSelectedFiles(updatedFiles);
+
+      try {
+        // frontImg와 backImg가 모두 있는 경우에만 API 호출
+        if (updatedFiles.frontImg && updatedFiles.backImg) {
+          const combinedFormData = new FormData();
+          combinedFormData.append('frontImg', updatedFiles.frontImg);
+          combinedFormData.append('backImg', updatedFiles.backImg);
+
+          const response = await putCardsImg({
+            card_id: id,
+            data: combinedFormData,
+          });
+
+          setInfo((prev) => ({
+            ...prev,
+            frontImg: response.data.frontImgUrl ?? prev.frontImg,
+            backImg: response.data.backImgUrl ?? prev.backImg,
+          }));
+        }
+      } catch (error) {
+        console.error('명함 이미지 업데이트 중 오류 발생:', error);
+      }
     }
   };
 
@@ -224,11 +267,20 @@ export default function DetailEditPage() {
     const updatedData = updatedDataForm();
     if (activeBadge) {
       updatedData.categoryName = activeBadge.name;
-      updatedData.category = activeBadge.name;
     }
-    setInfo(updatedData);
+
+    // 이미지 데이터는 각각 따로 관리해서 null로 덮어씌워지지 않도록 처리
+    if (selectedFiles.frontImg && selectedFiles.backImg) {
+      updatedData.frontImg = selectedFiles.frontImg;
+      updatedData.backImg = selectedFiles.backImg;
+    }
+
+    if (profileImage) {
+      updatedData.profImg = profileImage;
+    }
+
     try {
-      await putCards({ card_id: id, data: updatedDataForm() });
+      await putCards({ card_id: id, data: updatedData });
       const updatedCard = await getCardDetail({ card_id: id });
       setInfo(updatedCard.data);
       navigate(`/card/${id}`);
@@ -236,6 +288,7 @@ export default function DetailEditPage() {
       console.error('데이터를 저장하는 중에 오류가 발생하였습니다.:', error);
     }
   };
+
   return (
     <>
       <S.DetailEdit>
@@ -338,34 +391,77 @@ export default function DetailEditPage() {
         </S.GroupButtonContainer>
 
         {/* 이미지 업로드 */}
-        {(info.frontImg || info.backImg) && (
+        <S.CardAddImageContainer>
+          <S.GroupButtonBar>명함 이미지</S.GroupButtonBar>
           <S.CardImageContainer>
-            <S.CardImageBox>
-              <img src={selectedImage.frontImg || info.frontImg} alt='사진 1' />
-              <S.CardGalleryIcon>
-                <Icon
-                  id='gallery'
-                  fill='#FFFFFF'
-                  width='20'
-                  height='20'
-                  onClick={() => profileImageInputRef1.current.click()}
-                />
-                <input
-                  type='file'
-                  accept='image/*'
-                  ref={profileImageInputRef1}
-                  style={{ display: 'none' }}
-                  onChange={(e) => handleImageUpload(e, 'frontImg')}
-                />
-              </S.CardGalleryIcon>
-            </S.CardImageBox>
-            {info.backImg ? (
-              <S.CardImageBox>
-                <img src={selectedImage.backImg || info.backImg} alt='사진 2' />
-                <S.CardGalleryIcon>
+            {(info.frontImg && info.backImg) ||
+            (selectedImage.frontImg && selectedImage.backImg) ? (
+              <>
+                <S.CardImageBox>
+                  <img
+                    src={selectedImage.frontImg || info.frontImg}
+                    alt='사진 1'
+                  />
+                  <S.CardGalleryIcon>
+                    <Icon
+                      id='gallery'
+                      fill='#FFFFFF'
+                      width='20'
+                      height='20'
+                      onClick={() => profileImageInputRef1.current.click()}
+                    />
+                    <input
+                      type='file'
+                      accept='image/*'
+                      ref={profileImageInputRef1}
+                      style={{ display: 'none' }}
+                      onChange={(e) => handleImageUpload(e, 'frontImg')}
+                    />
+                  </S.CardGalleryIcon>
+                </S.CardImageBox>
+                <S.CardImageBox>
+                  <img
+                    src={selectedImage.backImg || info.backImg}
+                    alt='사진 2'
+                  />
+                  <S.CardGalleryIcon>
+                    <Icon
+                      id='gallery'
+                      fill='#FFFFFF'
+                      width='20'
+                      height='20'
+                      onClick={() => profileImageInputRef2.current.click()}
+                    />
+                    <input
+                      type='file'
+                      accept='image/*'
+                      ref={profileImageInputRef2}
+                      style={{ display: 'none' }}
+                      onChange={(e) => handleImageUpload(e, 'backImg')}
+                    />
+                  </S.CardGalleryIcon>
+                </S.CardImageBox>
+              </>
+            ) : (
+              <>
+                <S.AddCardImage>
                   <Icon
-                    id='gallery'
-                    fill='#FFFFFF'
+                    id='nav-add-card'
+                    width='20'
+                    height='20'
+                    onClick={() => profileImageInputRef1.current.click()}
+                  />
+                  <input
+                    type='file'
+                    accept='image/*'
+                    ref={profileImageInputRef1}
+                    style={{ display: 'none' }}
+                    onChange={(e) => handleImageUpload(e, 'frontImg')}
+                  />
+                </S.AddCardImage>
+                <S.AddCardImage>
+                  <Icon
+                    id='nav-add-card'
                     width='20'
                     height='20'
                     onClick={() => profileImageInputRef2.current.click()}
@@ -377,13 +473,11 @@ export default function DetailEditPage() {
                     style={{ display: 'none' }}
                     onChange={(e) => handleImageUpload(e, 'backImg')}
                   />
-                </S.CardGalleryIcon>
-              </S.CardImageBox>
-            ) : (
-              <S.CardImageBox />
+                </S.AddCardImage>
+              </>
             )}
           </S.CardImageContainer>
-        )}
+        </S.CardAddImageContainer>
       </S.DetailEdit>
 
       <AddGroupModal

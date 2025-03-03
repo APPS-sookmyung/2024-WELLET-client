@@ -186,11 +186,13 @@ export const GroupButton = styled.div`
     white-space: nowrap;
   }
 `;
-
+export const CardImageNameBox = styled.div`
+  justify-content: collum;
+`;
 export const CardImageContainer = styled.div`
   display: flex;
   gap: 20px;
-  padding-top: 16px;
+  padding-top: 2px;
   width: 100%;
   justify-content: baseline;
 `;
