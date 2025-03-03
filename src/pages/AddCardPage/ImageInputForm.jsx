@@ -79,21 +79,19 @@ export default function ImageInputForm({ selectedImage, onUploadImage }) {
           ))}
         </S.AddBoxDescWrapper>
 
-        {!selectedImage && (
-          <S.ImportImageBtnWrapper>
-            <S.ImportImageBtn htmlFor='image-file'>
-              파일 가져오기
-              <input
-                id='image-file'
-                type='file'
-                accept='image/*'
-                ref={imageInputRef}
-                style={{ display: 'none' }}
-                onChange={handleFileChange}
-              />
-            </S.ImportImageBtn>
-          </S.ImportImageBtnWrapper>
-        )}
+        <S.ImportImageBtnWrapper>
+          <S.ImportImageBtn htmlFor='image-file'>
+            {selectedImage ? '파일 수정하기' : '파일 가져오기'}
+            <input
+              id='image-file'
+              type='file'
+              accept='image/*'
+              ref={imageInputRef}
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+            />
+          </S.ImportImageBtn>
+        </S.ImportImageBtnWrapper>
 
         {selectedImage && (
           <S.PreviewContainer>
