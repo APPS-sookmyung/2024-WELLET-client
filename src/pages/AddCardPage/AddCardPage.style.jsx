@@ -208,6 +208,7 @@ export const InputLabel = styled.label`
 export const GroupButtonWrapper = styled.div`
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 `;
 
 // 등록, 취소 버튼
