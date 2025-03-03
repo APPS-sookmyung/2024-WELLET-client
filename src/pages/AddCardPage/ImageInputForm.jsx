@@ -78,6 +78,7 @@ export default function ImageInputForm({ selectedImage, onUploadImage }) {
             </S.AddBoxDesc>
           ))}
         </S.AddBoxDescWrapper>
+
         {!selectedImage && (
           <S.ImportImageBtnWrapper>
             <S.ImportImageBtn htmlFor='image-file'>
@@ -93,6 +94,7 @@ export default function ImageInputForm({ selectedImage, onUploadImage }) {
             </S.ImportImageBtn>
           </S.ImportImageBtnWrapper>
         )}
+
         {selectedImage && (
           <S.PreviewContainer>
             <S.PreviewImage

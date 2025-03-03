@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './InputWrapper.style';
 import Icon from '../Icon/Icon';
 

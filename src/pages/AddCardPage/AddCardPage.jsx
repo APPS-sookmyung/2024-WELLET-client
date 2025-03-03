@@ -6,6 +6,7 @@ import {
   PrimaryButton,
   SearchBar,
   SecondaryButton,
+  ImageUploadOverlay,
 } from '../../components';
 import * as S from './AddCardPage.style';
 import DirectInputForm from './DirectInputForm';
@@ -20,6 +21,7 @@ export default function AddCardPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const mode = searchParams.get('mode') || 'image';
 
+  const [isLoading, setIsLoading] = useState(false);
   const [activeBadge, setActiveBadge] = useState({
     id: mode === 'image' ? 1 : 2,
     name: mode === 'image' ? '이미지로 입력' : '직접 입력',
@@ -99,6 +101,8 @@ export default function AddCardPage() {
         return;
       }
 
+      setIsLoading(true);
+
       const formData = new FormData();
       formData.append('file', selectedImage);
 
@@ -125,6 +129,8 @@ export default function AddCardPage() {
         alert(
           error.response?.data?.message || '명함 이미지 인식에 실패했습니다.'
         );
+      } finally {
+        setIsLoading(false);
       }
       return;
     }
@@ -185,10 +191,13 @@ export default function AddCardPage() {
         />
       </S.ButtonContainer>
       {activeBadge.id === 1 ? (
-        <ImageInputForm
-          selectedImage={selectedImage}
-          onUploadImage={handleCardImageUpload}
-        />
+        <ImageUploadOverlay isLoading={isLoading}>
+          <ImageInputForm
+            selectedImage={selectedImage}
+            onUploadImage={handleCardImageUpload}
+            isLoading={isLoading}
+          />
+        </ImageUploadOverlay>
       ) : (
         <DirectInputForm
           profileImage={profilePreview}
@@ -208,10 +217,14 @@ export default function AddCardPage() {
         />
       )}
       <S.ActionBtnContainer>
-        <PrimaryButton onClick={handleSubmitButtonClick}>
-          {activeBadge.id === 1 ? '이미지 등록' : '등록'}
+        <PrimaryButton onClick={handleSubmitButtonClick} disabled={isLoading}>
+          {isLoading
+            ? '등록 중...'
+            : activeBadge.id === 1
+              ? '이미지 등록'
+              : '등록'}
         </PrimaryButton>
-        <SecondaryButton onClick={() => navigate('/card')}>
+        <SecondaryButton onClick={() => navigate('/card')} disabled={isLoading}>
           취소
         </SecondaryButton>
       </S.ActionBtnContainer>
