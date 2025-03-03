@@ -11,9 +11,7 @@ import {
 import * as S from './AddCardPage.style';
 import DirectInputForm from './DirectInputForm';
 import ImageInputForm from './ImageInputForm';
-import { postCards } from '../../apis/cards.js';
-import { getGroupList } from '../../apis/group.js';
-import { postOCR } from '../../apis/ocr.js';
+import { postCards, getGroupList, postOCR } from '../../apis';
 import INPUT_FIELDS from './inputFields';
 
 export default function AddCardPage() {
