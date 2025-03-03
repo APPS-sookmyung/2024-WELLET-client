@@ -50,6 +50,7 @@ export const AddImageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const AddBoxTitle = styled.h3`
