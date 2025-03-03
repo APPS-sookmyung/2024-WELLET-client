@@ -10,7 +10,9 @@ export default function DirectInputForm({
   activeGroupBadge,
   groupBadges,
   setActiveGroupBadge,
+  value,
   onChange,
+  onOpenModal,
 }) {
   return (
     <S.DashedBorder>
@@ -53,6 +55,7 @@ export default function DirectInputForm({
             label={field.label}
             type={field.type}
             placeholder={field.placeholder}
+            value={value[field.field]}
             onChange={(e) => onChange(field.field, e.target.value)}
           />
         ))}
@@ -60,17 +63,22 @@ export default function DirectInputForm({
 
       {/* 그룹 선택 */}
       <S.GroupContainer>
-        <S.InputLabel>그룹</S.InputLabel>
+        <S.InputLabel>그룹 *</S.InputLabel>
         <S.GroupButtonWrapper>
-          {groupBadges.length > 0 ? (
-            <BlueBadge
-              badges={groupBadges}
-              activeBadge={activeGroupBadge}
-              setActiveBadge={setActiveGroupBadge}
-            />
-          ) : (
-            <p>그룹이 없습니다.</p>
-          )}
+          <BlueBadge
+            badges={groupBadges ?? []}
+            activeBadge={activeGroupBadge}
+            setActiveBadge={setActiveGroupBadge}
+          />
+          <S.AddGroupButton
+            onClick={() => {
+              console.log('그룹 편집 버튼 눌림');
+              onOpenModal();
+            }}
+          >
+            <p>그룹 편집</p>
+            <Icon id='circle-plus-blue' width='13' height='13' />
+          </S.AddGroupButton>
         </S.GroupButtonWrapper>
       </S.GroupContainer>
     </S.DashedBorder>

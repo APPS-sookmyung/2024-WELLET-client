@@ -6,26 +6,30 @@ import {
   PrimaryButton,
   SearchBar,
   SecondaryButton,
+  ImageUploadOverlay,
+  AddGroupModal,
 } from '../../components';
 import * as S from './AddCardPage.style';
 import DirectInputForm from './DirectInputForm';
 import ImageInputForm from './ImageInputForm';
-import { postCards } from '../../apis/cards.js';
-import { getGroupList } from '../../apis/group.js';
+import { postCards, getGroupList, postOCR } from '../../apis';
+import INPUT_FIELDS from './inputFields';
 
 export default function AddCardPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const mode = searchParams.get('mode') || 'image';
 
+  const [isLoading, setIsLoading] = useState(false);
   const [activeBadge, setActiveBadge] = useState({
     id: mode === 'image' ? 1 : 2,
     name: mode === 'image' ? '이미지로 입력' : '직접 입력',
   });
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [groupBadges, setGroupBadges] = useState([]);
   const [activeGroupBadge, setActiveGroupBadge] = useState(null);
-  const [selectedImage, setSelectedImage] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
   const [profilePreview, setProfilePreview] = useState(null);
   const profileImageInputRef = useRef(null);
@@ -63,7 +67,74 @@ export default function AddCardPage() {
     setSearchParams({ mode: badge.id === 1 ? 'image' : 'direct' });
   };
 
+  const handleCardImageUpload = (event) => {
+    const files = Array.from(event.target.files);
+    if (files.length === 0) return;
+    setSelectedImage(files[0]);
+    event.target.value = '';
+  };
+
+  const formatPhoneNumber = (value) => {
+    let onlyNumbers = value.replace(/\D/g, '');
+
+    if (onlyNumbers.startsWith('82')) {
+      if (onlyNumbers.startsWith('8210')) {
+        onlyNumbers = '010' + onlyNumbers.slice(4);
+      } else {
+        onlyNumbers = '010' + onlyNumbers.slice(2);
+      }
+    }
+
+    if (onlyNumbers.length <= 3) {
+      return onlyNumbers;
+    } else if (onlyNumbers.length <= 7) {
+      return `${onlyNumbers.slice(0, 3)}-${onlyNumbers.slice(3)}`;
+    } else {
+      return `${onlyNumbers.slice(0, 3)}-${onlyNumbers.slice(3, 7)}-${onlyNumbers.slice(7, 11)}`;
+    }
+  };
+
   const handleSubmitButtonClick = async () => {
+    if (activeBadge.id === 1) {
+      if (selectedImage === null) {
+        alert('이미지를 입력해주세요');
+        return;
+      }
+
+      setIsLoading(true);
+
+      const formData = new FormData();
+      formData.append('file', selectedImage);
+
+      try {
+        const { data } = await postOCR(formData);
+        const { address, company, email, mobile, name, position, tel } = data;
+
+        setCardInputData({
+          name: name || '',
+          position: position || '',
+          department: '',
+          company: company || '',
+          phone: mobile ? formatPhoneNumber(mobile) : '',
+          email: email || '',
+          tel: tel || '',
+          address: address || '',
+          memo: '',
+        });
+
+        setActiveBadge({ id: 2, name: '직접 입력' });
+        setSearchParams({ mode: 'direct' });
+      } catch (error) {
+        console.log('OCR 실패: ', error);
+        alert(
+          error.response?.data?.message || '명함 이미지 인식에 실패했습니다.'
+        );
+      } finally {
+        setIsLoading(false);
+      }
+      return;
+    }
+
     if (
       !cardInputData.name ||
       !cardInputData.company ||
@@ -75,24 +146,14 @@ export default function AddCardPage() {
     }
 
     const formData = new FormData();
-    formData.append('name', cardInputData.name);
-    formData.append('position', cardInputData.position);
-    formData.append('department', cardInputData.department);
-    formData.append('company', cardInputData.company);
-    formData.append('phone', cardInputData.phone);
-    formData.append('email', cardInputData.email);
-    formData.append('tel', cardInputData.tel);
-    formData.append('address', cardInputData.address);
-    formData.append('memo', cardInputData.memo);
+    Object.entries(cardInputData).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
     formData.append('categoryName', activeGroupBadge.name);
 
     if (profileImage) {
-      formData.append('profImgUrl', profileImage);
+      formData.append('profImg', profileImage);
     }
-
-    selectedImage.forEach((image, index) => {
-      formData.append(index === 0 ? 'frontImgUrl' : 'backImgUrl', image);
-    });
 
     try {
       await postCards({ data: formData });
@@ -106,103 +167,85 @@ export default function AddCardPage() {
 
   const handleProfileImageUpload = (event) => {
     const file = event.target.files[0];
+    if (!file) return;
     setProfileImage(file);
     setProfilePreview(URL.createObjectURL(file));
   };
 
   return (
-    <S.AddCardPage>
-      <Header color='blue' />
-      <SearchBar theme='white' />
-      <S.TitleContainer>
-        <S.Title>명함 추가하기</S.Title>
-        <S.Subtitle>사진을 첨부 / 직접 입력하여 명함 추가하기</S.Subtitle>
-      </S.TitleContainer>
-      <S.ButtonContainer>
-        <BlueBadge
-          badges={[
-            { id: 1, name: '이미지로 입력' },
-            { id: 2, name: '직접 입력' },
-          ]}
-          activeBadge={activeBadge}
-          setActiveBadge={handleBadgeChange}
-        />
-      </S.ButtonContainer>
-      {activeBadge.name === '이미지로 입력' ? (
-        <ImageInputForm
-          selectedImage={selectedImage}
-          onUploadImage={handleProfileImageUpload}
-        />
-      ) : (
-        <DirectInputForm
-          profileImage={profilePreview}
-          onUploadProfileImage={handleProfileImageUpload}
-          profileImageInputRef={profileImageInputRef}
-          inputFields={[
-            {
-              label: '이름 *',
-              type: 'text',
-              placeholder: '이름을 입력하세요',
-              field: 'name',
-            },
-            {
-              label: '회사명 *',
-              type: 'text',
-              placeholder: 'WELLET Corp.',
-              field: 'company',
-            },
-            {
-              label: '부서',
-              type: 'text',
-              placeholder: '신규 개발팀',
-              field: 'department',
-            },
-            {
-              label: '직책',
-              type: 'text',
-              placeholder: '사원',
-              field: 'position',
-            },
-            {
-              label: '휴대폰 *',
-              type: 'tel',
-              placeholder: '010-1234-5678',
-              field: 'phone',
-            },
-            {
-              label: '이메일 *',
-              type: 'email',
-              placeholder: 'email@welletapp.co.kr',
-              field: 'email',
-            },
-            {
-              label: '유선전화',
-              type: 'tel',
-              placeholder: '81-2-222-3456',
-              field: 'tel',
-            },
-            {
-              label: '주소',
-              type: 'text',
-              placeholder: '서울특별시 용산구 청파로 47길 100(청파동 2가)',
-              field: 'address',
-            },
-            { label: '메모', type: 'text', placeholder: '메모', field: 'memo' },
-          ]}
-          activeGroupBadge={activeGroupBadge}
-          groupBadges={groupBadges}
-          setActiveGroupBadge={setActiveGroupBadge}
-          onChange={(field, value) =>
-            setCardInputData((prev) => ({ ...prev, [field]: value }))
-          }
+    <>
+      <S.AddCardPage>
+        <Header color='blue' />
+        <SearchBar theme='white' />
+        <S.TitleContainer>
+          <S.Title>명함 추가</S.Title>
+          <S.Subtitle>사진을 첨부 / 직접 입력하여 명함 추가하기</S.Subtitle>
+        </S.TitleContainer>
+        <S.ButtonContainer>
+          <BlueBadge
+            badges={[
+              { id: 1, name: '이미지로 입력' },
+              { id: 2, name: '직접 입력' },
+            ]}
+            activeBadge={activeBadge}
+            setActiveBadge={handleBadgeChange}
+          />
+        </S.ButtonContainer>
+        {activeBadge.id === 1 ? (
+          <ImageUploadOverlay isLoading={isLoading}>
+            <ImageInputForm
+              selectedImage={selectedImage}
+              onUploadImage={handleCardImageUpload}
+              isLoading={isLoading}
+            />
+          </ImageUploadOverlay>
+        ) : (
+          <DirectInputForm
+            profileImage={profilePreview}
+            onUploadProfileImage={handleProfileImageUpload}
+            profileImageInputRef={profileImageInputRef}
+            inputFields={INPUT_FIELDS}
+            activeGroupBadge={activeGroupBadge}
+            groupBadges={groupBadges}
+            setActiveGroupBadge={setActiveGroupBadge}
+            value={cardInputData}
+            onChange={(field, value) =>
+              setCardInputData((prev) => ({
+                ...prev,
+                [field]: field === 'phone' ? formatPhoneNumber(value) : value,
+              }))
+            }
+            onOpenModal={() => {
+              console.log('모달 열기 실행됨');
+              setIsModalOpen(true);
+            }}
+          />
+        )}
+        <S.ActionBtnContainer>
+          <PrimaryButton onClick={handleSubmitButtonClick} disabled={isLoading}>
+            {isLoading
+              ? '등록 중...'
+              : activeBadge.id === 1
+                ? '이미지 등록'
+                : '등록'}
+          </PrimaryButton>
+          <SecondaryButton
+            onClick={() => navigate('/card')}
+            disabled={isLoading}
+          >
+            취소
+          </SecondaryButton>
+        </S.ActionBtnContainer>
+      </S.AddCardPage>
+
+      {isModalOpen && (
+        <AddGroupModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          badges={groupBadges}
+          onGroupChange={setGroupBadges}
         />
       )}
-      <S.ActionBtnContainer>
-        <PrimaryButton onClick={handleSubmitButtonClick}>등록</PrimaryButton>
-        <SecondaryButton onClick={() => navigate('/card')}>
-          취소
-        </SecondaryButton>
-      </S.ActionBtnContainer>
-    </S.AddCardPage>
+    </>
   );
 }

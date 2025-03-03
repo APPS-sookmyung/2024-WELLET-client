@@ -59,7 +59,7 @@ export const DragBar = styled.div`
 
 export const ModalTitle = styled.p`
   color: var(--grey4, #1a1a1a);
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.7px;
@@ -70,7 +70,7 @@ export const Center = styled.div`
 `;
 
 export const WarningMsg = styled.p`
-  font-size: 11px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.55px;
   padding: 20px 0 0 2px;

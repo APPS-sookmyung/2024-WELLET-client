@@ -57,21 +57,7 @@ export const EditButton = styled.a`
 export const MidBar = styled.div`
   width: 100%;
   display: inline-flex;
-  justify-content: space-between;
-`;
-
-export const LeftContainer2 = styled.div`
-  width: 31px;
-`;
-
-export const ShareIconWrapper = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  width: 31px;
-  height: 38px;
-  cursor: pointer;
-  padding: 16px 10px;
+  justify-content: center;
 `;
 
 export const MyInfoSummaryWrapper = styled.div`
@@ -90,7 +76,7 @@ export const ProfileImageWrapper = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 1px solid white; /* 임시 코드 */
+  border: 1px solid white;
   background-color: white;
   overflow: hidden;
 `;
@@ -183,7 +169,7 @@ export const MyInfoItem = styled.div`
 
 export const MyInfoLabel = styled.div`
   color: var(--grey2, #949494);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;

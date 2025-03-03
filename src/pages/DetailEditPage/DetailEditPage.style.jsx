@@ -31,7 +31,6 @@ export const Welletlogo = styled.div`
 `;
 
 export const EditIconBox = styled.div`
-  width: 60px;
   display: flex;
   justify-content: end;
 `;
@@ -41,8 +40,7 @@ export const EditIcon = styled.button`
   border-radius: 10px;
   background: var(--color-1, #ebf3fe);
   color: var(--primary, #2d29ff);
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
   height: 24px;
@@ -76,7 +74,7 @@ export const ProfilePic = styled.div`
   width: 68px;
   height: 68px;
   border-radius: 68px;
-  background: #2d29ff4c;
+  background: #ffffff;
 `;
 
 export const Galleryicon = styled.button`
@@ -116,7 +114,7 @@ export const InputNameBox = styled.input`
 
 export const Name = styled.div`
   color: var(--grey4, #1a1a1a);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -168,7 +166,7 @@ export const InputWrapper = styled.div`
 export const InputLabel = styled.label`
   padding: 0 6px;
   color: var(--grey3, #555);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.6px;
 `;
@@ -214,8 +212,7 @@ export const GroupButtonBar = styled.div`
   width: 100%;
   padding: 0 6px;
   color: var(--grey3, #555);
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.6px;
 `;
@@ -237,7 +234,7 @@ export const AddGroupButton = styled.button`
 
   color: var(--primary, #2d29ff);
 
-  font-size: 11px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 130%;

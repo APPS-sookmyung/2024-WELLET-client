@@ -8,13 +8,13 @@ export const AddCardPage = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   padding: 5px 0 8px;
 `;
 
 export const Title = styled.h1`
   color: var(--grey4, #1a1a1a);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -22,7 +22,7 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.p`
   color: var(--grey3, #555);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.55px;
 `;
@@ -55,7 +55,7 @@ export const AddImageContainer = styled.div`
 export const AddBoxTitle = styled.h3`
   margin: 6px 0 13px;
   color: var(--primary, #2d29ff);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.7px;
@@ -73,7 +73,7 @@ export const AddBoxSubTitle = styled.p`
   padding: 10px 0 16px;
   color: var(--grey2, #949494);
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
@@ -101,7 +101,7 @@ export const AddBoxDesc = styled.div`
 export const AddBoxText = styled.p`
   color: var(--grey2, #949494);
   text-align: center;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
 `;
@@ -109,7 +109,7 @@ export const AddBoxText = styled.p`
 export const ImportImageBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 14px;
+  padding: 10px;
 `;
 
 export const PreviewContainer = styled.div`
@@ -121,19 +121,20 @@ export const PreviewContainer = styled.div`
 
 export const PreviewImage = styled.img``;
 
-export const ImportImageBtn = styled.button`
+export const ImportImageBtn = styled.label`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 4px 10px;
+  padding: 10px 14px;
   gap: 8px;
   border-radius: 10px;
   background: var(--primary, #2d29ff);
   color: var(--white, #fff);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: -0.5px;
+  cursor: pointer;
 `;
 
 // 직접 입력으로 명함 추가
@@ -167,7 +168,7 @@ export const RegisterText = styled.div`
 
 export const RegisterTitle = styled.h3`
   color: var(--grey3, #555);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.7px;
@@ -176,7 +177,7 @@ export const RegisterTitle = styled.h3`
 export const RegisterSubTitle = styled.p`
   display: flex;
   color: var(--grey2, #949494);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 130%;
   letter-spacing: -0.55px;
 `;
@@ -198,9 +199,9 @@ export const GroupContainer = styled.div`
 export const InputLabel = styled.label`
   padding: 0 6px;
   color: var(--grey3, #555);
-  font-size: 11px;
-  line-height: 150%;
-  letter-spacing: -0.5px;
+  font-size: 12px;
+  line-height: 130%;
+  letter-spacing: -0.6px;
 `;
 
 export const GroupButtonWrapper = styled.div`
@@ -213,4 +214,32 @@ export const ActionBtnContainer = styled.div`
   display: flex;
   gap: 20px;
   margin: 16px 0 0;
+`;
+
+// 그룹 추가
+export const GroupButtonBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 5px 0;
+  width: 100%;
+`;
+
+export const AddGroupButton = styled.button`
+  display: flex;
+  align-items: center;
+  padding: 5px 9px 4px 9px;
+  gap: 4px;
+  white-space: nowrap;
+
+  color: var(--primary, #2d29ff);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.55px;
+
+  border-radius: 10px;
+  background: var(--color-1, #ebf3fe);
 `;

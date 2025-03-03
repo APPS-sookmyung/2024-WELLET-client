@@ -63,7 +63,7 @@ export default function CardDetailPage() {
             <S.NameBox>
               <S.NameFont>{info.name}</S.NameFont>
               <S.JobTeamFont>
-                {info.position} / {info.department}
+                {`${info.position || ''}${info.position && info.department ? ' / ' : ''}${info.department || ''}`}
               </S.JobTeamFont>
               <S.ComFont>{info.company}</S.ComFont>
             </S.NameBox>
@@ -84,43 +84,51 @@ export default function CardDetailPage() {
                 </S.IconBox>
               </S.ContactWrapper>
             </S.InfoBox>
-            <S.InfoBox>
-              <S.UserInfoLabel>이메일</S.UserInfoLabel>
-              <S.ContactWrapper>
-                <S.UserInfoValue>{info.email}</S.UserInfoValue>
-                <Icon id='mail' width='20' height='14' />
-              </S.ContactWrapper>
-            </S.InfoBox>
-            <S.InfoBox>
-              <S.UserInfoLabel>유선전화</S.UserInfoLabel>
-              <S.ContactWrapper>
-                <S.UserInfoValue>{info.tel}</S.UserInfoValue>
-                <Icon id='call' width='20' height='14' />
-              </S.ContactWrapper>
-            </S.InfoBox>
-            <S.InfoBox>
-              <S.UserInfoLabel>주소</S.UserInfoLabel>
-              <S.UserInfoValue>{info.address}</S.UserInfoValue>
-            </S.InfoBox>
+            {info.email && (
+              <S.InfoBox>
+                <S.UserInfoLabel>이메일</S.UserInfoLabel>
+                <S.ContactWrapper>
+                  <S.UserInfoValue>{info.email}</S.UserInfoValue>
+                  <Icon id='mail' width='20' height='14' />
+                </S.ContactWrapper>
+              </S.InfoBox>
+            )}
+            {info.tel && (
+              <S.InfoBox>
+                <S.UserInfoLabel>유선전화</S.UserInfoLabel>
+                <S.ContactWrapper>
+                  <S.UserInfoValue>{info.tel}</S.UserInfoValue>
+                  <Icon id='call' width='20' height='14' />
+                </S.ContactWrapper>
+              </S.InfoBox>
+            )}
+            {info.address && (
+              <S.InfoBox>
+                <S.UserInfoLabel>주소</S.UserInfoLabel>
+                <S.UserInfoValue>{info.address}</S.UserInfoValue>
+              </S.InfoBox>
+            )}
           </S.ContactContainer>
+
           <S.ConBar>메모</S.ConBar>
           <S.ContactContainer>
             <S.InfoBox>
               <S.UserInfoValue>{info.memo}</S.UserInfoValue>
             </S.InfoBox>
           </S.ContactContainer>
+
           <S.GroupButtonBar>그룹</S.GroupButtonBar>
           <S.GroupButtonBox>
             <S.GroupButton>{info.category || '그룹'}</S.GroupButton>
           </S.GroupButtonBox>
-          {(info.pic1 || info.pic2) && (
+          {(info.frontImg || info.backImg) && (
             <S.CardImageContainer>
-              <S.CardImageBox onClick={() => handleImageClick(info.pic1)}>
-                <img src={info.pic1} alt='사진 1' />
+              <S.CardImageBox onClick={() => handleImageClick(info.frontImg)}>
+                <img src={info.frontImg} alt='사진 1' />
               </S.CardImageBox>
-              {info.pic2 ? (
-                <S.CardImageBox onClick={() => handleImageClick(info.pic2)}>
-                  <img src={info.pic2} alt='사진 2' />
+              {info.backImg ? (
+                <S.CardImageBox onClick={() => handleImageClick(info.backImg)}>
+                  <img src={info.backImg} alt='사진 2' />
                 </S.CardImageBox>
               ) : (
                 <S.CardImageBox />
