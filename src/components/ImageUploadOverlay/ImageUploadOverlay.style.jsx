@@ -17,7 +17,7 @@ export const OverlayContainer = styled.div`
       width: 100%;
       height: 100%;  
       border-radius: 20px;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(148, 148, 148, 0.2);
       z-index: 1;
     }
 
