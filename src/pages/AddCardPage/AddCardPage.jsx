@@ -109,13 +109,13 @@ export default function AddCardPage() {
         setCardInputData({
           name: name || '',
           position: position || '',
-          department: department || '',
+          department: '',
           company: company || '',
           phone: mobile ? formatPhoneNumber(mobile) : '',
           email: email || '',
           tel: tel || '',
           address: address || '',
-          memo: memo || '',
+          memo: '',
         });
 
         setActiveBadge({ id: 2, name: '직접 입력' });
