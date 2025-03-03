@@ -12,6 +12,7 @@ export default function DirectInputForm({
   setActiveGroupBadge,
   value,
   onChange,
+  onOpenModal,
 }) {
   return (
     <S.DashedBorder>
@@ -69,7 +70,12 @@ export default function DirectInputForm({
             activeBadge={activeGroupBadge}
             setActiveBadge={setActiveGroupBadge}
           />
-          <S.AddGroupButton>
+          <S.AddGroupButton
+            onClick={() => {
+              console.log('그룹 편집 버튼 눌림');
+              onOpenModal();
+            }}
+          >
             <p>그룹 편집</p>
             <Icon id='circle-plus-blue' width='13' height='13' />
           </S.AddGroupButton>

@@ -7,6 +7,7 @@ import {
   SearchBar,
   SecondaryButton,
   ImageUploadOverlay,
+  AddGroupModal,
 } from '../../components';
 import * as S from './AddCardPage.style';
 import DirectInputForm from './DirectInputForm';
@@ -25,6 +26,7 @@ export default function AddCardPage() {
     name: mode === 'image' ? '이미지로 입력' : '직접 입력',
   });
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [groupBadges, setGroupBadges] = useState([]);
   const [activeGroupBadge, setActiveGroupBadge] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -171,61 +173,79 @@ export default function AddCardPage() {
   };
 
   return (
-    <S.AddCardPage>
-      <Header color='blue' />
-      <SearchBar theme='white' />
-      <S.TitleContainer>
-        <S.Title>명함 추가</S.Title>
-        <S.Subtitle>사진을 첨부 / 직접 입력하여 명함 추가하기</S.Subtitle>
-      </S.TitleContainer>
-      <S.ButtonContainer>
-        <BlueBadge
-          badges={[
-            { id: 1, name: '이미지로 입력' },
-            { id: 2, name: '직접 입력' },
-          ]}
-          activeBadge={activeBadge}
-          setActiveBadge={handleBadgeChange}
-        />
-      </S.ButtonContainer>
-      {activeBadge.id === 1 ? (
-        <ImageUploadOverlay isLoading={isLoading}>
-          <ImageInputForm
-            selectedImage={selectedImage}
-            onUploadImage={handleCardImageUpload}
-            isLoading={isLoading}
+    <>
+      <S.AddCardPage>
+        <Header color='blue' />
+        <SearchBar theme='white' />
+        <S.TitleContainer>
+          <S.Title>명함 추가</S.Title>
+          <S.Subtitle>사진을 첨부 / 직접 입력하여 명함 추가하기</S.Subtitle>
+        </S.TitleContainer>
+        <S.ButtonContainer>
+          <BlueBadge
+            badges={[
+              { id: 1, name: '이미지로 입력' },
+              { id: 2, name: '직접 입력' },
+            ]}
+            activeBadge={activeBadge}
+            setActiveBadge={handleBadgeChange}
           />
-        </ImageUploadOverlay>
-      ) : (
-        <DirectInputForm
-          profileImage={profilePreview}
-          onUploadProfileImage={handleProfileImageUpload}
-          profileImageInputRef={profileImageInputRef}
-          inputFields={INPUT_FIELDS}
-          activeGroupBadge={activeGroupBadge}
-          groupBadges={groupBadges}
-          setActiveGroupBadge={setActiveGroupBadge}
-          value={cardInputData}
-          onChange={(field, value) =>
-            setCardInputData((prev) => ({
-              ...prev,
-              [field]: field === 'phone' ? formatPhoneNumber(value) : value,
-            }))
-          }
+        </S.ButtonContainer>
+        {activeBadge.id === 1 ? (
+          <ImageUploadOverlay isLoading={isLoading}>
+            <ImageInputForm
+              selectedImage={selectedImage}
+              onUploadImage={handleCardImageUpload}
+              isLoading={isLoading}
+            />
+          </ImageUploadOverlay>
+        ) : (
+          <DirectInputForm
+            profileImage={profilePreview}
+            onUploadProfileImage={handleProfileImageUpload}
+            profileImageInputRef={profileImageInputRef}
+            inputFields={INPUT_FIELDS}
+            activeGroupBadge={activeGroupBadge}
+            groupBadges={groupBadges}
+            setActiveGroupBadge={setActiveGroupBadge}
+            value={cardInputData}
+            onChange={(field, value) =>
+              setCardInputData((prev) => ({
+                ...prev,
+                [field]: field === 'phone' ? formatPhoneNumber(value) : value,
+              }))
+            }
+            onOpenModal={() => {
+              console.log('모달 열기 실행됨');
+              setIsModalOpen(true);
+            }}
+          />
+        )}
+        <S.ActionBtnContainer>
+          <PrimaryButton onClick={handleSubmitButtonClick} disabled={isLoading}>
+            {isLoading
+              ? '등록 중...'
+              : activeBadge.id === 1
+                ? '이미지 등록'
+                : '등록'}
+          </PrimaryButton>
+          <SecondaryButton
+            onClick={() => navigate('/card')}
+            disabled={isLoading}
+          >
+            취소
+          </SecondaryButton>
+        </S.ActionBtnContainer>
+      </S.AddCardPage>
+
+      {isModalOpen && (
+        <AddGroupModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          badges={groupBadges}
+          onGroupChange={setGroupBadges}
         />
       )}
-      <S.ActionBtnContainer>
-        <PrimaryButton onClick={handleSubmitButtonClick} disabled={isLoading}>
-          {isLoading
-            ? '등록 중...'
-            : activeBadge.id === 1
-              ? '이미지 등록'
-              : '등록'}
-        </PrimaryButton>
-        <SecondaryButton onClick={() => navigate('/card')} disabled={isLoading}>
-          취소
-        </SecondaryButton>
-      </S.ActionBtnContainer>
-    </S.AddCardPage>
+    </>
   );
 }
