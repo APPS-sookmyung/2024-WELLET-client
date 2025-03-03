@@ -121,19 +121,27 @@ export default function CardDetailPage() {
           <S.GroupButtonBox>
             <S.GroupButton>{info.category || '그룹'}</S.GroupButton>
           </S.GroupButtonBox>
-          {(info.frontImg || info.backImg) && (
-            <S.CardImageContainer>
-              <S.CardImageBox onClick={() => handleImageClick(info.frontImg)}>
-                <img src={info.frontImg} alt='사진 1' />
-              </S.CardImageBox>
-              {info.backImg ? (
-                <S.CardImageBox onClick={() => handleImageClick(info.backImg)}>
-                  <img src={info.backImg} alt='사진 2' />
+
+          {(info.frontImgUrl || info.backImgUrl) && (
+            <S.CardImageNameBox>
+              <S.GroupButtonBar>명함 이미지</S.GroupButtonBar>
+              <S.CardImageContainer>
+                <S.CardImageBox
+                  onClick={() => handleImageClick(info.frontImgUrl)}
+                >
+                  <img src={info.frontImgUrl} alt='사진 1' />
                 </S.CardImageBox>
-              ) : (
-                <S.CardImageBox />
-              )}
-            </S.CardImageContainer>
+                {info.backImgUrl ? (
+                  <S.CardImageBox
+                    onClick={() => handleImageClick(info.backImgUrl)}
+                  >
+                    <img src={info.backImgUrl} alt='사진 2' />
+                  </S.CardImageBox>
+                ) : (
+                  <S.CardImageBox />
+                )}
+              </S.CardImageContainer>
+            </S.CardImageNameBox>
           )}
         </S.BottomContainer>
         {isModalOpen && (
