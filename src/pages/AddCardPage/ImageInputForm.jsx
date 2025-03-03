@@ -61,7 +61,7 @@ export default function ImageInputForm({ selectedImage, onUploadImage }) {
       onDrop={handleDrop}
       isDragOver={isDragOver}
     >
-      <S.AddImageContainer>
+      <S.AddImageContainer onClick={() => imageInputRef.current?.click()}>
         <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
         <S.AddBoxIconWrapper>
           <Icon id='circle-plus' fill='none' />
