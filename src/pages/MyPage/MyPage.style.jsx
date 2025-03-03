@@ -123,6 +123,10 @@ export const SubBar = styled.div`
   background: #8776ff;
   padding: 0 20px;
   gap: 0px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 // 내 상세 정보
