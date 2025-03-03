@@ -215,3 +215,31 @@ export const ActionBtnContainer = styled.div`
   gap: 20px;
   margin: 16px 0 0;
 `;
+
+// 그룹 추가
+export const GroupButtonBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 5px 0;
+  width: 100%;
+`;
+
+export const AddGroupButton = styled.button`
+  display: flex;
+  align-items: center;
+  padding: 5px 9px 4px 9px;
+  gap: 4px;
+  white-space: nowrap;
+
+  color: var(--primary, #2d29ff);
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.55px;
+
+  border-radius: 10px;
+  background: var(--color-1, #ebf3fe);
+`;

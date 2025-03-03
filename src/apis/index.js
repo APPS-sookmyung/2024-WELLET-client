@@ -18,3 +18,4 @@ export {
   putMyCard,
   putMyImg,
 } from './myCard';
+export { postOCR } from './ocr';
