@@ -97,6 +97,7 @@ export default function HomePage() {
                 <CardInfo
                   id={data.id}
                   name={data.name}
+                  company={data.company}
                   position={data.position}
                   department={data.department}
                   imageUrl={data.profImgUrl}
