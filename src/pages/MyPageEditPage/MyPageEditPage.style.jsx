@@ -181,7 +181,7 @@ export const Input = styled.input`
   border: none;
   background-color: transparent;
   width: 100%;
-  color: var(--grey4, #1a1a1a);
+  color: #000;
   font-size: 14px;
   line-height: 140%;
   letter-spacing: -0.7px;
