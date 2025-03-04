@@ -222,6 +222,26 @@ export const GroupButtonBox = styled.div`
   width: 100%;
 `;
 
+export const GroupButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--primary, #2d29ff);
+  padding: 4px 10px;
+  color: var(--white, #fff);
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: -0.55px;
+  border: none;
+  outline: none;
+
+  p {
+    padding-right: 8px;
+    white-space: nowrap;
+  }
+`;
+
 export const AddGroupButton = styled.button`
   display: flex;
   align-items: center;

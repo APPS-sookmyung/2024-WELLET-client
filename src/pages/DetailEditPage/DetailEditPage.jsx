@@ -5,11 +5,11 @@ import {
   getCardDetail,
   getGroupList,
   putCards,
-  putCardsPf,
   putCardsImg,
+  putCardsPf,
 } from '../../apis';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
-import { AddGroupModal, BlueBadge } from '../../components';
+import { AddGroupModal } from '../../components';
 import Icon from '../../components/Icon/Icon';
 import useFormData from '../../hooks/useFormData';
 import * as S from './DetailEditPage.style';
@@ -375,7 +375,15 @@ export default function DetailEditPage() {
         </S.InputField>
 
         <S.GroupButtonContainer>
-          <S.GroupButtonBar>그룹</S.GroupButtonBar>
+          {info.category && (
+            <>
+              <S.GroupButtonBar>그룹</S.GroupButtonBar>
+              <S.GroupButtonBox>
+                <S.GroupButton>{info.category}</S.GroupButton>
+              </S.GroupButtonBox>
+            </>
+          )}
+          {/* // 그룹 편집 기능
           <S.GroupButtonBox>
             <BlueBadge
               badges={badges}
@@ -387,7 +395,7 @@ export default function DetailEditPage() {
               <p>그룹 편집</p>
               <Icon id='circle-plus-blue' width='13' height='13' />
             </S.AddGroupButton>
-          </S.GroupButtonBox>
+          </S.GroupButtonBox> */}
         </S.GroupButtonContainer>
 
         {/* 이미지 업로드 */}

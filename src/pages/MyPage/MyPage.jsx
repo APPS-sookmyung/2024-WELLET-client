@@ -1,11 +1,12 @@
-import * as S from './MyPage.style';
-import Icon from '../../components/Icon/Icon';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { HiOutlineLink } from 'react-icons/hi';
-import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
+import { useNavigate } from 'react-router-dom';
 import { getMyCard } from '../../apis';
 import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
+import Icon from '../../components/Icon/Icon';
+import MY_CARD_SAMPLE_DATA from '../../constants/myCardSampleData';
+import { formatPhoneNumber } from '../../utils/HomePageUtils/formatPhoneNumber';
+import * as S from './MyPage.style';
 
 export default function MyPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,9 +28,11 @@ export default function MyPage() {
     fetchMyCard();
   }, []);
   const profileImageUrl = myInfo.profImgUrl || ProfileImgDefault;
-  const handleShareClick = () => {
-    setIsModalOpen(true);
-  };
+
+  // // 공유하기 버튼 클릭
+  // const handleShareClick = () => {
+  //   setIsModalOpen(true);
+  // };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -106,7 +109,9 @@ export default function MyPage() {
               <S.MyInfoItem>
                 <S.MyInfoLabel>휴대폰</S.MyInfoLabel>
                 <S.ContactWrapper>
-                  <S.MyInfoValue>{myInfo.phone}</S.MyInfoValue>
+                  <S.MyInfoValue>
+                    {formatPhoneNumber(myInfo.phone)}
+                  </S.MyInfoValue>
                 </S.ContactWrapper>
               </S.MyInfoItem>
               {myInfo.email && (
@@ -119,7 +124,9 @@ export default function MyPage() {
                 <S.MyInfoItem>
                   <S.MyInfoLabel>유선전화</S.MyInfoLabel>
                   <S.ContactWrapper>
-                    <S.MyInfoValue>{myInfo.tel}</S.MyInfoValue>
+                    <S.MyInfoValue>
+                      {formatPhoneNumber(myInfo.tel)}
+                    </S.MyInfoValue>
                   </S.ContactWrapper>
                 </S.MyInfoItem>
               )}

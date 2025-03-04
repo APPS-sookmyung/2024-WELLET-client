@@ -68,7 +68,6 @@ export default function HomePage() {
               company={myCardData.company}
               imageUrl={myCardData.profImgUrl}
               phone={myCardData.phone}
-              tel={myCardData.tel}
               email={myCardData.email}
               address={myCardData.address}
               onClick={() => navigate('/mypage')}
