@@ -204,10 +204,12 @@ export const CardImageContainer = styled.div`
 export const CardImageBox = styled.div`
   overflow: hidden;
   border-radius: 10px;
-
+  width: calc(50% - 10px);
+  aspect-ratio: 9 / 5;
+  max-width: 270px;
   img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 `;
