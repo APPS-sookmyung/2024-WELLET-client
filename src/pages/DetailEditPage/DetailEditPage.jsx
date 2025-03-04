@@ -188,7 +188,6 @@ export default function DetailEditPage() {
   }, [inputData, badges]);
 
   const handleGroupChange = (updatedBadges) => {
-    console.log('Updated badges:', updatedBadges);
     setBadges(updatedBadges);
     if (updatedBadges.length > 0) {
       setActiveBadge(updatedBadges[0]);
@@ -208,8 +207,6 @@ export default function DetailEditPage() {
         ...prev,
         profImgUrl: URL.createObjectURL(file),
       }));
-
-      console.log('프로필 이미지가 성공적으로 업데이트되었습니다.');
     } catch (error) {
       console.error('프로필 이미지 업데이트 중 오류 발생:', error);
     }
@@ -348,7 +345,7 @@ export default function DetailEditPage() {
                   <S.PencilIcon
                     onClick={() => setIsEditing({ ...isEditing, name: true })}
                   >
-                    <Icon id='pencil' fill='#FFF' />
+                    <Icon id='pencil' fill='#FFF' width={13} height={13} />
                   </S.PencilIcon>
                 </>
               )}

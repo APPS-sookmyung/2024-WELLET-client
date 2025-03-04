@@ -105,7 +105,7 @@ export default function AddCardPage() {
         setActiveBadge({ id: 2, name: '직접 입력' });
         setSearchParams({ mode: 'direct' });
       } catch (error) {
-        console.log('OCR 실패: ', error);
+        console.error('OCR 실패: ', error);
         alert(
           error.response?.data?.message || '명함 이미지 인식에 실패했습니다.'
         );
@@ -195,7 +195,6 @@ export default function AddCardPage() {
               }))
             }
             onOpenModal={() => {
-              console.log('모달 열기 실행됨');
               setIsModalOpen(true);
             }}
           />

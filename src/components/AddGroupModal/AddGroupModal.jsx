@@ -81,8 +81,6 @@ export default function AddGroupModal({
     });
 
     onGroupChange(modalBadges);
-    console.log('newBadgeIds:', newBadgeIds);
-    console.log('deletedBadgeIds:', deletedBadgeIds);
   };
 
   const handleCancelBtnClick = () => {

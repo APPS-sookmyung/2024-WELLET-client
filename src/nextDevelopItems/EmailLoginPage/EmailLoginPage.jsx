@@ -1,11 +1,11 @@
-import * as S from './EmailLoginPage.style';
-import Icon from '../../components/Icon/Icon';
+import { useState } from 'react';
+import { IoSquareOutline } from 'react-icons/io5';
+import { MdCheckBox } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import email_login_background from '../../assets/images/email_login_background.svg';
 import { PrimaryButton } from '../../components';
-import { useState } from 'react';
-import { MdCheckBox } from 'react-icons/md';
-import { IoSquareOutline } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
+import Icon from '../../components/Icon/Icon';
+import * as S from './EmailLoginPage.style';
 
 export default function EmailLoginPage() {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ export default function EmailLoginPage() {
           }}
         >
           <S.KakaoBtn>
-            <Icon id='kakao' />
+            <Icon id='kakao' width={15} height={14} />
           </S.KakaoBtn>
           카카오 계정 로그인
         </PrimaryButton>

@@ -84,8 +84,6 @@ export default function ViewCardPage() {
     }
 
     try {
-      console.log('삭제할 카드 ID 목록:', selectedCards);
-
       const sortedList = selectedCards.sort((a, b) => a - b);
       await patchCards({ cardList: sortedList });
 
@@ -115,10 +113,6 @@ export default function ViewCardPage() {
       );
     }
   };
-
-  useEffect(() => {
-    console.log('선택된 카드 ID 목록:', selectedCards);
-  }, [selectedCards]);
 
   const searchKeyword = localStorage.getItem('searchKeyword');
 

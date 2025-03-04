@@ -72,7 +72,6 @@ export default function DirectInputForm({
           />
           <S.AddGroupButton
             onClick={() => {
-              console.log('그룹 편집 버튼 눌림');
               onOpenModal();
             }}
           >

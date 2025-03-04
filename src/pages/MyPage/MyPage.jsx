@@ -17,7 +17,6 @@ export default function MyPage() {
     const fetchMyCard = async () => {
       try {
         const response = await getMyCard();
-        console.log(response);
         setMyInfo(response.data);
       } catch (error) {
         console.error('명함 정보를 가져오는 데 실패했습니다.', error);

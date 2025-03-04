@@ -19,7 +19,6 @@ export default function BlueBadge({
   }, [activeBadge, setInfo]);
 
   const handleBadgeClick = (badge) => {
-    console.log('선택된 뱃지:', badge);
     setActiveBadge(badge);
   };
 
