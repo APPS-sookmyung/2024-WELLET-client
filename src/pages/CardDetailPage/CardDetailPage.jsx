@@ -116,12 +116,14 @@ export default function CardDetailPage() {
               <S.UserInfoValue>{info.memo}</S.UserInfoValue>
             </S.InfoBox>
           </S.ContactContainer>
-
-          <S.GroupButtonBar>그룹</S.GroupButtonBar>
-          <S.GroupButtonBox>
-            <S.GroupButton>{info.category || '그룹'}</S.GroupButton>
-          </S.GroupButtonBox>
-
+          {info.category && (
+            <>
+              <S.GroupButtonBar>그룹</S.GroupButtonBar>
+              <S.GroupButtonBox>
+                <S.GroupButton>{info.category}</S.GroupButton>
+              </S.GroupButtonBox>
+            </>
+          )}
           {(info.frontImgUrl || info.backImgUrl) && (
             <S.CardImageNameBox>
               <S.GroupButtonBar>명함 이미지</S.GroupButtonBar>
