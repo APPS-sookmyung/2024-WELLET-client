@@ -160,7 +160,7 @@ export default function ViewCardPage() {
           <S.EditBadgeWrapper>
             <S.DeleteCardBadge onClick={handleDeleteClick}>
               <S.BadgeText>명함 삭제</S.BadgeText>
-              {/* <Icon id='trash' /> */}
+              <Icon id='trash' width={9} height={10} />
             </S.DeleteCardBadge>
             {isEditCompleteVisible && (
               <S.EditCompletedBadge onClick={handleEditCompleteClick}>
