@@ -79,8 +79,12 @@ export default function CardDetailPage() {
               <S.ContactWrapper>
                 <S.UserInfoValue>{info.phone}</S.UserInfoValue>
                 <S.IconBox>
-                  <Icon id='message' width='20' height='14' />
-                  <Icon id='call' width='20' height='14' />
+                  <a href={`sms:${info.phone}`}>
+                    <Icon id='message' width='20' height='14' />
+                  </a>
+                  <a href={`tel:${info.phone}`}>
+                    <Icon id='call' width='20' height='14' />
+                  </a>
                 </S.IconBox>
               </S.ContactWrapper>
             </S.InfoBox>
@@ -89,7 +93,9 @@ export default function CardDetailPage() {
                 <S.UserInfoLabel>이메일</S.UserInfoLabel>
                 <S.ContactWrapper>
                   <S.UserInfoValue>{info.email}</S.UserInfoValue>
-                  <Icon id='mail' width='20' height='14' />
+                  <a href={`mailto:${info.email}`}>
+                    <Icon id='mail' width='20' height='14' />
+                  </a>
                 </S.ContactWrapper>
               </S.InfoBox>
             )}
@@ -98,7 +104,9 @@ export default function CardDetailPage() {
                 <S.UserInfoLabel>유선전화</S.UserInfoLabel>
                 <S.ContactWrapper>
                   <S.UserInfoValue>{info.tel}</S.UserInfoValue>
-                  <Icon id='call' width='20' height='14' />
+                  <a href={`tel:${info.tel}`}>
+                    <Icon id='call' width='20' height='14' />
+                  </a>
                 </S.ContactWrapper>
               </S.InfoBox>
             )}
