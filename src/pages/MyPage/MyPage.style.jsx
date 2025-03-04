@@ -161,12 +161,11 @@ export const MyInfoContainer = styled.div`
   background: #f4f4f9;
   width: 100%;
   padding: 12px 17px;
-  gap: 13px;
+  gap: 8px;
 `;
 
 export const MyInfoItem = styled.div`
   width: 100%;
-  padding: 2px;
 `;
 
 export const MyInfoLabel = styled.div`
