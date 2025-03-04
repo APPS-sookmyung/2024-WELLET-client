@@ -152,14 +152,12 @@ export default function MyPageEditPage() {
   const handleEditComplete = async () => {
     try {
       let response;
+
       if (!myInfo?.id) {
-        console.log('POST 요청: 새 명함 생성');
-        response = await postMyCard({ data: updatedDataForm() });
+        response = await postMyCard({ data: updatedDataForm() }); // POST 요청: 새 명함 생성
       } else {
-        console.log('PUT 요청: 명함 수정');
-        response = await putMyCard({ data: updatedDataForm() });
+        response = await putMyCard({ data: updatedDataForm() }); // PUT 요청: 명함 수정
       }
-      console.log('PUT 응답 데이터:', response.data);
 
       setMyInfo((prevInfo) => ({
         ...prevInfo,
@@ -184,10 +182,7 @@ export default function MyPageEditPage() {
       const formData = new FormData();
       formData.append('profImg', file);
 
-      console.log('프로필 이미지 업로드 요청:', file);
-
       const response = await putMyImg(formData);
-      console.log('업로드 응답:', response.data);
 
       if (response.data?.profImgUrl) {
         setMyInfo((prevInfo) => ({
