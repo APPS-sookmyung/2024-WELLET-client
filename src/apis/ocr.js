@@ -7,7 +7,5 @@ export const postOCR = async (body) => {
       'Content-Type': 'multipart/form-data',
     },
   });
-
-  console.log('OCR 사진 업로드: ', response);
   return response;
 };
