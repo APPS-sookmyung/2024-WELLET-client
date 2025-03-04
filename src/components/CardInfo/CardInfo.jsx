@@ -37,12 +37,12 @@ export default function CardInfo({
       </S.CardWrapper>
       {!isDeleteMode && (
         <S.ArrowIconWrapper>
-          <Icon id='arrow-right' fill='none' />
+          <Icon id='arrow-right' fill='none' width={13} height={13}/>
         </S.ArrowIconWrapper>
       )}
       {isDeleteMode && (
         <S.ArrowIconWrapper>
-          <Icon id={isSelected ? 'circle-check' : 'circle'} fill='none' />
+          <Icon id={isSelected ? 'circle-check' : 'circle'} fill='none' width={16} height={16}/>
         </S.ArrowIconWrapper>
       )}
     </S.Card>

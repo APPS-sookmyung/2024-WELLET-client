@@ -57,12 +57,12 @@ export const ExtraInfo = styled.div`
   color: #555;
 
   p:nth-of-type(1) {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
   }
 
   p:nth-of-type(2) {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
   }
 `;
