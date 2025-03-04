@@ -271,8 +271,11 @@ export default function DetailEditPage() {
   });
 
   const handleEditComplete = async () => {
-    if ((!selectedFiles.frontImg || !selectedFiles.backImg) && !profileImage) {
-      alert('두 이미지를 모두 수정해주세요.');
+    if (
+      (selectedFiles.frontImg || selectedFiles.backImg) &&
+      (!selectedFiles.frontImg || !selectedFiles.backImg)
+    ) {
+      alert('명함의 앞면과 뒷면 이미지를 모두 수정해주세요.');
       return;
     }
     const updatedData = updatedDataForm();
