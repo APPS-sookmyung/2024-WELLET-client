@@ -321,8 +321,9 @@ export const AddCardImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
+  width: calc(50% - 10px);
+  aspect-ratio: 9 / 5;
+  max-width: 270px;
   object-fit: cover;
   border-radius: 10px;
   background-color: #f4f4f9;

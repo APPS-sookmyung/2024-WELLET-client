@@ -42,7 +42,7 @@ const InputWrapper = memo(
           />
           {!autoFocus && (
             <S.IconWrapper onClick={() => onFocus(name)}>
-              <Icon id='pencil' fill='none' width={13} height={13}/>
+              <Icon id='pencil' fill='none' width={13} height={13} />
             </S.IconWrapper>
           )}
         </S.InputBox>
@@ -186,6 +186,15 @@ export default function DetailEditPage() {
       }
     }
   }, [inputData, badges]);
+  useEffect(() => {
+    if (selectedImage.frontImg || selectedImage.backImg) {
+      setInfo((prev) => ({
+        ...prev,
+        frontImg: selectedImage.frontImg,
+        backImg: selectedImage.backImg,
+      }));
+    }
+  }, [selectedImage]);
 
   const handleGroupChange = (updatedBadges) => {
     setBadges(updatedBadges);
@@ -219,20 +228,21 @@ export default function DetailEditPage() {
   const handleImageUpload = async (e, target) => {
     const file = e.target.files[0];
     if (file) {
-      // 미리보기 이미지 URL 생성
       const newImageUrl = URL.createObjectURL(file);
 
-      // info 상태를 업데이트하여 미리보기 화면에 반영
-      setInfo((prev) => ({
-        ...prev,
-        [`${target}Url`]: newImageUrl, // frontImgUrl 또는 backImgUrl에 미리보기 URL 추가
-      }));
+      setSelectedImage((prev) => {
+        const updated = { ...prev, [target]: newImageUrl };
+        return updated;
+      });
 
       const updatedFiles = { ...selectedFiles, [target]: file };
       setSelectedFiles(updatedFiles);
+      setInfo((prev) => ({
+        ...prev,
+        [`${target}Url`]: newImageUrl,
+      }));
 
       try {
-        // frontImg와 backImg가 모두 있는 경우에만 API 호출
         if (updatedFiles.frontImg && updatedFiles.backImg) {
           const combinedFormData = new FormData();
           combinedFormData.append('frontImg', updatedFiles.frontImg);
@@ -261,12 +271,15 @@ export default function DetailEditPage() {
   });
 
   const handleEditComplete = async () => {
+    if (!selectedFiles.frontImg || !selectedFiles.backImg) {
+      alert('두 이미지를 모두 수정해주세요.');
+      return;
+    }
     const updatedData = updatedDataForm();
     if (activeBadge) {
       updatedData.categoryName = activeBadge.name;
     }
 
-    // 이미지 데이터는 각각 따로 관리해서 null로 덮어씌워지지 않도록 처리
     if (selectedFiles.frontImg && selectedFiles.backImg) {
       updatedData.frontImg = selectedFiles.frontImg;
       updatedData.backImg = selectedFiles.backImg;
@@ -399,14 +412,11 @@ export default function DetailEditPage() {
         <S.CardAddImageContainer>
           <S.GroupButtonBar>명함 이미지</S.GroupButtonBar>
           <S.CardImageContainer>
-            {(info.frontImg && info.backImg) ||
-            (selectedImage.frontImg && selectedImage.backImg) ? (
+            {(info.frontImg || info.backImg) &&
+            (selectedImage.frontImg || selectedImage.backImg) ? (
               <>
                 <S.CardImageBox>
-                  <img
-                    src={selectedImage.frontImg || info.frontImg}
-                    alt='사진 1'
-                  />
+                  <img src={selectedImage.frontImg || info.frontImg} alt='' />
                   <S.CardGalleryIcon>
                     <Icon
                       id='gallery'
@@ -425,10 +435,7 @@ export default function DetailEditPage() {
                   </S.CardGalleryIcon>
                 </S.CardImageBox>
                 <S.CardImageBox>
-                  <img
-                    src={selectedImage.backImg || info.backImg}
-                    alt='사진 2'
-                  />
+                  <img src={selectedImage.backImg || info.backImg} alt='' />
                   <S.CardGalleryIcon>
                     <Icon
                       id='gallery'
