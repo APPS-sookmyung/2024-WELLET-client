@@ -271,7 +271,7 @@ export default function DetailEditPage() {
   });
 
   const handleEditComplete = async () => {
-    if (!selectedFiles.frontImg || !selectedFiles.backImg) {
+    if ((!selectedFiles.frontImg || !selectedFiles.backImg) && !profileImage) {
       alert('두 이미지를 모두 수정해주세요.');
       return;
     }
