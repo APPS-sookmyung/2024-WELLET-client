@@ -178,10 +178,11 @@ export const MyInfoLabel = styled.div`
 
 export const MyInfoValue = styled.div`
   color: var(--grey4, #1a1a1a);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 150%;
   letter-spacing: -0.5px;
   display: inline;
+  font-weight: 400;
 `;
 
 export const ContactWrapper = styled.div`
@@ -189,6 +190,11 @@ export const ContactWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1px;
+  color: var(--grey4, #1a1a1a);
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+  font-weight: 400;
 `;
 
 export const IconBox = styled.div`
