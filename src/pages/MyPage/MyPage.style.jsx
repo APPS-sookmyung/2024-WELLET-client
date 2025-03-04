@@ -29,7 +29,7 @@ export const MyCardTitle = styled.div`
   display: flex;
   justify-content: center;
   color: var(--white, #fff);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.5px;
@@ -43,11 +43,9 @@ export const EditButton = styled.a`
   border-radius: 10px;
   background: var(--color-1, #ebf3fe);
   color: var(--primary, #2d29ff);
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 14px;
   line-height: 150%;
   letter-spacing: -0.5px;
-  width: 60px;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -123,6 +121,10 @@ export const SubBar = styled.div`
   background: #8776ff;
   padding: 0 20px;
   gap: 0px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 // 내 상세 정보

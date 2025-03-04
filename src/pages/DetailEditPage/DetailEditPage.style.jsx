@@ -187,14 +187,11 @@ export const Input = styled.input`
   border: none;
   background-color: transparent;
   width: 100%;
-  color: var(--grey2, #949494);
+  color: #000;
   font-size: 14px;
   line-height: 140%;
   letter-spacing: -0.7px;
   outline: none;
-  &:focus {
-    color: #000;
-  }
 `;
 
 export const IconWrapper = styled.div`
@@ -223,6 +220,26 @@ export const GroupButtonBox = styled.div`
   gap: 5px;
   padding: 5px 0;
   width: 100%;
+`;
+
+export const GroupButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: var(--primary, #2d29ff);
+  padding: 4px 10px;
+  color: var(--white, #fff);
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: -0.55px;
+  border: none;
+  outline: none;
+
+  p {
+    padding-right: 8px;
+    white-space: nowrap;
+  }
 `;
 
 export const AddGroupButton = styled.button`
@@ -271,7 +288,7 @@ export const MoreIcon = styled.div`
 export const CardImageContainer = styled.div`
   display: flex;
   gap: 20px;
-  padding: 16px;
+  padding: 0 4px 16px;
   width: 100%;
   justify-content: baseline;
 `;
@@ -286,6 +303,27 @@ export const CardImageBox = styled.div`
     height: 100px;
     object-fit: cover;
   }
+`;
+
+export const CardAddImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  gap: 2px;
+  padding: 0 16px 30px 16px;
+  width: 100%;
+`;
+
+export const AddCardImage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: #f4f4f9;
+  cursor: pointer;
 `;
 
 export const CardGalleryIcon = styled.button`

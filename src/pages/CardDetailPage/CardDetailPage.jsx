@@ -79,8 +79,12 @@ export default function CardDetailPage() {
               <S.ContactWrapper>
                 <S.UserInfoValue>{info.phone}</S.UserInfoValue>
                 <S.IconBox>
-                  <Icon id='message' width='20' height='14' />
-                  <Icon id='call' width='20' height='14' />
+                  <a href={`sms:${info.phone}`}>
+                    <Icon id='message' width='20' height='14' />
+                  </a>
+                  <a href={`tel:${info.phone}`}>
+                    <Icon id='call' width='20' height='14' />
+                  </a>
                 </S.IconBox>
               </S.ContactWrapper>
             </S.InfoBox>
@@ -89,7 +93,9 @@ export default function CardDetailPage() {
                 <S.UserInfoLabel>이메일</S.UserInfoLabel>
                 <S.ContactWrapper>
                   <S.UserInfoValue>{info.email}</S.UserInfoValue>
-                  <Icon id='mail' width='20' height='14' />
+                  <a href={`mailto:${info.email}`}>
+                    <Icon id='mail' width='20' height='14' />
+                  </a>
                 </S.ContactWrapper>
               </S.InfoBox>
             )}
@@ -98,7 +104,9 @@ export default function CardDetailPage() {
                 <S.UserInfoLabel>유선전화</S.UserInfoLabel>
                 <S.ContactWrapper>
                   <S.UserInfoValue>{info.tel}</S.UserInfoValue>
-                  <Icon id='call' width='20' height='14' />
+                  <a href={`tel:${info.tel}`}>
+                    <Icon id='call' width='20' height='14' />
+                  </a>
                 </S.ContactWrapper>
               </S.InfoBox>
             )}
@@ -116,24 +124,34 @@ export default function CardDetailPage() {
               <S.UserInfoValue>{info.memo}</S.UserInfoValue>
             </S.InfoBox>
           </S.ContactContainer>
-
-          <S.GroupButtonBar>그룹</S.GroupButtonBar>
-          <S.GroupButtonBox>
-            <S.GroupButton>{info.category || '그룹'}</S.GroupButton>
-          </S.GroupButtonBox>
-          {(info.frontImg || info.backImg) && (
-            <S.CardImageContainer>
-              <S.CardImageBox onClick={() => handleImageClick(info.frontImg)}>
-                <img src={info.frontImg} alt='사진 1' />
-              </S.CardImageBox>
-              {info.backImg ? (
-                <S.CardImageBox onClick={() => handleImageClick(info.backImg)}>
-                  <img src={info.backImg} alt='사진 2' />
+          {info.category && (
+            <>
+              <S.GroupButtonBar>그룹</S.GroupButtonBar>
+              <S.GroupButtonBox>
+                <S.GroupButton>{info.category}</S.GroupButton>
+              </S.GroupButtonBox>
+            </>
+          )}
+          {(info.frontImgUrl || info.backImgUrl) && (
+            <S.CardImageNameBox>
+              <S.GroupButtonBar>명함 이미지</S.GroupButtonBar>
+              <S.CardImageContainer>
+                <S.CardImageBox
+                  onClick={() => handleImageClick(info.frontImgUrl)}
+                >
+                  <img src={info.frontImgUrl} alt='사진 1' />
                 </S.CardImageBox>
-              ) : (
-                <S.CardImageBox />
-              )}
-            </S.CardImageContainer>
+                {info.backImgUrl ? (
+                  <S.CardImageBox
+                    onClick={() => handleImageClick(info.backImgUrl)}
+                  >
+                    <img src={info.backImgUrl} alt='사진 2' />
+                  </S.CardImageBox>
+                ) : (
+                  <S.CardImageBox />
+                )}
+              </S.CardImageContainer>
+            </S.CardImageNameBox>
           )}
         </S.BottomContainer>
         {isModalOpen && (

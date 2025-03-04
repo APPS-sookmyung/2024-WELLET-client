@@ -3,8 +3,8 @@ import * as S from './AddCardPage.style';
 import Icon from '../../components/Icon/Icon';
 
 const UPLOAD_GUIDELINES = [
-  '이미지는 1장만 업로드할 수 있습니다.',
-  '업로드 가능한 최대 크기는 1MB 입니다.',
+  '이미지 파일만 업로드할 수 있습니다.',
+  '1장만 업로드할 수 있습니다.',
 ];
 
 export default function ImageInputForm({ selectedImage, onUploadImage }) {
@@ -37,11 +37,6 @@ export default function ImageInputForm({ selectedImage, onUploadImage }) {
       return;
     }
 
-    if (file.size > 1024 * 1024) {
-      alert('업로드 가능한 최대 크기는 1MB입니다.');
-      return;
-    }
-
     onUploadImage({ target: { files: [file] } });
   };
 
@@ -61,7 +56,7 @@ export default function ImageInputForm({ selectedImage, onUploadImage }) {
       onDrop={handleDrop}
       isDragOver={isDragOver}
     >
-      <S.AddImageContainer>
+      <S.AddImageContainer onClick={() => imageInputRef.current?.click()}>
         <S.AddBoxTitle>등록할 명함첩을 선택하세요</S.AddBoxTitle>
         <S.AddBoxIconWrapper>
           <Icon id='circle-plus' fill='none' />

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, memo, useRef } from 'react';
-import * as S from './MyPageEditPage.style';
-import Icon from '../../components/Icon/Icon';
+import { useQuery } from '@tanstack/react-query';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getMyCard, postMyCard, putMyCard, putMyImg } from '../../apis';
-import useFormData from '../../hooks/useFormData';
-import { useQuery } from '@tanstack/react-query';
+import Icon from '../../components/Icon/Icon';
+import { formatPhoneNumber } from '../../utils/HomePageUtils/formatPhoneNumber';
+import * as S from './MyPageEditPage.style';
 
 const InputWrapper = memo(
   ({
@@ -278,7 +278,13 @@ export default function MyPageEditPage() {
               name={field.name}
               value={field.value}
               placeholder={field.value}
-              onChange={field.onChange}
+              onChange={(e) => {
+                const { name, type, value } = e.target;
+                setMyInfo((prev) => ({
+                  ...prev,
+                  [name]: type === 'tel' ? formatPhoneNumber(value) : value,
+                }));
+              }}
               onBlur={() => setIsEditing({ ...isEditing, [field.name]: false })}
               onFocus={() => setIsEditing({ ...isEditing, [field.name]: true })}
               autoFocus={isEditing[field.name]}

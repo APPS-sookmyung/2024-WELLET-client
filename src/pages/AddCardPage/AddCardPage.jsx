@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { getGroupList, postCards, postOCR } from '../../apis';
 import {
+  AddGroupModal,
   BlueBadge,
   Header,
-  PrimaryButton,
-  SearchBar,
-  SecondaryButton,
   ImageUploadOverlay,
-  AddGroupModal,
+  PrimaryButton,
+  SecondaryButton,
 } from '../../components';
+import { formatPhoneNumber } from '../../utils/HomePageUtils/formatPhoneNumber';
 import * as S from './AddCardPage.style';
 import DirectInputForm from './DirectInputForm';
 import ImageInputForm from './ImageInputForm';
-import { postCards, getGroupList, postOCR } from '../../apis';
 import INPUT_FIELDS from './inputFields';
 
 export default function AddCardPage() {
@@ -72,26 +72,6 @@ export default function AddCardPage() {
     if (files.length === 0) return;
     setSelectedImage(files[0]);
     event.target.value = '';
-  };
-
-  const formatPhoneNumber = (value) => {
-    let onlyNumbers = value.replace(/\D/g, '');
-
-    if (onlyNumbers.startsWith('82')) {
-      if (onlyNumbers.startsWith('8210')) {
-        onlyNumbers = '010' + onlyNumbers.slice(4);
-      } else {
-        onlyNumbers = '010' + onlyNumbers.slice(2);
-      }
-    }
-
-    if (onlyNumbers.length <= 3) {
-      return onlyNumbers;
-    } else if (onlyNumbers.length <= 7) {
-      return `${onlyNumbers.slice(0, 3)}-${onlyNumbers.slice(3)}`;
-    } else {
-      return `${onlyNumbers.slice(0, 3)}-${onlyNumbers.slice(3, 7)}-${onlyNumbers.slice(7, 11)}`;
-    }
   };
 
   const handleSubmitButtonClick = async () => {
@@ -176,7 +156,6 @@ export default function AddCardPage() {
     <>
       <S.AddCardPage>
         <Header color='blue' />
-        <SearchBar theme='white' />
         <S.TitleContainer>
           <S.Title>명함 추가</S.Title>
           <S.Subtitle>사진을 첨부 / 직접 입력하여 명함 추가하기</S.Subtitle>

@@ -3,15 +3,15 @@ import ProfileImgDefault from '../../assets/images/profile-img-default.svg';
 import * as S from './MyCard.style';
 
 export default function MyCard({
+  backgroundColor,
   name,
   department,
   position,
   company,
   imageUrl,
-  tel,
+  phone,
   email,
   address,
-  backgroundColor,
   onClick,
 }) {
   return (
@@ -27,14 +27,18 @@ export default function MyCard({
         <S.Team>
           {`${company || ''}${company && (department || position) ? ' | ' : ''}${department || ''}${department && position ? ' | ' : ''}${position || ''}`}
         </S.Team>
-        <S.ExtraInfo>
-          <p>PHONE</p>
-          <p>{`+${tel}`}</p>
-        </S.ExtraInfo>
-        <S.ExtraInfo>
-          <p>EMAIL</p>
-          <p>{email}</p>
-        </S.ExtraInfo>
+        {phone && (
+          <S.ExtraInfo>
+            <p>PHONE</p>
+            <p>{`+${phone}`}</p>
+          </S.ExtraInfo>
+        )}
+        {email && (
+          <S.ExtraInfo>
+            <p>EMAIL</p>
+            <p>{email}</p>
+          </S.ExtraInfo>
+        )}
         {address && (
           <S.ExtraInfo>
             <p>ADRESS</p>
