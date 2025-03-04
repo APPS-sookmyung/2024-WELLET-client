@@ -28,9 +28,11 @@ export default function MyPage() {
     fetchMyCard();
   }, []);
   const profileImageUrl = myInfo.profImgUrl || ProfileImgDefault;
-  const handleShareClick = () => {
-    setIsModalOpen(true);
-  };
+
+  // // 공유하기 버튼 클릭
+  // const handleShareClick = () => {
+  //   setIsModalOpen(true);
+  // };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
