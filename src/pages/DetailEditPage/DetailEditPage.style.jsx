@@ -297,10 +297,13 @@ export const CardImageBox = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 10px;
+  width: calc(50% - 10px);
+  max-width: 270px;
+  aspect-ratio: 9 / 5;
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 `;
