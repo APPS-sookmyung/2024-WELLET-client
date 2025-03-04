@@ -131,7 +131,7 @@ export default function ViewCardPage() {
     return searchData.filter((data) => data.category === activeBadge?.name);
   };
 
-  const displayData = getDisplayData();
+  const displayData = getDisplayData().sort((a, b) => b.id - a.id);
 
   return (
     <>
@@ -170,9 +170,9 @@ export default function ViewCardPage() {
               id={data.id}
               key={data.id}
               name={data.name}
+              company={data.company}
               position={data.position}
               department={data.department}
-              company={data.company}
               imageUrl={data.profImgUrl}
               isDeleteMode={isDeleteMode}
               isSelected={selectedCards.includes(data.id)}

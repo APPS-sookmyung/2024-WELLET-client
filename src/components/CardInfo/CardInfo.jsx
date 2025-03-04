@@ -7,6 +7,7 @@ import * as S from './CardInfo.style';
 export default function CardInfo({
   id,
   name,
+  company,
   position,
   department,
   imageUrl,
@@ -31,18 +32,23 @@ export default function CardInfo({
         <S.Info>
           <S.Name isSelected={isSelected}>{name}</S.Name>
           <S.Role isSelected={isSelected}>
-            {department} {department && position ? `/ ${position}` : position}
+            {`${company || ''}${company && (department || position) ? ' / ' : ''}${department || ''}${department && position ? ' / ' : ''}${position || ''}`}
           </S.Role>
         </S.Info>
       </S.CardWrapper>
       {!isDeleteMode && (
         <S.ArrowIconWrapper>
-          <Icon id='arrow-right' fill='none' width={13} height={13}/>
+          <Icon id='arrow-right' fill='none' width={13} height={13} />
         </S.ArrowIconWrapper>
       )}
       {isDeleteMode && (
         <S.ArrowIconWrapper>
-          <Icon id={isSelected ? 'circle-check' : 'circle'} fill='none' width={16} height={16}/>
+          <Icon
+            id={isSelected ? 'circle-check' : 'circle'}
+            fill='none'
+            width={16}
+            height={16}
+          />
         </S.ArrowIconWrapper>
       )}
     </S.Card>

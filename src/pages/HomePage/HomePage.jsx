@@ -12,7 +12,11 @@ export default function HomePage() {
   const [myCardData, setMyCardData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [myCardId, setMyCardId] = useState(null);
-  useVisibleCardsEffect(setVisibleList, cardsData);
+
+  useVisibleCardsEffect(
+    setVisibleList,
+    cardsData.sort((a, b) => b.id - a.id)
+  );
 
   async function fetchMyCard() {
     try {
@@ -97,6 +101,7 @@ export default function HomePage() {
                 <CardInfo
                   id={data.id}
                   name={data.name}
+                  company={data.company}
                   position={data.position}
                   department={data.department}
                   imageUrl={data.profImgUrl}
