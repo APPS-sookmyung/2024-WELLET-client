@@ -348,7 +348,7 @@ export default function DetailEditPage() {
                   <S.PencilIcon
                     onClick={() => setIsEditing({ ...isEditing, name: true })}
                   >
-                    <Icon id='pencil' fill='#FFF' />
+                    <Icon id='pencil' fill='#FFF' width={13} height={13}/>
                   </S.PencilIcon>
                 </>
               )}
