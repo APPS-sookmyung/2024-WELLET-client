@@ -1,10 +1,10 @@
-import * as S from './LoginPage.styles';
-import Icon from '../../components/Icon/Icon';
-import login_background_circles from '../../assets/images/login_background_circles.svg';
-import login_background_lines from '../../assets/images/login_background_lines.svg';
-import { PrimaryButton, SecondaryButton } from '../../components';
 import { useNavigate } from 'react-router-dom';
 import { kakaoLoginAPI } from '../../apis';
+import login_background_circles from '../../assets/images/login_background_circles.svg';
+import login_background_lines from '../../assets/images/login_background_lines.svg';
+import { PrimaryButton } from '../../components';
+import Icon from '../../components/Icon/Icon';
+import * as S from './LoginPage.styles';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -41,12 +41,12 @@ export default function LoginPage() {
           style={{
             backgroundColor: '#FAE100',
             color: '#1A1A1C',
-            gap: '2px',
+            gap: '4px',
           }}
           onClick={kakaoLogin}
         >
           <S.KakaoIcon>
-            <Icon id='kakao' />
+            <Icon id='kakao' width={15} height={14} />
           </S.KakaoIcon>
           카카오 계정 로그인
         </PrimaryButton>

@@ -42,7 +42,7 @@ const InputWrapper = memo(
           />
           {!autoFocus && (
             <S.IconWrapper onClick={() => onFocus(name)}>
-              <Icon id='pencil' fill='none' />
+              <Icon id='pencil' fill='none' width={13} height={13}/>
             </S.IconWrapper>
           )}
         </S.InputBox>
