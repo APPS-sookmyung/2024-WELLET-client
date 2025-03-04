@@ -72,87 +72,94 @@ export default function CardDetailPage() {
         </S.TopContainer>
 
         <S.BottomContainer>
-          <S.ConBar>연락처</S.ConBar>
-          <S.ContactContainer>
-            <S.InfoBox>
-              <S.UserInfoLabel>휴대폰</S.UserInfoLabel>
-              <S.ContactWrapper>
-                <S.UserInfoValue>{info.phone}</S.UserInfoValue>
-                <S.IconBox>
-                  <a href={`sms:${info.phone}`}>
-                    <Icon id='message' width='20' height='14' />
-                  </a>
-                  <a href={`tel:${info.phone}`}>
-                    <Icon id='call' width='20' height='14' />
-                  </a>
-                </S.IconBox>
-              </S.ContactWrapper>
-            </S.InfoBox>
-            {info.email && (
+          <div>
+            <S.ConBar>연락처</S.ConBar>
+            <S.ContactContainer>
               <S.InfoBox>
-                <S.UserInfoLabel>이메일</S.UserInfoLabel>
+                <S.UserInfoLabel>휴대폰</S.UserInfoLabel>
                 <S.ContactWrapper>
-                  <S.UserInfoValue>{info.email}</S.UserInfoValue>
-                  <a href={`mailto:${info.email}`}>
-                    <Icon id='mail' width='20' height='14' />
-                  </a>
+                  <S.UserInfoValue>{info.phone}</S.UserInfoValue>
+                  <S.IconBox>
+                    <a href={`sms:${info.phone}`}>
+                      <Icon id='message' width='20' height='14' />
+                    </a>
+                    <a href={`tel:${info.phone}`}>
+                      <Icon id='call' width='20' height='14' />
+                    </a>
+                  </S.IconBox>
                 </S.ContactWrapper>
               </S.InfoBox>
-            )}
-            {info.tel && (
-              <S.InfoBox>
-                <S.UserInfoLabel>유선전화</S.UserInfoLabel>
-                <S.ContactWrapper>
-                  <S.UserInfoValue>{info.tel}</S.UserInfoValue>
-                  <a href={`tel:${info.tel}`}>
-                    <Icon id='call' width='20' height='14' />
-                  </a>
-                </S.ContactWrapper>
+              {info.email && (
+                <S.InfoBox>
+                  <S.UserInfoLabel>이메일</S.UserInfoLabel>
+                  <S.ContactWrapper>
+                    <S.UserInfoValue>{info.email}</S.UserInfoValue>
+                    <a href={`mailto:${info.email}`}>
+                      <Icon id='mail' width='20' height='14' />
+                    </a>
+                  </S.ContactWrapper>
+                </S.InfoBox>
+              )}
+              {info.tel && (
+                <S.InfoBox>
+                  <S.UserInfoLabel>유선전화</S.UserInfoLabel>
+                  <S.ContactWrapper>
+                    <S.UserInfoValue>{info.tel}</S.UserInfoValue>
+                    <a href={`tel:${info.tel}`}>
+                      <Icon id='call' width='20' height='14' />
+                    </a>
+                  </S.ContactWrapper>
+                </S.InfoBox>
+              )}
+              {info.address && (
+                <S.InfoBox style={{ paddingBottom: '0' }}>
+                  <S.UserInfoLabel>주소</S.UserInfoLabel>
+                  <S.UserInfoValue>{info.address}</S.UserInfoValue>
+                </S.InfoBox>
+              )}
+            </S.ContactContainer>
+          </div>
+          <div>
+            <S.ConBar>메모</S.ConBar>
+            <S.ContactContainer>
+              <S.InfoBox style={{ paddingBottom: '0' }}>
+                <S.UserInfoValue>{info.memo}</S.UserInfoValue>
               </S.InfoBox>
+            </S.ContactContainer>
+          </div>
+          <div>
+            {info.category && (
+              <>
+                <S.ConBar>그룹</S.ConBar>
+                <S.GroupButtonBox>
+                  <S.GroupButton>{info.category}</S.GroupButton>
+                </S.GroupButtonBox>
+              </>
             )}
-            {info.address && (
-              <S.InfoBox>
-                <S.UserInfoLabel>주소</S.UserInfoLabel>
-                <S.UserInfoValue>{info.address}</S.UserInfoValue>
-              </S.InfoBox>
-            )}
-          </S.ContactContainer>
-
-          <S.ConBar>메모</S.ConBar>
-          <S.ContactContainer>
-            <S.InfoBox>
-              <S.UserInfoValue>{info.memo}</S.UserInfoValue>
-            </S.InfoBox>
-          </S.ContactContainer>
-          {info.category && (
-            <>
-              <S.GroupButtonBar>그룹</S.GroupButtonBar>
-              <S.GroupButtonBox>
-                <S.GroupButton>{info.category}</S.GroupButton>
-              </S.GroupButtonBox>
-            </>
-          )}
-          {(info.frontImgUrl || info.backImgUrl) && (
-            <S.CardImageNameBox>
-              <S.GroupButtonBar>명함 이미지</S.GroupButtonBar>
-              <S.CardImageContainer>
-                <S.CardImageBox
-                  onClick={() => handleImageClick(info.frontImgUrl)}
-                >
-                  <img src={info.frontImgUrl} alt='사진 1' />
-                </S.CardImageBox>
-                {info.backImgUrl ? (
+          </div>
+          <div>
+            {(info.frontImgUrl || info.backImgUrl) && (
+              <S.CardImageNameBox>
+                <S.ConBar>명함 이미지</S.ConBar>
+                <S.CardImageContainer>
                   <S.CardImageBox
-                    onClick={() => handleImageClick(info.backImgUrl)}
+                    onClick={() => handleImageClick(info.frontImgUrl)}
                   >
-                    <img src={info.backImgUrl} alt='사진 2' />
+                    <img src={info.frontImgUrl} alt='사진 1' />
                   </S.CardImageBox>
-                ) : (
-                  <S.CardImageBox />
-                )}
-              </S.CardImageContainer>
-            </S.CardImageNameBox>
-          )}
+                  {info.backImgUrl ? (
+                    <S.CardImageBox
+                      onClick={() => handleImageClick(info.backImgUrl)}
+                    >
+                      <img src={info.backImgUrl} alt='사진 2' />
+                    </S.CardImageBox>
+                  ) : (
+                    <S.CardImageBox />
+                  )}
+                </S.CardImageContainer>
+              </S.CardImageNameBox>
+            )}
+          </div>
         </S.BottomContainer>
         {isModalOpen && (
           <S.ModalOverlay>

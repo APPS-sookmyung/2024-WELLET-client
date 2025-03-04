@@ -102,15 +102,18 @@ export const SubBar = styled.div`
 `;
 
 export const BottomContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
   width: 100%;
   background: #fff;
-  padding: 20px;
   box-sizing: border-box;
 `;
 
 export const InfoBox = styled.div`
   width: 100%;
-  padding: 2px;
+  padding-bottom: 8px;
 `;
 
 export const InfoContainer = styled.div`
@@ -124,7 +127,7 @@ export const ContactContainer = styled.div`
   border-radius: 10px;
   background: #f4f4f9;
   width: 100%;
-  padding: 12px;
+  padding: 12px 17px;
 `;
 
 export const ContactWrapper = styled.div`
@@ -149,7 +152,7 @@ export const ConBar = styled.div`
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.5px;
-  padding: 8px;
+  padding-bottom: 5px;
 `;
 
 export const GroupButtonBar = styled.div`
@@ -176,6 +179,7 @@ export const GroupButton = styled.div`
   padding: 4px 10px;
   color: var(--white, #fff);
   font-size: 14px;
+  font-weight: 400;
   line-height: 130%;
   letter-spacing: -0.55px;
   border: none;
@@ -254,7 +258,7 @@ export const UserInfoLabel = styled.div`
 
 export const UserInfoValue = styled.div`
   color: var(--grey4, #1a1a1a);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.5px;
