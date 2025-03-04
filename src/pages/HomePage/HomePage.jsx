@@ -12,7 +12,11 @@ export default function HomePage() {
   const [myCardData, setMyCardData] = useState([]);
   const [cardsData, setCardsData] = useState([]);
   const [myCardId, setMyCardId] = useState(null);
-  useVisibleCardsEffect(setVisibleList, cardsData);
+
+  useVisibleCardsEffect(
+    setVisibleList,
+    cardsData.sort((a, b) => b.id - a.id)
+  );
 
   async function fetchMyCard() {
     try {

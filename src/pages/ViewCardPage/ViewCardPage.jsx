@@ -131,7 +131,7 @@ export default function ViewCardPage() {
     return searchData.filter((data) => data.category === activeBadge?.name);
   };
 
-  const displayData = getDisplayData();
+  const displayData = getDisplayData().sort((a, b) => b.id - a.id);
 
   return (
     <>

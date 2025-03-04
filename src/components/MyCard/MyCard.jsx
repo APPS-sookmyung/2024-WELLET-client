@@ -25,7 +25,7 @@ export default function MyCard({
       <S.ProfileText>
         <S.Name>{name}</S.Name>
         <S.Team>
-          {`${company || ''}${company && (department || position) ? ' / ' : ''}${department || ''}${department && position ? ' / ' : ''}${position || ''}`}
+          {`${company || ''}${company && (department || position) ? ' | ' : ''}${department || ''}${department && position ? ' | ' : ''}${position || ''}`}
         </S.Team>
         {phone && (
           <S.ExtraInfo>
