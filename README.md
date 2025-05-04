@@ -22,11 +22,11 @@
 
 명함을 받았지만 필요할 때 찾지 못해 당황한 경험이 있으신가요?<br> WELLET은 OCR 기술을 활용해 명함을 사진 한 장으로 쉽게 저장하고, 정보를 자동으로 정리하여 언제든지 빠르게 검색할 수 있는 온라인 명함 관리 서비스입니다.<br> 이제 중요한 순간에 필요한 정보를 손쉽게 찾아보세요!
 
-[**🔗 서비스 바로 이용하기 Click !**](https://wellet.site/) <br>
-[**🔗 시연 영상 바로가기 Click !**](https://youtube.com/shorts/G41Sa9YkV78?si=uDDjFwtNc9ZSYxWi) <br>
-[**🔗 2024 APPS 온라인 전시회 바로가기 Click !**](https://2024-apps.netlify.app/projects/1) <br>
-[**📋 서비스 설명 자료 보러가기 Click !**](https://drive.google.com/file/d/1-dwR3K-3QAp3l8WxaFevO4EhmJMrpTuY/view?usp=drive_link) <br>
-[**📋 시스템 아키텍쳐 보러가기 Click !**](https://drive.google.com/file/d/1YA9soaWnrzCyfkDe7tlpCu9CV65oEK9M/view?usp=drive_link) <br>
+🔗 [**서비스 바로 이용하기**](https://wellet.site/) <br>
+🔗 [**시연 영상 바로가기**](https://youtube.com/shorts/G41Sa9YkV78?si=uDDjFwtNc9ZSYxWi) <br>
+🔗 [**2024 APPS 온라인 전시회 바로가기**](https://2024-apps.netlify.app/projects/1) <br>
+📋 [**서비스 설명 자료 보러가기**](https://drive.google.com/file/d/1-dwR3K-3QAp3l8WxaFevO4EhmJMrpTuY/view?usp=drive_link) <br>
+📋 [**시스템 아키텍쳐 보러가기**](https://drive.google.com/file/d/1YA9soaWnrzCyfkDe7tlpCu9CV65oEK9M/view?usp=drive_link) <br>
 
 <br>
 
@@ -61,11 +61,11 @@
 
 ## 💁🏻‍♀️ 프론트엔드 개발팀 소개
 
-|                                                                               프로필                                                                               |       이름 (세부 전공)        |                                                                                                         개발 내용                                                                                                         |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <a href="https://github.com/junheekim61" target="_blank"><img src="https://avatars.githubusercontent.com/u/100200965?v=4" alt="김준희 프로필" width="100px" /></a> |   김준희<br>(컴퓨터과학 22)   |                                      <p style="text-align:left;">- 온보딩 페이지 구현<br>- 카카오톡 로그인 기능 및 페이지 구현<br>- 홈 화면 페이지 구현<br>- 그룹 수정 모달 구현</p>                                      |
-| <a href="https://github.com/kimhyerims" target="_blank"><img src="https://avatars.githubusercontent.com/u/144879107?v=4" alt="김혜림 프로필" width="100px" /></a>  | 김혜림<br>(데이터사이언스 23) |                                                    <p style="text-align:left;">- 명함 상세 보기 및 수정하기 페이지 구현<br>- 내 명함 보기 및 수정하기 페이지 구현</p>                                                     |
-| <a href="https://github.com/misung-dev" target="_blank"><img src="https://avatars.githubusercontent.com/u/128569095?v=4" alt="류미성 프로필" width="100px" /></a>  |   류미성<br>(컴퓨터과학 21)   | <p style="text-align:left;">- Header, 검색창, Tab bar 등 컴포넌트 구현<br>- 명함 추가 페이지 구현 (OCR 기능 연동을 통해 명함 사진 추가, 직접 입력 추가)<br>- 그룹별 명함 보기 페이지 구현<br>- 내 명함 공유 모달 구현</p> |
+|                                                                               프로필                                                                               |       이름 (세부 전공)        |                                                                                      개발 내용                                                                                       |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <a href="https://github.com/junheekim61" target="_blank"><img src="https://avatars.githubusercontent.com/u/100200965?v=4" alt="김준희 프로필" width="100px" /></a> |   김준희<br>(컴퓨터과학 22)   |                                       온보딩 페이지 구현<br>카카오톡 로그인 기능 및 페이지 구현<br> 홈 화면 페이지 구현<br>그룹 수정 모달 구현                                       |
+| <a href="https://github.com/kimhyerims" target="_blank"><img src="https://avatars.githubusercontent.com/u/144879107?v=4" alt="김혜림 프로필" width="100px" /></a>  | 김혜림<br>(데이터사이언스 23) |                                                    명함 상세 보기 및 수정하기 페이지 구현<br>내 명함 보기 및 수정하기 페이지 구현                                                    |
+| <a href="https://github.com/misung-dev" target="_blank"><img src="https://avatars.githubusercontent.com/u/128569095?v=4" alt="류미성 프로필" width="100px" /></a>  |   류미성<br>(컴퓨터과학 21)   | Header, 검색창, Tab bar 등 컴포넌트 구현<br>명함 추가 페이지 구현<br>(OCR 기능 연동을 통해 명함 사진 추가, 직접 입력 추가)<br>그룹별 명함 보기 페이지 구현<br>내 명함 공유 모달 구현 |
 
 <br>
 
