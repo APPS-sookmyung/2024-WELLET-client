@@ -1,26 +1,85 @@
 <div align="center">
 
-### 📇 온라인 명함 보관 서비스 📇
-
 ![wellet logo](/src/assets/images/logo-description-wellet.png)
 
+<img src='readme-assets/wellet-thumbnail.png' width=500 />
+
 </div>
-<br>
 
-## 💁🏻‍♀️ 개발 팀 소개
+## 🗂️ 목차
 
-|                                                                               프로필                                                                               |       이름 (세부 전공)        |        역할        |                                                                     개발 내용                                                                      |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------: | :----------------: | :------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <a href="https://github.com/junheekim61" target="_blank"><img src="https://avatars.githubusercontent.com/u/100200965?v=4" alt="김준희 프로필" width="100px" /></a> |   김준희<br>(컴퓨터과학 22)   | Front-end<br>& PM  |                          온보딩 페이지 구현<br>카카오톡 로그인 페이지 구현<br>홈 화면 페이지 구현<br>그룹 수정 모달 구현                           |
-| <a href="https://github.com/kimhyerims" target="_blank"><img src="https://avatars.githubusercontent.com/u/144879107?v=4" alt="김혜림 프로필" width="100px" /></a>  | 김혜림<br>(데이터사이언스 23) |     Front-end      |                                   명함 상세 보기 및 수정하기 페이지 구현<br>내 명함 보기 및 수정하기 페이지 구현                                   |
-| <a href="https://github.com/misung-dev" target="_blank"><img src="https://avatars.githubusercontent.com/u/128569095?v=4" alt="류미성 프로필" width="100px" /></a>  |   류미성<br>(컴퓨터과학 21)   |     Front-end      | Header, 검색창, Tab bar 등 컴포넌트 구현<br>명함 추가 페이지 구현 (사진 추가, 직접 입력)<br>그룹별 명함 보기 페이지 구현<br>내 명함 공유 모달 구현 |
-|   <a href="https://github.com/lhaerim" target="_blank"><img src="https://avatars.githubusercontent.com/u/128566763?v=4" alt="이혜림 프로필" width="100px" /></a>   |   이혜림<br>(컴퓨터과학 23)   |      Back-end      |                                                                                                                                                    |
-|  <a href="https://github.com/ajung7038" target="_blank"><img src="https://avatars.githubusercontent.com/u/80907516?v=4" alt="주아정 프로필" width="100px" /></a>   |   주아정<br>(컴퓨터과학 23)   | Back-end<br>Leader |                                                                                                                                                    |
-|  <a href="https://github.com/hayeyoung" target="_blank"><img src="https://avatars.githubusercontent.com/u/144807080?v=4" alt="하예영 프로필" width="100px" /></a>  | 하예영<br>(데이터사이언스 23) |      Back-end      |                                                                                                                                                    |
+1. [**서비스 소개**](#1)
+2. [**기능 설명**](#2)
+3. [**프론트엔드 개발팀 소개**](#3)
+4. [**기획 및 개발 기간**](#4)
+5. [**개발 컨벤션**](#5)
 
 <br>
 
-## Git Convention
+<div id="1"></div>
+
+## 💻 서비스 소개
+
+명함을 받았지만 필요할 때 찾지 못해 당황한 경험이 있으신가요?<br> WELLET은 OCR 기술을 활용해 명함을 사진 한 장으로 쉽게 저장하고, 정보를 자동으로 정리하여 언제든지 빠르게 검색할 수 있는 온라인 명함 관리 서비스입니다.<br> 이제 중요한 순간에 필요한 정보를 손쉽게 찾아보세요!
+
+[**🔗 서비스 바로 이용하기 Click !**](https://wellet.site/) <br>
+[**🔗 시연 영상 바로가기 Click !**](https://youtube.com/shorts/G41Sa9YkV78?si=uDDjFwtNc9ZSYxWi) <br>
+[**🔗 2024 APPS 온라인 전시회 바로가기 Click !**](https://2024-apps.netlify.app/projects/1) <br>
+[**📋 서비스 설명 자료 보러가기 Click !**](https://drive.google.com/file/d/1-dwR3K-3QAp3l8WxaFevO4EhmJMrpTuY/view?usp=drive_link) <br>
+[**📋 시스템 아키텍쳐 보러가기 Click !**](https://drive.google.com/file/d/1YA9soaWnrzCyfkDe7tlpCu9CV65oEK9M/view?usp=drive_link) <br>
+
+<br>
+
+<div id="2"></div>
+
+## 💡 기능 설명
+
+- 명함 사진 업로드<br>
+  명함 사진을 업로드하면 자동으로 정보를 정리합니다.
+
+- OCR로 정보 자동 추출<br>
+  상호명, 이름, 전화번호, 주소 등 주요 정보를 OCR로 추출해 명함을 체계적으로 저장합니다.
+
+- 세부설명 추가<br>
+  직접 설명을 추가하여 명함과 관련된 기억을 보완하세요. (예: "OO 세미나 강사", "을지로 근처 디저트 맛집")
+
+- 카테고리<br>
+  거래처/학교/맛집 등 사용자 정의 카테고리로 정리해보세요.
+
+- 명함 이미지 보관<br>
+  명함의 앞면, 뒷면, 추가 이미지를 모두 보관합니다.
+
+- 카테고리별 리스트로 정리<br>
+  거래처, 친구, 맛집 등 카테고리별로 명함을 정리해 메인 화면에서 한눈에 확인할 수 있습니다.
+
+- 검색 기능<br>
+  상호명, 이름, 전화번호, 메모, 카테고리 등 기록된 내용을 기반으로 명함을 빠르게 검색할 수 있습니다.
+
+<br>
+
+<div id="3"></div>
+
+## 💁🏻‍♀️ 프론트엔드 개발팀 소개
+
+|                                                                               프로필                                                                               |       이름 (세부 전공)        |                                                                                                         개발 내용                                                                                                         |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <a href="https://github.com/junheekim61" target="_blank"><img src="https://avatars.githubusercontent.com/u/100200965?v=4" alt="김준희 프로필" width="100px" /></a> |   김준희<br>(컴퓨터과학 22)   |                                      <p style="text-align:left;">- 온보딩 페이지 구현<br>- 카카오톡 로그인 기능 및 페이지 구현<br>- 홈 화면 페이지 구현<br>- 그룹 수정 모달 구현</p>                                      |
+| <a href="https://github.com/kimhyerims" target="_blank"><img src="https://avatars.githubusercontent.com/u/144879107?v=4" alt="김혜림 프로필" width="100px" /></a>  | 김혜림<br>(데이터사이언스 23) |                                                    <p style="text-align:left;">- 명함 상세 보기 및 수정하기 페이지 구현<br>- 내 명함 보기 및 수정하기 페이지 구현</p>                                                     |
+| <a href="https://github.com/misung-dev" target="_blank"><img src="https://avatars.githubusercontent.com/u/128569095?v=4" alt="류미성 프로필" width="100px" /></a>  |   류미성<br>(컴퓨터과학 21)   | <p style="text-align:left;">- Header, 검색창, Tab bar 등 컴포넌트 구현<br>- 명함 추가 페이지 구현 (OCR 기능 연동을 통해 명함 사진 추가, 직접 입력 추가)<br>- 그룹별 명함 보기 페이지 구현<br>- 내 명함 공유 모달 구현</p> |
+
+<br>
+
+<div id="4"></div>
+
+## 📅 기획 및 개발 기간
+
+2024년 3월 ~ 2025년 3월 (13개월)
+
+<br>
+
+<div id="5"></div>
+
+## 💪 개발 컨벤션
 
 ### 🟣 Commit Convention
 
